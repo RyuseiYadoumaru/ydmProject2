@@ -71,16 +71,9 @@ bool systems::AudioSystem::SetUp()
 //==============================================================================
 bool systems::AudioSystem::ShutDown()
 {
-	m_masteringVoice->DestroyVoice();
-
-	if (m_xAudio2 != nullptr) m_xAudio2->Release();
-
 	// ‚b‚n‚l‚Ì”jŠü
+	m_masteringVoice->DestroyVoice();
 	CoUninitialize();
-
-	/** ‰ð•ú */
-	m_xAudio2.Reset();
-	SAFE_DELETE(m_masteringVoice);
 
 	return true;
 }

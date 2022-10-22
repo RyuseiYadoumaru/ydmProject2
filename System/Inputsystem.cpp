@@ -119,13 +119,5 @@ bool systems::Inputsystem::ShutDown()
 	m_directKeyboard->Unacquire();
 	m_directMouse->Unacquire();
 
-	// IDirectInput8‚Ì‰ð•ú‚ðs‚¤
-	m_directInput->Release();
-	m_directKeyboard->Release();
-	m_directMouse->Release();
-
-	m_directMouse.Reset();
-	m_directKeyboard.Reset();
-	m_directInput.Reset();
 	return true;
 }

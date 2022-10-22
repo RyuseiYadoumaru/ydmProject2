@@ -33,7 +33,7 @@ private:
 	void SystemReleace();
 
 private:
-	static Vector<SubSystemPtr> m_subSystems;
+	Vector<SubSystemPtr> m_subSystems;
 	HINSTANCE	m_hInstance = nullptr;
 	int			m_windowMode = NULL;
 	bool m_isSetUpComplete = false;

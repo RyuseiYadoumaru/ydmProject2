@@ -25,8 +25,6 @@
 USING_SYSTEMS;
 USING_TOOLS;
 
-Vector<Application::SubSystemPtr> Application::m_subSystems;
-
 /**
  *  サブシステム登録.
  * 
@@ -42,7 +40,7 @@ bool Application::RegisterSubSystem(SubSystemPtr subSystem, String subsystemName
 		return false;
 	}
 	Debug::Log("CreateSystem", subsystemName);
-	//m_subSystems.push_back(subSystem);
+	m_subSystems.push_back(subSystem);
 	return true;
 }
 
@@ -124,16 +122,9 @@ bool Application::ShutDown()
 //==============================================================================
 void Application::SystemReleace()
 {
-	GuiSystem::GetInstance()->ShutDown();
-	//AudioSystem::GetInstance()->ShutDown();
-	//Inputsystem::GetInstance()->ShutDown();
-	DirectXGraphics::GetInstance()->ShutDown();
-	SystemTimer::GetInstance()->ShutDown();
-	Console::GetInstance()->ShutDown();
-	Window::GetInstance()->ShutDown();
-
-	//for (auto& sub : m_subSystems)
-	//{
-	//	sub->ShutDown();
-	//}
+	for (auto& sub : m_subSystems)
+	{
+		sub->ShutDown();
+	}
+	m_subSystems.clear();
 }
