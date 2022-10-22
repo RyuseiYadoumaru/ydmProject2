@@ -6,23 +6,26 @@
 //* @author YadoumaruRyusei
 //* @date   July 2022
 //*****************************************************************************
-
-#include <iostream>
 #include "Application.h"
-#include "Console.h"
-#include "Window.h"
-#include "MessageWindow.h"
-#include "SystemTimer.h"
-#include "Inputsystem.h"
-#include "DirectXGraphics.h"
 #include "Audiosystem.h"
-//#include "../GameSystem/GameSystem.h"
+#include "Console.h"
+#include "DirectXGraphics.h"
 #include "GuiSystem.h"
+#include "MessageWindow.h"
+#include "Inputsystem.h"
+#include "SystemTimer.h"
+#include "Window.h"
+
+#include "Debug.h"
+//#include "../GameSystem/GameSystem.h"
 //#include "../../dx11util.h"
 //#include "../Systems/Core/Renderer/ConstentBuffer/DX11Settransform.h"
 //#include "Config.h"
 
 USING_SYSTEMS;
+USING_TOOLS;
+
+Vector<Application::SubSystemPtr> Application::m_subSystems;
 
 /**
  *  サブシステム登録.
@@ -38,8 +41,8 @@ bool Application::RegisterSubSystem(SubSystemPtr subSystem, String subsystemName
 		// エラーメッセージを出力する
 		return false;
 	}
-	std::cout << "CreateSystem : " << subsystemName << std::endl;
-	m_subSystems.push(subSystem);
+	Debug::Log("CreateSystem", subsystemName);
+	//m_subSystems.push_back(subSystem);
 	return true;
 }
 
@@ -121,10 +124,16 @@ bool Application::ShutDown()
 //==============================================================================
 void Application::SystemReleace()
 {
-	while (m_subSystems.empty() == false)
-	{
-		// サブシステムを解放
-		m_subSystems.front()->ShutDown();
-		m_subSystems.pop();
-	}
+	GuiSystem::GetInstance()->ShutDown();
+	//AudioSystem::GetInstance()->ShutDown();
+	//Inputsystem::GetInstance()->ShutDown();
+	DirectXGraphics::GetInstance()->ShutDown();
+	SystemTimer::GetInstance()->ShutDown();
+	Console::GetInstance()->ShutDown();
+	Window::GetInstance()->ShutDown();
+
+	//for (auto& sub : m_subSystems)
+	//{
+	//	sub->ShutDown();
+	//}
 }

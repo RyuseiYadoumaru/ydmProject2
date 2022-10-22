@@ -57,7 +57,3 @@ CLASS& operator=(const CLASS&) = delete;
 
 #define USING_SYSTEMS using namespace systems;
 #define USING_TOOLS using namespace tools;
-
-
-
-
