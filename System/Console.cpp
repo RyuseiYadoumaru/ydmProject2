@@ -13,7 +13,6 @@
 #include <iostream>
 #include "Console.h"
 
-
 //==============================================================================
 //!	@fn		SetUp
 //!	@brief	初期化処理
@@ -25,18 +24,13 @@ bool systems::Console::SetUp()
 #ifdef _DEBUG
 	// コンソールを割り当てる
 	AllocConsole();
-
 	// 標準出力の割り当て
 	freopen_s(&m_fp, "CON", "w", stdout);
-
 	//ハンドル取得
 	m_stdOutHandle = GetStdHandle(STD_OUTPUT_HANDLE);
-
 	std::cout << "========== System SetUp ==========" << std::endl;
-
 #else
 #endif // _DEBUG
-
 	return true;
 }
 
@@ -49,18 +43,13 @@ bool systems::Console::SetUp()
 bool systems::Console::ShutDown()
 {
 #ifdef _DEBUG
-
 	std::cout << "\n========== System ShutDown ==========" << std::endl;
-
 	// 標準出力クローズ
 	fclose(m_fp);
-
 	// コンソール開放
 	::FreeConsole();
-
 #else
 #endif // _DEBUG
-
 	return true;
 }
 

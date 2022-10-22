@@ -120,6 +120,7 @@
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <AdditionalIncludeDirectories>Contents;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -147,6 +148,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="System\Application.cpp" />
+    <ClCompile Include="System\Console.cpp" />
+    <ClCompile Include="System\MessageWindow.cpp" />
+    <ClCompile Include="System\Window.cpp" />
+    <ClCompile Include="System\WindowCallBack.cpp" />
     <ClCompile Include="System\WinMain.cpp" />
     <ClCompile Include="ThirdParty\DirectTex\DDSTextureLoader.cpp" />
     <ClCompile Include="ThirdParty\DirectTex\WICTextureLoader.cpp" />
@@ -159,6 +165,14 @@
     <ClCompile Include="ThirdParty\Imgui\imgui_widgets.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Contents\macro.h" />
+    <ClInclude Include="Contents\std.h" />
+    <ClInclude Include="System\Application.h" />
+    <ClInclude Include="System\Console.h" />
+    <ClInclude Include="System\MessageWindow.h" />
+    <ClInclude Include="System\SubSystem.h" />
+    <ClInclude Include="System\Window.h" />
+    <ClInclude Include="System\WindowCallBack.h" />
     <ClInclude Include="ThirdParty\DirectTex\DDSTextureLoader.h" />
     <ClInclude Include="ThirdParty\DirectTex\DirectXTex.h" />
     <ClInclude Include="ThirdParty\DirectTex\WICTextureLoader.h" />

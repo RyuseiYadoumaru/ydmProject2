@@ -8,21 +8,22 @@
 //*****************************************************************************
 #pragma once
 
-#include "../SystemBase.h"
+#include "SubSystem.h"
 #include "std.h"
-
+#include "macro.h"
 namespace systems
 {
-	class Console final : public SystemBase<Console>
+	class Console final : public SubSystem
 	{
+		SINGLETON_CLASS(Console);
 	public:
-		bool SetUp() override;
+		bool SetUp()	override;
 		bool ShutDown() override;
 
 		void TextColor(WORD color);
 
 	public:
-		const HANDLE& GetHandle() const { return m_stdOutHandle; }
+		const HANDLE& GetHandle() const noexcept { return m_stdOutHandle; }
 
 	private:
 		HANDLE		m_stdOutHandle;
@@ -30,5 +31,4 @@ namespace systems
 		FILE*		m_fp;
 
 	};
-
 }

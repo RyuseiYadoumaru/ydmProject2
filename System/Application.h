@@ -10,25 +10,21 @@
 
 #include "std.h"
 #include "macro.h"
+#include "SubSystem.h"
 
 class Application final
 {
-	COPY_PROHIBITED(Application)
-
-public:
-	static Application& Instance() noexcept
-	{
-		static Application application;
-		return application;
-	}
+	SINGLETON_CLASS(Application);
+	using SubSystemPtr = systems::SubSystem*;
 
 public:
 	bool SetUp(HINSTANCE h_instance, int windowMode);
-	uInt16 Run();
 	bool ShutDown();
-
+	uInt16 Run();
 
 public:
+	bool RegisterSubSystem(SubSystemPtr subSystem, String subsystemName = "SubSystem");
+
 	const bool	SetUpComplete()	const noexcept { return m_isSetUpComplete; }
 	HINSTANCE	GetHInstance()	const noexcept { return m_hInstance; }
 	const int	GetWindowMode() const noexcept { return m_windowMode; }
@@ -38,14 +34,8 @@ private:
 	void SystemReleace();
 
 private:
+	Queue<SubSystemPtr> m_subSystems;
 	HINSTANCE	m_hInstance = nullptr;
 	int			m_windowMode = NULL;
-
 	bool m_isSetUpComplete = false;
-
-private:
-	Application() = default;
-	~Application() = default;
-
-
 };

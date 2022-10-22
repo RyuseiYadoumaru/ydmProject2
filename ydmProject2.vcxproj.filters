@@ -4,84 +4,147 @@
     <Filter Include="System">
       <UniqueIdentifier>{f21a99c7-ddbd-46ef-b7f7-ff56acf5b98c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ThirdParty">
+    <Filter Include="Game">
+      <UniqueIdentifier>{9531cc8f-7ff6-4587-8ba5-11deca7d8255}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\ThirdParty">
       <UniqueIdentifier>{845c1381-482c-42de-89e8-f9e0e6e3e6f5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ThirdParty\ImGui">
+    <Filter Include="System\ThirdParty\ImGui">
       <UniqueIdentifier>{34256a6e-95cf-4339-9786-752a72eacdbd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ThirdParty\DirectTex">
+    <Filter Include="System\ThirdParty\DirectTex">
       <UniqueIdentifier>{56d64f9a-37e6-47ee-8f02-ec4306b6f04c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents">
+      <UniqueIdentifier>{a65216f0-d96f-4b15-a488-c3728ad34d13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Core">
+      <UniqueIdentifier>{da3f71c8-cc88-4727-979c-4ad331478bb4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Core\Application">
+      <UniqueIdentifier>{d3958456-1dda-467e-9bc7-269cede302ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\SubSystem">
+      <UniqueIdentifier>{e1679ed4-8d27-4df7-aeb2-b4be4b407938}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\SubSystem\Console">
+      <UniqueIdentifier>{ff24b7fb-ac4d-42f6-8015-3b498d9c4443}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\SubSystem\Window">
+      <UniqueIdentifier>{b1b4b151-fc1c-412e-8c53-ad770e906739}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\SubSystem\Message">
+      <UniqueIdentifier>{7cd9ed7c-e20f-4316-a2c4-d42995cffe12}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="System\WinMain.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
     <ClCompile Include="ThirdParty\Imgui\imgui.cpp">
-      <Filter>ThirdParty\ImGui</Filter>
+      <Filter>System\ThirdParty\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="ThirdParty\Imgui\imgui_demo.cpp">
-      <Filter>ThirdParty\ImGui</Filter>
+      <Filter>System\ThirdParty\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="ThirdParty\Imgui\imgui_draw.cpp">
-      <Filter>ThirdParty\ImGui</Filter>
+      <Filter>System\ThirdParty\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="ThirdParty\Imgui\imgui_impl_dx11.cpp">
-      <Filter>ThirdParty\ImGui</Filter>
+      <Filter>System\ThirdParty\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="ThirdParty\Imgui\imgui_impl_win32.cpp">
-      <Filter>ThirdParty\ImGui</Filter>
+      <Filter>System\ThirdParty\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="ThirdParty\Imgui\imgui_tables.cpp">
-      <Filter>ThirdParty\ImGui</Filter>
+      <Filter>System\ThirdParty\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="ThirdParty\Imgui\imgui_widgets.cpp">
-      <Filter>ThirdParty\ImGui</Filter>
+      <Filter>System\ThirdParty\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="ThirdParty\DirectTex\WICTextureLoader.cpp">
-      <Filter>ThirdParty\DirectTex</Filter>
+      <Filter>System\ThirdParty\DirectTex</Filter>
     </ClCompile>
     <ClCompile Include="ThirdParty\DirectTex\DDSTextureLoader.cpp">
-      <Filter>ThirdParty\DirectTex</Filter>
+      <Filter>System\ThirdParty\DirectTex</Filter>
+    </ClCompile>
+    <ClCompile Include="System\Application.cpp">
+      <Filter>System\Core\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="System\WinMain.cpp">
+      <Filter>System\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="System\Console.cpp">
+      <Filter>System\SubSystem\Console</Filter>
+    </ClCompile>
+    <ClCompile Include="System\Window.cpp">
+      <Filter>System\SubSystem\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="System\WindowCallBack.cpp">
+      <Filter>System\SubSystem\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="System\MessageWindow.cpp">
+      <Filter>System\SubSystem\Message</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ThirdParty\LibraryHeader.h">
-      <Filter>ThirdParty</Filter>
+      <Filter>System\ThirdParty</Filter>
     </ClInclude>
     <ClInclude Include="ThirdParty\Imgui\imconfig.h">
-      <Filter>ThirdParty\ImGui</Filter>
+      <Filter>System\ThirdParty\ImGui</Filter>
     </ClInclude>
     <ClInclude Include="ThirdParty\Imgui\imgui.h">
-      <Filter>ThirdParty\ImGui</Filter>
+      <Filter>System\ThirdParty\ImGui</Filter>
     </ClInclude>
     <ClInclude Include="ThirdParty\Imgui\imgui_impl_dx11.h">
-      <Filter>ThirdParty\ImGui</Filter>
+      <Filter>System\ThirdParty\ImGui</Filter>
     </ClInclude>
     <ClInclude Include="ThirdParty\Imgui\imgui_impl_win32.h">
-      <Filter>ThirdParty\ImGui</Filter>
+      <Filter>System\ThirdParty\ImGui</Filter>
     </ClInclude>
     <ClInclude Include="ThirdParty\Imgui\imgui_internal.h">
-      <Filter>ThirdParty\ImGui</Filter>
+      <Filter>System\ThirdParty\ImGui</Filter>
     </ClInclude>
     <ClInclude Include="ThirdParty\Imgui\imstb_rectpack.h">
-      <Filter>ThirdParty\ImGui</Filter>
+      <Filter>System\ThirdParty\ImGui</Filter>
     </ClInclude>
     <ClInclude Include="ThirdParty\Imgui\imstb_textedit.h">
-      <Filter>ThirdParty\ImGui</Filter>
+      <Filter>System\ThirdParty\ImGui</Filter>
     </ClInclude>
     <ClInclude Include="ThirdParty\Imgui\imstb_truetype.h">
-      <Filter>ThirdParty\ImGui</Filter>
+      <Filter>System\ThirdParty\ImGui</Filter>
     </ClInclude>
     <ClInclude Include="ThirdParty\DirectTex\DDSTextureLoader.h">
-      <Filter>ThirdParty\DirectTex</Filter>
+      <Filter>System\ThirdParty\DirectTex</Filter>
     </ClInclude>
     <ClInclude Include="ThirdParty\DirectTex\DirectXTex.h">
-      <Filter>ThirdParty\DirectTex</Filter>
+      <Filter>System\ThirdParty\DirectTex</Filter>
     </ClInclude>
     <ClInclude Include="ThirdParty\DirectTex\WICTextureLoader.h">
-      <Filter>ThirdParty\DirectTex</Filter>
+      <Filter>System\ThirdParty\DirectTex</Filter>
+    </ClInclude>
+    <ClInclude Include="Contents\std.h">
+      <Filter>Contents</Filter>
+    </ClInclude>
+    <ClInclude Include="Contents\macro.h">
+      <Filter>Contents</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Application.h">
+      <Filter>System\Core\Application</Filter>
+    </ClInclude>
+    <ClInclude Include="System\SubSystem.h">
+      <Filter>System\SubSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Console.h">
+      <Filter>System\SubSystem\Console</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Window.h">
+      <Filter>System\SubSystem\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="System\WindowCallBack.h">
+      <Filter>System\SubSystem\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="System\MessageWindow.h">
+      <Filter>System\SubSystem\Message</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

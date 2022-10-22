@@ -7,27 +7,50 @@
 //* @date   July 2022
 //*****************************************************************************
 
+#include <iostream>
 #include "Application.h"
-#include "../Window/Window.h"
-#include "../Message/MessageWindow.h"
-#include "../Console/Console.h"
-#include "../Timer/SystemTimer.h"
-#include "../GameSystem/GameSystem.h"
-#include "../Systems/Core/Graphics/DirectXGraphics.h"
-#include "../Input/Inputsystem.h"
-#include "../Sound/Soundsystem.h"
-#include "../Gui/GuiSystem.h"
+#include "Console.h"
+#include "Window.h"
+//#include "../Message/MessageWindow.h"
+//#include "../Timer/SystemTimer.h"
+//#include "../GameSystem/GameSystem.h"
+//#include "../Systems/Core/Graphics/DirectXGraphics.h"
+//#include "../Input/Inputsystem.h"
+//#include "../Sound/Soundsystem.h"
+//#include "../Gui/GuiSystem.h"
 //#include "../../dx11util.h"
-#include "../Systems/Core/Renderer/ConstentBuffer/DX11Settransform.h"
+//#include "../Systems/Core/Renderer/ConstentBuffer/DX11Settransform.h"
 //#include "Config.h"
 
-//==============================================================================
-//!	@fn		SetUp
-//!	@brief	アプリケーションセットアップ
-//!	@note	アプリケーションの初期設定
-//!	@param	h_instance：インスタンスハンドル
-//!	@retval	TRUE　成功終了/ FALSE　失敗終了
-//==============================================================================
+USING_SYSTEMS;
+
+/**
+ *  サブシステム登録.
+ * 
+ * !@param subSystem : 登録サブシステムのポインタ
+ * !@param errorText : エラーメッセージ
+ * !@return TRUE　成功終了/ FALSE　失敗終了
+ */
+bool Application::RegisterSubSystem(SubSystemPtr subSystem, String subsystemName)
+{
+	if (subSystem->SetUp() == false)
+	{
+		// エラーメッセージを出力する
+		return false;
+	}
+	std::cout << "CreateSystem : " << subsystemName << std::endl;
+	m_subSystems.push(subSystem);
+	return true;
+}
+
+
+/**
+ *  アプリケーションのセットアップ.
+ * 
+ * !@param h_instance : インスタンスハンドル
+ * !@param windowMode : ウィンドウモード
+ * !@return TRUE　成功終了/ FALSE　失敗終了
+ */
 bool Application::SetUp(HINSTANCE h_instance, int windowMode)
 {
 	/****	メモリリーク検出	****/
@@ -45,11 +68,11 @@ bool Application::SetUp(HINSTANCE h_instance, int windowMode)
 	}
 
 	/****	ウィンドウ表示	****/
-	systems::Window::Instance()->Create();
+	//systems::Window::Instance()->Create();
 
 
 	//ここの部分もリファクタする
-	DX11SetTransform::Get()->Init();
+	//DX11SetTransform::Get()->Init();
 
 
 	return true;
@@ -63,23 +86,23 @@ bool Application::SetUp(HINSTANCE h_instance, int windowMode)
 ============================================================================*/
 uInt16 Application::Run()
 {
-	systems::MessageWindow* message = systems::MessageWindow::Instance();
+	//systems::MessageWindow* message = systems::MessageWindow::Instance();
 
-	/** ゲーム初期化 */
-	systems::GameSystem::Instance()->Initialaze();
+	///** ゲーム初期化 */
+	//systems::GameSystem::Instance()->Initialaze();
 
-	/** ゲーム更新 */
-	while (message->ExecMessage() == true)
-	{
-		systems::GameSystem::Instance()->Run();
-	}
+	///** ゲーム更新 */
+	//while (message->ExecMessage() == true)
+	//{
+	//	systems::GameSystem::Instance()->Run();
+	//}
 
-	/** ゲーム終了処理 */
-	systems::GameSystem::Instance()->Finalize();
+	///** ゲーム終了処理 */
+	//systems::GameSystem::Instance()->Finalize();
 
-	return message->Message();
+	//return message->Message();
+	return 0;
 }
-
 
 /**============================================================================
 //! @func   ShutDown
@@ -101,66 +124,68 @@ bool Application::ShutDown()
 //==============================================================================
 bool Application::SystemCreate()
 {
-	bool sts;
-	sts = systems::Console::Instance()->SetUp();
-	if (sts == false)
-	{
-		systems::MessageWindow::Error("コンソールの初期化に失敗");
-	}
-	
-	sts = systems::SystemTimer::Instance()->SetUp();
-	if (sts == false)
-	{
-		systems::MessageWindow::Error("システムタイマーの初期化に失敗");
-		return false;
-	}
+	RegisterSubSystem(Console::GetInstance(), "Console");
+	RegisterSubSystem(Window::GetInstance(), "Window");
+	//bool sts;
+	//sts = systems::Console::Instance()->SetUp();
+	//if (sts == false)
+	//{
+	//	systems::MessageWindow::Error("コンソールの初期化に失敗");
+	//}
+	//
+	//sts = systems::SystemTimer::Instance()->SetUp();
+	//if (sts == false)
+	//{
+	//	systems::MessageWindow::Error("システムタイマーの初期化に失敗");
+	//	return false;
+	//}
 
 
-	sts = systems::Window::Instance()->SetUp();
-	if (sts == false)
-	{
-		systems::MessageWindow::Error("Windowの初期化に失敗");
-		return false;
-	}
-	
-	sts = systems::Inputsystem::Instance()->SetUp();
-	if (sts == false)
-	{
-		systems::MessageWindow::Error("InputSystemsの初期化に失敗");
-		return false;
+	//sts = systems::Window::Instance()->SetUp();
+	//if (sts == false)
+	//{
+	//	systems::MessageWindow::Error("Windowの初期化に失敗");
+	//	return false;
+	//}
+	//
+	//sts = systems::Inputsystem::Instance()->SetUp();
+	//if (sts == false)
+	//{
+	//	systems::MessageWindow::Error("InputSystemsの初期化に失敗");
+	//	return false;
 
-	}
+	//}
 
-	sts = systems::DirectXGraphics::Instance()->SetUp();
-	if (sts == false)
-	{
-		systems::MessageWindow::Error("DirectXGraphicsの初期化に失敗");
-		return false;
-	}
+	//sts = systems::DirectXGraphics::Instance()->SetUp();
+	//if (sts == false)
+	//{
+	//	systems::MessageWindow::Error("DirectXGraphicsの初期化に失敗");
+	//	return false;
+	//}
 
-	sts = systems::GuiSystem::Instance()->SetUp();
-	if (sts == false)
-	{
-		systems::MessageWindow::Error("GuiSystemの初期化に失敗");
-		return false;
-	}
+	//sts = systems::GuiSystem::Instance()->SetUp();
+	//if (sts == false)
+	//{
+	//	systems::MessageWindow::Error("GuiSystemの初期化に失敗");
+	//	return false;
+	//}
 
-	systems::Soundsystem::Instance()->SetUp();
-	if (sts == false)
-	{
-		systems::MessageWindow::Error("サウンドシステムの初期化に失敗");
-		return false;
+	//systems::Soundsystem::Instance()->SetUp();
+	//if (sts == false)
+	//{
+	//	systems::MessageWindow::Error("サウンドシステムの初期化に失敗");
+	//	return false;
 
-	}
+	//}
 
 
-	sts = systems::GameSystem::Instance()->SetUp();
-	if (sts == false)
-	{
-		systems::MessageWindow::Error("ゲームシステムの初期化に失敗");
-		return false;
+	//sts = systems::GameSystem::Instance()->SetUp();
+	//if (sts == false)
+	//{
+	//	systems::MessageWindow::Error("ゲームシステムの初期化に失敗");
+	//	return false;
 
-	}
+	//}
 
 	return true;
 }
@@ -172,13 +197,19 @@ bool Application::SystemCreate()
 //==============================================================================
 void Application::SystemReleace()
 {
-	systems::GameSystem::Instance()->ShutDown();
-	systems::Soundsystem::Instance()->ShutDown();
-	systems::GuiSystem::Instance()->ShutDown();
-	systems::DirectXGraphics::Instance()->ShutDown();
-	systems::Inputsystem::Instance()->ShutDown();
-	systems::Window::Instance()->ShutDown();
-	systems::SystemTimer::Instance()->ShutDown();
-	systems::Console::Instance()->ShutDown();
+	while (m_subSystems.empty() == false)
+	{
+		// サブシステムを解放
+		m_subSystems.front()->ShutDown();
+		m_subSystems.pop();
+	}
+	//systems::GameSystem::Instance()->ShutDown();
+	//systems::Soundsystem::Instance()->ShutDown();
+	//systems::GuiSystem::Instance()->ShutDown();
+	//systems::DirectXGraphics::Instance()->ShutDown();
+	//systems::Inputsystem::Instance()->ShutDown();
+	//systems::Window::Instance()->ShutDown();
+	//systems::SystemTimer::Instance()->ShutDown();
+	//systems::Console::Instance()->ShutDown();
 
 }

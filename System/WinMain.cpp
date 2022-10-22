@@ -11,7 +11,7 @@
 
 #include "../ThirdParty/LibraryHeader.h"
 #include <Windows.h>
-//#include "Core/Applicaiton/Application.h"
+#include "Application.h"
 
 /**============================================================================
 //! @func   WinMain
@@ -25,11 +25,12 @@
 
 INT WINAPI WinMain(HINSTANCE  h_hInst, HINSTANCE h_hPrevInst, LPSTR h_lpszArgs, int h_nWinMode)
 {
-	//Application& App = Application::Instance();
-	//uInt32 ret = 0;
-	//if (App.SetUp(h_hInst, h_nWinMode) == true)
-	//{
-	//	ret = App.Run();
-	//}
+	auto app = Application::GetInstance();
+	uInt32 ret = 0;
+	if (app->SetUp(h_hInst, h_nWinMode) == true)
+	{
+		ret = app->Run();
+	}
+	app->ShutDown();
 	return 0;
 }
