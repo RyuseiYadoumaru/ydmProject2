@@ -10,6 +10,7 @@
 #include "Audiosystem.h"
 #include "Console.h"
 #include "DirectXGraphics.h"
+#include "GameSystem.h"
 #include "GuiSystem.h"
 #include "MessageWindow.h"
 #include "Inputsystem.h"
@@ -39,8 +40,8 @@ bool Application::RegisterSubSystem(SubSystemPtr subSystem, String subsystemName
 		// エラーメッセージを出力する
 		return false;
 	}
-	Debug::Log("CreateSystem", subsystemName);
-	m_subSystems.push_back(subSystem);
+	Debug::Log("CreateSystem : ", subsystemName);
+	m_subSystems.push(subSystem);
 	return true;
 }
 
@@ -67,6 +68,7 @@ bool Application::SetUp(HINSTANCE h_instance, int windowMode)
 	RegisterSubSystem(Inputsystem::GetInstance(), "InputSystem");
 	RegisterSubSystem(AudioSystem::GetInstance(), "AudioSystem");
 	RegisterSubSystem(GuiSystem::GetInstance(), "GuiSystem");
+	RegisterSubSystem(GameSystem::GetInstance(), "GameSystem");
 
 	/****	ウィンドウ表示	****/
 	Window::GetInstance()->Create();
@@ -84,22 +86,23 @@ bool Application::SetUp(HINSTANCE h_instance, int windowMode)
 ============================================================================*/
 uInt16 Application::Run()
 {
-	//systems::MessageWindow* message = systems::MessageWindow::Instance();
+
+	auto game = GameSystem::GetInstance();
+	auto message = MessageWindow::GetInstance();
+
 
 	///** ゲーム初期化 */
 	//systems::GameSystem::Instance()->Initialaze();
 
-	///** ゲーム更新 */
-	//while (message->ExecMessage() == true)
-	//{
-	//	systems::GameSystem::Instance()->Run();
-	//}
+	/** ゲーム更新 */
+	while (message->ExecMessage() == true)
+	{
+		game->Run();
+	}
 
 	///** ゲーム終了処理 */
 	//systems::GameSystem::Instance()->Finalize();
-
-	//return message->Message();
-	return 0;
+	return message->Message();
 }
 
 /**============================================================================
@@ -122,9 +125,9 @@ bool Application::ShutDown()
 //==============================================================================
 void Application::SystemReleace()
 {
-	for (auto& sub : m_subSystems)
+	while (m_subSystems.empty() == false)
 	{
-		sub->ShutDown();
+		m_subSystems.front()->ShutDown();
+		m_subSystems.pop();
 	}
-	m_subSystems.clear();
 }

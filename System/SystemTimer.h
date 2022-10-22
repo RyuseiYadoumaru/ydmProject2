@@ -22,5 +22,8 @@ namespace systems
 		bool ShutDown() override;
 
 		uInt64 GetTime() noexcept { return timeGetTime(); }
+	public:
+		constexpr static uInt32 m_FPS = 60;
+
 	};
 }

@@ -55,5 +55,6 @@ CLASS(const CLASS&) = delete;				\
 CLASS& operator=(const CLASS&) = delete;	
 
 
-#define USING_SYSTEMS using namespace systems;
-#define USING_TOOLS using namespace tools;
+#define USING_SYSTEMS		using namespace systems;
+#define USING_GAME_SYSTEMS	using namespace gameSystems;
+#define USING_TOOLS			using namespace tools;

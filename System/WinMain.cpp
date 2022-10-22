@@ -26,11 +26,11 @@
 INT WINAPI WinMain(HINSTANCE  h_hInst, HINSTANCE h_hPrevInst, LPSTR h_lpszArgs, int h_nWinMode)
 {
 	auto app = Application::GetInstance();
-	uInt32 ret = 0;
+	uInt32 windowMessage = 0;
 	if (app->SetUp(h_hInst, h_nWinMode) == true)
 	{
-		ret = app->Run();
+		windowMessage = app->Run();
 	}
 	app->ShutDown();
-	return 0;
+	return windowMessage;
 }
