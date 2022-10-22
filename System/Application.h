@@ -30,7 +30,6 @@ public:
 	const int	GetWindowMode() const noexcept { return m_windowMode; }
 
 private:
-	bool SystemCreate();
 	void SystemReleace();
 
 private:

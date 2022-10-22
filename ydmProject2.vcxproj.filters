@@ -25,17 +25,38 @@
     <Filter Include="System\Core\Application">
       <UniqueIdentifier>{d3958456-1dda-467e-9bc7-269cede302ca}</UniqueIdentifier>
     </Filter>
-    <Filter Include="System\SubSystem">
+    <Filter Include="Contents\Tools">
+      <UniqueIdentifier>{7c5a5f24-14f1-4cae-8f2c-091335775f0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Core\SubSystem">
       <UniqueIdentifier>{e1679ed4-8d27-4df7-aeb2-b4be4b407938}</UniqueIdentifier>
     </Filter>
-    <Filter Include="System\SubSystem\Console">
+    <Filter Include="System\Core\SubSystem\Console">
       <UniqueIdentifier>{ff24b7fb-ac4d-42f6-8015-3b498d9c4443}</UniqueIdentifier>
     </Filter>
-    <Filter Include="System\SubSystem\Window">
+    <Filter Include="System\Core\SubSystem\Window">
       <UniqueIdentifier>{b1b4b151-fc1c-412e-8c53-ad770e906739}</UniqueIdentifier>
     </Filter>
-    <Filter Include="System\SubSystem\Message">
+    <Filter Include="System\Core\SubSystem\Message">
       <UniqueIdentifier>{7cd9ed7c-e20f-4316-a2c4-d42995cffe12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Core\SubSystem\Renderer">
+      <UniqueIdentifier>{b410efce-34cf-4bda-bb35-7f9911ca078b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Core\SubSystem\Renderer\DX11">
+      <UniqueIdentifier>{7fe8be28-22de-4665-9e4c-84f4b58e46d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Core\SubSystem\InputSystem">
+      <UniqueIdentifier>{c49a66ab-2226-423f-ae3f-5f8bc198ca44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Core\SubSystem\SystemTimer">
+      <UniqueIdentifier>{5a851c77-f17d-4178-a240-e279d7adfa7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Core\SubSystem\AudioSystem">
+      <UniqueIdentifier>{34f4626a-d217-4146-85e9-7e5d3ed0fd51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Core\SubSystem\GuiSystem">
+      <UniqueIdentifier>{1540a9be-4688-4352-a2bd-8e8c9248a727}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -73,16 +94,34 @@
       <Filter>System\Core</Filter>
     </ClCompile>
     <ClCompile Include="System\Console.cpp">
-      <Filter>System\SubSystem\Console</Filter>
+      <Filter>System\Core\SubSystem\Console</Filter>
     </ClCompile>
     <ClCompile Include="System\Window.cpp">
-      <Filter>System\SubSystem\Window</Filter>
+      <Filter>System\Core\SubSystem\Window</Filter>
     </ClCompile>
     <ClCompile Include="System\WindowCallBack.cpp">
-      <Filter>System\SubSystem\Window</Filter>
+      <Filter>System\Core\SubSystem\Window</Filter>
     </ClCompile>
     <ClCompile Include="System\MessageWindow.cpp">
-      <Filter>System\SubSystem\Message</Filter>
+      <Filter>System\Core\SubSystem\Message</Filter>
+    </ClCompile>
+    <ClCompile Include="Contents\Debug.cpp">
+      <Filter>Contents\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="System\DirectXGraphics.cpp">
+      <Filter>System\Core\SubSystem\Renderer\DX11</Filter>
+    </ClCompile>
+    <ClCompile Include="System\Inputsystem.cpp">
+      <Filter>System\Core\SubSystem\InputSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="System\SystemTimer.cpp">
+      <Filter>System\Core\SubSystem\SystemTimer</Filter>
+    </ClCompile>
+    <ClCompile Include="System\Audiosystem.cpp">
+      <Filter>System\Core\SubSystem\AudioSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="System\GuiSystem.cpp">
+      <Filter>System\Core\SubSystem\GuiSystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -132,19 +171,37 @@
       <Filter>System\Core\Application</Filter>
     </ClInclude>
     <ClInclude Include="System\SubSystem.h">
-      <Filter>System\SubSystem</Filter>
+      <Filter>System\Core\SubSystem</Filter>
     </ClInclude>
     <ClInclude Include="System\Console.h">
-      <Filter>System\SubSystem\Console</Filter>
+      <Filter>System\Core\SubSystem\Console</Filter>
     </ClInclude>
     <ClInclude Include="System\Window.h">
-      <Filter>System\SubSystem\Window</Filter>
+      <Filter>System\Core\SubSystem\Window</Filter>
     </ClInclude>
     <ClInclude Include="System\WindowCallBack.h">
-      <Filter>System\SubSystem\Window</Filter>
+      <Filter>System\Core\SubSystem\Window</Filter>
     </ClInclude>
     <ClInclude Include="System\MessageWindow.h">
-      <Filter>System\SubSystem\Message</Filter>
+      <Filter>System\Core\SubSystem\Message</Filter>
+    </ClInclude>
+    <ClInclude Include="Contents\Debug.h">
+      <Filter>Contents\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="System\DirectXGraphics.h">
+      <Filter>System\Core\SubSystem\Renderer\DX11</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Inputsystem.h">
+      <Filter>System\Core\SubSystem\InputSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="System\SystemTimer.h">
+      <Filter>System\Core\SubSystem\SystemTimer</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Audiosystem.h">
+      <Filter>System\Core\SubSystem\AudioSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="System\GuiSystem.h">
+      <Filter>System\Core\SubSystem\GuiSystem</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

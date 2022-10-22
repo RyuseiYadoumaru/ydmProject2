@@ -148,9 +148,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Contents\Debug.cpp" />
     <ClCompile Include="System\Application.cpp" />
+    <ClCompile Include="System\Audiosystem.cpp" />
     <ClCompile Include="System\Console.cpp" />
+    <ClCompile Include="System\DirectXGraphics.cpp" />
+    <ClCompile Include="System\GuiSystem.cpp" />
+    <ClCompile Include="System\Inputsystem.cpp" />
     <ClCompile Include="System\MessageWindow.cpp" />
+    <ClCompile Include="System\SystemTimer.cpp" />
     <ClCompile Include="System\Window.cpp" />
     <ClCompile Include="System\WindowCallBack.cpp" />
     <ClCompile Include="System\WinMain.cpp" />
@@ -165,12 +171,18 @@
     <ClCompile Include="ThirdParty\Imgui\imgui_widgets.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Contents\Debug.h" />
     <ClInclude Include="Contents\macro.h" />
     <ClInclude Include="Contents\std.h" />
     <ClInclude Include="System\Application.h" />
+    <ClInclude Include="System\Audiosystem.h" />
     <ClInclude Include="System\Console.h" />
+    <ClInclude Include="System\DirectXGraphics.h" />
+    <ClInclude Include="System\GuiSystem.h" />
+    <ClInclude Include="System\Inputsystem.h" />
     <ClInclude Include="System\MessageWindow.h" />
     <ClInclude Include="System\SubSystem.h" />
+    <ClInclude Include="System\SystemTimer.h" />
     <ClInclude Include="System\Window.h" />
     <ClInclude Include="System\WindowCallBack.h" />
     <ClInclude Include="ThirdParty\DirectTex\DDSTextureLoader.h" />
