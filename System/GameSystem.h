@@ -7,7 +7,7 @@
 //* @date   August 2022
 //*****************************************************************************
 #pragma once
-#include "SubSystem.h"
+#include "Core/SubSystem.h"
 #include "std.h"
 #include "macro.h"
 
@@ -16,6 +16,7 @@ namespace gameSystems
 	class Subsystem;
 	class GameSubSystem;
 	class Manager;
+	class GameSystemManager;
 }
 
 namespace gameUpdate
@@ -50,32 +51,12 @@ namespace systems
 	{
 		SINGLETON_CLASS(GameSystem);
 
-		/**
-		 * GameSubsystemのポインタ.
-		 */
-		using GameSubSystemPtr = SharedPtr<gameSystems::GameSubSystem>;
-
-		/**
-		 * システムステージ.
-		 */
-		// サブシステムを管理するコンテナ->[優先度][システム名][ゲームサブシステム]
-		using SubsystemContainer	= Map<uInt64, Unordered_Map<String, GameSubSystemPtr>>;
-		// システムのステージ->更新ステージ順
-		using SystemStage			= Map<gameUpdate::Type, SubsystemContainer>;
-
 	public:
 		bool SetUp()	override;
 		bool ShutDown() override;
 		bool Run();
 		bool Initialaze();
 		bool Finalize();
-
-	private:
-		void AddSubSystem(GameSubSystemPtr set);
-
-	private:
-		SystemStage m_stageList;
-		friend gameSystems::GameSubSystem;
 
 	};
 }

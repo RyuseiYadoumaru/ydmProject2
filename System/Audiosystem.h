@@ -12,7 +12,7 @@
 #include <wrl/client.h>
 #include "std.h"
 #include "macro.h"
-#include "SubSystem.h"
+#include "Core/SubSystem.h"
 using Microsoft::WRL::ComPtr;
 
 namespace systems
@@ -41,7 +41,6 @@ namespace systems
 		 * オーディオ出力デバイスを表すときに使用する
 		 * ComPtrだと謎にエラーが発生してしまうため普通のポインタ変数で扱ってます.
 		 */
-		//ComPtr<IXAudio2MasteringVoice> m_masteringVoice;
 		IXAudio2MasteringVoice* m_masteringVoice;
 
 	};

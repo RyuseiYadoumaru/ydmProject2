@@ -42,7 +42,7 @@ namespace tools
 		{
 			std::stringstream stream;
 			stream << logStr << log;
-			Log(stream.str());
+			LogWarning(stream.str());
 		}
 
 		template<class T>
@@ -58,7 +58,7 @@ namespace tools
 		{
 			std::stringstream stream;
 			stream << logStr << log;
-			Log(stream.str());
+			LogError(stream.str());
 		}
 
 	public:

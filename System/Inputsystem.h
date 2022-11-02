@@ -11,7 +11,7 @@
 #include <dinput.h>
 #include "std.h"
 #include "macro.h"
-#include "SubSystem.h"
+#include "Core/SubSystem.h"
 
 #pragma comment (lib,"dinput8.lib")
 #pragma comment (lib, "dxguid.lib")

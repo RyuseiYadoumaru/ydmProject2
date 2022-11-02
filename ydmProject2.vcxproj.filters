@@ -67,41 +67,11 @@
     <Filter Include="System\GameSubSystem\Framelate">
       <UniqueIdentifier>{6cbbeca3-d170-44e6-b7c8-4dbffa1cb8b8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="System\Core\BaseClass">
+      <UniqueIdentifier>{eae9c54f-f072-40b3-8bc8-2f46a9d6151b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ThirdParty\Imgui\imgui.cpp">
-      <Filter>System\ThirdParty\ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="ThirdParty\Imgui\imgui_demo.cpp">
-      <Filter>System\ThirdParty\ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="ThirdParty\Imgui\imgui_draw.cpp">
-      <Filter>System\ThirdParty\ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="ThirdParty\Imgui\imgui_impl_dx11.cpp">
-      <Filter>System\ThirdParty\ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="ThirdParty\Imgui\imgui_impl_win32.cpp">
-      <Filter>System\ThirdParty\ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="ThirdParty\Imgui\imgui_tables.cpp">
-      <Filter>System\ThirdParty\ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="ThirdParty\Imgui\imgui_widgets.cpp">
-      <Filter>System\ThirdParty\ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="ThirdParty\DirectTex\WICTextureLoader.cpp">
-      <Filter>System\ThirdParty\DirectTex</Filter>
-    </ClCompile>
-    <ClCompile Include="ThirdParty\DirectTex\DDSTextureLoader.cpp">
-      <Filter>System\ThirdParty\DirectTex</Filter>
-    </ClCompile>
-    <ClCompile Include="System\Application.cpp">
-      <Filter>System\Core\Application</Filter>
-    </ClCompile>
-    <ClCompile Include="System\WinMain.cpp">
-      <Filter>System\Core</Filter>
-    </ClCompile>
     <ClCompile Include="System\Console.cpp">
       <Filter>System\Core\SubSystem\Console</Filter>
     </ClCompile>
@@ -138,55 +108,49 @@
     <ClCompile Include="System\Framelate.cpp">
       <Filter>System\GameSubSystem\Framelate</Filter>
     </ClCompile>
+    <ClCompile Include="System\Core\Application.cpp">
+      <Filter>System\Core\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="System\Core\WinMain.cpp">
+      <Filter>System\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="System\ThirdParty\Imgui\imgui_tables.cpp">
+      <Filter>System\ThirdParty\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="System\ThirdParty\Imgui\imgui_widgets.cpp">
+      <Filter>System\ThirdParty\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="System\ThirdParty\Imgui\imgui.cpp">
+      <Filter>System\ThirdParty\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="System\ThirdParty\Imgui\imgui_demo.cpp">
+      <Filter>System\ThirdParty\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="System\ThirdParty\Imgui\imgui_draw.cpp">
+      <Filter>System\ThirdParty\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="System\ThirdParty\Imgui\imgui_impl_dx11.cpp">
+      <Filter>System\ThirdParty\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="System\ThirdParty\Imgui\imgui_impl_win32.cpp">
+      <Filter>System\ThirdParty\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="System\ThirdParty\DirectTex\DDSTextureLoader.cpp">
+      <Filter>System\ThirdParty\DirectTex</Filter>
+    </ClCompile>
+    <ClCompile Include="System\ThirdParty\DirectTex\WICTextureLoader.cpp">
+      <Filter>System\ThirdParty\DirectTex</Filter>
+    </ClCompile>
+    <ClCompile Include="System\GameSystemManager.cpp">
+      <Filter>System\GameSubSystem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ThirdParty\LibraryHeader.h">
-      <Filter>System\ThirdParty</Filter>
-    </ClInclude>
-    <ClInclude Include="ThirdParty\Imgui\imconfig.h">
-      <Filter>System\ThirdParty\ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="ThirdParty\Imgui\imgui.h">
-      <Filter>System\ThirdParty\ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="ThirdParty\Imgui\imgui_impl_dx11.h">
-      <Filter>System\ThirdParty\ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="ThirdParty\Imgui\imgui_impl_win32.h">
-      <Filter>System\ThirdParty\ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="ThirdParty\Imgui\imgui_internal.h">
-      <Filter>System\ThirdParty\ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="ThirdParty\Imgui\imstb_rectpack.h">
-      <Filter>System\ThirdParty\ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="ThirdParty\Imgui\imstb_textedit.h">
-      <Filter>System\ThirdParty\ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="ThirdParty\Imgui\imstb_truetype.h">
-      <Filter>System\ThirdParty\ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="ThirdParty\DirectTex\DDSTextureLoader.h">
-      <Filter>System\ThirdParty\DirectTex</Filter>
-    </ClInclude>
-    <ClInclude Include="ThirdParty\DirectTex\DirectXTex.h">
-      <Filter>System\ThirdParty\DirectTex</Filter>
-    </ClInclude>
-    <ClInclude Include="ThirdParty\DirectTex\WICTextureLoader.h">
-      <Filter>System\ThirdParty\DirectTex</Filter>
-    </ClInclude>
     <ClInclude Include="Contents\std.h">
       <Filter>Contents</Filter>
     </ClInclude>
     <ClInclude Include="Contents\macro.h">
       <Filter>Contents</Filter>
-    </ClInclude>
-    <ClInclude Include="System\Application.h">
-      <Filter>System\Core\Application</Filter>
-    </ClInclude>
-    <ClInclude Include="System\SubSystem.h">
-      <Filter>System\Core\SubSystem</Filter>
     </ClInclude>
     <ClInclude Include="System\Console.h">
       <Filter>System\Core\SubSystem\Console</Filter>
@@ -221,14 +185,56 @@
     <ClInclude Include="System\GameSystem.h">
       <Filter>System\Core\SubSystem\GameSystem</Filter>
     </ClInclude>
-    <ClInclude Include="System\GameSubSysmte.h">
-      <Filter>System\GameSubSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="System\GameSubSystemInstance.h">
+    <ClInclude Include="System\GameSystemManager.h">
       <Filter>System\GameSubSystem</Filter>
     </ClInclude>
     <ClInclude Include="System\Framelate.h">
       <Filter>System\GameSubSystem\Framelate</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Core\Application.h">
+      <Filter>System\Core\Application</Filter>
+    </ClInclude>
+    <ClInclude Include="System\ThirdParty\LibraryHeader.h">
+      <Filter>System\ThirdParty</Filter>
+    </ClInclude>
+    <ClInclude Include="System\ThirdParty\Imgui\imgui_internal.h">
+      <Filter>System\ThirdParty\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="System\ThirdParty\Imgui\imstb_rectpack.h">
+      <Filter>System\ThirdParty\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="System\ThirdParty\Imgui\imstb_textedit.h">
+      <Filter>System\ThirdParty\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="System\ThirdParty\Imgui\imstb_truetype.h">
+      <Filter>System\ThirdParty\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="System\ThirdParty\Imgui\imconfig.h">
+      <Filter>System\ThirdParty\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="System\ThirdParty\Imgui\imgui.h">
+      <Filter>System\ThirdParty\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="System\ThirdParty\Imgui\imgui_impl_dx11.h">
+      <Filter>System\ThirdParty\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="System\ThirdParty\Imgui\imgui_impl_win32.h">
+      <Filter>System\ThirdParty\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="System\ThirdParty\DirectTex\DDSTextureLoader.h">
+      <Filter>System\ThirdParty\DirectTex</Filter>
+    </ClInclude>
+    <ClInclude Include="System\ThirdParty\DirectTex\DirectXTex.h">
+      <Filter>System\ThirdParty\DirectTex</Filter>
+    </ClInclude>
+    <ClInclude Include="System\ThirdParty\DirectTex\WICTextureLoader.h">
+      <Filter>System\ThirdParty\DirectTex</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Core\SubSystem.h">
+      <Filter>System\Core\BaseClass</Filter>
+    </ClInclude>
+    <ClInclude Include="System\GameSubSysmte.h">
+      <Filter>System\Core\BaseClass</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

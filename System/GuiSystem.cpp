@@ -8,9 +8,9 @@
 //*****************************************************************************
 
 #include "GuiSystem.h"
-#include "../ThirdParty/Imgui/imgui.h"
-#include "../ThirdParty/Imgui/imgui_impl_dx11.h"
-#include "../ThirdParty/Imgui/imgui_impl_win32.h"
+#include "ThirdParty/Imgui/imgui.h"
+#include "ThirdParty/Imgui/imgui_impl_dx11.h"
+#include "ThirdParty/Imgui/imgui_impl_win32.h"
 #include "DirectXGraphics.h"
 #include "MessageWindow.h"
 #include "Window.h"

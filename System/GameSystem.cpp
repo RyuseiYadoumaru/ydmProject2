@@ -8,7 +8,7 @@
 //*****************************************************************************
 
 #include "GameSystem.h"
-#include "GameSubSystemInstance.h"
+#include "GameSystemManager.h"
 #include "Framelate.h"
 #include "Debug.h"
 //#include "../../Subsystems/Subsystem.h"
@@ -27,8 +27,8 @@ USING_GAME_SYSTEMS
 ============================================================================*/
 bool systems::GameSystem::SetUp()
 {
-    
-    GameSubSystemInstance::GetInstance()->Create<Framelate>("Framelate")->RegisterGameSystem(gameUpdate::Type::Last, 256);
+    GameSystemManager::GetInstance()->Create<Framelate>("Framelate", gameUpdate::Type::Last, 255, true);
+
     return true;
 }
 
@@ -40,7 +40,6 @@ bool systems::GameSystem::SetUp()
 ============================================================================*/
 bool systems::GameSystem::ShutDown()
 {
-    //m_stageList.clear();
     return true;
 }
 
@@ -52,25 +51,19 @@ bool systems::GameSystem::ShutDown()
 ============================================================================*/
 bool systems::GameSystem::Initialaze()
 {
-    /**
-     * サブシステムの更新順番を考慮して初期化を行う.
-     */
-    //for (auto& stage : m_stageList)
-    //{
-    //    for (auto& systemList : stage.second)
-    //    {
-    //        for (auto& system : systemList.second)
-    //        {
-    //            system.second->Initialize();
-    //        }
-    //    }
-    //}
+    auto gameSystem = GameSystemManager::GetInstance();
+    // サブシステムの更新順番で初期化が行われる
+    for (auto& stage : gameSystem->m_gameSubSystemList)
+    {
+        for (auto& subSystemList : stage.second)
+        {
+            for (auto& system : subSystemList.second)
+            {
+                system.second->Initialize();
+            }
+        }
+    }
 
-    /**
-     * マネージャー初期化
-     * 一斉に行う.
-     */
-    //game::ManagerInstance::Get().Initialize();
     return true;
 }
 
@@ -82,13 +75,13 @@ bool systems::GameSystem::Initialaze()
 ============================================================================*/
 bool systems::GameSystem::Run()
 {
-    for (auto& stage : m_stageList)
+    auto gameSystem = GameSystemManager::GetInstance();
+    for (auto& stage : gameSystem->m_gameSubSystemList)
     {
-        if (stage.first == gameUpdate::Type::None) break;
-        
-        for (auto& systemList : stage.second)
+        if (stage.first == gameUpdate::Type::None || stage.second.empty() == true) break;
+        for (auto& subSystemList : stage.second)
         {
-            for (auto& system : systemList.second)
+            for (auto& system : subSystemList.second)
             {
                 system.second->Run();
             }
@@ -105,31 +98,6 @@ bool systems::GameSystem::Run()
 ============================================================================*/
 bool systems::GameSystem::Finalize()
 {
-    /**
-     * マネージャー終了処理
-     */
-    //game::ManagerInstance::Get().Releace();
-
-    /**
-     * ゲームサブシステムインスタンスで生成したものを一括で終了処理を行う
-     * 終了処理に順番を考慮する必要が出てきたら初期化と同じ書き方にする必要が出てくる
-     */
-    //game::GameSubSystemInstance::Get().Releace();
-
-    //m_stageList.clear();
-
+    gameSystems::GameSystemManager::GetInstance()->Releace();
     return true;
-}
-
-/**============================================================================
-//! @func   AddSystem
-//! @brief  システムを追加する
-//! @param  set
-============================================================================*/
-void systems::GameSystem::AddSubSystem(GameSubSystemPtr set)
-{
-    gameUpdate::Type type = set->GetUpdateType();
-    uInt64 priority = set->GetPriority();
-    String name = set->GetName();
-    m_stageList[type][priority][name] = set;
 }
