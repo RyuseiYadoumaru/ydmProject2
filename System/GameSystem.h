@@ -55,8 +55,8 @@ namespace systems
 		bool SetUp()	override;
 		bool ShutDown() override;
 		bool Run();
-		bool Initialaze();
-		bool Finalize();
+		bool GameSystemStart();
+		bool GameSystemEnd();
 
 	};
 }

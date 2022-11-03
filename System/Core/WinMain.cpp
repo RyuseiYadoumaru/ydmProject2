@@ -22,10 +22,9 @@
 //! @param h_nWinMode
 //! @retval 
 ============================================================================*/
-
 INT WINAPI WinMain(HINSTANCE  h_hInst, HINSTANCE h_hPrevInst, LPSTR h_lpszArgs, int h_nWinMode)
 {
-	auto app = Application::GetInstance();
+	auto app = systems::Application::GetInstance();
 	uInt32 windowMessage = 0;
 	if (app->SetUp(h_hInst, h_nWinMode) == true)
 	{

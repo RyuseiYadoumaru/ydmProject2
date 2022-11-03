@@ -92,7 +92,7 @@ uInt16 Application::Run()
 
 
 	///** ƒQ[ƒ€‰Šú‰» */
-	//systems::GameSystem::Instance()->Initialaze();
+	game->GameSystemStart();
 
 	/** ƒQ[ƒ€XV */
 	while (message->ExecMessage() == true)
@@ -101,7 +101,7 @@ uInt16 Application::Run()
 	}
 
 	///** ƒQ[ƒ€I—¹ˆ— */
-	//systems::GameSystem::Instance()->Finalize();
+	game->GameSystemEnd();
 	return message->Message();
 }
 

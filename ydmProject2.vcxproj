@@ -148,10 +148,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Contents\Color.cpp" />
     <ClCompile Include="Contents\Debug.cpp" />
+    <ClCompile Include="Contents\GameObject.cpp" />
+    <ClCompile Include="Contents\Matrix4x4.cpp" />
+    <ClCompile Include="Contents\Quaternion.cpp" />
+    <ClCompile Include="Contents\Scene.cpp" />
+    <ClCompile Include="Contents\SceneManager.cpp" />
+    <ClCompile Include="Game\TestScene.cpp" />
     <ClCompile Include="System\Audiosystem.cpp" />
     <ClCompile Include="System\Console.cpp" />
     <ClCompile Include="System\Core\Application.cpp" />
+    <ClCompile Include="System\Core\Object.cpp" />
     <ClCompile Include="System\Core\WinMain.cpp" />
     <ClCompile Include="System\DirectXGraphics.cpp" />
     <ClCompile Include="System\GameSystem.cpp" />
@@ -172,14 +180,31 @@
     <ClCompile Include="System\ThirdParty\Imgui\imgui_widgets.cpp" />
     <ClCompile Include="System\Window.cpp" />
     <ClCompile Include="System\WindowCallBack.cpp" />
+    <ClCompile Include="System\World.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Contents\Color.h" />
+    <ClInclude Include="Contents\Component.h" />
     <ClInclude Include="Contents\Debug.h" />
+    <ClInclude Include="Contents\Easing.h" />
+    <ClInclude Include="Contents\GameObject.h" />
+    <ClInclude Include="Contents\GameObjectHeader.h" />
     <ClInclude Include="Contents\macro.h" />
+    <ClInclude Include="Contents\Matrix4x4.h" />
+    <ClInclude Include="Contents\Quaternion.h" />
+    <ClInclude Include="Contents\Scene.h" />
+    <ClInclude Include="Contents\SceneHeader.h" />
+    <ClInclude Include="Contents\SceneManager.h" />
     <ClInclude Include="Contents\std.h" />
+    <ClInclude Include="Contents\Tag.h" />
+    <ClInclude Include="Contents\Vector2.h" />
+    <ClInclude Include="Contents\Vector3.h" />
+    <ClInclude Include="Contents\Vector4.h" />
+    <ClInclude Include="Game\TestScene.h" />
     <ClInclude Include="System\Audiosystem.h" />
     <ClInclude Include="System\Console.h" />
     <ClInclude Include="System\Core\Application.h" />
+    <ClInclude Include="System\Core\Object.h" />
     <ClInclude Include="System\Core\SubSystem.h" />
     <ClInclude Include="System\DirectXGraphics.h" />
     <ClInclude Include="System\GameSubSysmte.h" />
@@ -204,6 +229,7 @@
     <ClInclude Include="System\ThirdParty\LibraryHeader.h" />
     <ClInclude Include="System\Window.h" />
     <ClInclude Include="System\WindowCallBack.h" />
+    <ClInclude Include="System\World.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

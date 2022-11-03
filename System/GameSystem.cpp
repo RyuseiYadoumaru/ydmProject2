@@ -10,6 +10,7 @@
 #include "GameSystem.h"
 #include "GameSystemManager.h"
 #include "Framelate.h"
+#include "World.h"
 #include "Debug.h"
 //#include "../../Subsystems/Subsystem.h"
 //#include "../../Subsystems/GameSubSysmte.h"
@@ -28,6 +29,7 @@ USING_GAME_SYSTEMS
 bool systems::GameSystem::SetUp()
 {
     GameSystemManager::GetInstance()->Create<Framelate>("Framelate", gameUpdate::Type::Last, 255, true);
+    GameSystemManager::GetInstance()->Create<World>("World", gameUpdate::Type::Main, 128, true);
 
     return true;
 }
@@ -49,7 +51,7 @@ bool systems::GameSystem::ShutDown()
 //! @brief  ゲームサブシステムの初期化
 //! @retval TRUE　成功終了/FALSE　失敗終了
 ============================================================================*/
-bool systems::GameSystem::Initialaze()
+bool systems::GameSystem::GameSystemStart()
 {
     auto gameSystem = GameSystemManager::GetInstance();
     // サブシステムの更新順番で初期化が行われる
@@ -96,7 +98,7 @@ bool systems::GameSystem::Run()
 //! @brief  ゲーム終了処理
 //! @retval TRUE　成功終了/FALSE　失敗終了
 ============================================================================*/
-bool systems::GameSystem::Finalize()
+bool systems::GameSystem::GameSystemEnd()
 {
     gameSystems::GameSystemManager::GetInstance()->Releace();
     return true;

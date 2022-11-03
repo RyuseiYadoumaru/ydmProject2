@@ -9,7 +9,7 @@
 #pragma once
 #include "GameSubSysmte.h"
 
-namespace gameSystems
+namespace GAME_SYSTEMS
 {
 	class Framelate : public GameSubSystem
 	{
