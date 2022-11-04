@@ -7,37 +7,26 @@
 //* @date   July 2022
 //*****************************************************************************
 #include "GameObject.h"
+#include "Script.h"
 
-
-//==============================================================================
-//!	@fn		InstanceProcess
-//!	@brief	生成時の初期化プロセス
-//==============================================================================
-void GAME_SYSTEMS::GameObject::InstanceProcess() noexcept
+void GAME_SYSTEMS::GameObject::ShutDown()
 {
-	OnEnable();
-	Start();
-}
-
-
-//==============================================================================
-//!	@fn		Process
-//!	@brief	更新中のプロセス
-//==============================================================================
-void GAME_SYSTEMS::GameObject::Process() noexcept
-{
-	Update();
-	//if (Timer::GetIsFixed() == true) FixedUpdate();
-}
-
-
-//==============================================================================
-//!	@fn		DestroyProcess
-//!	@brief	破壊時の終了プロセス
-//==============================================================================
-void GAME_SYSTEMS::GameObject::DestroyProcess() noexcept
-{
-	End();
-	OnDisable();
 	m_componentList.clear();
+}
+
+void GAME_SYSTEMS::GameObject::ComponentStart()
+{
+	for (auto& comp : m_componentList)
+	{
+		comp->Start();
+	}
+}
+
+void GAME_SYSTEMS::GameObject::ComponentEnd()
+{
+	for (auto& comp : m_componentList)
+	{
+		comp->End();
+		comp->Finalize();
+	}
 }

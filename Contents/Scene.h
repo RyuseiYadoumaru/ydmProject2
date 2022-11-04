@@ -18,9 +18,9 @@ namespace GAME_SYSTEMS
 	class Scene : public systems::Object
 	{
 	public:
-		bool Initialize() override;
-		bool Run() override;
-		bool Finalize() override;
+		bool Initialize();
+		bool Run();
+		bool Finalize();
 
 	public:
 		OBJECT_CLASS;

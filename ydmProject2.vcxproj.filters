@@ -97,6 +97,12 @@
     <Filter Include="Contents\Manager\Private">
       <UniqueIdentifier>{ecaf79f5-843d-4584-967f-e0864f3df9c8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\Component\Physics">
+      <UniqueIdentifier>{11a94a5d-f856-4fba-bae8-a223e3a85f30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Script">
+      <UniqueIdentifier>{a260dc2b-5b76-4358-bb4d-76adecb53fcc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="System\Console.cpp">
@@ -197,6 +203,24 @@
     </ClCompile>
     <ClCompile Include="Game\TestScene.cpp">
       <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Contents\Transform.cpp">
+      <Filter>Contents\Component\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Contents\Physics.cpp">
+      <Filter>Contents\Component\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Contents\GameObjectManager.cpp">
+      <Filter>Contents\Manager\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\TestObject.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Contents\Script.cpp">
+      <Filter>Contents\Create\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\TestScript.cpp">
+      <Filter>Game\Script</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -320,9 +344,6 @@
     <ClInclude Include="Contents\GameObject.h">
       <Filter>Contents\Create</Filter>
     </ClInclude>
-    <ClInclude Include="Contents\Component.h">
-      <Filter>Contents\Component</Filter>
-    </ClInclude>
     <ClInclude Include="Contents\GameObjectHeader.h">
       <Filter>Contents\Create\Header</Filter>
     </ClInclude>
@@ -340,6 +361,27 @@
     </ClInclude>
     <ClInclude Include="Game\TestScene.h">
       <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Contents\GameObjectManager.h">
+      <Filter>Contents\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Contents\Script.h">
+      <Filter>Contents\Create</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Core\Component.h">
+      <Filter>System\Core\BaseClass</Filter>
+    </ClInclude>
+    <ClInclude Include="Contents\Physics.h">
+      <Filter>Contents\Component\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Contents\Transform.h">
+      <Filter>Contents\Component\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\TestObject.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\TestScript.h">
+      <Filter>Game\Script</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

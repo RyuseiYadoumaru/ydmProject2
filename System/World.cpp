@@ -9,6 +9,8 @@
 
 #include "World.h"
 #include "SceneManager.h"
+#include "GameObjectManager.h"
+
 USING_GAME_SYSTEMS;
 
 bool GAME_SYSTEMS::World::Initialize()
@@ -21,7 +23,8 @@ bool GAME_SYSTEMS::World::Initialize()
 bool GAME_SYSTEMS::World::Run()
 {
     auto sceneManager = SceneManager::GetInstance();
-    
+    auto gameObjectManager = GameObjectManager::GetInstance();
+
     if (sceneManager->GetSceneState() == SceneManager::State::Start)
     {
         sceneManager->SceneSetup();
@@ -29,7 +32,10 @@ bool GAME_SYSTEMS::World::Run()
     
     if (sceneManager->GetSceneState() == SceneManager::State::Run)
     {
+        gameObjectManager->GameObjectStartUpdate();
+        gameObjectManager->GameLogicUpdate();
         sceneManager->SceneRun();
+        gameObjectManager->ComponentUpdate();
     }
 
     if (sceneManager->GetSceneState() == SceneManager::State::End)

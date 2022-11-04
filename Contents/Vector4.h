@@ -53,7 +53,7 @@ namespace myMath
 		Vector4 operator-(const Vector4& vec4) const noexcept { return Vector4(x - vec4.x, y - vec4.y, z - vec4.z, w - vec4.w); }
 		Vector4& operator-=(const Vector4& vec4) noexcept { x -= vec4.x; y -= vec4.y; z -= vec4.z; w -= vec4.w; return*this; }
 		Vector4 operator*(const Vector4& vec4) const noexcept { return Vector4(x * vec4.x, y * vec4.y, z * vec4.z, w * vec4.w); }
-		Vector4& operator*=(const Vector4& vec4) noexcept { x *= vec4.x; y *= vec4.y; z *= vec4.z; w* vec4.w; return *this; }
+		Vector4& operator*=(const Vector4& vec4) noexcept { x *= vec4.x; y *= vec4.y; z *= vec4.z; w *= vec4.w; return *this; }
 		Vector4 operator/(const Vector4& vec4) const noexcept { return Vector4(x / vec4.x, y / vec4.y, z / vec4.z, w / vec4.w); }
 		Vector4& operator/=(const Vector4& vec4) noexcept { x /= vec4.x; y /= vec4.y; z /= vec4.z; w /= vec4.w; return *this; }
 		bool operator!=(const Vector4& vec4)const noexcept { return (this->x != vec4.x && this->y != vec4.y && this->z != vec4.z && this->w != vec4.w); }

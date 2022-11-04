@@ -16,11 +16,6 @@ namespace systems
 	class Object
 	{
 	public:
-		virtual bool Initialize()	= 0;
-		virtual bool Run()			= 0;
-		virtual bool Finalize()		= 0;
-
-	public:
 		void SetActive(bool set) noexcept { m_isActive = set; }
 		const bool IsActive() const noexcept { return m_isActive; }
 		const String& ToString() const noexcept { return m_name; }

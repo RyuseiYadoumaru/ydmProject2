@@ -48,7 +48,7 @@ namespace GAME_SYSTEMS
 		}
 	public:
 		// シーン名取得
-		const String& GetCurrentSceneName() const noexcept { return m_enebleSceneStack.top(); }
+		const String& GetSceneName() const noexcept { return m_enebleSceneStack.top(); }
 
 		// シーンステート取得
 		const SceneManager::State& GetSceneState() const noexcept { return m_sceneState; }

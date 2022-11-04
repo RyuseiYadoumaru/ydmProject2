@@ -12,27 +12,36 @@
 #include "std.h"
 #include "macro.h"
 
+#define COMPONENT_CLASS using systems::Component::Component;
+
 namespace GAME_SYSTEMS
 {
 	class GameObject;
-	class Component : public systems::Object
+}
+
+namespace SYSTEMS
+{
+	class Component : public Object
 	{
 	public:
 		OBJECT_CLASS;
-		Component() : SYSTEMS::Object("Component", true) {}
-		~Component() = default;
-
-		virtual void Update() {}
 
 	public:
-		bool Run() { if (m_isActive == true) Update(); return true; }
-		void SetOwner(GameObject* gameObject) noexcept { m_owner = gameObject; }
-		GameObject* GetOwner()  noexcept { return m_owner; }
+		virtual void Initialize() {};
+		virtual void Finalize() {};
 
 	public:
-	
+		void SetOwner(gameSystems::GameObject* gameObject) noexcept { m_owner = gameObject; }
+		gameSystems::GameObject* GetOwner()  noexcept { return m_owner; }
+
+	protected:
+		virtual void Start()	= 0;
+		virtual void Update()	= 0;
+		virtual void End()		= 0;
+
 	private:
-		GameObject* m_owner = nullptr;
+		friend gameSystems::GameObject;
+		gameSystems::GameObject* m_owner = nullptr;
 	};
 
 

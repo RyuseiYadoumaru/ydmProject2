@@ -1,7 +1,13 @@
 #include "TestScene.h"
+#include "SceneManager.h"
+#include "GameObjectManager.h"
+#include "TestObject.h"
+
+USING_GAME_SYSTEMS;
 
 void TestScene::ObjectEntry()
 {
+	GameObjectManager::GetInstance()->Instance<TestObject>("testObject");
 }
 
 void TestScene::BeginPlay()

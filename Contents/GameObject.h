@@ -9,17 +9,15 @@
 #pragma once
 #include "GameObjectHeader.h"
 
+#define GAMEOBJECT_CLASS using gameSystems::GameObject::GameObject;
+
 namespace GAME_SYSTEMS
 {
 	class GameObject : public systems::Object
 	{
 	public:
 		const Tag& GetTag() const noexcept { return m_tag; }
-
-	public:
-		GameObject(String name, Tag tag = Tag::Default) :
-			m_tag(tag),
-			SYSTEMS::Object(name, true) {}
+		const uInt32& GetID() const noexcept{ return m_id; }
 
 	public:		
 		/**
@@ -56,33 +54,28 @@ namespace GAME_SYSTEMS
 			return component;
 		}
 
-	public:
-		bool Initialize() override { InstanceProcess(); return true; }
-		bool Run() override { Process(); return true; }
-		bool Finalize() override { DestroyProcess(); return true; }
 
 	protected:
-		virtual void OnEnable()		= 0;
-		virtual void Start()		= 0;
-
-		virtual void Update()		= 0;
-		virtual void FixedUpdate()	= 0;
-
-		virtual void End()			= 0;
-		virtual void OnDisable()	= 0;
-
-
-	protected:
-		void InstanceProcess() noexcept;
-
-		void Process() noexcept;
-
-		void DestroyProcess() noexcept;
+		Tag m_tag;
 
 	private:
 		ComponentContainer m_componentList;
-		Tag m_tag;
+		ScriptContainer m_scriptList;
 
+	private:
+		virtual void Setting() = 0;
+		void ShutDown();
+
+		void ComponentStart();
+		void ComponentEnd();
+
+	public:
+		GameObject(String name = "nonameObject") :
+			systems::Object(name, true),
+			m_tag(Tag::Default) {}
+		~GameObject() = default;
+
+		friend GameObjectManager;
 	};
 }
 
