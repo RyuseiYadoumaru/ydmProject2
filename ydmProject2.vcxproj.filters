@@ -103,6 +103,12 @@
     <Filter Include="Game\Script">
       <UniqueIdentifier>{a260dc2b-5b76-4358-bb4d-76adecb53fcc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="System\GameSubSystem\Input">
+      <UniqueIdentifier>{53b0c12e-8111-4dd2-aefc-e41f5973c55f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scene">
+      <UniqueIdentifier>{0655b354-0145-459a-90d0-002441fbfbde}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="System\Console.cpp">
@@ -201,9 +207,6 @@
     <ClCompile Include="Contents\SceneManager.cpp">
       <Filter>Contents\Manager\Private</Filter>
     </ClCompile>
-    <ClCompile Include="Game\TestScene.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
     <ClCompile Include="Contents\Transform.cpp">
       <Filter>Contents\Component\Physics</Filter>
     </ClCompile>
@@ -221,6 +224,21 @@
     </ClCompile>
     <ClCompile Include="Game\TestScript.cpp">
       <Filter>Game\Script</Filter>
+    </ClCompile>
+    <ClCompile Include="System\KeyboardSystem.cpp">
+      <Filter>System\GameSubSystem\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Contents\Keyboard.cpp">
+      <Filter>Contents\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Contents\RenderManager.cpp">
+      <Filter>Contents\Manager\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\ActionTestScene.cpp">
+      <Filter>Game\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\TestScene.cpp">
+      <Filter>Game\Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -359,9 +377,6 @@
     <ClInclude Include="Contents\SceneManager.h">
       <Filter>Contents\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="Game\TestScene.h">
-      <Filter>Game</Filter>
-    </ClInclude>
     <ClInclude Include="Contents\GameObjectManager.h">
       <Filter>Contents\Manager</Filter>
     </ClInclude>
@@ -382,6 +397,24 @@
     </ClInclude>
     <ClInclude Include="Game\TestScript.h">
       <Filter>Game\Script</Filter>
+    </ClInclude>
+    <ClInclude Include="System\KeyboardSystem.h">
+      <Filter>System\GameSubSystem\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Contents\Keyboard.h">
+      <Filter>Contents\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Contents\Keycode.h">
+      <Filter>Contents\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Contents\RenderManager.h">
+      <Filter>Contents\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\ActionTestScene.h">
+      <Filter>Game\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\TestScene.h">
+      <Filter>Game\Scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

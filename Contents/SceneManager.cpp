@@ -7,10 +7,12 @@
 //* @date   August 2022
 //*****************************************************************************
 
-#include "SceneManager.h"
 #include "Scene.h"
-#include "../Game/TestScene.h"
+#include "SceneManager.h"
+#include "RenderManager.h"
 
+#include "../Game/TestScene.h"
+#include "../Game/ActionTestScene.h"
 
 /**
  *  シーンリストからシーンを取得し、更新スタックに挿入します.
@@ -32,11 +34,13 @@ void gameSystems::SceneManager::LoadScene(String sceneName, bool isStackClear)
 	}
 	// 待機シーン
 	m_standByScene = m_sceneList[sceneName];
+	m_sceneState = State::End;
 }
 
 void GAME_SYSTEMS::SceneManager::Setup()
 {
 	RegisterScene<TestScene>("TestScene");
+	RegisterScene<ActionTestScene>("ActionTestScene");
 
 	m_currentScene = m_sceneList["TestScene"];
 }
@@ -52,6 +56,21 @@ void GAME_SYSTEMS::SceneManager::SceneSetup()
 void GAME_SYSTEMS::SceneManager::SceneRun()
 {
 	m_currentScene->Run();
+}
+
+void GAME_SYSTEMS::SceneManager::SceneRendering()
+{
+	auto renderManager = RenderManager::GetInstance();
+	// 画面クリア
+	myMath::Color color = {
+		m_currentScene->GetDisPlayColor().r,
+		m_currentScene->GetDisPlayColor().g,
+		m_currentScene->GetDisPlayColor().b,
+		m_currentScene->GetDisPlayColor().a };
+	renderManager->ClearRenderer(color);
+
+	// ディスプレイスワップ
+	renderManager->SwapRenderBuffer();
 }
 
 void GAME_SYSTEMS::SceneManager::SceneShutdown()

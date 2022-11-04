@@ -1,6 +1,7 @@
 #include "TestScene.h"
 #include "SceneManager.h"
 #include "GameObjectManager.h"
+#include "Keyboard.h"
 #include "TestObject.h"
 
 USING_GAME_SYSTEMS;
@@ -17,6 +18,10 @@ void TestScene::BeginPlay()
 
 void TestScene::Tick()
 {
+	if (Keyboard::Trigger(Keycode::A))
+	{
+		SceneManager::GetInstance()->LoadScene("ActionTestScene");
+	}
 }
 
 void TestScene::EndPlay()

@@ -152,13 +152,16 @@
     <ClCompile Include="Contents\Debug.cpp" />
     <ClCompile Include="Contents\GameObject.cpp" />
     <ClCompile Include="Contents\GameObjectManager.cpp" />
+    <ClCompile Include="Contents\Keyboard.cpp" />
     <ClCompile Include="Contents\Matrix4x4.cpp" />
     <ClCompile Include="Contents\Physics.cpp" />
     <ClCompile Include="Contents\Quaternion.cpp" />
+    <ClCompile Include="Contents\RenderManager.cpp" />
     <ClCompile Include="Contents\Scene.cpp" />
     <ClCompile Include="Contents\SceneManager.cpp" />
     <ClCompile Include="Contents\Script.cpp" />
     <ClCompile Include="Contents\Transform.cpp" />
+    <ClCompile Include="Game\ActionTestScene.cpp" />
     <ClCompile Include="Game\TestObject.cpp" />
     <ClCompile Include="Game\TestScene.cpp" />
     <ClCompile Include="Game\TestScript.cpp" />
@@ -172,6 +175,7 @@
     <ClCompile Include="System\GameSystemManager.cpp" />
     <ClCompile Include="System\GuiSystem.cpp" />
     <ClCompile Include="System\Inputsystem.cpp" />
+    <ClCompile Include="System\KeyboardSystem.cpp" />
     <ClCompile Include="System\MessageWindow.cpp" />
     <ClCompile Include="System\SystemTimer.cpp" />
     <ClCompile Include="System\Framelate.cpp" />
@@ -195,10 +199,13 @@
     <ClInclude Include="Contents\GameObject.h" />
     <ClInclude Include="Contents\GameObjectHeader.h" />
     <ClInclude Include="Contents\GameObjectManager.h" />
+    <ClInclude Include="Contents\Keyboard.h" />
+    <ClInclude Include="Contents\Keycode.h" />
     <ClInclude Include="Contents\macro.h" />
     <ClInclude Include="Contents\Matrix4x4.h" />
     <ClInclude Include="Contents\Physics.h" />
     <ClInclude Include="Contents\Quaternion.h" />
+    <ClInclude Include="Contents\RenderManager.h" />
     <ClInclude Include="Contents\Scene.h" />
     <ClInclude Include="Contents\SceneHeader.h" />
     <ClInclude Include="Contents\SceneManager.h" />
@@ -209,6 +216,7 @@
     <ClInclude Include="Contents\Vector2.h" />
     <ClInclude Include="Contents\Vector3.h" />
     <ClInclude Include="Contents\Vector4.h" />
+    <ClInclude Include="Game\ActionTestScene.h" />
     <ClInclude Include="Game\TestObject.h" />
     <ClInclude Include="Game\TestScene.h" />
     <ClInclude Include="Game\TestScript.h" />
@@ -224,6 +232,7 @@
     <ClInclude Include="System\GameSystem.h" />
     <ClInclude Include="System\GuiSystem.h" />
     <ClInclude Include="System\Inputsystem.h" />
+    <ClInclude Include="System\KeyboardSystem.h" />
     <ClInclude Include="System\MessageWindow.h" />
     <ClInclude Include="System\SystemTimer.h" />
     <ClInclude Include="System\Framelate.h" />

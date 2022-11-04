@@ -1,4 +1,6 @@
 #include "TestScript.h"
+#include "Keyboard.h"
+USING_GAME_SYSTEMS;
 
 void TestScript::Start()
 {
@@ -7,7 +9,10 @@ void TestScript::Start()
 
 void TestScript::Update()
 {
-	printf("テスト更新\n");
+	if (Keyboard::Trigger(Keycode::A))
+	{
+		printf("テスト更新\n");
+	}
 }
 
 void TestScript::End()

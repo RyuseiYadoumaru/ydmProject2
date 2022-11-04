@@ -36,6 +36,7 @@ bool GAME_SYSTEMS::World::Run()
         gameObjectManager->GameLogicUpdate();
         sceneManager->SceneRun();
         gameObjectManager->ComponentUpdate();
+        sceneManager->SceneRendering();
     }
 
     if (sceneManager->GetSceneState() == SceneManager::State::End)
