@@ -109,6 +109,9 @@
     <Filter Include="Game\Scene">
       <UniqueIdentifier>{0655b354-0145-459a-90d0-002441fbfbde}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\Component\Private">
+      <UniqueIdentifier>{b98a280a-c56e-43bb-92a1-168e218373d7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="System\Console.cpp">
@@ -210,9 +213,6 @@
     <ClCompile Include="Contents\Transform.cpp">
       <Filter>Contents\Component\Physics</Filter>
     </ClCompile>
-    <ClCompile Include="Contents\Physics.cpp">
-      <Filter>Contents\Component\Physics</Filter>
-    </ClCompile>
     <ClCompile Include="Contents\GameObjectManager.cpp">
       <Filter>Contents\Manager\Private</Filter>
     </ClCompile>
@@ -238,6 +238,15 @@
       <Filter>Game\Scene</Filter>
     </ClCompile>
     <ClCompile Include="Contents\Keyboard.cpp">
+      <Filter>Contents\Manager\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Contents\Physics.cpp">
+      <Filter>Contents\Component\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="System\MouseSystem.cpp">
+      <Filter>System\GameSubSystem\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Contents\Mouse.cpp">
       <Filter>Contents\Manager\Private</Filter>
     </ClCompile>
   </ItemGroup>
@@ -386,9 +395,6 @@
     <ClInclude Include="System\Core\Component.h">
       <Filter>System\Core\BaseClass</Filter>
     </ClInclude>
-    <ClInclude Include="Contents\Physics.h">
-      <Filter>Contents\Component\Physics</Filter>
-    </ClInclude>
     <ClInclude Include="Contents\Transform.h">
       <Filter>Contents\Component\Physics</Filter>
     </ClInclude>
@@ -415,6 +421,15 @@
     </ClInclude>
     <ClInclude Include="Game\TestScene.h">
       <Filter>Game\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Contents\Physics.h">
+      <Filter>Contents\Component\Private</Filter>
+    </ClInclude>
+    <ClInclude Include="System\MouseSystem.h">
+      <Filter>System\GameSubSystem\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Contents\Mouse.h">
+      <Filter>Contents\Manager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -155,6 +155,7 @@
     <ClCompile Include="Contents\GameObjectManager.cpp" />
     <ClCompile Include="Contents\Keyboard.cpp" />
     <ClCompile Include="Contents\Matrix4x4.cpp" />
+    <ClCompile Include="Contents\Mouse.cpp" />
     <ClCompile Include="Contents\Physics.cpp" />
     <ClCompile Include="Contents\Quaternion.cpp" />
     <ClCompile Include="Contents\RenderManager.cpp" />
@@ -178,6 +179,7 @@
     <ClCompile Include="System\Inputsystem.cpp" />
     <ClCompile Include="System\KeyboardSystem.cpp" />
     <ClCompile Include="System\MessageWindow.cpp" />
+    <ClCompile Include="System\MouseSystem.cpp" />
     <ClCompile Include="System\SystemTimer.cpp" />
     <ClCompile Include="System\Framelate.cpp" />
     <ClCompile Include="System\ThirdParty\DirectTex\DDSTextureLoader.cpp" />
@@ -204,6 +206,7 @@
     <ClInclude Include="Contents\Keycode.h" />
     <ClInclude Include="Contents\macro.h" />
     <ClInclude Include="Contents\Matrix4x4.h" />
+    <ClInclude Include="Contents\Mouse.h" />
     <ClInclude Include="Contents\Physics.h" />
     <ClInclude Include="Contents\Quaternion.h" />
     <ClInclude Include="Contents\RenderManager.h" />
@@ -235,6 +238,7 @@
     <ClInclude Include="System\Inputsystem.h" />
     <ClInclude Include="System\KeyboardSystem.h" />
     <ClInclude Include="System\MessageWindow.h" />
+    <ClInclude Include="System\MouseSystem.h" />
     <ClInclude Include="System\SystemTimer.h" />
     <ClInclude Include="System\Framelate.h" />
     <ClInclude Include="System\ThirdParty\DirectTex\DDSTextureLoader.h" />
