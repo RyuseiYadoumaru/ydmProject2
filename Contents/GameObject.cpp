@@ -9,6 +9,12 @@
 #include "GameObject.h"
 #include "Script.h"
 
+void GAME_SYSTEMS::GameObject::SetUp()
+{
+	m_transform = AddComponent<Transform>();
+	Setting();
+}
+
 void GAME_SYSTEMS::GameObject::ShutDown()
 {
 	m_componentList.clear();

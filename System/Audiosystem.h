@@ -34,14 +34,14 @@ namespace systems
 		 * XAudio2インターフェース
 		 * 全てのオーディオエンジンの状態、処理スレッド、音声グラフを管理する.
 		 */
-		ComPtr<IXAudio2> m_xAudio2;
+		ComPtr<IXAudio2> m_xAudio2 = nullptr;
 
 		/**
 		 * マスタリングボイス
 		 * オーディオ出力デバイスを表すときに使用する
 		 * ComPtrだと謎にエラーが発生してしまうため普通のポインタ変数で扱ってます.
 		 */
-		IXAudio2MasteringVoice* m_masteringVoice;
+		IXAudio2MasteringVoice* m_masteringVoice = nullptr;
 
 	};
 }

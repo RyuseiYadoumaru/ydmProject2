@@ -72,7 +72,7 @@ myMath::Matrix4x4& myMath::Matrix4x4::CreateWorldMatrix(Matrix4x4& position, Mat
 	return worldMatrix;
 }
 
-myMath::Matrix4x4& myMath::Matrix4x4::CreateMatrixQuaternion(Quaternion& quaternion) noexcept
+myMath::Matrix4x4 myMath::Matrix4x4::CreateMatrixQuaternion(Quaternion& quaternion) noexcept
 {
 	ALIGN16 DirectX::XMMATRIX mtx;
 	ALIGN16 DirectX::XMVECTOR qtVec;

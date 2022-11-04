@@ -26,11 +26,6 @@
 bool systems::AudioSystem::SetUp()
 {
 	HRESULT hr;
-	HANDLE hFile;
-
-	DWORD dwChunkSize;
-	DWORD dwChunkPosition;
-	DWORD fileType;
 
 	//COMèâä˙âª
 	hr = CoInitializeEx(NULL, COINIT_MULTITHREADED);

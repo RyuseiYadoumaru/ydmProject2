@@ -228,9 +228,6 @@
     <ClCompile Include="System\KeyboardSystem.cpp">
       <Filter>System\GameSubSystem\Input</Filter>
     </ClCompile>
-    <ClCompile Include="Contents\Keyboard.cpp">
-      <Filter>Contents\Manager</Filter>
-    </ClCompile>
     <ClCompile Include="Contents\RenderManager.cpp">
       <Filter>Contents\Manager\Private</Filter>
     </ClCompile>
@@ -239,6 +236,9 @@
     </ClCompile>
     <ClCompile Include="Game\TestScene.cpp">
       <Filter>Game\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Contents\Keyboard.cpp">
+      <Filter>Contents\Manager\Private</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -11,6 +11,7 @@
 #include "macro.h"
 #include "../System/Core/Object.h"
 #include "../System/Core/Component.h"
+#include "Transform.h"
 
 namespace GAME_SYSTEMS
 {

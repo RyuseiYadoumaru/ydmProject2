@@ -21,7 +21,7 @@ namespace myMath
 		static Matrix4x4& CreateWorldMatrix(Vector3& position, Vector3& rotation, Vector3 scale) noexcept;
 		static Matrix4x4& CreateWorldMatrix(Matrix4x4& position, Matrix4x4& rotation, Matrix4x4& scale) noexcept;
 
-		static Matrix4x4& CreateMatrixQuaternion(Quaternion& quaternion) noexcept;
+		static Matrix4x4 CreateMatrixQuaternion(Quaternion& quaternion) noexcept;
 
 		static Matrix4x4 CreateRotationXMatrix(Float32 rotationX);
 		static Matrix4x4 CreateRotationYMatrix(Float32 rotationY);

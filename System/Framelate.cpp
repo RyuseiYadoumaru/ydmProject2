@@ -44,8 +44,10 @@ bool gameSystems::Framelate::Initialize()
 ============================================================================*/
 bool gameSystems::Framelate::Run()
 {
+	auto systemTimer = systems::SystemTimer::GetInstance();
 	//現在時間取得
-	m_currentTime = systems::SystemTimer::GetInstance()->GetTime();
+	Float32 nowTime = static_cast<Float32>(systemTimer->GetTime());
+	m_currentTime = nowTime * 0.001f;
 
 	//デルタタイム生成
 	m_deltaTime = m_currentTime - m_lastTime;
@@ -130,7 +132,7 @@ void gameSystems::Framelate::PrintFPS()
 	/*	FPS計測	*/
 	if (m_totalFrameCount % IntervalFrame == 0)
 	{
-		m_nowFPS = IntervalFrame * 1000.0f / (m_currentTime - m_saveTime);
+		m_nowFPS = IntervalFrame / (m_currentTime - m_saveTime);
 		m_saveTime = m_currentTime;
 
 		/****	FPS表示設定	****/
@@ -140,7 +142,6 @@ void gameSystems::Framelate::PrintFPS()
 		systems::Window::GetInstance()->ChangeWindowText(text);
 		
 	}
-
 }
 
 

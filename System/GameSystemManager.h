@@ -97,6 +97,7 @@ namespace gameSystems
 					}
 				}
 			}
+			return nullptr;
 		}
 
 	public:

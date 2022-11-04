@@ -19,6 +19,9 @@ namespace GAME_SYSTEMS
 		const Tag& GetTag() const noexcept { return m_tag; }
 		const uInt32& GetID() const noexcept{ return m_id; }
 
+	public:
+		SharedPtr<Transform> m_transform = nullptr;
+
 	public:		
 		/**
 		 * ゲームオブジェクトが所持しているコンポーネントを取得します.
@@ -64,7 +67,8 @@ namespace GAME_SYSTEMS
 
 	private:
 		virtual void Setting() = 0;
-		void ShutDown();
+		virtual void SetUp();
+		virtual void ShutDown();
 
 		void ComponentStart();
 		void ComponentEnd();
