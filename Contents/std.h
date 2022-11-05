@@ -4,10 +4,11 @@
 //!	@author	YadoumaruRyusei
 //*****************************************************************************
 #pragma once
-
+#define __STDC_WANT_LIB_EXT1__ 1
 #include	<string>
 #include	<string_view>
 #include	<memory>
+#include	<array>
 #include	<vector>
 #include	<list>
 #include	<stack>
@@ -17,10 +18,13 @@
 #include	<unordered_map>
 #include	<functional>
 #include	<cinttypes>
-#include	<stdint.h>
 #include	<cassert>
-#include	<wrl/client.h>
 #include	<sstream>
+
+#include	<wrl/client.h>
+#include	<stdint.h>
+#include	<tchar.h>
+#include	<string.h>
 
 using Int8			=	signed char;
 using uInt8			=	unsigned char;
@@ -40,11 +44,21 @@ using Byte			=	unsigned char;
 using Char = char;
 using String = std::string;
 using StringView = std::string_view;
-#ifdef _UNICODE
 using W_Char = wchar_t;
 using W_String = std::wstring;
 using W_StringView = std::wstring_view;
+
+#ifdef _UNICODE
+using T_Char = wchar_t;
+using T_String = std::wstring;
+using T_StringView = std::wstring_view;
+#else 
+using T_Char = char;
+using T_String = std::string;
+using T_StringView = std::string_view;
+
 #endif
+
 
 template<class T>
 using Vector = std::vector<T, std::allocator<T>>;
@@ -62,6 +76,8 @@ template<class T>
 using UniquePtr = std::unique_ptr<T>;
 template<class T>
 using SharedPtr = std::shared_ptr<T>;
+template<class T, std::size_t N>
+using Array = std::array<T, N>;
 
 using Microsoft::WRL::ComPtr;
 

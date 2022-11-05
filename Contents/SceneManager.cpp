@@ -14,6 +14,9 @@
 #include "../Game/TestScene.h"
 #include "../Game/ActionTestScene.h"
 
+#include "../CCamera.h"
+#include "../DX11Settransform.h"
+
 /**
  *  シーンリストからシーンを取得し、更新スタックに挿入します.
  * 
@@ -60,14 +63,18 @@ void GAME_SYSTEMS::SceneManager::SceneRun()
 
 void GAME_SYSTEMS::SceneManager::SceneRendering()
 {
-	auto renderManager = RenderManager::GetInstance();
 	// 画面クリア
 	myMath::Color color = {
 		m_currentScene->GetDisPlayColor().r,
 		m_currentScene->GetDisPlayColor().g,
 		m_currentScene->GetDisPlayColor().b,
-		m_currentScene->GetDisPlayColor().a };
+		m_currentScene->GetDisPlayColor().a};
+	
+	auto renderManager = RenderManager::GetInstance();
 	renderManager->ClearRenderer(color);
+
+	// シーン描画
+	m_currentScene->Render();
 
 	// ディスプレイスワップ
 	renderManager->SwapRenderBuffer();

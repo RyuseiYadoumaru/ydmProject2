@@ -54,29 +54,6 @@ namespace GAME_SYSTEMS
 
 	private:
 		void SetWorldMatrix();
-		void Print(myMath::Matrix4x4 mat)
-		{
-			printf("\n\n");
-			printf("\n%f,", mat._11);
-			printf("%f,", mat._12);
-			printf("%f,", mat._13);
-			printf("%f\n,", mat._14);
-
-			printf("\n%f,", mat._21);
-			printf("%f,", mat._22);
-			printf("%f,", mat._23);
-			printf("%f\n,", mat._24);
-
-			printf("\n%f,", mat._31);
-			printf("%f,", mat._32);
-			printf("%f,", mat._33);
-			printf("%f\n,", mat._34);
-
-			printf("\n%f,", mat._41);
-			printf("%f,", mat._42);
-			printf("%f,", mat._43);
-			printf("%f\n,", mat._44);
-		}
 
 	public:
 		Transform() : Physics("Transform", Type::Transform) {}

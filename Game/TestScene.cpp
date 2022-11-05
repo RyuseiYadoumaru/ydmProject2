@@ -2,6 +2,7 @@
 #include "SceneManager.h"
 #include "GameObjectManager.h"
 #include "Keyboard.h"
+#include "GamePad.h"
 #include "TestObject.h"
 
 USING_GAME_SYSTEMS;
@@ -18,7 +19,8 @@ void TestScene::BeginPlay()
 
 void TestScene::Tick()
 {
-	if (Keyboard::Trigger(Keycode::A))
+	if (Keyboard::Trigger(Keycode::A) ||
+		GamePad::Trigger(Xinput::A))
 	{
 		SceneManager::GetInstance()->LoadScene("ActionTestScene");
 	}
@@ -27,3 +29,8 @@ void TestScene::Tick()
 void TestScene::EndPlay()
 {
 }
+
+void TestScene::Render()
+{
+}
+

@@ -23,9 +23,9 @@ bool GAME_SYSTEMS::Keyboard::Releace(Keycode input)
 {
 	auto keySystem = GameSystemManager::GetInstance()->GetSubSystem<KeyboardSystem>("KeyboardSystem");
 	Byte buffer = static_cast<Byte>(input);
-	Byte key = keySystem->GetKeyBuffer(buffer);
-	Byte old = keySystem->GetOldKeyBuffer(buffer);
-	return ((key ^ old & key ) & keySystem->m_MaskInputKeyboardBuffer) ? true : false;
+	bool state = (keySystem->GetKeyBuffer(buffer) & keySystem->m_MaskInputKeyboardBuffer) == 0;
+	bool oldState = (keySystem->GetOldKeyBuffer(buffer) & keySystem->m_MaskInputKeyboardBuffer) != 0;
+	return state && oldState;
 }
 
 

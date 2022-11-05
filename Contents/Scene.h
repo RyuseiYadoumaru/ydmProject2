@@ -21,6 +21,7 @@ namespace GAME_SYSTEMS
 		bool Initialize();
 		bool Run();
 		bool Finalize();
+		virtual void Render()		= 0;
 
 	public:
 		OBJECT_CLASS;
@@ -41,6 +42,7 @@ namespace GAME_SYSTEMS
 	private:
 		bool SceneSetUp();
 		bool SceneShutdown();
+
 
 	private:
 		myMath::Color m_displayColor;

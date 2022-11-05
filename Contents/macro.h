@@ -65,3 +65,4 @@ CLASS& operator=(const CLASS&) = delete;
 #define USING_GAME_SYSTEMS	using namespace gameSystems;
 #define USING_TOOLS			using namespace tools;
 #define USING_MY_MATH		using namespace myMath;
+#define USING_DIRECTX		using namespace DirectX;

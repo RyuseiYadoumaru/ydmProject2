@@ -9,5 +9,6 @@ public:
 	virtual void BeginPlay() override;
 	virtual void Tick() override;
 	virtual void EndPlay() override;
+	virtual void Render() override;
 
 };

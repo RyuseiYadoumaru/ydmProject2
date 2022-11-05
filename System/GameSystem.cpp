@@ -13,6 +13,7 @@
 #include "World.h"
 #include "KeyboardSystem.h"
 #include "MouseSystem.h"
+#include "GamePadSystem.h"
 #include "Debug.h"
 //#include "../../Subsystems/Subsystem.h"
 //#include "../../Subsystems/GameSubSysmte.h"
@@ -34,6 +35,7 @@ bool systems::GameSystem::SetUp()
     GameSystemManager::GetInstance()->Create<World>("World", gameUpdate::Type::Main, 128, true);
     GameSystemManager::GetInstance()->Create<KeyboardSystem>("KeyboardSystem", gameUpdate::Type::System, 0, true);
     GameSystemManager::GetInstance()->Create<MouseSystem>("MouseSystem", gameUpdate::Type::System, 1, true);
+    GameSystemManager::GetInstance()->Create<GamePadSystem>("GamePadSystem", gameUpdate::Type::System, 2, true);
 
     return true;
 }

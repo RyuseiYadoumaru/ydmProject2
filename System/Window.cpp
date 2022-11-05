@@ -208,7 +208,6 @@ bool systems::Window::SetUp()
 	bool sts = SetWindow();
 	if (sts == false)
 	{
-		//tools::Debug::LogError("ウィンドウの設定に失敗しました");
 		return false;
 	}
 
@@ -300,7 +299,7 @@ bool systems::Window::SetWindow()
 
 	if (!m_handle)
 	{
-		MessageBox(nullptr, L"CreateWindow Error", L"error", MB_OK);
+		MessageBox(nullptr, TEXT("CreateWindow Error"), TEXT("error"), MB_OK);
 		return false;
 	}
 

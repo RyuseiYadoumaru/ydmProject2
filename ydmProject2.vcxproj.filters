@@ -40,12 +40,6 @@
     <Filter Include="System\Core\SubSystem\Message">
       <UniqueIdentifier>{7cd9ed7c-e20f-4316-a2c4-d42995cffe12}</UniqueIdentifier>
     </Filter>
-    <Filter Include="System\Core\SubSystem\Renderer">
-      <UniqueIdentifier>{b410efce-34cf-4bda-bb35-7f9911ca078b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="System\Core\SubSystem\Renderer\DX11">
-      <UniqueIdentifier>{7fe8be28-22de-4665-9e4c-84f4b58e46d1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="System\Core\SubSystem\InputSystem">
       <UniqueIdentifier>{c49a66ab-2226-423f-ae3f-5f8bc198ca44}</UniqueIdentifier>
     </Filter>
@@ -112,6 +106,51 @@
     <Filter Include="Contents\Component\Private">
       <UniqueIdentifier>{b98a280a-c56e-43bb-92a1-168e218373d7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\Resource">
+      <UniqueIdentifier>{eba36047-003b-4eca-adf3-2482428771dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sample">
+      <UniqueIdentifier>{2bba7a03-9340-4695-aa15-7ee18bb7d58b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Core\SubSystem\DirectX">
+      <UniqueIdentifier>{b410efce-34cf-4bda-bb35-7f9911ca078b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Core\SubSystem\DirectX\DX11">
+      <UniqueIdentifier>{7fe8be28-22de-4665-9e4c-84f4b58e46d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Renderer">
+      <UniqueIdentifier>{c83b4f45-9bad-4893-9032-728c7fbf3ccd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Renderer\Shader">
+      <UniqueIdentifier>{e37d36ce-65c5-43c7-b89b-c7db1bed459d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Renderer\Shader\FX">
+      <UniqueIdentifier>{fc0b8cef-2ad8-46bc-bc64-560b99896d06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Renderer\Shader\HLSL">
+      <UniqueIdentifier>{56de2c19-c76f-4aac-96c3-e37b7272123c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UseSample">
+      <UniqueIdentifier>{7be846d9-907e-4a95-afeb-925075ef8a77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UseSample\Assimp">
+      <UniqueIdentifier>{280ede1e-f4ae-4c02-9add-accce2dcc298}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UseSample\Math">
+      <UniqueIdentifier>{17ae1da6-1f69-4110-87d4-1600aadb4b93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UseSample\Game">
+      <UniqueIdentifier>{18fde935-10b0-488e-aca1-93b7a6eb4ee2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UseSample\Animation">
+      <UniqueIdentifier>{eca1a951-9847-4374-8699-498c010d1dd2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UseSample\Resorce">
+      <UniqueIdentifier>{3b8e7692-ec1f-411d-99a5-e253d270eb9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UseSample\Transform">
+      <UniqueIdentifier>{0a0fc4d2-7b8d-4a7c-a1ab-3c31c4f5738f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="System\Console.cpp">
@@ -130,7 +169,7 @@
       <Filter>Contents\Tools</Filter>
     </ClCompile>
     <ClCompile Include="System\DirectXGraphics.cpp">
-      <Filter>System\Core\SubSystem\Renderer\DX11</Filter>
+      <Filter>System\Core\SubSystem\DirectX\DX11</Filter>
     </ClCompile>
     <ClCompile Include="System\Inputsystem.cpp">
       <Filter>System\Core\SubSystem\InputSystem</Filter>
@@ -249,6 +288,57 @@
     <ClCompile Include="Contents\Mouse.cpp">
       <Filter>Contents\Manager\Private</Filter>
     </ClCompile>
+    <ClCompile Include="BlendAnimation.cpp">
+      <Filter>Sample</Filter>
+    </ClCompile>
+    <ClCompile Include="SkinnedMeshRenderer.cpp">
+      <Filter>Sample</Filter>
+    </ClCompile>
+    <ClCompile Include="System\Shader.cpp">
+      <Filter>System\Renderer\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="BoneTransform.cpp">
+      <Filter>UseSample\Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="Assimpscene.cpp">
+      <Filter>UseSample\Assimp</Filter>
+    </ClCompile>
+    <ClCompile Include="dx11mathutil.cpp">
+      <Filter>UseSample\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>UseSample\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationClip.cpp">
+      <Filter>UseSample\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Bone.cpp">
+      <Filter>UseSample\Resorce</Filter>
+    </ClCompile>
+    <ClCompile Include="Material.cpp">
+      <Filter>UseSample\Resorce</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>UseSample\Resorce</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshData.cpp">
+      <Filter>UseSample\Resorce</Filter>
+    </ClCompile>
+    <ClCompile Include="Motion.cpp">
+      <Filter>UseSample\Resorce</Filter>
+    </ClCompile>
+    <ClCompile Include="Skeleton.cpp">
+      <Filter>UseSample\Resorce</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>UseSample\Resorce</Filter>
+    </ClCompile>
+    <ClCompile Include="System\GamePadSystem.cpp">
+      <Filter>System\GameSubSystem\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Contents\GamePad.cpp">
+      <Filter>Contents\Manager\Private</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Contents\std.h">
@@ -273,7 +363,7 @@
       <Filter>Contents\Tools</Filter>
     </ClInclude>
     <ClInclude Include="System\DirectXGraphics.h">
-      <Filter>System\Core\SubSystem\Renderer\DX11</Filter>
+      <Filter>System\Core\SubSystem\DirectX\DX11</Filter>
     </ClInclude>
     <ClInclude Include="System\Inputsystem.h">
       <Filter>System\Core\SubSystem\InputSystem</Filter>
@@ -431,5 +521,79 @@
     <ClInclude Include="Contents\Mouse.h">
       <Filter>Contents\Manager</Filter>
     </ClInclude>
+    <ClInclude Include="BlendAnimation.h">
+      <Filter>Sample</Filter>
+    </ClInclude>
+    <ClInclude Include="CLight.h">
+      <Filter>Sample</Filter>
+    </ClInclude>
+    <ClInclude Include="SkinnedMeshRenderer.h">
+      <Filter>Sample</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Shader.h">
+      <Filter>System\Renderer\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="DX11Settransform.h">
+      <Filter>UseSample\Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="BoneTransform.h">
+      <Filter>UseSample\Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="Assimpscene.h">
+      <Filter>UseSample\Assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="dx11mathutil.h">
+      <Filter>UseSample\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="CCamera.h">
+      <Filter>UseSample\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>UseSample\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationClip.h">
+      <Filter>UseSample\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Bone.h">
+      <Filter>UseSample\Resorce</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyFrame.h">
+      <Filter>UseSample\Resorce</Filter>
+    </ClInclude>
+    <ClInclude Include="Material.h">
+      <Filter>UseSample\Resorce</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>UseSample\Resorce</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshData.h">
+      <Filter>UseSample\Resorce</Filter>
+    </ClInclude>
+    <ClInclude Include="Motion.h">
+      <Filter>UseSample\Resorce</Filter>
+    </ClInclude>
+    <ClInclude Include="Skeleton.h">
+      <Filter>UseSample\Resorce</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>UseSample\Resorce</Filter>
+    </ClInclude>
+    <ClInclude Include="System\GamePadSystem.h">
+      <Filter>System\GameSubSystem\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Contents\GamePad.h">
+      <Filter>Contents\Manager</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Shader\psvscommon.fx">
+      <Filter>System\Renderer\Shader\FX</Filter>
+    </FxCompile>
+    <FxCompile Include="Shader\graymanps.fx">
+      <Filter>System\Renderer\Shader\FX</Filter>
+    </FxCompile>
+    <FxCompile Include="Shader\vsoneskin.fx">
+      <Filter>System\Renderer\Shader\FX</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>
