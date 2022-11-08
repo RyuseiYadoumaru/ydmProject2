@@ -12,6 +12,7 @@
 #include "../System/Core/Object.h"
 #include "../System/Core/Component.h"
 #include "Transform.h"
+#include "Camera.h"
 
 namespace GAME_SYSTEMS
 {

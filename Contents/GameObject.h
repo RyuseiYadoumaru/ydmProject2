@@ -57,6 +57,10 @@ namespace GAME_SYSTEMS
 			return component;
 		}
 
+	protected:
+		virtual void Setting() = 0;
+		virtual void SetUp();
+		virtual void ShutDown();
 
 	protected:
 		Tag m_tag;
@@ -64,11 +68,6 @@ namespace GAME_SYSTEMS
 	private:
 		ComponentContainer m_componentList;
 		ScriptContainer m_scriptList;
-
-	private:
-		virtual void Setting() = 0;
-		virtual void SetUp();
-		virtual void ShutDown();
 
 		void ComponentStart();
 		void ComponentEnd();

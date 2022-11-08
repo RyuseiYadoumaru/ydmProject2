@@ -10,5 +10,6 @@
 
 enum class Tag
 {
-	Default
+	Default,
+	Camera
 };

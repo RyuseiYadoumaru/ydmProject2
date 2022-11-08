@@ -4,11 +4,13 @@
 #include "Keyboard.h"
 #include "GamePad.h"
 #include "TestObject.h"
+#include "DefaultCamera.h"
 
 USING_GAME_SYSTEMS;
 
 void TestScene::ObjectEntry()
 {
+	GameObjectManager::GetInstance()->Instance<DefaultCamera>("Camera");
 	GameObjectManager::GetInstance()->Instance<TestObject>("testObject");
 }
 

@@ -13,6 +13,7 @@
 
 #include "../Game/TestScene.h"
 #include "../Game/ActionTestScene.h"
+#include "Graphics.h"
 
 #include "../CCamera.h"
 #include "../DX11Settransform.h"
@@ -74,6 +75,7 @@ void GAME_SYSTEMS::SceneManager::SceneRendering()
 	renderManager->ClearRenderer(color);
 
 	// シーン描画
+	Graphics::GraphicsUpdate();
 	m_currentScene->Render();
 
 	// ディスプレイスワップ

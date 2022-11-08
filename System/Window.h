@@ -55,6 +55,8 @@ namespace systems
 		const Mode& GetWindowMode() const noexcept { return m_WindowMode; }
 
 		String GetWindowClassName() const noexcept { return m_WindowClassName; }
+		const uInt32& GetWidthSize() const noexcept { return m_screenSize.x; }
+		const uInt32& GetHeightSize() const noexcept { return m_screenSize.y; }
 
 	private:
 		static Mode	m_WindowMode;

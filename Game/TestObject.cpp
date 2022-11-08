@@ -1,6 +1,6 @@
 #include "TestObject.h"
 #include "TestScript.h"
-#include "Transform.h"
+#include "GameContents.h"
 
 
 USING_GAME_SYSTEMS;
@@ -8,5 +8,5 @@ USING_GAME_SYSTEMS;
 void TestObject::Setting()
 {
 	AddComponent<TestScript>();
-	AddComponent<Transform>();
+	AddComponent<MeshRenderer>();
 }

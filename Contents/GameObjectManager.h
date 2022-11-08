@@ -36,7 +36,7 @@ namespace GAME_SYSTEMS
 		SharedPtr<TYPE> Instance(String name)
 		{
 			SharedPtr<TYPE> instance = std::make_shared<TYPE>(name);
-			instance->Setting();
+			instance->SetUp();
 			m_instanceObjectList.push_back(instance);
 			return instance;
 

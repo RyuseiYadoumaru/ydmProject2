@@ -10,6 +10,7 @@
 #include "GameObjectManager.h"
 #include "GameObject.h"
 #include "Physics.h"
+#include "Graphics.h"
 #include "Script.h"
 
 void GAME_SYSTEMS::GameObjectManager::Destroy(GameObjectPtr gameObject)
@@ -57,6 +58,7 @@ bool GAME_SYSTEMS::GameObjectManager::GameLogicUpdate()
 bool GAME_SYSTEMS::GameObjectManager::ComponentUpdate()
 {
     Physics::PhysicsUpdate();
+    //Graphics::GraphicsUpdate();
     return true;
 }
 
@@ -67,7 +69,9 @@ bool GAME_SYSTEMS::GameObjectManager::GameObjectShutDown()
         object.second->ComponentEnd();
         object.second->ShutDown();
     }
+
     Physics::PhysicsReleace();
+    Graphics::GraphicsReleace();
     Script::ScriptReleace();
    
     m_destroyObjectList.clear();

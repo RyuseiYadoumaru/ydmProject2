@@ -11,12 +11,23 @@
 #include "SceneManager.h"
 #include "GameObjectManager.h"
 
+#include "DirectXGraphics.h"
+#include "../DX11Settransform.h"
+#include "../Skeleton.h"
+
+
 USING_GAME_SYSTEMS;
 
 bool GAME_SYSTEMS::World::Initialize()
 {
     // シーンマネージャーセットアップ
     SceneManager::GetInstance()->Setup();
+
+    // 定数バッファ初期化
+    DX11SetTransform::GetInstance()->Init();
+    // 骨用の定数バッファ初期化
+    Skeleton::InitConstantBufferBoneMatrix(&systems::DirectXGraphics::GetInstance()->GetDevice());
+
     return true;
 }
 
@@ -49,5 +60,7 @@ bool GAME_SYSTEMS::World::Run()
 bool GAME_SYSTEMS::World::Finalize()
 {
     SceneManager::GetInstance()->Shutdown();
+    Skeleton::UninitConstantBufferBoneMatrix();
+    DX11SetTransform::GetInstance()->Uninit();
     return true;
 }

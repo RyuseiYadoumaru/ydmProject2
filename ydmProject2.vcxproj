@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -178,8 +178,8 @@
       </DeploymentContent>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </DeploymentContent>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Bone.cpp">
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -199,11 +199,15 @@
     </ClCompile>
     <ClCompile Include="Contents\Color.cpp" />
     <ClCompile Include="Contents\Debug.cpp" />
+    <ClCompile Include="Contents\DefaultCamera.cpp" />
     <ClCompile Include="Contents\GameObject.cpp" />
     <ClCompile Include="Contents\GameObjectManager.cpp" />
     <ClCompile Include="Contents\GamePad.cpp" />
+    <ClCompile Include="Contents\Camera.cpp" />
+    <ClCompile Include="Contents\Graphics.cpp" />
     <ClCompile Include="Contents\Keyboard.cpp" />
     <ClCompile Include="Contents\Matrix4x4.cpp" />
+    <ClCompile Include="Contents\MeshRenderer.cpp" />
     <ClCompile Include="Contents\Mouse.cpp" />
     <ClCompile Include="Contents\Physics.cpp" />
     <ClCompile Include="Contents\Quaternion.cpp" />
@@ -333,8 +337,8 @@
       </DeploymentContent>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </DeploymentContent>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="Bone.h">
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -370,15 +374,20 @@
     </ClInclude>
     <ClInclude Include="Contents\Color.h" />
     <ClInclude Include="Contents\Debug.h" />
+    <ClInclude Include="Contents\DefaultCamera.h" />
     <ClInclude Include="Contents\Easing.h" />
+    <ClInclude Include="Contents\GameContents.h" />
     <ClInclude Include="Contents\GameObject.h" />
     <ClInclude Include="Contents\GameObjectHeader.h" />
     <ClInclude Include="Contents\GameObjectManager.h" />
     <ClInclude Include="Contents\GamePad.h" />
+    <ClInclude Include="Contents\Camera.h" />
+    <ClInclude Include="Contents\Graphics.h" />
     <ClInclude Include="Contents\Keyboard.h" />
     <ClInclude Include="Contents\Keycode.h" />
     <ClInclude Include="Contents\macro.h" />
     <ClInclude Include="Contents\Matrix4x4.h" />
+    <ClInclude Include="Contents\MeshRenderer.h" />
     <ClInclude Include="Contents\Mouse.h" />
     <ClInclude Include="Contents\Physics.h" />
     <ClInclude Include="Contents\Quaternion.h" />

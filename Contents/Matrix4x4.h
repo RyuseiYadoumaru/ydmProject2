@@ -12,14 +12,25 @@
 #include "Vector4.h"
 #include "Quaternion.h"
 
+enum class HandType
+{
+	Left,
+	Right
+};
+
 namespace myMath
 {
 	class Matrix4x4 : public DirectX::XMFLOAT4X4
 	{
 	public:
-		static Matrix4x4& CreateMatrixIdentity() noexcept;
-		static Matrix4x4& CreateWorldMatrix(Vector3& position, Vector3& rotation, Vector3 scale) noexcept;
-		static Matrix4x4& CreateWorldMatrix(Matrix4x4& position, Matrix4x4& rotation, Matrix4x4& scale) noexcept;
+		static Matrix4x4 CreateMatrixIdentity() noexcept;
+		
+		static Matrix4x4 CreateWorldMatrix(Vector3& position, Vector3& rotation, Vector3 scale) noexcept;
+		static Matrix4x4 CreateWorldMatrix(Matrix4x4& position, Matrix4x4& rotation, Matrix4x4& scale) noexcept;
+
+		static Matrix4x4 CreateLookAtMatrix(Vector3& eye, Vector3& lookat, Vector3& up, HandType type = HandType::Left);
+		static Matrix4x4 CreateProjectionMatrix(Float32 fov, Float32 aspect, Float32 nearClip, Float32 farClip, HandType type = HandType::Left);
+
 
 		static Matrix4x4 CreateMatrixQuaternion(Quaternion& quaternion) noexcept;
 

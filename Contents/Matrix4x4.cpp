@@ -18,7 +18,7 @@
 //!	@brief	単位行列生成
 //!	@retval	単位行列
 //==============================================================================
-myMath::Matrix4x4& myMath::Matrix4x4::CreateMatrixIdentity() noexcept
+myMath::Matrix4x4 myMath::Matrix4x4::CreateMatrixIdentity() noexcept
 {
 	ALIGN16 DirectX::XMMATRIX matrix;
 	matrix = DirectX::XMMatrixIdentity();
@@ -37,7 +37,7 @@ myMath::Matrix4x4& myMath::Matrix4x4::CreateMatrixIdentity() noexcept
 //!	@param	Scale
 //!	@retval	ワールド行列
 //==============================================================================
-myMath::Matrix4x4& myMath::Matrix4x4::CreateWorldMatrix(Vector3& position, Vector3& rotation, Vector3 scale) noexcept
+myMath::Matrix4x4 myMath::Matrix4x4::CreateWorldMatrix(Vector3& position, Vector3& rotation, Vector3 scale) noexcept
 {
 	/****	行列変換	****/
 	DirectX::XMMATRIX mtxPos = DirectX::XMMatrixTranslation(position.x, position.y, position.z);
@@ -57,7 +57,7 @@ myMath::Matrix4x4& myMath::Matrix4x4::CreateWorldMatrix(Vector3& position, Vecto
 	return worldMatrix;
 }
 
-myMath::Matrix4x4& myMath::Matrix4x4::CreateWorldMatrix(Matrix4x4& position, Matrix4x4& rotation, Matrix4x4& scale) noexcept
+myMath::Matrix4x4 myMath::Matrix4x4::CreateWorldMatrix(Matrix4x4& position, Matrix4x4& rotation, Matrix4x4& scale) noexcept
 {
 	ALIGN16 DirectX::XMMATRIX mtxPos = position.GetXMMatrix();
 	ALIGN16 DirectX::XMMATRIX mtxRot = rotation.GetXMMatrix();
@@ -70,6 +70,30 @@ myMath::Matrix4x4& myMath::Matrix4x4::CreateWorldMatrix(Matrix4x4& position, Mat
 	worldMatrix.Set(mtx);
 
 	return worldMatrix;
+}
+
+myMath::Matrix4x4 myMath::Matrix4x4::CreateLookAtMatrix(Vector3& eye, Vector3& lookat, Vector3& up, HandType type)
+{
+	ALIGN16 DirectX::XMVECTOR eyeVac	= eye.GetXMVector();
+	ALIGN16 DirectX::XMVECTOR lookatVec = lookat.GetXMVector();
+	ALIGN16 DirectX::XMVECTOR upVec		= up.GetXMVector();
+
+	// 行列生成
+	ALIGN16 DirectX::XMMATRIX lookAtMatrix;
+	lookAtMatrix = DirectX::XMMatrixLookAtLH(eyeVac, lookatVec, upVec);
+
+	Matrix4x4 cameraMatrix;
+	cameraMatrix.Set(lookAtMatrix);
+	return cameraMatrix;
+}
+
+myMath::Matrix4x4 myMath::Matrix4x4::CreateProjectionMatrix(Float32 fov, Float32 aspect, Float32 nearClip, Float32 farClip, HandType type)
+{
+	ALIGN16 DirectX::XMMATRIX mtx;
+	mtx = DirectX::XMMatrixPerspectiveFovLH(fov, aspect, nearClip, farClip);
+	Matrix4x4 projection;
+	projection.Set(mtx);
+	return projection;
 }
 
 myMath::Matrix4x4 myMath::Matrix4x4::CreateMatrixQuaternion(Quaternion& quaternion) noexcept

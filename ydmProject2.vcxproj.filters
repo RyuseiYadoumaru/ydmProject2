@@ -103,12 +103,6 @@
     <Filter Include="Game\Scene">
       <UniqueIdentifier>{0655b354-0145-459a-90d0-002441fbfbde}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Contents\Component\Private">
-      <UniqueIdentifier>{b98a280a-c56e-43bb-92a1-168e218373d7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Contents\Resource">
-      <UniqueIdentifier>{eba36047-003b-4eca-adf3-2482428771dc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Sample">
       <UniqueIdentifier>{2bba7a03-9340-4695-aa15-7ee18bb7d58b}</UniqueIdentifier>
     </Filter>
@@ -150,6 +144,12 @@
     </Filter>
     <Filter Include="UseSample\Transform">
       <UniqueIdentifier>{0a0fc4d2-7b8d-4a7c-a1ab-3c31c4f5738f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Component\Graphics">
+      <UniqueIdentifier>{9dac81a7-0a6b-40d6-a809-1eaaf5bb212b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Component\Base">
+      <UniqueIdentifier>{b98a280a-c56e-43bb-92a1-168e218373d7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -280,16 +280,13 @@
       <Filter>Contents\Manager\Private</Filter>
     </ClCompile>
     <ClCompile Include="Contents\Physics.cpp">
-      <Filter>Contents\Component\Private</Filter>
+      <Filter>Contents\Component\Base</Filter>
     </ClCompile>
     <ClCompile Include="System\MouseSystem.cpp">
       <Filter>System\GameSubSystem\Input</Filter>
     </ClCompile>
     <ClCompile Include="Contents\Mouse.cpp">
       <Filter>Contents\Manager\Private</Filter>
-    </ClCompile>
-    <ClCompile Include="BlendAnimation.cpp">
-      <Filter>Sample</Filter>
     </ClCompile>
     <ClCompile Include="SkinnedMeshRenderer.cpp">
       <Filter>Sample</Filter>
@@ -338,6 +335,21 @@
     </ClCompile>
     <ClCompile Include="Contents\GamePad.cpp">
       <Filter>Contents\Manager\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="BlendAnimation.cpp">
+      <Filter>UseSample\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Contents\Graphics.cpp">
+      <Filter>Contents\Component\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Contents\Camera.cpp">
+      <Filter>Contents\Component\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Contents\DefaultCamera.cpp">
+      <Filter>Contents\Create\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Contents\MeshRenderer.cpp">
+      <Filter>Contents\Component\Graphics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -513,16 +525,13 @@
       <Filter>Game\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Contents\Physics.h">
-      <Filter>Contents\Component\Private</Filter>
+      <Filter>Contents\Component\Base</Filter>
     </ClInclude>
     <ClInclude Include="System\MouseSystem.h">
       <Filter>System\GameSubSystem\Input</Filter>
     </ClInclude>
     <ClInclude Include="Contents\Mouse.h">
       <Filter>Contents\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="BlendAnimation.h">
-      <Filter>Sample</Filter>
     </ClInclude>
     <ClInclude Include="CLight.h">
       <Filter>Sample</Filter>
@@ -583,6 +592,24 @@
     </ClInclude>
     <ClInclude Include="Contents\GamePad.h">
       <Filter>Contents\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="BlendAnimation.h">
+      <Filter>UseSample\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Contents\Graphics.h">
+      <Filter>Contents\Component\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Contents\Camera.h">
+      <Filter>Contents\Component\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Contents\DefaultCamera.h">
+      <Filter>Contents\Create</Filter>
+    </ClInclude>
+    <ClInclude Include="Contents\GameContents.h">
+      <Filter>Contents</Filter>
+    </ClInclude>
+    <ClInclude Include="Contents\MeshRenderer.h">
+      <Filter>Contents\Component\Graphics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
