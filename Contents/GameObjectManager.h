@@ -7,8 +7,7 @@
 //* @date   November 2022
 //*****************************************************************************
 #pragma once
-#include "std.h"
-#include "macro.h"
+#include "ManagerHeader.h"
 #include "GameObject.h"
 
 
@@ -24,10 +23,10 @@ namespace GAME_SYSTEMS
 		object.GetTag();
 	};
 
-
 	class GameObjectManager
 	{
 		SINGLETON_CLASS(GameObjectManager);
+		MANAGER_CLASS;
 
 	public:
 

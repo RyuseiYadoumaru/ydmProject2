@@ -60,7 +60,7 @@ void GAME_SYSTEMS::MeshRenderer::Start()
 	// マテリアル生成
 	// TODO : 現在はサンプルコードを直接生成することでマテリアルを作成している
 	m_material = std::make_shared<Material>();
-	m_material->LoadShader();
+	m_material->LoadShader(TEXT("vsoneskin"), TEXT("graymanps"));
 
 	// テクスチャ生成
 	m_texture = std::make_shared<Texture>();

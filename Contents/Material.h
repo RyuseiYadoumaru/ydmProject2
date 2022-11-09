@@ -24,7 +24,7 @@ namespace GAME_SYSTEMS
 		~Material() = default;
 
 	public:
-		bool LoadShader();
+		bool LoadShader(T_String vertexShaderName, T_String pixelShaderName);
 		void Unload();
 		void SetShader();
 

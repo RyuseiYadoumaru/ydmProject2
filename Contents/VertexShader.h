@@ -16,9 +16,9 @@ namespace GAME_SYSTEMS
 	class VertexShader
 	{
 	public:
-		bool LoadShader(T_String vsFilePath);
+		bool LoadShader(T_String vsFilePath, D3D11_INPUT_ELEMENT_DESC* layout, uInt32 elementsNum);
 		void Releace();
-		void SetShader();
+		void BindShader();
 
 	private:
 		ComPtr<ID3D11VertexShader> m_vertexShader = nullptr;

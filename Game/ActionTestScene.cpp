@@ -88,7 +88,7 @@ void ActionTestScene::BeginPlay()
 	}
 
 	// シェーダ読み込み
-	g_material.LoadShader();
+	g_material.LoadShader(TEXT("vsoneskin"), TEXT("graymanps"));
 
 	// テクスチャ読み込み
 	g_texture.Load("GraymanMaskTex.png", "Assets");

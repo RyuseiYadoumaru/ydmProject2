@@ -31,7 +31,7 @@ void GAME_SYSTEMS::PixelShader::Releace()
 	}
 }
 
-void GAME_SYSTEMS::PixelShader::SetShader()
+void GAME_SYSTEMS::PixelShader::BindShader()
 {
 	// デバイスコンテキスト
 	ID3D11DeviceContext& devcontext = systems::DirectXGraphics::GetInstance()->GetImmediateContext();

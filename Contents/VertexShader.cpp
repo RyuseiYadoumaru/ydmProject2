@@ -3,20 +3,12 @@
 #include "../System/DirectXGraphics.h"
 #include "../System/MessageWindow.h"
 
+#include "ShaderManager.h"
 
-bool GAME_SYSTEMS::VertexShader::LoadShader(T_String vsFilePath)
+USING_GAME_SYSTEMS;
+
+bool GAME_SYSTEMS::VertexShader::LoadShader(T_String vsFilePath, D3D11_INPUT_ELEMENT_DESC* layout, uInt32 elementsNum)
 {
-	// 頂点データの定義（アニメーション対応）
-	D3D11_INPUT_ELEMENT_DESC layout[] =
-	{
-		{ "POSITION",	0, DXGI_FORMAT_R32G32B32_FLOAT,		0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-		{ "NORMAL",		0, DXGI_FORMAT_R32G32B32_FLOAT,		0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-		{ "TEXCOORD",	0, DXGI_FORMAT_R32G32_FLOAT,		0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-		{ "BONEINDEX",	0, DXGI_FORMAT_R32G32B32A32_SINT,	0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-		{ "BONEWEIGHT",	0, DXGI_FORMAT_R32G32B32A32_FLOAT,	0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 }
-	};
-	unsigned int numElements = ARRAYSIZE(layout);
-
 	ID3D11Device& device = systems::DirectXGraphics::GetInstance()->GetDevice();
 
 	// 頂点シェーダーオブジェクトを生成、同時に頂点レイアウトも生成
@@ -26,7 +18,7 @@ bool GAME_SYSTEMS::VertexShader::LoadShader(T_String vsFilePath)
 		"main",
 		"vs_5_0",
 		layout,
-		numElements,
+		elementsNum,
 		&this->m_vertexShader,
 		&this->m_vertexLayout);
 	if (sts == false) 
@@ -51,7 +43,7 @@ void GAME_SYSTEMS::VertexShader::Releace()
     }
 }
 
-void GAME_SYSTEMS::VertexShader::SetShader()
+void GAME_SYSTEMS::VertexShader::BindShader()
 {
     // デバイスコンテキスト
     ID3D11DeviceContext& devcontext = systems:: DirectXGraphics::GetInstance()->GetImmediateContext();

@@ -172,6 +172,12 @@
     <Filter Include="Contents\Resource\Shader">
       <UniqueIdentifier>{fb19a261-c72d-4010-89c3-d3d753357a49}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\Manager\Header">
+      <UniqueIdentifier>{9cfbac8b-6f87-4b43-b9b6-4731b7241a74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Input">
+      <UniqueIdentifier>{780369b3-4d0d-4579-81c1-b09118d1f9b9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="System\Console.cpp">
@@ -294,17 +300,11 @@
     <ClCompile Include="Game\TestScene.cpp">
       <Filter>Game\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Contents\Keyboard.cpp">
-      <Filter>Contents\Manager\Private</Filter>
-    </ClCompile>
     <ClCompile Include="Contents\Physics.cpp">
       <Filter>Contents\Component\Base</Filter>
     </ClCompile>
     <ClCompile Include="System\MouseSystem.cpp">
       <Filter>System\GameSubSystem\Input</Filter>
-    </ClCompile>
-    <ClCompile Include="Contents\Mouse.cpp">
-      <Filter>Contents\Manager\Private</Filter>
     </ClCompile>
     <ClCompile Include="SkinnedMeshRenderer.cpp">
       <Filter>Sample</Filter>
@@ -348,9 +348,6 @@
     <ClCompile Include="System\GamePadSystem.cpp">
       <Filter>System\GameSubSystem\Input</Filter>
     </ClCompile>
-    <ClCompile Include="Contents\GamePad.cpp">
-      <Filter>Contents\Manager\Private</Filter>
-    </ClCompile>
     <ClCompile Include="BlendAnimation.cpp">
       <Filter>UseSample\Animation</Filter>
     </ClCompile>
@@ -386,6 +383,24 @@
     </ClCompile>
     <ClCompile Include="Contents\Material.cpp">
       <Filter>Contents\Create\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Contents\ShaderManager.cpp">
+      <Filter>Contents\Manager\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Contents\ManagerInterface.cpp">
+      <Filter>Contents\Manager\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Contents\Keyboard.cpp">
+      <Filter>Contents\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Contents\Mouse.cpp">
+      <Filter>Contents\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Contents\GamePad.cpp">
+      <Filter>Contents\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Contents\FileSystem.cpp">
+      <Filter>Contents\Tools</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -542,12 +557,6 @@
     <ClInclude Include="System\KeyboardSystem.h">
       <Filter>System\GameSubSystem\Input</Filter>
     </ClInclude>
-    <ClInclude Include="Contents\Keyboard.h">
-      <Filter>Contents\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="Contents\Keycode.h">
-      <Filter>Contents\Manager</Filter>
-    </ClInclude>
     <ClInclude Include="Contents\RenderManager.h">
       <Filter>Contents\Manager</Filter>
     </ClInclude>
@@ -562,9 +571,6 @@
     </ClInclude>
     <ClInclude Include="System\MouseSystem.h">
       <Filter>System\GameSubSystem\Input</Filter>
-    </ClInclude>
-    <ClInclude Include="Contents\Mouse.h">
-      <Filter>Contents\Manager</Filter>
     </ClInclude>
     <ClInclude Include="CLight.h">
       <Filter>Sample</Filter>
@@ -620,9 +626,6 @@
     <ClInclude Include="System\GamePadSystem.h">
       <Filter>System\GameSubSystem\Input</Filter>
     </ClInclude>
-    <ClInclude Include="Contents\GamePad.h">
-      <Filter>Contents\Manager</Filter>
-    </ClInclude>
     <ClInclude Include="BlendAnimation.h">
       <Filter>UseSample\Animation</Filter>
     </ClInclude>
@@ -664,6 +667,30 @@
     </ClInclude>
     <ClInclude Include="Contents\Material.h">
       <Filter>Contents\Create</Filter>
+    </ClInclude>
+    <ClInclude Include="Contents\ShaderManager.h">
+      <Filter>Contents\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Contents\ManagerInterface.h">
+      <Filter>Contents\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Contents\ManagerHeader.h">
+      <Filter>Contents\Manager\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Contents\GamePad.h">
+      <Filter>Contents\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Contents\Keyboard.h">
+      <Filter>Contents\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Contents\Keycode.h">
+      <Filter>Contents\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Contents\Mouse.h">
+      <Filter>Contents\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Contents\FileSystem.h">
+      <Filter>Contents\Tools</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

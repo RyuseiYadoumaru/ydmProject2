@@ -1,7 +1,7 @@
 //*****************************************************************************
-//* @file   PixelShader.h
-//* @brief  ピクセルシェーダー
-//* @note   
+//* @file   ManagerInterface.h
+//* @brief  マネージャー関連のインターフェース
+//* @note   各マネージャーのフレンドになります
 //* 
 //* @author YadoumaruRyusei
 //* @date   November 2022
@@ -10,17 +10,12 @@
 #include "std.h"
 #include "macro.h"
 
-
 namespace GAME_SYSTEMS
 {
-	class PixelShader
+	class ManagerInterface
 	{
 	public:
-		bool LoadShader(T_String psFilePath);
-		void Releace();
-		void BindShader();
-
-	private:
-		ComPtr<ID3D11PixelShader> m_pixelShader = nullptr;
+		static void SetUp();
+		static void ShutDown();
 	};
 }

@@ -7,8 +7,7 @@
 //* @date   August 2022
 //*****************************************************************************
 #pragma once
-#include "std.h"
-#include "macro.h"
+#include "ManagerHeader.h"
 #include "../System/World.h"
 
 namespace GAME_SYSTEMS
@@ -28,6 +27,7 @@ namespace GAME_SYSTEMS
 	class SceneManager
 	{
 		SINGLETON_CLASS(SceneManager);
+		MANAGER_CLASS;
 
 	public:
 		enum class State

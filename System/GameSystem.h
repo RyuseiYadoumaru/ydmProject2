@@ -15,7 +15,6 @@ namespace gameSystems
 {
 	class Subsystem;
 	class GameSubSystem;
-	class Manager;
 	class GameSystemManager;
 }
 

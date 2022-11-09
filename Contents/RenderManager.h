@@ -7,8 +7,7 @@
 //* @date   November 2022
 //*****************************************************************************
 #pragma once
-#include "std.h"
-#include "macro.h"
+#include "ManagerHeader.h"
 #include "Color.h"
 
 namespace GAME_SYSTEMS
@@ -16,6 +15,7 @@ namespace GAME_SYSTEMS
 	class RenderManager
 	{
 		SINGLETON_CLASS(RenderManager);
+		MANAGER_CLASS;
 		
 	public:
 		void ClearRenderer(myMath::Color& displayColor);

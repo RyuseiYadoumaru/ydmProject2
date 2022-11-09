@@ -52,8 +52,7 @@ return &instance;							\
 private:									\
 CLASS() = default;							\
 CLASS(const CLASS&) = delete;				\
-CLASS& operator=(const CLASS&) = delete;	
-
+CLASS& operator=(const CLASS&) = delete;
 
 #define GAME_SYSTEMS gameSystems
 #define SYSTEMS systems
@@ -66,3 +65,5 @@ CLASS& operator=(const CLASS&) = delete;
 #define USING_TOOLS			using namespace tools;
 #define USING_MY_MATH		using namespace myMath;
 #define USING_DIRECTX		using namespace DirectX;
+
+

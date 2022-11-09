@@ -200,12 +200,14 @@
     <ClCompile Include="Contents\Color.cpp" />
     <ClCompile Include="Contents\Debug.cpp" />
     <ClCompile Include="Contents\DefaultCamera.cpp" />
+    <ClCompile Include="Contents\FileSystem.cpp" />
     <ClCompile Include="Contents\GameObject.cpp" />
     <ClCompile Include="Contents\GameObjectManager.cpp" />
     <ClCompile Include="Contents\GamePad.cpp" />
     <ClCompile Include="Contents\Camera.cpp" />
     <ClCompile Include="Contents\Graphics.cpp" />
     <ClCompile Include="Contents\Keyboard.cpp" />
+    <ClCompile Include="Contents\ManagerInterface.cpp" />
     <ClCompile Include="Contents\Material.cpp" />
     <ClCompile Include="Contents\Matrix4x4.cpp" />
     <ClCompile Include="Contents\MeshRenderer.cpp" />
@@ -217,6 +219,7 @@
     <ClCompile Include="Contents\Scene.cpp" />
     <ClCompile Include="Contents\SceneManager.cpp" />
     <ClCompile Include="Contents\Script.cpp" />
+    <ClCompile Include="Contents\ShaderManager.cpp" />
     <ClCompile Include="Contents\Transform.cpp" />
     <ClCompile Include="Contents\VertexShader.cpp" />
     <ClCompile Include="dx11mathutil.cpp" />
@@ -374,6 +377,7 @@
     <ClInclude Include="Contents\Debug.h" />
     <ClInclude Include="Contents\DefaultCamera.h" />
     <ClInclude Include="Contents\Easing.h" />
+    <ClInclude Include="Contents\FileSystem.h" />
     <ClInclude Include="Contents\GameContents.h" />
     <ClInclude Include="Contents\GameObject.h" />
     <ClInclude Include="Contents\GameObjectHeader.h" />
@@ -384,6 +388,8 @@
     <ClInclude Include="Contents\Keyboard.h" />
     <ClInclude Include="Contents\Keycode.h" />
     <ClInclude Include="Contents\macro.h" />
+    <ClInclude Include="Contents\ManagerHeader.h" />
+    <ClInclude Include="Contents\ManagerInterface.h" />
     <ClInclude Include="Contents\Material.h" />
     <ClInclude Include="Contents\Matrix4x4.h" />
     <ClInclude Include="Contents\MeshRenderer.h" />
@@ -397,6 +403,7 @@
     <ClInclude Include="Contents\SceneHelper.h" />
     <ClInclude Include="Contents\SceneManager.h" />
     <ClInclude Include="Contents\Script.h" />
+    <ClInclude Include="Contents\ShaderManager.h" />
     <ClInclude Include="Contents\std.h" />
     <ClInclude Include="Contents\Tag.h" />
     <ClInclude Include="Contents\Transform.h" />

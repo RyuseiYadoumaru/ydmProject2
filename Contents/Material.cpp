@@ -9,6 +9,7 @@
 #include "Material.h"
 #include "VertexShader.h"
 #include "PixelShader.h"
+#include "ShaderManager.h"
 
 #include "../System/Shader.h"
 #include "../System/DirectxGraphics.h"
@@ -17,33 +18,21 @@ USING_GAME_SYSTEMS;
 USING_SYSTEMS;
 USING_DIRECTX;
 
-bool Material::LoadShader()
+bool Material::LoadShader(T_String vertexShaderName, T_String pixelShaderName)
 {
-	m_vertexShader = std::make_shared<VertexShader>();
-	m_pixelShader = std::make_shared<PixelShader>();
-
-	m_vertexShader->LoadShader(TEXT("Shader/vsoneskin.fx"));
-	m_pixelShader->LoadShader(TEXT("Shader/graymanps.fx"));
+	m_vertexShader = ShaderManager::GetInstance()->GetVertexShader(vertexShaderName);
+	m_pixelShader  = ShaderManager::GetInstance()->GetPixelShader(pixelShaderName);
 	return true;
 }
 
 void Material::Unload()
 {
-	if (m_vertexShader != nullptr)
-	{
-		m_vertexShader->Releace();
-		m_vertexShader = nullptr;
-	}
-	if (m_pixelShader != nullptr)
-	{
-		m_pixelShader->Releace();
-		m_pixelShader = nullptr;
-	}
-
+	m_vertexShader = nullptr;
+	m_pixelShader = nullptr;
 }
 
 void Material::SetShader()
 {
-	m_vertexShader->SetShader();
-	m_pixelShader->SetShader();
+	m_vertexShader->BindShader();
+	m_pixelShader->BindShader();
 }
