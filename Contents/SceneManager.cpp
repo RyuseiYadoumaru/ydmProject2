@@ -57,6 +57,11 @@ void GAME_SYSTEMS::SceneManager::SceneSetup()
 	m_sceneState = State::Run;
 }
 
+void GAME_SYSTEMS::SceneManager::BeginPlay()
+{
+	m_currentScene->BeginPlay();
+}
+
 void GAME_SYSTEMS::SceneManager::SceneRun()
 {
 	m_currentScene->Run();

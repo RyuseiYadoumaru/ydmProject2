@@ -22,9 +22,6 @@ bool GAME_SYSTEMS::Scene::Initialize()
 	//オブジェクトエントリー
 	ObjectEntry();
 
-	//シーン初期設定
-	BeginPlay();
-
 	return true;
 }
 

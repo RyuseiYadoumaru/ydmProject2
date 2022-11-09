@@ -218,9 +218,12 @@
     <ClCompile Include="Contents\Transform.cpp" />
     <ClCompile Include="dx11mathutil.cpp" />
     <ClCompile Include="Game\ActionTestScene.cpp" />
+    <ClCompile Include="Game\MainCamera.cpp" />
+    <ClCompile Include="Game\PlayerMovement.cpp" />
     <ClCompile Include="Game\TestObject.cpp" />
     <ClCompile Include="Game\TestScene.cpp" />
     <ClCompile Include="Game\TestScript.cpp" />
+    <ClCompile Include="Game\ThirdPersonCamera.cpp" />
     <ClCompile Include="Material.cpp">
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </DeploymentContent>
@@ -394,6 +397,7 @@
     <ClInclude Include="Contents\RenderManager.h" />
     <ClInclude Include="Contents\Scene.h" />
     <ClInclude Include="Contents\SceneHeader.h" />
+    <ClInclude Include="Contents\SceneHelper.h" />
     <ClInclude Include="Contents\SceneManager.h" />
     <ClInclude Include="Contents\Script.h" />
     <ClInclude Include="Contents\std.h" />
@@ -405,9 +409,12 @@
     <ClInclude Include="dx11mathutil.h" />
     <ClInclude Include="DX11Settransform.h" />
     <ClInclude Include="Game\ActionTestScene.h" />
+    <ClInclude Include="Game\MainCamera.h" />
+    <ClInclude Include="Game\PlayerMovement.h" />
     <ClInclude Include="Game\TestObject.h" />
     <ClInclude Include="Game\TestScene.h" />
     <ClInclude Include="Game\TestScript.h" />
+    <ClInclude Include="Game\ThirdPersonCamera.h" />
     <ClInclude Include="KeyFrame.h" />
     <ClInclude Include="Material.h">
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

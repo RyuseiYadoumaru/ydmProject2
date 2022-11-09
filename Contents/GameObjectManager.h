@@ -32,7 +32,7 @@ namespace GAME_SYSTEMS
 	public:
 
 		// ゲームオブジェクト生成
-		template<TGameObject TYPE>
+		template<TGameObject TYPE = GameObject>
 		SharedPtr<TYPE> Instance(String name)
 		{
 			SharedPtr<TYPE> instance = std::make_shared<TYPE>(name);
@@ -43,6 +43,33 @@ namespace GAME_SYSTEMS
 		}
 		// ゲームオブジェクト削除
 		void Destroy(GameObjectPtr gameObject);
+
+		// ゲームオブジェクト取得
+		template<TGameObject TYPE = GameObject>
+		SharedPtr<TYPE> Find(String name)
+		{
+			for (auto& object : m_gameObjectList)
+			{
+				if (object.second->ToString() == name)
+				{
+					SharedPtr<TYPE> returnObject = std::dynamic_pointer_cast<TYPE>(object.second);
+					return returnObject;
+				}
+			}
+			return nullptr;
+		}
+
+		template<TGameObject TYPE = GameObject>
+		SharedPtr<TYPE> Find(uInt32 id)
+		{
+			if (m_gameObjectList.contains(id) == true)
+			{
+				SharedPtr<TYPE> returnObject = std::dynamic_pointer_cast<TYPE>(m_gameObjectList[id]);
+				return returnObject;
+			}
+			return nullptr;
+		}
+
 
 	private:
 		bool GameObjectSetUp();

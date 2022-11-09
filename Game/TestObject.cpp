@@ -1,5 +1,6 @@
 #include "TestObject.h"
 #include "TestScript.h"
+#include "../Game/PlayerMovement.h"
 #include "GameContents.h"
 
 
@@ -9,4 +10,5 @@ void TestObject::Setting()
 {
 	AddComponent<TestScript>();
 	AddComponent<MeshRenderer>();
+	AddComponent<PlayerMovement>();
 }

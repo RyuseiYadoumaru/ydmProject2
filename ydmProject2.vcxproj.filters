@@ -151,6 +151,21 @@
     <Filter Include="Contents\Component\Base">
       <UniqueIdentifier>{b98a280a-c56e-43bb-92a1-168e218373d7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\Helper">
+      <UniqueIdentifier>{20563a9d-fd98-45e2-bb88-bc95d60650e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Script\GameLogic">
+      <UniqueIdentifier>{c8aae06e-cb1a-44a9-8512-f468bda081ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Script\Tesst">
+      <UniqueIdentifier>{be4cf266-3b7d-490e-9922-c939056ede3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Script\GameLogic\Camera">
+      <UniqueIdentifier>{4478fd60-b5e0-44e9-b1db-59f9aa4c6cc3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Script\GameLogic\Player">
+      <UniqueIdentifier>{bd641f56-0bbc-4349-9cae-b82081ab1a31}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="System\Console.cpp">
@@ -261,9 +276,6 @@
     <ClCompile Include="Contents\Script.cpp">
       <Filter>Contents\Create\Private</Filter>
     </ClCompile>
-    <ClCompile Include="Game\TestScript.cpp">
-      <Filter>Game\Script</Filter>
-    </ClCompile>
     <ClCompile Include="System\KeyboardSystem.cpp">
       <Filter>System\GameSubSystem\Input</Filter>
     </ClCompile>
@@ -350,6 +362,18 @@
     </ClCompile>
     <ClCompile Include="Contents\MeshRenderer.cpp">
       <Filter>Contents\Component\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\TestScript.cpp">
+      <Filter>Game\Script\Tesst</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\ThirdPersonCamera.cpp">
+      <Filter>Game\Script\GameLogic\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\PlayerMovement.cpp">
+      <Filter>Game\Script\GameLogic\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\MainCamera.cpp">
+      <Filter>Game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -503,9 +527,6 @@
     <ClInclude Include="Game\TestObject.h">
       <Filter>Game</Filter>
     </ClInclude>
-    <ClInclude Include="Game\TestScript.h">
-      <Filter>Game\Script</Filter>
-    </ClInclude>
     <ClInclude Include="System\KeyboardSystem.h">
       <Filter>System\GameSubSystem\Input</Filter>
     </ClInclude>
@@ -610,6 +631,21 @@
     </ClInclude>
     <ClInclude Include="Contents\MeshRenderer.h">
       <Filter>Contents\Component\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Contents\SceneHelper.h">
+      <Filter>Contents\Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\TestScript.h">
+      <Filter>Game\Script\Tesst</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\PlayerMovement.h">
+      <Filter>Game\Script\GameLogic\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\ThirdPersonCamera.h">
+      <Filter>Game\Script\GameLogic\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\MainCamera.h">
+      <Filter>Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

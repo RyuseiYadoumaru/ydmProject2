@@ -1,13 +1,22 @@
 //*****************************************************************************
-//* @file   SceneHeader.h
+//* @file   SceneHelper.h
 //* @brief  
-//* @note   シーンのヘッダーファイル
+//* @note   シーンのヘッダーファイルで定義する
 //* 
 //* @author YadoumaruRyusei
 //* @date   November 2022
 //*****************************************************************************
 #pragma once
-#include "../System/Core/Object.h"
-#include "std.h"
+#include "Scene.h"
 #include "macro.h"
-#include "Color.h"
+#include "std.h"
+
+namespace GAME_SYSTEMS
+{
+	class GameObject;
+	class Script;
+	class DefaultCamera;
+}
+
+using GameObjectPtr = SharedPtr<gameSystems::GameObject>;
+

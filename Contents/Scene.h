@@ -32,10 +32,10 @@ namespace GAME_SYSTEMS
 		void SetDisplayColor(Float32 red, Float32 green, Float32 blue) noexcept { m_displayColor.Set(red, green, blue, 1.0f); }
 		const myMath::Color& GetDisPlayColor() const noexcept { return m_displayColor; }
 
+		virtual void BeginPlay()	= 0;
 
 	protected:
 		virtual void ObjectEntry()	= 0;
-		virtual void BeginPlay()	= 0;
 		virtual void Tick()			= 0;
 		virtual void EndPlay()		= 0;
 

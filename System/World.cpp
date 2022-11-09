@@ -39,6 +39,9 @@ bool GAME_SYSTEMS::World::Run()
     if (sceneManager->GetSceneState() == SceneManager::State::Start)
     {
         sceneManager->SceneSetup();
+        gameObjectManager->GameObjectStartUpdate();
+        sceneManager->BeginPlay();
+
     }
     
     if (sceneManager->GetSceneState() == SceneManager::State::Run)

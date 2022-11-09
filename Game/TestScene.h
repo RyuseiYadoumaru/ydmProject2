@@ -7,7 +7,7 @@
 //* @date   November 2022
 //*****************************************************************************
 #pragma once
-#include "Scene.h"
+#include "SceneHelper.h"
 
 class TestScene : public gameSystems::Scene
 {
@@ -20,4 +20,7 @@ public:
 	virtual void Tick() override;
 	virtual void EndPlay() override;
 	virtual void Render() override;
+
+private:
+	GameObjectPtr m_test;
 };

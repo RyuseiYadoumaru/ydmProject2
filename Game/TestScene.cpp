@@ -5,18 +5,24 @@
 #include "GamePad.h"
 #include "TestObject.h"
 #include "DefaultCamera.h"
+#include "MainCamera.h"
+#include "GameContents.h"
+
+#include "PlayerMovement.h"
+#include "ThirdPersonCamera.h"
 
 USING_GAME_SYSTEMS;
 
 void TestScene::ObjectEntry()
 {
-	GameObjectManager::GetInstance()->Instance<DefaultCamera>("Camera");
-	GameObjectManager::GetInstance()->Instance<TestObject>("testObject");
+	m_test = GameObjectManager::GetInstance()->Instance<TestObject>("Player");
+	GameObjectManager::GetInstance()->Instance<MainCamera>("Camera");
 }
 
 void TestScene::BeginPlay()
 {
 	SetDisplayColor(0.0f, 255.0f, 0.0f);
+	m_test->m_transform->m_rotation.y = 90.0f;
 }
 
 void TestScene::Tick()

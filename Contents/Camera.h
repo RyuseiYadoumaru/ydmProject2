@@ -19,6 +19,11 @@ namespace GAME_SYSTEMS
 	class Camera : public Graphics
 	{
 	public:
+		myMath::Vector3 m_eye;
+		myMath::Vector3 m_lookAt;
+		myMath::Vector3 m_up;
+
+	public:
 		// ÉJÉÅÉâÇÃóDêÊìx
 		void SetPriority(Int32 priority) noexcept { m_priority = priority; }
 
@@ -28,10 +33,6 @@ namespace GAME_SYSTEMS
 	private:
 		myMath::Matrix4x4 m_projectionMatrix;
 		myMath::Matrix4x4 m_cameraMatrix;
-
-		myMath::Vector3 m_eye;
-		myMath::Vector3 m_lookAt;
-		myMath::Vector3 m_up;
 
 		Float32 m_nearClip	= 0.0f;
 		Float32 m_farClip	= 0.0f;

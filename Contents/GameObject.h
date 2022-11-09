@@ -58,7 +58,7 @@ namespace GAME_SYSTEMS
 		}
 
 	protected:
-		virtual void Setting() = 0;
+		virtual void Setting() {};
 		virtual void SetUp();
 		virtual void ShutDown();
 

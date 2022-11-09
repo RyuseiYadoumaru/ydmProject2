@@ -31,15 +31,10 @@ bool GAME_SYSTEMS::GameObjectManager::GameObjectStartUpdate()
         destroy->ComponentEnd();
     }
 
-    // オブジェクト登録
-    for (auto& instance : m_instanceObjectList)
-    {
-        m_gameObjectList[instance->GetID()] = instance;
-    }
-
     // オブジェクト初期化
     for (auto& instance : m_instanceObjectList)
     {
+        m_gameObjectList[instance->GetID()] = instance;
         instance->ComponentStart();
     }
 

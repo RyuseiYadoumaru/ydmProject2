@@ -56,6 +56,7 @@ namespace GAME_SYSTEMS
 	private:
 		void Setup();
 		void SceneSetup();
+		void BeginPlay();
 		void SceneRun();
 		void SceneRendering();
 		void SceneShutdown();

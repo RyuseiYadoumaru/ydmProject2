@@ -9,6 +9,8 @@
 #pragma once
 #include "GameObject.h"
 
+#define CAMERA_CLASS using GAME_SYSTEMS::DefaultCamera::DefaultCamera;
+
 namespace GAME_SYSTEMS
 {
 	class DefaultCamera : public GameObject
