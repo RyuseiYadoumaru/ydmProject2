@@ -15,10 +15,12 @@
 
 USING_TOOLS;
 USING_SYSTEMS;
+USING_GAME_SYSTEMS
+
+#include "Material.h"
 
 #include "../Assimpscene.h"
 #include "../MeshData.h"
-#include "../Material.h"
 #include "../Texture.h"
 #include "../Skeleton.h"
 #include "../Animation.h"
@@ -58,7 +60,7 @@ void GAME_SYSTEMS::MeshRenderer::Start()
 	// マテリアル生成
 	// TODO : 現在はサンプルコードを直接生成することでマテリアルを作成している
 	m_material = std::make_shared<Material>();
-	m_material->LoadShader(TEXT("Shader/vsoneskin.fx"), TEXT("Shader/graymanps.fx"));
+	m_material->LoadShader();
 
 	// テクスチャ生成
 	m_texture = std::make_shared<Texture>();

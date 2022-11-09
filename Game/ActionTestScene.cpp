@@ -5,9 +5,10 @@ USING_GAME_SYSTEMS;
 USING_MY_MATH;
 USING_SYSTEMS;
 
+#include "Material.h"
+
 #include "../Assimpscene.h"
 #include "../MeshData.h"
-#include "../Material.h"
 #include "../Texture.h"
 #include "../Skeleton.h"
 #include "../Animation.h"
@@ -21,7 +22,7 @@ USING_SYSTEMS;
 DirectX::XMFLOAT4X4 g_playerMtx;
 
 MeshData g_meshData;
-Material g_material;
+gameSystems::Material g_material;
 Texture	 g_texture;
 Skeleton g_skeleton;
 Animation g_animation;
@@ -87,7 +88,7 @@ void ActionTestScene::BeginPlay()
 	}
 
 	// シェーダ読み込み
-	g_material.LoadShader(TEXT("Shader/vsoneskin.fx"), TEXT("Shader/graymanps.fx"));
+	g_material.LoadShader();
 
 	// テクスチャ読み込み
 	g_texture.Load("GraymanMaskTex.png", "Assets");

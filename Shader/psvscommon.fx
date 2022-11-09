@@ -37,6 +37,12 @@ cbuffer ConstantBufferBoneMatrix : register(b5)
 {
 	matrix BoneMatrix[400];
 }
+
+cbuffer ConstantBufferViewPort : register(b6)
+{
+    uint4 ViewportWidth; // ビューポート幅
+    uint4 ViewportHeight; // ビューポート高さ
+};
 //--------------------------------------------------------------------------------------
 // 構造体定義
 //--------------------------------------------------------------------------------------

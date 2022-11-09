@@ -26,6 +26,8 @@
 #include	<tchar.h>
 #include	<string.h>
 
+#include	<d3d11.h>
+
 using Int8			=	signed char;
 using uInt8			=	unsigned char;
 using Int16			=	short;

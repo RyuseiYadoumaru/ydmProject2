@@ -166,6 +166,12 @@
     <Filter Include="Game\Script\GameLogic\Player">
       <UniqueIdentifier>{bd641f56-0bbc-4349-9cae-b82081ab1a31}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\Resource">
+      <UniqueIdentifier>{f7fbf963-3d25-414f-9e19-47ba03eeea8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Resource\Shader">
+      <UniqueIdentifier>{fb19a261-c72d-4010-89c3-d3d753357a49}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="System\Console.cpp">
@@ -324,9 +330,6 @@
     <ClCompile Include="Bone.cpp">
       <Filter>UseSample\Resorce</Filter>
     </ClCompile>
-    <ClCompile Include="Material.cpp">
-      <Filter>UseSample\Resorce</Filter>
-    </ClCompile>
     <ClCompile Include="Mesh.cpp">
       <Filter>UseSample\Resorce</Filter>
     </ClCompile>
@@ -374,6 +377,15 @@
     </ClCompile>
     <ClCompile Include="Game\MainCamera.cpp">
       <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Contents\VertexShader.cpp">
+      <Filter>Contents\Resource\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="Contents\PixelShader.cpp">
+      <Filter>Contents\Resource\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="Contents\Material.cpp">
+      <Filter>Contents\Create\Private</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -590,9 +602,6 @@
     <ClInclude Include="KeyFrame.h">
       <Filter>UseSample\Resorce</Filter>
     </ClInclude>
-    <ClInclude Include="Material.h">
-      <Filter>UseSample\Resorce</Filter>
-    </ClInclude>
     <ClInclude Include="Mesh.h">
       <Filter>UseSample\Resorce</Filter>
     </ClInclude>
@@ -647,6 +656,15 @@
     <ClInclude Include="Game\MainCamera.h">
       <Filter>Game</Filter>
     </ClInclude>
+    <ClInclude Include="Contents\VertexShader.h">
+      <Filter>Contents\Resource\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Contents\PixelShader.h">
+      <Filter>Contents\Resource\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Contents\Material.h">
+      <Filter>Contents\Create</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Shader\psvscommon.fx">
@@ -657,6 +675,18 @@
     </FxCompile>
     <FxCompile Include="Shader\vsoneskin.fx">
       <Filter>System\Renderer\Shader\FX</Filter>
+    </FxCompile>
+    <FxCompile Include="Shader\pscol.hlsl">
+      <Filter>System\Renderer\Shader\HLSL</Filter>
+    </FxCompile>
+    <FxCompile Include="Shader\pstexcol.hlsl">
+      <Filter>System\Renderer\Shader\HLSL</Filter>
+    </FxCompile>
+    <FxCompile Include="Shader\vs.hlsl">
+      <Filter>System\Renderer\Shader\HLSL</Filter>
+    </FxCompile>
+    <FxCompile Include="Shader\ps.hlsl">
+      <Filter>System\Renderer\Shader\HLSL</Filter>
     </FxCompile>
   </ItemGroup>
 </Project>
