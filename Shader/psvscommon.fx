@@ -1,10 +1,6 @@
 Texture2D g_Tex : register(t0);				// テクスチャ
 SamplerState g_SamplerLinear : register(s0);	// サンプラー
 
-//--------------------------------------------------------------------------------------
-// コンスタントバッファ
-//--------------------------------------------------------------------------------------
-
 cbuffer ConstantBufferWorld : register(b0)
 {
 	matrix World;
@@ -43,9 +39,7 @@ cbuffer ConstantBufferViewPort : register(b6)
     uint4 ViewportWidth; // ビューポート幅
     uint4 ViewportHeight; // ビューポート高さ
 };
-//--------------------------------------------------------------------------------------
-// 構造体定義
-//--------------------------------------------------------------------------------------
+
 struct VS_OUTPUT
 {
 	float4 Pos : SV_POSITION;

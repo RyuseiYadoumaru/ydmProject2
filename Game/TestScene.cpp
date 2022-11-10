@@ -16,7 +16,8 @@ USING_GAME_SYSTEMS;
 void TestScene::ObjectEntry()
 {
 	m_test = GameObjectManager::GetInstance()->Instance<TestObject>("Player");
-	GameObjectManager::GetInstance()->Instance<MainCamera>("Camera");
+	//GameObjectManager::GetInstance()->Instance<MainCamera>("Camera");
+	GameObjectManager::GetInstance()->Instance<DefaultCamera>("Camera");
 }
 
 void TestScene::BeginPlay()
