@@ -6,25 +6,25 @@ USING_MY_MATH;
 USING_SYSTEMS;
 
 #include "Material.h"
+#include "Mesh.h"
+#include "Skeleton.h"
 
 #include "../Assimpscene.h"
-#include "../MeshData.h"
 #include "../Texture.h"
-#include "../Skeleton.h"
 #include "../Animation.h"
 #include "../AnimationClip.h"
 #include "../BlendAnimation.h"
 
 #include "../dx11mathutil.h"
 #include "../System/DirectXGraphics.h"
-#include "../DX11Settransform.h"
+#include "../System/DX11Settransform.h"
 
 DirectX::XMFLOAT4X4 g_playerMtx;
 
-MeshData g_meshData;
+gameSystems::Mesh g_meshData;
 gameSystems::Material g_material;
+gameSystems::Skeleton g_skeleton;
 Texture	 g_texture;
-Skeleton g_skeleton;
 Animation g_animation;
 Vector<UniquePtr<AnimationClip>> g_animationClipList;
 BlendAnimation g_blendAnimation;

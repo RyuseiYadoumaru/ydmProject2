@@ -15,9 +15,6 @@
 #include "../Game/ActionTestScene.h"
 #include "Graphics.h"
 
-#include "../CCamera.h"
-#include "../DX11Settransform.h"
-
 /**
  *  シーンリストからシーンを取得し、更新スタックに挿入します.
  * 

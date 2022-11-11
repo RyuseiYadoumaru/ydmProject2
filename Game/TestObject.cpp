@@ -9,6 +9,6 @@ USING_GAME_SYSTEMS;
 void TestObject::Setting()
 {
 	AddComponent<TestScript>();
-	AddComponent<MeshRenderer>();
+	AddComponent<SkinnedMeshRenderer>();
 	AddComponent<PlayerMovement>();
 }

@@ -4,7 +4,10 @@
 #include "macro.h"
 
 class Motion;
-class Skeleton;
+namespace gameSystems
+{
+	class Skeleton;
+}
 
 // アニメーションを再生するクラス
 class Animation
@@ -25,8 +28,8 @@ public:
 
 public:
 	// ゲッターセッター
-	Skeleton* GetSkeleton();
-	void SetSkeleton(Skeleton* skeleton);
+	gameSystems::Skeleton* GetSkeleton();
+	void SetSkeleton(gameSystems::Skeleton* skeleton);
 
 	float GetMotionTime() const;
 	void SetMotionTime(float time);
@@ -45,7 +48,7 @@ public:
 private:
 	std::vector<Motion*> m_animationClips;          // モーションの配列
 	std::vector<DirectX::XMFLOAT4X4> m_bonesMatrix; // 定数バッファに適用するボーン情報
-	Skeleton* m_skeleton;
+	gameSystems::Skeleton* m_skeleton;
 
 private:
 	float m_motionSpeed = 1.0f; // 再生スピード

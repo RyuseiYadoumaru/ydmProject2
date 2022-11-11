@@ -7,16 +7,14 @@ void ThirdPersonCamera::FocusObject()
 	Float32 centerPositionX = m_focusTransform->GetPosition().x;
 	Float32 centerPositionZ = m_focusTransform->GetPosition().z;
 
-	Vector4 zaxis = m_focusTransform->GetAxisZ();
-
 	// 度数法を弧度法に変換する
-	Float32 horizontalRadian = (m_horizontalAngle + 90.0f) * 3.14f / 180.0f;
+	Float32 horizontalRadian = (m_horizontalAngle + 0.0f) * 3.14f / 180.0f;
 	Float32 verticalRadian = m_verticalAngle * 3.14f / 180.0f;
 
 	// フォーカースオブジェクトの中心座標からの円状の位置
-	Float32 addPositionX = cos(horizontalRadian) * m_horizontalRadius;
+	Float32 addPositionX = sin(horizontalRadian) * m_horizontalRadius;
 	Float32 addPositionY = sin(verticalRadian) * m_verticalRadius;
-	Float32 addPositionZ = sin(horizontalRadian) * m_horizontalRadius;
+	Float32 addPositionZ = cos(horizontalRadian) * m_horizontalRadius;
 	m_camera->m_eye.Set(
 		m_focusTransform->GetPosition().x + addPositionX,
 		m_focusTransform->GetPosition().y + addPositionY + m_heightOffset,
@@ -66,9 +64,17 @@ void ThirdPersonCamera::Update()
 	m_horizontalAngle += moveForce.x;
 	m_verticalAngle += moveForce.y;
 
+	if (m_horizontalAngle < 0)
+	{
+		m_horizontalAngle += 360.0f;
+	}
+	if (m_horizontalAngle >= 360.0f)
+	{
+		m_horizontalAngle -= 360.0f;
+	}
+
 	if (m_verticalAngle > m_limitVerticalAngle) m_verticalAngle = m_limitVerticalAngle;
 	if (m_verticalAngle < -m_limitVerticalAngle) m_verticalAngle = -m_limitVerticalAngle;
-
 
 }
 

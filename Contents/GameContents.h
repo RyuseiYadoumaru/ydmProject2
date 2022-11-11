@@ -29,6 +29,7 @@
 // グラフィック周り
 #include "Camera.h"
 #include "MeshRenderer.h"
+#include "SkinnedMeshRenderer.h"
 
 
 // マネージャー

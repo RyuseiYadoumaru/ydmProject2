@@ -4,6 +4,7 @@
 #include "Keyboard.h"
 #include "GamePad.h"
 #include "TestObject.h"
+#include "CubeTest.h"
 #include "DefaultCamera.h"
 #include "MainCamera.h"
 #include "GameContents.h"
@@ -15,15 +16,20 @@ USING_GAME_SYSTEMS;
 
 void TestScene::ObjectEntry()
 {
+	GameObjectManager::GetInstance()->Instance<MainCamera>("Camera");
 	m_test = GameObjectManager::GetInstance()->Instance<TestObject>("Player");
-	//GameObjectManager::GetInstance()->Instance<MainCamera>("Camera");
-	GameObjectManager::GetInstance()->Instance<DefaultCamera>("Camera");
+	m_obj = GameObjectManager::GetInstance()->Instance<CubeTest>("Cube");
+	//GameObjectManager::GetInstance()->Instance<DefaultCamera>("Camera");
 }
 
 void TestScene::BeginPlay()
 {
 	SetDisplayColor(0.0f, 255.0f, 0.0f);
-	m_test->m_transform->m_rotation.y = 90.0f;
+	//m_test->m_transform->m_rotation.y = 90.0f;
+	m_obj->m_transform->m_scale.Set(1.0f, 1.0f, 1.0f);
+	m_obj->m_transform->m_rotation.Set(0.0f, 00.0f, 0.0f);
+	m_obj->m_transform->m_position.Set(0.0f, -10.0f, 0.0f);
+
 }
 
 void TestScene::Tick()
@@ -33,6 +39,7 @@ void TestScene::Tick()
 	{
 		SceneManager::GetInstance()->LoadScene("ActionTestScene");
 	}
+
 }
 
 void TestScene::EndPlay()

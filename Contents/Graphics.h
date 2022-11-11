@@ -22,6 +22,7 @@ namespace GAME_SYSTEMS
 		enum class Type
 		{
 			Camera,
+			MeshFilter,
 			MeshRenderer
 		};
 
@@ -32,6 +33,7 @@ namespace GAME_SYSTEMS
 
 	private:
 		static bool GraphicsUpdate();
+		static bool GraphicReset();
 		static bool GraphicsReleace();
 
 	private:

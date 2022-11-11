@@ -21,13 +21,6 @@ namespace GAME_SYSTEMS
 
 	class Material
 	{
-		struct  ConstantBuffer
-		{
-			DirectX::XMFLOAT4 ambientColor  = { 0.0f, 0.0f, 0.0f, 0.0f };
-			DirectX::XMFLOAT4 diffuseColor  = { 0.0f, 0.0f, 0.0f, 0.0f };
-			DirectX::XMFLOAT4 specularColor = { 0.0f, 0.0f, 0.0f, 0.0f };
-		};
-
 	public:
 		Material() :
 			m_ambientColor(255.0f, 255.0f, 255.0f, 255.0f),
@@ -50,9 +43,6 @@ namespace GAME_SYSTEMS
 		void SetShader();
 	
 	private:
-		void SetConstantBuffer();
-
-	private:
 		myMath::Color m_ambientColor;
 		myMath::Color m_diffuseColor;
 		myMath::Color m_specularColor;
@@ -60,7 +50,6 @@ namespace GAME_SYSTEMS
 	private:
 		SharedPtr<VertexShader> m_vertexShader	= nullptr;
 		SharedPtr<PixelShader> m_pixelShader	= nullptr;
-		ComPtr<ID3D11Buffer> m_cbMaterial		= nullptr;
 	};
 }
 

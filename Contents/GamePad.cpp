@@ -38,7 +38,7 @@ bool GAME_SYSTEMS::GamePad::Releace(Xinput input, uInt32 index)
 
 myMath::Vector2 GAME_SYSTEMS::GamePad::LeftStick(uInt32 index)
 {
-    Vector2 stick;
+    Vector2 stick = { 0.0f, 0.0f };
     auto pad = GameSystemManager::GetInstance()->GetSubSystem<GamePadSystem>("GamePadSystem");
     stick.x = pad->GetXinputState(index).Gamepad.sThumbLX / m_stickMax;
     stick.y = pad->GetXinputState(index).Gamepad.sThumbLY / m_stickMax;
@@ -47,7 +47,7 @@ myMath::Vector2 GAME_SYSTEMS::GamePad::LeftStick(uInt32 index)
 
 myMath::Vector2 GAME_SYSTEMS::GamePad::RightStick(uInt32 index)
 {
-    Vector2 stick;
+    Vector2 stick = { 0.0f, 0.0f };;
     auto pad = GameSystemManager::GetInstance()->GetSubSystem<GamePadSystem>("GamePadSystem");
     stick.x = pad->GetXinputState(index).Gamepad.sThumbRX / m_stickMax;
     stick.y = pad->GetXinputState(index).Gamepad.sThumbRY / m_stickMax;

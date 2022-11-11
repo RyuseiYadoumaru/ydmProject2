@@ -1,5 +1,8 @@
 #include "Bone.h"
-#include "dx11mathutil.h"
+#include "../dx11mathutil.h"
+
+USING_GAME_SYSTEMS;
+
 Bone::Bone()
 {
 	DX11MtxIdentity(m_offsetMatrix);

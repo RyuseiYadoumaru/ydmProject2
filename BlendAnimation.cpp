@@ -3,6 +3,8 @@
 #include "Skeleton.h"
 #include "Animation.h"
 
+USING_GAME_SYSTEMS;
+
 void BlendAnimation::AddBlendSample(AnimationClip* sample, float blendParameter)
 {
 	BlendSample blendsample;

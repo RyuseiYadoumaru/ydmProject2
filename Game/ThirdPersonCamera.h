@@ -13,6 +13,9 @@ USING_MY_MATH;
 
 class ThirdPersonCamera : public Script
 {
+public:
+	const Float32& GetHorizontalAngle() const noexcept { return m_horizontalAngle; }
+
 private:
 	constexpr static  Float32 m_limitVerticalAngle = 90.0f;
 

@@ -1,6 +1,5 @@
 #pragma once
-#include <string>
-#include <unordered_map>
+#include "std.h"
 
 struct aiScene;
 struct aiNode;
@@ -9,7 +8,7 @@ class AssimpScene
 {
 public:
 	// 初期処理
-	bool Init(std::string filename);
+	bool Init(T_String filename);
 	// 終了処理
 	void Exit();
 
@@ -36,5 +35,5 @@ private:
 	const aiScene* m_Scene = nullptr;	// assimp scene
 
 	// ボーンの名前とインデックスを関連付ける
-	std::unordered_map<std::string, int> m_boneIndexMap;
+	Unordered_Map<T_String, int> m_boneIndexMap;
 };

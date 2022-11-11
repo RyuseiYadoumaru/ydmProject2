@@ -5,7 +5,7 @@
 
 #include	"Assimpscene.h"
 
-bool AssimpScene::Init(std::string filename) {
+bool AssimpScene::Init(T_String filename) {
 
 	m_Scene = aiImportFile(filename.c_str(),
 		aiProcess_ConvertToLeftHanded |

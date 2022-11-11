@@ -16,6 +16,12 @@ bool GAME_SYSTEMS::Graphics::GraphicsUpdate()
     return true;
 }
 
+bool GAME_SYSTEMS::Graphics::GraphicReset()
+{
+
+    return true;
+}
+
 bool GAME_SYSTEMS::Graphics::GraphicsReleace()
 {
     m_graphicsList.clear();

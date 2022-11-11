@@ -14,8 +14,8 @@
 
 
 #include "DirectXGraphics.h"
-#include "../DX11Settransform.h"
-#include "../Skeleton.h"
+#include "../System/DX11Settransform.h"
+#include "Skeleton.h"
 
 
 USING_GAME_SYSTEMS;
@@ -51,6 +51,7 @@ bool GAME_SYSTEMS::World::Run()
 
     if (sceneManager->GetSceneState() == SceneManager::State::End)
     {
+        GameObjectManager::GetInstance()->GameObjectShutDown();
         sceneManager->SceneShutdown();
     }
     return true;

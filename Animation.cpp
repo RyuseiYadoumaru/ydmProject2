@@ -2,6 +2,9 @@
 #include "Motion.h"
 #include "Skeleton.h"
 #include "dx11mathutil.h"
+#include "../System/DX11SetBoneMatrix.h"
+
+USING_GAME_SYSTEMS;
 
 void Animation::AddAnimationClips(Motion* motion)
 {
@@ -48,7 +51,7 @@ void Animation::UpdateAnimation(float dt)
 
 void Animation::UpdateConstantBufferBoneMatrix()
 {
-	Skeleton::UpdateConstantBufferBoneMatrix(m_bonesMatrix);
+	systems::DX11SetBoneMatrix::GetInstance()->SetConstantBuffer(m_bonesMatrix);
 }
 
 void Animation::Play()
@@ -62,12 +65,12 @@ void Animation::Play(int motionIndex)
 	Play();
 }
 
-Skeleton* Animation::GetSkeleton()
+gameSystems::Skeleton* Animation::GetSkeleton()
 {
 	return this->m_skeleton;
 }
 
-void Animation::SetSkeleton(Skeleton* skeleton)
+void Animation::SetSkeleton(gameSystems::Skeleton* skeleton)
 {
 	this->m_skeleton = skeleton;
 

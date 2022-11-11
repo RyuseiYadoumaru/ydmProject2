@@ -35,6 +35,10 @@ bool GAME_SYSTEMS::GameObjectManager::GameObjectStartUpdate()
     for (auto& instance : m_instanceObjectList)
     {
         m_gameObjectList[instance->GetID()] = instance;
+    }
+
+    for (auto& instance : m_instanceObjectList)
+    {
         instance->ComponentStart();
     }
 
