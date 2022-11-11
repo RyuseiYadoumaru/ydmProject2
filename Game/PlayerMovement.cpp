@@ -37,17 +37,29 @@ void PlayerMovement::Update()
 		if (movePower > 1.0f) movePower = 1.0f;
 		
 		// 移動方向
-		Float32 rad = atanf(h / v);
-		angle = rad * 360.0f / DirectX::XM_2PI;
-		// 角度が90度以上で負の値になるため
-		// 補正の360度になるように修正する
-		if (v < 0 && h < 0) angle += 180.0f;
-		else if (v < 0) angle = (180.0f + angle);
-		else if( h < 0) angle = (360.0f + angle);
+		if (m_activeCamera->IsReset() == true)
+		{
+			m_resetCamera = true;
+		}
+		if (m_resetCamera == false)
+		{
+			Float32 rad = atanf(h / v);
+			angle = rad * 360.0f / DirectX::XM_2PI;
+			// 角度が90度以上で負の値になるため
+			// 補正の360度になるように修正する
+			if (v < 0 && h < 0) angle += 180.0f;
+			else if (v < 0) angle = (180.0f + angle);
+			else if( h < 0) angle = (360.0f + angle);
+		}
 
 		// 角度決定
 		GetOwner()->m_transform->m_rotation.y = (m_activeCamera->GetHorizontalAngle() + angle);
 		m_moveForce.z = m_moveSpeed * fabsf(movePower);
+	}
+	else
+	{
+		printf("aaaaaaaaaaaaaaaaaaa\n");
+		m_resetCamera = false;
 	}
 
 	// モーションブレンドパラメータ

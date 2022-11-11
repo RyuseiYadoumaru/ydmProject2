@@ -28,6 +28,8 @@ private:
 	SharedPtr<ThirdPersonCamera> m_activeCamera = nullptr;
 	State m_state = State::Movement;
 
+	bool m_resetCamera = false;
+
 
 private:
 	virtual void Start() override;

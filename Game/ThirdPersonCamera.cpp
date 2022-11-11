@@ -8,7 +8,7 @@ void ThirdPersonCamera::FocusObject()
 	Float32 centerPositionZ = m_focusTransform->GetPosition().z;
 
 	// 度数法を弧度法に変換する
-	Float32 horizontalRadian = (m_horizontalAngle + 0.0f) * 3.14f / 180.0f;
+	Float32 horizontalRadian = m_horizontalAngle * 3.14f / 180.0f;
 	Float32 verticalRadian = m_verticalAngle * 3.14f / 180.0f;
 
 	// フォーカースオブジェクトの中心座標からの円状の位置
@@ -49,33 +49,57 @@ void ThirdPersonCamera::Start()
 
 	m_lookAtOffset.Set( 0.0f, 30.0f, 0.0f );
 
+	// フォーカスオブジェクトの向いてる方向にカメラアングルをセットする
+	m_horizontalAngle = m_focusTransform->GetRotation().y;
 	FocusObject();
 }
 
 void ThirdPersonCamera::Update()
 {
 	FocusObject();
-
 	Vector2 moveForce = { 0.0f, 0.0f };
 	
-	moveForce.x = m_movevSensitivity * GamePad::RightStick().x;
-	moveForce.y = m_movevSensitivity * GamePad::RightStick().y;
-
-	m_horizontalAngle += moveForce.x;
-	m_verticalAngle += moveForce.y;
-
-	if (m_horizontalAngle < 0)
+	if (m_isReset == true)
 	{
-		m_horizontalAngle += 360.0f;
+		m_totalDeltaTime += (1.0f / 60.0f);
+		if (m_totalDeltaTime >= m_resetTime)
+		{
+			m_totalDeltaTime = m_resetTime;
+			m_isReset = false;
+		}
+		m_horizontalAngle = Easing::SineOut(m_totalDeltaTime, m_resetTime, m_resetStartAngle, m_resetTargetAngle);
 	}
-	if (m_horizontalAngle >= 360.0f)
+	else
 	{
-		m_horizontalAngle -= 360.0f;
+		if (GamePad::Trigger(Xinput::Y))
+		{
+			if (m_horizontalAngle != m_focusTransform->GetRotation().y)
+			{
+				m_resetTargetAngle = m_focusTransform->GetRotation().y;
+				m_resetStartAngle = m_horizontalAngle;
+				m_totalDeltaTime = 0.0f;
+				m_isReset = true;
+			}
+		}
+		moveForce.x = m_movevSensitivity * GamePad::RightStick().x;
+		moveForce.y = m_movevSensitivity * GamePad::RightStick().y;
+
+		m_horizontalAngle += moveForce.x;
+		m_verticalAngle += moveForce.y;
+
+		if (m_horizontalAngle < 0)
+		{
+			m_horizontalAngle += 360.0f;
+		}
+		if (m_horizontalAngle >= 360.0f)
+		{
+			m_horizontalAngle -= 360.0f;
+		}
+
+		if (m_verticalAngle > m_limitVerticalAngle) m_verticalAngle = m_limitVerticalAngle;
+		if (m_verticalAngle < -m_limitVerticalAngle) m_verticalAngle = -m_limitVerticalAngle;
+
 	}
-
-	if (m_verticalAngle > m_limitVerticalAngle) m_verticalAngle = m_limitVerticalAngle;
-	if (m_verticalAngle < -m_limitVerticalAngle) m_verticalAngle = -m_limitVerticalAngle;
-
 }
 
 void ThirdPersonCamera::End()
