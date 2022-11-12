@@ -193,6 +193,9 @@
     <Filter Include="Contents\Resource\Model\Cube">
       <UniqueIdentifier>{ba19b183-9fd1-445f-a57d-7bb874dbe221}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\Timer">
+      <UniqueIdentifier>{10421859-009e-404f-a726-174a13450e41}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="System\Console.cpp">
@@ -431,6 +434,9 @@
     </ClCompile>
     <ClCompile Include="Contents\Cube.cpp">
       <Filter>Contents\Resource\Model\Cube</Filter>
+    </ClCompile>
+    <ClCompile Include="Contents\Timer.cpp">
+      <Filter>Contents\Timer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -733,6 +739,9 @@
     </ClInclude>
     <ClInclude Include="Contents\Cube.h">
       <Filter>Contents\Resource\Model\Cube</Filter>
+    </ClInclude>
+    <ClInclude Include="Contents\Timer.h">
+      <Filter>Contents\Timer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

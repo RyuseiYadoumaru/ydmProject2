@@ -219,6 +219,7 @@
     <ClCompile Include="Contents\ShaderManager.cpp" />
     <ClCompile Include="Contents\Skeleton.cpp" />
     <ClCompile Include="Contents\SkinnedMeshRenderer.cpp" />
+    <ClCompile Include="Contents\Timer.cpp" />
     <ClCompile Include="Contents\Transform.cpp" />
     <ClCompile Include="Contents\VertexShader.cpp" />
     <ClCompile Include="dx11mathutil.cpp" />
@@ -367,6 +368,7 @@
     <ClInclude Include="Contents\SkinnedMeshRenderer.h" />
     <ClInclude Include="Contents\std.h" />
     <ClInclude Include="Contents\Tag.h" />
+    <ClInclude Include="Contents\Timer.h" />
     <ClInclude Include="Contents\Transform.h" />
     <ClInclude Include="Contents\Vector2.h" />
     <ClInclude Include="Contents\Vector3.h" />

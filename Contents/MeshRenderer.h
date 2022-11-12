@@ -14,29 +14,34 @@
 #include "../dx11mathutil.h"
 
 class Texture;
-class MeshData;
-class Skeleton;
 class Animation;
 class AnimationClip;
 
 namespace GAME_SYSTEMS
 {
 	class Material;
+	class Mesh;
+	class Skeleton;
 	class Transform;
 
 	class MeshRenderer : public Graphics
 	{
+	public:
+		void SetUseLitFlag(bool flg) noexcept { m_useLit = flg; }
+
+	private:
+		bool m_useLit = false;
+
 	private:
 		SharedPtr<Transform> m_ownerTransform;
 
 		// ‰¼‚¨‚«
-		SharedPtr<Material> m_material;
-		SharedPtr<Texture> m_texture;
-		SharedPtr<MeshData> m_meshData;
-		SharedPtr<Skeleton> m_skelton;
-		SharedPtr<Animation> m_animation;
-		SharedPtr<AnimationClip> m_animClip;
-		DirectX::XMFLOAT4X4 m_mtx;;
+		SharedPtr<Material> m_material = nullptr;
+		SharedPtr<Texture> m_texture = nullptr;
+		SharedPtr<Mesh> m_meshData = nullptr;
+		SharedPtr<Skeleton> m_skelton = nullptr;
+		SharedPtr<Animation> m_animation = nullptr;
+		SharedPtr<AnimationClip> m_animClip = nullptr;
 
 	private:
 		virtual void Start() override;

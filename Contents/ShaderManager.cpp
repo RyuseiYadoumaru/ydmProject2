@@ -44,6 +44,15 @@ SharedPtr<PixelShader> GAME_SYSTEMS::ShaderManager::GetPixelShader(T_String shad
 
 void GAME_SYSTEMS::ShaderManager::SetUp()
 {
+	D3D11_INPUT_ELEMENT_DESC layoutShape[] =
+	{
+		{ "POSITION",	0, DXGI_FORMAT_R32G32B32_FLOAT,		0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 },
+		{ "COLOR",		0, DXGI_FORMAT_R32G32B32A32_FLOAT,	0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 },
+		{ "NORMAL",		0, DXGI_FORMAT_R32G32B32_FLOAT,		0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 },
+	};
+	CreateVertexShader(TEXT("Shader/ShapeVertexShader.hlsl"), layoutShape, ARRAYSIZE(layoutShape));
+	CreatePixelShader(TEXT("Shader/ShapePixelShader.hlsl"));
+
 	// 頂点データの定義（アニメーション対応）
 	D3D11_INPUT_ELEMENT_DESC layout[] =
 	{
@@ -55,6 +64,8 @@ void GAME_SYSTEMS::ShaderManager::SetUp()
 	};
 	CreateVertexShader(TEXT("Shader/vsoneskin.fx"), layout, ARRAYSIZE(layout));
 	CreatePixelShader(TEXT("Shader/graymanps.fx"));
+
+
 }
 
 void GAME_SYSTEMS::ShaderManager::ShutDown()

@@ -58,13 +58,11 @@ void PlayerMovement::Update()
 	}
 	else
 	{
-		printf("aaaaaaaaaaaaaaaaaaa\n");
 		m_resetCamera = false;
 	}
 
 	// モーションブレンドパラメータ
-	m_renderer->m_blendParam = Easing::Liner(m_moveForce.z, m_moveSpeed, 0.0f, 1.0f);
-
+	m_renderer->m_blendParam = Easing::SineOut(m_moveForce.z, m_moveSpeed, 0.0f, 1.0f);
 }
 
 void PlayerMovement::End()

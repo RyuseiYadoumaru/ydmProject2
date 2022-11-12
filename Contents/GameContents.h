@@ -40,6 +40,8 @@
 #include "GamePad.h"
 #include "Mouse.h"
 #include "Keyboard.h"
+// 時間
+#include "Timer.h"
 
 
 // オブジェクト

@@ -61,7 +61,7 @@ void ThirdPersonCamera::Update()
 	
 	if (m_isReset == true)
 	{
-		m_totalDeltaTime += (1.0f / 60.0f);
+		m_totalDeltaTime += Timer::DeltaTime();
 		if (m_totalDeltaTime >= m_resetTime)
 		{
 			m_totalDeltaTime = m_resetTime;
