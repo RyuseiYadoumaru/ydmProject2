@@ -34,11 +34,11 @@ void TestScene::BeginPlay()
 
 void TestScene::Tick()
 {
-	if (Keyboard::Trigger(Keycode::A) ||
-		GamePad::Trigger(Xinput::A))
-	{
-		SceneManager::GetInstance()->LoadScene("ActionTestScene");
-	}
+	//if (Keyboard::Trigger(Keycode::A) ||
+	//	GamePad::Trigger(Xinput::A))
+	//{
+	//	SceneManager::GetInstance()->LoadScene("ActionTestScene");
+	//}
 
 }
 

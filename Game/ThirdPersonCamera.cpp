@@ -1,4 +1,5 @@
 #include "ThirdPersonCamera.h"
+#include "PlayerMovement.h"
 USING_TOOLS;
 
 void ThirdPersonCamera::FocusObject()
@@ -76,9 +77,12 @@ void ThirdPersonCamera::Update()
 			if (m_horizontalAngle != m_focusTransform->GetRotation().y)
 			{
 				m_resetTargetAngle = m_focusTransform->GetRotation().y;
+				if (m_horizontalAngle - m_resetTargetAngle > 180.0f) m_resetTargetAngle += 360.0f;
 				m_resetStartAngle = m_horizontalAngle;
 				m_totalDeltaTime = 0.0f;
 				m_isReset = true;
+				printf("----------\ntarget:%f\n", m_resetTargetAngle);
+				printf("start:%f\n-----------\n", m_resetStartAngle);
 			}
 		}
 		moveForce.x = m_movevSensitivity * GamePad::RightStick().x;

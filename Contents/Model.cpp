@@ -45,5 +45,5 @@ void GAME_SYSTEMS::Model::RenderModel()
 {
     // ƒƒbƒVƒ…•`‰æ
     ID3D11DeviceContext& deviceContext = DirectXGraphics::GetInstance()->GetImmediateContext();
-    m_meshData->Draw(&deviceContext);
+    m_meshData->Draw();
 }

@@ -27,7 +27,7 @@ namespace GAME_SYSTEMS
 	class Polygon
 	{
 	public:
-		Polygon(Vector<Vertex> vertices, Vector<unsigned int> indices);
+		Polygon(Vector<Vertex> vertices, Vector<uInt32> indices);
 		Polygon(Vector<Vertex_Cube>vertices, Vector<uInt32> indices);
 	
 	public:
@@ -36,16 +36,13 @@ namespace GAME_SYSTEMS
 	
 	private:
 		bool InitBuffers(); // バッファ初期化
-		bool InitBuffersCube(); // バッファ初期化
 	
 	private:
-		Vector<Vertex> m_vertices;			// 頂点データ
-		Vector<Vertex_Cube> m_vx;			// 頂点データ
-		
-		Vector<unsigned int> m_indices;
+		Vector<Vertex> m_vertices;			// 頂点データ		
+		Vector<uInt32> m_indices;			//  インデックスデータ
 	
 	private:
-		ID3D11Buffer* m_VertexBuffer;			// 頂点バッファ
-		ID3D11Buffer* m_IndexBuffer;
+		ComPtr<ID3D11Buffer> m_vertexBuffer;
+		ComPtr<ID3D11Buffer> m_indexBuffer;
 	};
 }

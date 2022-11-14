@@ -50,10 +50,12 @@ void PlayerMovement::Update()
 			if (v < 0 && h < 0) angle += 180.0f;
 			else if (v < 0) angle = (180.0f + angle);
 			else if( h < 0) angle = (360.0f + angle);
+			printf("angle : %f\n", angle);
 		}
 
 		// Šp“xŒˆ’è
 		GetOwner()->m_transform->m_rotation.y = (m_activeCamera->GetHorizontalAngle() + angle);
+		if (GetOwner()->m_transform->m_rotation.y > 360.0f) GetOwner()->m_transform->m_rotation.y -= 360.0f;
 		m_moveForce.z = m_moveSpeed * fabsf(movePower);
 	}
 	else

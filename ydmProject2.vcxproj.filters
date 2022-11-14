@@ -175,26 +175,29 @@
     <Filter Include="Contents\Input">
       <UniqueIdentifier>{780369b3-4d0d-4579-81c1-b09118d1f9b9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Contents\Resource\Model">
-      <UniqueIdentifier>{396d458c-6033-4352-a615-1fcc25d76b8c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Contents\Resource\Model\Mesh">
-      <UniqueIdentifier>{11fc8110-a9ee-438b-ab33-f14d6485376c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Contents\Resource\Model\Skelton">
-      <UniqueIdentifier>{506f9922-f647-4800-9a3b-4a636c2dc995}</UniqueIdentifier>
-    </Filter>
     <Filter Include="System\Renderer\ConstantBuffer">
       <UniqueIdentifier>{34b0acfc-7ea5-4e47-ac8a-98d33dc13ffa}</UniqueIdentifier>
     </Filter>
     <Filter Include="System\Renderer\ConstantBuffer\Private">
       <UniqueIdentifier>{d0c82446-3dee-4d2a-aa75-101037458da0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Contents\Resource\Model\Cube">
-      <UniqueIdentifier>{ba19b183-9fd1-445f-a57d-7bb874dbe221}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Contents\Timer">
       <UniqueIdentifier>{10421859-009e-404f-a726-174a13450e41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Resource\Mesh">
+      <UniqueIdentifier>{396d458c-6033-4352-a615-1fcc25d76b8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Resource\Mesh\Mesh">
+      <UniqueIdentifier>{11fc8110-a9ee-438b-ab33-f14d6485376c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Resource\Mesh\Skelton">
+      <UniqueIdentifier>{506f9922-f647-4800-9a3b-4a636c2dc995}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Resource\Mesh\Cube">
+      <UniqueIdentifier>{ba19b183-9fd1-445f-a57d-7bb874dbe221}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Resource\Mesh\Polygon">
+      <UniqueIdentifier>{97acac22-5d14-41cb-9d1d-08548c42d82c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -405,20 +408,17 @@
     <ClCompile Include="Contents\FileSystem.cpp">
       <Filter>Contents\Tools</Filter>
     </ClCompile>
-    <ClCompile Include="Contents\Polygon.cpp">
-      <Filter>Contents\Resource\Model\Mesh</Filter>
-    </ClCompile>
     <ClCompile Include="Contents\Mesh.cpp">
-      <Filter>Contents\Resource\Model\Mesh</Filter>
+      <Filter>Contents\Resource\Mesh\Mesh</Filter>
     </ClCompile>
     <ClCompile Include="Contents\Skeleton.cpp">
-      <Filter>Contents\Resource\Model\Skelton</Filter>
+      <Filter>Contents\Resource\Mesh\Skelton</Filter>
     </ClCompile>
     <ClCompile Include="Contents\Bone.cpp">
-      <Filter>Contents\Resource\Model\Skelton</Filter>
+      <Filter>Contents\Resource\Mesh\Skelton</Filter>
     </ClCompile>
     <ClCompile Include="Contents\Model.cpp">
-      <Filter>Contents\Resource\Model</Filter>
+      <Filter>Contents\Resource\Mesh</Filter>
     </ClCompile>
     <ClCompile Include="Contents\SkinnedMeshRenderer.cpp">
       <Filter>Contents\Component\Graphics</Filter>
@@ -433,10 +433,13 @@
       <Filter>Game</Filter>
     </ClCompile>
     <ClCompile Include="Contents\Cube.cpp">
-      <Filter>Contents\Resource\Model\Cube</Filter>
+      <Filter>Contents\Resource\Mesh\Cube</Filter>
     </ClCompile>
     <ClCompile Include="Contents\Timer.cpp">
       <Filter>Contents\Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="Contents\Polygon.cpp">
+      <Filter>Contents\Resource\Mesh\Polygon</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -708,19 +711,16 @@
       <Filter>Contents\Tools</Filter>
     </ClInclude>
     <ClInclude Include="Contents\Mesh.h">
-      <Filter>Contents\Resource\Model\Mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="Contents\Polygon.h">
-      <Filter>Contents\Resource\Model\Mesh</Filter>
+      <Filter>Contents\Resource\Mesh\Mesh</Filter>
     </ClInclude>
     <ClInclude Include="Contents\Skeleton.h">
-      <Filter>Contents\Resource\Model\Skelton</Filter>
+      <Filter>Contents\Resource\Mesh\Skelton</Filter>
     </ClInclude>
     <ClInclude Include="Contents\Bone.h">
-      <Filter>Contents\Resource\Model\Skelton</Filter>
+      <Filter>Contents\Resource\Mesh\Skelton</Filter>
     </ClInclude>
     <ClInclude Include="Contents\Model.h">
-      <Filter>Contents\Resource\Model</Filter>
+      <Filter>Contents\Resource\Mesh</Filter>
     </ClInclude>
     <ClInclude Include="Contents\SkinnedMeshRenderer.h">
       <Filter>Contents\Component\Graphics</Filter>
@@ -738,10 +738,13 @@
       <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="Contents\Cube.h">
-      <Filter>Contents\Resource\Model\Cube</Filter>
+      <Filter>Contents\Resource\Mesh\Cube</Filter>
     </ClInclude>
     <ClInclude Include="Contents\Timer.h">
       <Filter>Contents\Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="Contents\Polygon.h">
+      <Filter>Contents\Resource\Mesh\Polygon</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

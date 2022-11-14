@@ -143,6 +143,6 @@ void ActionTestScene::Render()
 
 	// ƒvƒŒƒCƒ„[•`‰æ
 	DX11SetTransform::GetInstance()->SetTransform(DX11SetTransform::TYPE::WORLD, g_playerMtx);
-	g_meshData.Draw(&deviceContext);
+	g_meshData.Draw();
 
 }

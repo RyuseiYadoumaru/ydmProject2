@@ -129,7 +129,7 @@ void GAME_SYSTEMS::SkinnedMeshRenderer::Update()
 
 	// •`‰æ
 	ID3D11DeviceContext& deviceContext = DirectXGraphics::GetInstance()->GetImmediateContext();
-	m_meshData->Draw(&deviceContext);
+	m_meshData->Draw();
 }
 void GAME_SYSTEMS::SkinnedMeshRenderer::End()
 {

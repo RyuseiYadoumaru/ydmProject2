@@ -15,7 +15,7 @@ namespace GAME_SYSTEMS
 		void Load(AssimpScene* assimpScene); // “Ç‚İ‚İ
 		void LoadCube();
 		void Unload();
-		void Draw(ID3D11DeviceContext* devcon);
+		void Draw();
 
 	private:
 		// ƒm[ƒh‰ğÍ

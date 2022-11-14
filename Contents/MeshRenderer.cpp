@@ -73,7 +73,7 @@ void GAME_SYSTEMS::MeshRenderer::Update()
 
 	// •`‰æ
 	ID3D11DeviceContext& deviceContext = DirectXGraphics::GetInstance()->GetImmediateContext();
-	m_meshData->Draw(&deviceContext);
+	m_meshData->Draw();
 }
 
 void GAME_SYSTEMS::MeshRenderer::End()

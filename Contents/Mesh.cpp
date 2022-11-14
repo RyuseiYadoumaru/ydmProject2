@@ -1,6 +1,7 @@
 #include "Mesh.h"
 #include "macro.h"
 #include "std.h"
+#include "../System/DirectXGraphics.h"
 #include "../Assimpscene.h"
 #include <assimp\scene.h>
 
@@ -89,12 +90,12 @@ void Mesh::Unload()
 	}
 }
 
-void Mesh::Draw(ID3D11DeviceContext* devcon)
+void Mesh::Draw()
 {
-	for (int i = 0; i < m_meshes.size(); i++)
+	ID3D11DeviceContext& devcon = systems::DirectXGraphics::GetInstance()->GetImmediateContext();
+	for (auto& mesh : m_meshes)
 	{
-		// 定数バッファセット処理
-		m_meshes[i].Draw(devcon);
+		mesh.Draw(&devcon);
 	}
 }
 
