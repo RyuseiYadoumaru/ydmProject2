@@ -18,15 +18,11 @@ USING_TOOLS;
 USING_SYSTEMS;
 USING_GAME_SYSTEMS
 
+#include "StaticMesh.h"
 #include "Material.h"
-#include "Mesh.h"
-#include "Skeleton.h"
-
-#include "../Assimpscene.h"
+#include "../System/ThirdParty/Assimp/Assimpscene.h"
 #include "../Texture.h"
-#include "../Animation.h"
-#include "../AnimationClip.h"
-#include "../BlendAnimation.h"
+
 
 void GAME_SYSTEMS::MeshRenderer::Start()
 {
@@ -38,29 +34,20 @@ void GAME_SYSTEMS::MeshRenderer::Start()
 	}
 
 	// メッシュデータ生成
-	m_meshData = std::make_shared<Mesh>();
-	m_meshData->LoadCube();
+	m_meshData = std::make_shared<StaticMesh>();
+	m_meshData->Load(TEXT("Assets/skydome/skydome.x"));
 
 	// マテリアル生成
 	m_material = std::make_shared<Material>();
-	if (m_useLit == true)
-	{
-		m_material->LoadShader(TEXT("vs"), TEXT("ps"));
-	}
-	else
-	{
-		m_material->LoadShader(TEXT("ShapeVertexShader"), TEXT("ShapePixelShader"));
-	}
+	m_material->LoadShader(TEXT("DefaultMeshVertexShader"), TEXT("UnlitDefaultPixelShader"));
+
+	// テクスチャ生成
+	m_texture = std::make_shared<Texture>();
+	m_texture->Load(TEXT("sky_x1.tga"), TEXT("Assets/skydome"));
 }
 
 void GAME_SYSTEMS::MeshRenderer::Update()
 {
-	// アニメーションを更新する
-	//m_animation->SetBlendParameter(1.0f);
-
-	//m_animation->UpdateAnimation(1.0f / 60.0f);
-	//m_animation->UpdateConstantBufferBoneMatrix();
-
 	// 定数バッファ設定
 	auto worldMatrix = m_ownerTransform->GetWorldMatrix();
 	DX11SetTransform::GetInstance()->SetTransform(DX11SetTransform::TYPE::WORLD, worldMatrix);
@@ -69,16 +56,17 @@ void GAME_SYSTEMS::MeshRenderer::Update()
 	// シェーダー生成
 	m_material->SetShader();
 	// テクスチャ生成
-	//m_texture->SetTexture(0);
+	m_texture->SetTexture(0);
 
 	// 描画
 	ID3D11DeviceContext& deviceContext = DirectXGraphics::GetInstance()->GetImmediateContext();
-	m_meshData->Draw();
+	m_meshData->Render();
 }
 
 void GAME_SYSTEMS::MeshRenderer::End()
 {
-	m_meshData->Unload();
-	m_material->Unload();
+	m_meshData->Releace();
+	//m_meshData->Unload();
+	//m_material->Unload();
 	m_ownerTransform = nullptr;
 }

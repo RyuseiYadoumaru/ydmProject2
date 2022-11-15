@@ -19,6 +19,7 @@ class AnimationClip;
 
 namespace GAME_SYSTEMS
 {
+	class StaticMesh;
 	class Material;
 	class Mesh;
 	class Skeleton;
@@ -36,12 +37,9 @@ namespace GAME_SYSTEMS
 		SharedPtr<Transform> m_ownerTransform;
 
 		// ‰¼‚¨‚«
+		SharedPtr<StaticMesh> m_meshData;
 		SharedPtr<Material> m_material = nullptr;
 		SharedPtr<Texture> m_texture = nullptr;
-		SharedPtr<Mesh> m_meshData = nullptr;
-		SharedPtr<Skeleton> m_skelton = nullptr;
-		SharedPtr<Animation> m_animation = nullptr;
-		SharedPtr<AnimationClip> m_animClip = nullptr;
 
 	private:
 		virtual void Start() override;

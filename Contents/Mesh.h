@@ -1,30 +1,25 @@
+//*****************************************************************************
+//* @file   Mesh.h
+//* @brief  
+//* @note   メッシュの基底クラス
+//* 
+//* @author YadoumaruRyusei
+//* @date   November 2022
+//*****************************************************************************
 #pragma once
-#include "Polygon.h"
-#include <d3d11.h>
+#include "../System/ThirdParty/Assimp/Assimpscene.h"
 
-class AssimpScene;
-struct aiNode;
-struct aiMesh;
-
-// メッシュのデータクラス
 namespace GAME_SYSTEMS
 {
 	class Mesh
 	{
 	public:
-		void Load(AssimpScene* assimpScene); // 読み込み
-		void LoadCube();
-		void Unload();
-		void Draw();
+		virtual void Load(T_String meshName) = 0;
+		virtual void Releace() = 0;
+		virtual void Render() = 0;
 
-	private:
-		// ノード解析
-		void ProcessNode(aiNode* node, AssimpScene* assimpScene);
-		// メッシュ解析
-		Polygon ProcessMesh(aiMesh* mesh, AssimpScene* assimpScene, int meshidx);
-
-	private:
-		Vector<Polygon> m_meshes;
+	protected:
+		AssimpScene m_assimpScene;
 
 	};
 }

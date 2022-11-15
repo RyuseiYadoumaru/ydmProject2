@@ -26,9 +26,9 @@ void TestScene::BeginPlay()
 {
 	SetDisplayColor(0.0f, 255.0f, 0.0f);
 	//m_test->m_transform->m_rotation.y = 90.0f;
-	m_obj->m_transform->m_scale.Set(1.0f, 1.0f, 1.0f);
-	m_obj->m_transform->m_rotation.Set(0.0f, 00.0f, 0.0f);
-	m_obj->m_transform->m_position.Set(0.0f, -10.0f, 0.0f);
+	m_obj->m_transform->m_scale.Set(5.0f, 5.0f, 5.0f);
+	//m_obj->m_transform->m_rotation.Set(0.0f, 00.0f, 0.0f);
+	//m_obj->m_transform->m_position.Set(0.0f, -10.0f, 0.0f);
 
 }
 

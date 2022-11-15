@@ -1,4 +1,4 @@
-#include "psvscommon.fx"
+#include	"Common.hlsli"
 
 
 VS_OUTPUT vs(float4 Pos : POSITION,

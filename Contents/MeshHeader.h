@@ -1,7 +1,7 @@
 //*****************************************************************************
-//* @file   Model.h
+//* @file   MeshHeader.h
 //* @brief  
-//* @note   モデルに必要なデータを保持する
+//* @note   派生するメッシュクラスで定義するヘッダー
 //* 
 //* @author YadoumaruRyusei
 //* @date   November 2022
@@ -10,21 +10,18 @@
 #include "std.h"
 #include "macro.h"
 
+#include "Mesh.h"
+#include "Polygon.h"
+
+#include <d3d11.h>
+#include <DirectXMath.h>
+
 namespace GAME_SYSTEMS
 {
 	class Skeleton;
-	class Mesh;
-
-	class Model
-	{
-	public:
-		bool LoadModel(T_String filePath);
-		void Releace();
-		void RenderModel();
-
-	private:
-		SharedPtr<Mesh>		m_meshData	= nullptr;
-		SharedPtr<Skeleton>	m_skelton	= nullptr;
-	};
 }
+class Animation;
+class AnimationClip;
 
+struct aiNode;
+struct aiMesh;

@@ -165,14 +165,6 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Assimpscene.cpp">
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </DeploymentContent>
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-      </DeploymentContent>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="BlendAnimation.cpp">
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </DeploymentContent>
@@ -204,9 +196,6 @@
     <ClCompile Include="Contents\ManagerInterface.cpp" />
     <ClCompile Include="Contents\Material.cpp" />
     <ClCompile Include="Contents\Matrix4x4.cpp" />
-    <ClCompile Include="Contents\Model.cpp" />
-    <ClCompile Include="Contents\Polygon.cpp" />
-    <ClCompile Include="Contents\Mesh.cpp" />
     <ClCompile Include="Contents\MeshRenderer.cpp" />
     <ClCompile Include="Contents\Mouse.cpp" />
     <ClCompile Include="Contents\Physics.cpp" />
@@ -217,8 +206,10 @@
     <ClCompile Include="Contents\SceneManager.cpp" />
     <ClCompile Include="Contents\Script.cpp" />
     <ClCompile Include="Contents\ShaderManager.cpp" />
+    <ClCompile Include="Contents\SkeletalMesh.cpp" />
     <ClCompile Include="Contents\Skeleton.cpp" />
     <ClCompile Include="Contents\SkinnedMeshRenderer.cpp" />
+    <ClCompile Include="Contents\StaticMesh.cpp" />
     <ClCompile Include="Contents\Timer.cpp" />
     <ClCompile Include="Contents\Transform.cpp" />
     <ClCompile Include="Contents\VertexShader.cpp" />
@@ -258,6 +249,7 @@
     <ClCompile Include="System\Shader.cpp" />
     <ClCompile Include="System\SystemTimer.cpp" />
     <ClCompile Include="System\Framelate.cpp" />
+    <ClCompile Include="System\ThirdParty\Assimp\Assimpscene.cpp" />
     <ClCompile Include="System\ThirdParty\DirectTex\DDSTextureLoader.cpp" />
     <ClCompile Include="System\ThirdParty\DirectTex\WICTextureLoader.cpp" />
     <ClCompile Include="System\ThirdParty\Imgui\imgui.cpp" />
@@ -289,14 +281,6 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="AnimationClip.h">
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </DeploymentContent>
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-      </DeploymentContent>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="Assimpscene.h">
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </DeploymentContent>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -349,9 +333,12 @@
     <ClInclude Include="Contents\ManagerInterface.h" />
     <ClInclude Include="Contents\Material.h" />
     <ClInclude Include="Contents\Matrix4x4.h" />
-    <ClInclude Include="Contents\Model.h" />
+    <ClInclude Include="Contents\MeshHeader.h" />
     <ClInclude Include="Contents\Polygon.h" />
-    <ClInclude Include="Contents\Mesh.h" />
+    <ClInclude Include="Contents\Mesh.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="Contents\MeshRenderer.h" />
     <ClInclude Include="Contents\Mouse.h" />
     <ClInclude Include="Contents\Physics.h" />
@@ -364,8 +351,10 @@
     <ClInclude Include="Contents\SceneManager.h" />
     <ClInclude Include="Contents\Script.h" />
     <ClInclude Include="Contents\ShaderManager.h" />
+    <ClInclude Include="Contents\SkeletalMesh.h" />
     <ClInclude Include="Contents\Skeleton.h" />
     <ClInclude Include="Contents\SkinnedMeshRenderer.h" />
+    <ClInclude Include="Contents\StaticMesh.h" />
     <ClInclude Include="Contents\std.h" />
     <ClInclude Include="Contents\Tag.h" />
     <ClInclude Include="Contents\Timer.h" />
@@ -414,6 +403,7 @@
     <ClInclude Include="System\Shader.h" />
     <ClInclude Include="System\SystemTimer.h" />
     <ClInclude Include="System\Framelate.h" />
+    <ClInclude Include="System\ThirdParty\Assimp\Assimpscene.h" />
     <ClInclude Include="System\ThirdParty\DirectTex\DDSTextureLoader.h" />
     <ClInclude Include="System\ThirdParty\DirectTex\DirectXTex.h" />
     <ClInclude Include="System\ThirdParty\DirectTex\WICTextureLoader.h" />
@@ -439,9 +429,25 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="Shader\graymanps.fx">
+    <FxCompile Include="Shader\DefaultMeshVertexShader.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+    </FxCompile>
+    <FxCompile Include="Shader\GrayManps.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
     </FxCompile>
     <FxCompile Include="Shader\ps.hlsl">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
@@ -452,10 +458,6 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </FxCompile>
     <FxCompile Include="Shader\pstexcol.hlsl">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </FxCompile>
-    <FxCompile Include="Shader\psvscommon.fx">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </FxCompile>
@@ -483,6 +485,16 @@
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
     </FxCompile>
+    <FxCompile Include="Shader\SkinnedVertexShader.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+    </FxCompile>
     <FxCompile Include="Shader\UnlitDefaultPixelShader.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
@@ -497,10 +509,12 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </FxCompile>
-    <FxCompile Include="Shader\vsoneskin.fx">
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Shader\Common.hlsli">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </FxCompile>
+    </None>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

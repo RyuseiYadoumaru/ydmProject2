@@ -9,7 +9,7 @@ USING_SYSTEMS;
 #include "Mesh.h"
 #include "Skeleton.h"
 
-#include "../Assimpscene.h"
+#include "../System/ThirdParty/Assimp/Assimpscene.h"
 #include "../Texture.h"
 #include "../Animation.h"
 #include "../AnimationClip.h"
@@ -21,7 +21,7 @@ USING_SYSTEMS;
 
 DirectX::XMFLOAT4X4 g_playerMtx;
 
-gameSystems::Mesh g_meshData;
+//gameSystems::Mesh g_meshData;
 gameSystems::Material g_material;
 gameSystems::Skeleton g_skeleton;
 Texture	 g_texture;
@@ -46,7 +46,7 @@ void ActionTestScene::BeginPlay()
 	assimpScene.Init("Assets/ThirdPerson.fbx");
 
 	// メッシュデータ読み込み
-	g_meshData.Load(&assimpScene);
+	//g_meshData.Load(&assimpScene);
 	// データからスケルトン読み込み
 	g_skeleton.Load(&assimpScene);
 	g_animation.SetSkeleton(&g_skeleton);
@@ -88,7 +88,7 @@ void ActionTestScene::BeginPlay()
 	}
 
 	// シェーダ読み込み
-	g_material.LoadShader(TEXT("vsoneskin"), TEXT("graymanps"));
+	g_material.LoadShader(TEXT("SkinnedVertexShader"), TEXT("GrayManps"));
 
 	// テクスチャ読み込み
 	g_texture.Load("GraymanMaskTex.png", "Assets");
@@ -143,6 +143,6 @@ void ActionTestScene::Render()
 
 	// プレイヤー描画
 	DX11SetTransform::GetInstance()->SetTransform(DX11SetTransform::TYPE::WORLD, g_playerMtx);
-	g_meshData.Draw();
+	//g_meshData.Draw();
 
 }

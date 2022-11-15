@@ -27,6 +27,12 @@ namespace GAME_SYSTEMS
 		static const Float32 UnScaleDeltaTime() noexcept;
 
 		/**
+		 * 固定のデルタタイムを取得する.
+		 */
+		static const Float32 FixDeltaTime() noexcept;
+
+
+		/**
 		 * フレームカウント取得する.
 		 */
 		static const uInt64 FrameCount() noexcept;

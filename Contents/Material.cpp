@@ -23,8 +23,17 @@ bool Material::LoadShader(T_String vertexShaderName, T_String pixelShaderName)
 {
 	// シェーダーセット
 	m_vertexShader = ShaderManager::GetInstance()->GetVertexShader(vertexShaderName);
+	if (m_vertexShader == nullptr)
+	{
+		MessageWindow::GetInstance()->Error(TEXT("頂点シェーダが生成されていません"));
+		return false;
+	}
 	m_pixelShader  = ShaderManager::GetInstance()->GetPixelShader(pixelShaderName);
-	
+	if (m_pixelShader == nullptr)
+	{
+		MessageWindow::GetInstance()->Error(TEXT("ピクセルシェーダが生成されていません"));
+		return false;
+	}
 	return true;
 }
 

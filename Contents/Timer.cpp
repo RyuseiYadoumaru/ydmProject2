@@ -7,6 +7,7 @@
 //* @date   August 2022
 //*****************************************************************************
 #include "Timer.h"
+#include "../System/SystemTimer.h"
 #include "../System/GameSystemManager.h"
 #include "../System/Framelate.h"
 
@@ -32,6 +33,11 @@ const Float32 Timer::UnScaleDeltaTime() noexcept
         tools::Debug::LogError("FramelateÇ™ê∂ê¨Ç≥ÇÍÇƒÇ¢Ç‹ÇπÇÒ");
         return 0.0f;
     }
+}
+
+const Float32 GAME_SYSTEMS::Timer::FixDeltaTime() noexcept
+{
+    return Float32(1.0f / static_cast<Float32>(systems::SystemTimer::m_FPS));
 }
 
 const uInt64 Timer::FrameCount() noexcept

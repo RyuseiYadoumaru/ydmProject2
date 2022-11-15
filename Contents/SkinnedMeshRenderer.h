@@ -12,6 +12,7 @@
 #include "Graphics.h"
 #include <DirectXMath.h>
 #include "../dx11mathutil.h"
+#include "SkeletalMesh.h"
 
 class Texture;
 class Animation;
@@ -24,7 +25,7 @@ class BlendAnimation;
 namespace GAME_SYSTEMS
 {
 	class Material;
-	class Mesh;
+	//class Mesh;
 	class Skeleton;
 	class Transform;
 
@@ -39,16 +40,8 @@ namespace GAME_SYSTEMS
 		// ‰¼‚¨‚«
 		SharedPtr<Material> m_material = nullptr;
 		SharedPtr<Texture> m_texture = nullptr;
-		SharedPtr<Mesh> m_meshData = nullptr;
-		SharedPtr<Skeleton> m_skelton = nullptr;
-		SharedPtr<Animation> m_animation = nullptr;
 
-#ifndef ANIM_BLEND
-		SharedPtr<AnimationClip> m_animClip = nullptr;
-#else
-		Vector<SharedPtr<AnimationClip>> m_animationClipList;
-		SharedPtr<BlendAnimation> m_blendAnimation;
-#endif // !1
+		SharedPtr<SkeletalMesh> m_mesh = nullptr;
 
 	private:
 		virtual void Start() override;
