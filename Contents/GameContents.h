@@ -42,6 +42,10 @@
 #include "Keyboard.h"
 // 時間
 #include "Timer.h"
+// リソース
+#include "MeshManager.h"
+#include "StaticMesh.h"
+#include "SkeletalMesh.h"
 
 
 // オブジェクト

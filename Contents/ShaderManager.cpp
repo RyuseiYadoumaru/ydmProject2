@@ -59,8 +59,8 @@ void GAME_SYSTEMS::ShaderManager::SetUp()
 	{
 		{ "POSITION",	0, DXGI_FORMAT_R32G32B32_FLOAT,		0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 },
 		{ "COLOR",		0, DXGI_FORMAT_R32G32B32A32_FLOAT,	0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-		{ "NORMAL",		0, DXGI_FORMAT_R32G32B32_FLOAT,		0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 },
 		{ "TEXCOORD",	0, DXGI_FORMAT_R32G32_FLOAT,		0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 },
+		{ "NORMAL",		0, DXGI_FORMAT_R32G32B32_FLOAT,		0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 }
 	};
 	CreateVertexShader(TEXT("Shader/DefaultMeshVertexShader.hlsl"), layoutShape, ARRAYSIZE(layoutShape));
 
@@ -78,6 +78,7 @@ void GAME_SYSTEMS::ShaderManager::SetUp()
 	CreatePixelShader(TEXT("Shader/ShapePixelShader.hlsl"));
 	CreatePixelShader(TEXT("Shader/GrayManps.hlsl"));
 	CreatePixelShader(TEXT("Shader/UnlitDefaultPixelShader.hlsl"));
+	CreatePixelShader(TEXT("Shader/DefaultMeshPixelShader.hlsl"));
 }
 
 void GAME_SYSTEMS::ShaderManager::ShutDown()

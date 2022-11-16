@@ -57,6 +57,22 @@ namespace GAME_SYSTEMS
 			devcon->DrawIndexed(static_cast<uInt32>(m_indices.size()), 0, 0);
 		}
 
+		void DrawDefaultMesh(ID3D11DeviceContext* devcon, uInt32 vertexNum)
+		{
+
+			uInt32 stride = sizeof(VERTEX_TYPE);
+			uInt32 offset = 0;
+			// 頂点バッファをセット
+			devcon->IASetVertexBuffers(0, 1, m_vertexBuffer.GetAddressOf(), &stride, &offset);
+			// インデックスバッファをセット
+			//devcon->IASetIndexBuffer(m_indexBuffer.Get(), DXGI_FORMAT_R32_UINT, 0);
+			// トポロジーをセット
+			devcon->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+			// インデックスバッファを利用して描画
+			devcon->Draw(vertexNum, 0);
+		}
+
+		uInt32 GetVertexNum() const noexcept { return m_vertices.size(); }
 
 	private:
 		bool InitBuffers()
@@ -90,7 +106,7 @@ namespace GAME_SYSTEMS
 	
 	private:
 		Vector<VERTEX_TYPE> m_vertices;		// 頂点データ		
-		Vector<uInt32> m_indices;			//  インデックスデータ
+		Vector<uInt32> m_indices;			// インデックスデータ
 	
 		ComPtr<ID3D11Buffer> m_vertexBuffer;
 		ComPtr<ID3D11Buffer> m_indexBuffer;

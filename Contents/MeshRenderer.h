@@ -28,6 +28,7 @@ namespace GAME_SYSTEMS
 	class MeshRenderer : public Graphics
 	{
 	public:
+		void SetMesh(SharedPtr<StaticMesh> mesh) noexcept { m_meshData = mesh; }
 		void SetUseLitFlag(bool flg) noexcept { m_useLit = flg; }
 
 	private:

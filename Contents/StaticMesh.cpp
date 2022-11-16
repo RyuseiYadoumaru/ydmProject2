@@ -3,17 +3,18 @@
 #include "../System/DirectXGraphics.h"
 #include <assimp/scene.h>
 
-
-
 USING_GAME_SYSTEMS;
 
 void GAME_SYSTEMS::StaticMesh::Load(T_String meshName)
 {
 	m_assimpScene.Init(meshName);
-
 	// メッシュデータ作成
 	aiNode* rootNode = m_assimpScene.GetScene()->mRootNode;
 	ProcessNode(rootNode, &m_assimpScene);
+
+	// デフォルトのマテリアル作成
+	m_material = std::make_shared<Material>();
+	m_material->LoadShader(TEXT("DefaultMeshVertexShader"), TEXT("UnlitDefaultPixelShader"));
 
 	m_assimpScene.Exit();
 }
@@ -24,6 +25,7 @@ void GAME_SYSTEMS::StaticMesh::Releace()
 	{
 		polygon.Uninit();
 	}
+	m_meshList.clear();
 }
 
 void GAME_SYSTEMS::StaticMesh::Render()

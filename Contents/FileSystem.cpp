@@ -7,7 +7,6 @@
 //* @date   August 2022
 //*****************************************************************************
 #include "FileSystem.h"
-#include "Debug.h"
 
 
 T_String tools::FileSystem::GetFileName(T_StringView filePath, bool isExt) noexcept
@@ -53,9 +52,9 @@ data::Type tools::FileSystem::JudgeFolderOrFile(T_StringView dataName) noexcept
 
 
 
-List<T_String> tools::FileSystem::GetAllFileFromFolder(T_StringView folderPath, T_StringView extName)
+Vector<T_String> tools::FileSystem::GetAllFileFromFolder(T_StringView folderPath, T_StringView extName)
 {
-    List<T_String> filePathList;
+    Vector<T_String> filePathList;
 
     HANDLE hFind;
     WIN32_FIND_DATA win32fd;
@@ -73,10 +72,6 @@ List<T_String> tools::FileSystem::GetAllFileFromFolder(T_StringView folderPath, 
     */ 
     hFind = FindFirstFile(searchPath.c_str(), &win32fd);
     
-    /** データチェック */
-    tools::Debug::Assert(hFind == INVALID_HANDLE_VALUE,
-            "フォルダにデータがありません");
-   
 
     /** 探索 */
     do
@@ -94,6 +89,7 @@ List<T_String> tools::FileSystem::GetAllFileFromFolder(T_StringView folderPath, 
 
     return filePathList;
 }
+
 
 
 

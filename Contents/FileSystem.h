@@ -49,7 +49,7 @@ namespace TOOLS
 		/**
 		 * フォルダから拡張子を探索し、全てのファイルパスをリストにして返す.
 		 */
-		static List<T_String> GetAllFileFromFolder(T_StringView folderPath, T_StringView extName);
+		static Vector<T_String> GetAllFileFromFolder(T_StringView folderPath, T_StringView extName);
 	
 		/**
 		 * ファイルが存在するディレクトリを返す.

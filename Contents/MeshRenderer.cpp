@@ -33,17 +33,12 @@ void GAME_SYSTEMS::MeshRenderer::Start()
 		MessageWindow::Error("トランスフォームがコンポーネントされていません!");
 	}
 
-	// メッシュデータ生成
-	m_meshData = std::make_shared<StaticMesh>();
-	m_meshData->Load(TEXT("Assets/skydome/skydome.x"));
-
 	// マテリアル生成
-	m_material = std::make_shared<Material>();
-	m_material->LoadShader(TEXT("DefaultMeshVertexShader"), TEXT("UnlitDefaultPixelShader"));
+	m_material = m_meshData->GetMaterial();
 
 	// テクスチャ生成
 	m_texture = std::make_shared<Texture>();
-	m_texture->Load(TEXT("sky_x1.tga"), TEXT("Assets/skydome"));
+	m_texture->Load(TEXT("MeshTexture.png"), TEXT("Assets"));
 }
 
 void GAME_SYSTEMS::MeshRenderer::Update()
@@ -65,7 +60,7 @@ void GAME_SYSTEMS::MeshRenderer::Update()
 
 void GAME_SYSTEMS::MeshRenderer::End()
 {
-	m_meshData->Releace();
+	//m_meshData->Releace();
 	//m_meshData->Unload();
 	//m_material->Unload();
 	m_ownerTransform = nullptr;

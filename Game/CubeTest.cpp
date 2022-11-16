@@ -3,5 +3,6 @@
 void CubeTest::Setting()
 {
 	AddComponent<MeshRenderer>();
-	m_transform->m_position.Set(0.0f, 0.0f, 0.0f);
+	GetComponent<MeshRenderer>()->SetMesh(MeshManager::GetInstance()->GetStaticMesh(TEXT("Terrain")));
+
 }

@@ -183,9 +183,9 @@
     </ClCompile>
     <ClCompile Include="Contents\Bone.cpp" />
     <ClCompile Include="Contents\Color.cpp" />
-    <ClCompile Include="Contents\Cube.cpp" />
     <ClCompile Include="Contents\Debug.cpp" />
     <ClCompile Include="Contents\DefaultCamera.cpp" />
+    <ClCompile Include="Contents\DefaultStaticMesh.cpp" />
     <ClCompile Include="Contents\FileSystem.cpp" />
     <ClCompile Include="Contents\GameObject.cpp" />
     <ClCompile Include="Contents\GameObjectManager.cpp" />
@@ -196,6 +196,7 @@
     <ClCompile Include="Contents\ManagerInterface.cpp" />
     <ClCompile Include="Contents\Material.cpp" />
     <ClCompile Include="Contents\Matrix4x4.cpp" />
+    <ClCompile Include="Contents\MeshManager.cpp" />
     <ClCompile Include="Contents\MeshRenderer.cpp" />
     <ClCompile Include="Contents\Mouse.cpp" />
     <ClCompile Include="Contents\Physics.cpp" />
@@ -314,9 +315,9 @@
     </ClInclude>
     <ClInclude Include="Contents\Bone.h" />
     <ClInclude Include="Contents\Color.h" />
-    <ClInclude Include="Contents\Cube.h" />
     <ClInclude Include="Contents\Debug.h" />
     <ClInclude Include="Contents\DefaultCamera.h" />
+    <ClInclude Include="Contents\DefaultStaticMesh.h" />
     <ClInclude Include="Contents\Easing.h" />
     <ClInclude Include="Contents\FileSystem.h" />
     <ClInclude Include="Contents\GameContents.h" />
@@ -334,6 +335,7 @@
     <ClInclude Include="Contents\Material.h" />
     <ClInclude Include="Contents\Matrix4x4.h" />
     <ClInclude Include="Contents\MeshHeader.h" />
+    <ClInclude Include="Contents\MeshManager.h" />
     <ClInclude Include="Contents\Polygon.h" />
     <ClInclude Include="Contents\Mesh.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -429,6 +431,16 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <FxCompile Include="Shader\DefaultMeshPixelShader.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+    </FxCompile>
     <FxCompile Include="Shader\DefaultMeshVertexShader.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
