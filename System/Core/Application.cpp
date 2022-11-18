@@ -17,11 +17,10 @@
 #include "../SystemTimer.h"
 #include "../Window.h"
 
+#include "../RenderManager.h"
+
 #include "Debug.h"
-//#include "../GameSystem/GameSystem.h"
-//#include "../../dx11util.h"
-//#include "../Systems/Core/Renderer/ConstentBuffer/DX11Settransform.h"
-//#include "Config.h"
+
 
 USING_SYSTEMS;
 USING_TOOLS;
@@ -73,8 +72,6 @@ bool Application::SetUp(HINSTANCE h_instance, int windowMode)
 	/****	ウィンドウ表示	****/
 	Window::GetInstance()->Create();
 
-	//ここの部分もリファクタする
-	//DX11SetTransform::Get()->Init();
 	return true;
 }
 
@@ -89,6 +86,7 @@ uInt16 Application::Run()
 
 	auto game = GameSystem::GetInstance();
 	auto message = MessageWindow::GetInstance();
+	auto renderManager = RenderManager::GetInstance();
 
 
 	///** ゲーム初期化 */
@@ -97,7 +95,9 @@ uInt16 Application::Run()
 	/** ゲーム更新 */
 	while (message->ExecMessage() == true)
 	{
+		renderManager->ClearRenderer();
 		game->Run();
+		renderManager->SwapRenderBuffer();
 	}
 
 	///** ゲーム終了処理 */

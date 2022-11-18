@@ -9,11 +9,12 @@
 
 #include "Scene.h"
 #include "SceneManager.h"
-#include "RenderManager.h"
 
 #include "../Game/TestScene.h"
 #include "../Game/ActionTestScene.h"
+
 #include "Graphics.h"
+#include "../System/RenderManager.h"
 
 /**
  *  シーンリストからシーンを取得し、更新スタックに挿入します.
@@ -50,7 +51,6 @@ void GAME_SYSTEMS::SceneManager::SceneSetup()
 {
 	// シーン初期化
 	m_currentScene->Initialize();
-
 	m_sceneState = State::Run;
 }
 
@@ -66,22 +66,15 @@ void GAME_SYSTEMS::SceneManager::SceneRun()
 
 void GAME_SYSTEMS::SceneManager::SceneRendering()
 {
-	// 画面クリア
-	myMath::Color color = {
+	// クリアカラー
+	systems::RenderManager::GetInstance()->SetScreenColor(
 		m_currentScene->GetDisPlayColor().r,
 		m_currentScene->GetDisPlayColor().g,
-		m_currentScene->GetDisPlayColor().b,
-		m_currentScene->GetDisPlayColor().a};
-	
-	auto renderManager = RenderManager::GetInstance();
-	renderManager->ClearRenderer(color);
+		m_currentScene->GetDisPlayColor().b);
 
 	// シーン描画
 	Graphics::GraphicsUpdate();
 	m_currentScene->Render();
-
-	// ディスプレイスワップ
-	renderManager->SwapRenderBuffer();
 }
 
 void GAME_SYSTEMS::SceneManager::SceneShutdown()

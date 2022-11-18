@@ -66,7 +66,6 @@ void systems::GuiSystem::CreateNewFrame()
     //ImGui::NewFrame();
     //bool show_demo_window = true;
     //ImGui::ShowDemoWindow(&show_demo_window);
-
 }
 
 /** ‰¼‚¨‚« */

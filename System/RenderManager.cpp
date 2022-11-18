@@ -10,14 +10,13 @@
 #include "RenderManager.h"
 #include "../System/DirectXGraphics.h"
 
-USING_SYSTEMS;
-
-void GAME_SYSTEMS::RenderManager::ClearRenderer(myMath::Color& displayColor)
+void SYSTEMS::RenderManager::ClearRenderer()
 {
 	/****	ターゲットバッファクリア	****/
 	ID3D11DeviceContext& deviceContext = DirectXGraphics::GetInstance()->GetImmediateContext();
 	ID3D11RenderTargetView& renderTargetView = DirectXGraphics::GetInstance()->GetRenderTargetView();
-	deviceContext.ClearRenderTargetView(&renderTargetView, displayColor.GetFloat());
+	Float32 color[4] = { m_screenColor.x, m_screenColor.y, m_screenColor.z, 1.0f };
+	deviceContext.ClearRenderTargetView(&renderTargetView, color);
 
 	/****	Zバッファクリア		****/
 	ID3D11DepthStencilView& depthStencil = DirectXGraphics::GetInstance()->GetDepthStencilView();
@@ -25,7 +24,7 @@ void GAME_SYSTEMS::RenderManager::ClearRenderer(myMath::Color& displayColor)
 
 }
 
-void GAME_SYSTEMS::RenderManager::SwapRenderBuffer()
+void SYSTEMS::RenderManager::SwapRenderBuffer()
 {
 	IDXGISwapChain& swapChain = DirectXGraphics::GetInstance()->GetSwapChain();
 	swapChain.Present(0, 0);

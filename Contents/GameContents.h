@@ -34,7 +34,6 @@
 
 // マネージャー
 #include "SceneManager.h"
-#include "RenderManager.h"
 #include "GameObjectManager.h"
 // 入力
 #include "GamePad.h"

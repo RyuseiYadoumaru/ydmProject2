@@ -7,18 +7,25 @@
 //* @date   November 2022
 //*****************************************************************************
 #pragma once
-#include "ManagerHeader.h"
+#include "macro.h"
+#include "std.h"
 #include "Color.h"
 
-namespace GAME_SYSTEMS
+namespace SYSTEMS
 {
 	class RenderManager
 	{
 		SINGLETON_CLASS(RenderManager);
-		MANAGER_CLASS;
 		
 	public:
-		void ClearRenderer(myMath::Color& displayColor);
+		void SetScreenColor(float r, float g, float b) noexcept { m_screenColor = { r, g, b }; }
+		void ClearRenderer();
 		void SwapRenderBuffer();
+
+	private:
+		DirectX::XMFLOAT3 m_screenColor = { 1.0f, 1.0f, 1.0f };
+
+
+
 	};
 }

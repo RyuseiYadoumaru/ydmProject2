@@ -202,7 +202,6 @@
     <ClCompile Include="Contents\Physics.cpp" />
     <ClCompile Include="Contents\PixelShader.cpp" />
     <ClCompile Include="Contents\Quaternion.cpp" />
-    <ClCompile Include="Contents\RenderManager.cpp" />
     <ClCompile Include="Contents\Scene.cpp" />
     <ClCompile Include="Contents\SceneManager.cpp" />
     <ClCompile Include="Contents\Script.cpp" />
@@ -247,6 +246,7 @@
     <ClCompile Include="System\KeyboardSystem.cpp" />
     <ClCompile Include="System\MessageWindow.cpp" />
     <ClCompile Include="System\MouseSystem.cpp" />
+    <ClCompile Include="System\RenderManager.cpp" />
     <ClCompile Include="System\Shader.cpp" />
     <ClCompile Include="System\SystemTimer.cpp" />
     <ClCompile Include="System\Framelate.cpp" />
@@ -346,7 +346,6 @@
     <ClInclude Include="Contents\Physics.h" />
     <ClInclude Include="Contents\PixelShader.h" />
     <ClInclude Include="Contents\Quaternion.h" />
-    <ClInclude Include="Contents\RenderManager.h" />
     <ClInclude Include="Contents\Scene.h" />
     <ClInclude Include="Contents\SceneHeader.h" />
     <ClInclude Include="Contents\SceneHelper.h" />
@@ -402,6 +401,7 @@
     <ClInclude Include="System\KeyboardSystem.h" />
     <ClInclude Include="System\MessageWindow.h" />
     <ClInclude Include="System\MouseSystem.h" />
+    <ClInclude Include="System\RenderManager.h" />
     <ClInclude Include="System\Shader.h" />
     <ClInclude Include="System\SystemTimer.h" />
     <ClInclude Include="System\Framelate.h" />
