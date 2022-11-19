@@ -14,7 +14,6 @@
 #include "../dx11mathutil.h"
 #include "SkeletalMesh.h"
 
-class Texture;
 class Animation;
 class AnimationClip;
 class BlendAnimation;
@@ -25,7 +24,7 @@ class BlendAnimation;
 namespace GAME_SYSTEMS
 {
 	class Material;
-	//class Mesh;
+	class Texture;
 	class Skeleton;
 	class Transform;
 

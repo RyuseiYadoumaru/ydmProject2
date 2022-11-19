@@ -210,6 +210,8 @@
     <ClCompile Include="Contents\Skeleton.cpp" />
     <ClCompile Include="Contents\SkinnedMeshRenderer.cpp" />
     <ClCompile Include="Contents\StaticMesh.cpp" />
+    <ClCompile Include="Contents\Texture.cpp" />
+    <ClCompile Include="Contents\TextureManager.cpp" />
     <ClCompile Include="Contents\Timer.cpp" />
     <ClCompile Include="Contents\Transform.cpp" />
     <ClCompile Include="Contents\VertexShader.cpp" />
@@ -264,14 +266,6 @@
     <ClCompile Include="System\Window.cpp" />
     <ClCompile Include="System\WindowCallBack.cpp" />
     <ClCompile Include="System\World.cpp" />
-    <ClCompile Include="Texture.cpp">
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </DeploymentContent>
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-      </DeploymentContent>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -359,6 +353,8 @@
     <ClInclude Include="Contents\StaticMesh.h" />
     <ClInclude Include="Contents\std.h" />
     <ClInclude Include="Contents\Tag.h" />
+    <ClInclude Include="Contents\Texture.h" />
+    <ClInclude Include="Contents\TextureManager.h" />
     <ClInclude Include="Contents\Timer.h" />
     <ClInclude Include="Contents\Transform.h" />
     <ClInclude Include="Contents\Vector2.h" />
@@ -426,14 +422,6 @@
     <ClInclude Include="System\Window.h" />
     <ClInclude Include="System\WindowCallBack.h" />
     <ClInclude Include="System\World.h" />
-    <ClInclude Include="Texture.h">
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </DeploymentContent>
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-      </DeploymentContent>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Shader\DefaultMeshPixelShader.hlsl">

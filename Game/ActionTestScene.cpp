@@ -8,9 +8,9 @@ USING_SYSTEMS;
 #include "Material.h"
 #include "Mesh.h"
 #include "Skeleton.h"
+#include "Texture.h"
 
 #include "../System/ThirdParty/Assimp/Assimpscene.h"
-#include "../Texture.h"
 #include "../Animation.h"
 #include "../AnimationClip.h"
 #include "../BlendAnimation.h"
@@ -22,9 +22,9 @@ USING_SYSTEMS;
 DirectX::XMFLOAT4X4 g_playerMtx;
 
 //gameSystems::Mesh g_meshData;
-gameSystems::Material g_material;
-gameSystems::Skeleton g_skeleton;
-Texture	 g_texture;
+gameSystems::Material	g_material;
+gameSystems::Skeleton	g_skeleton;
+gameSystems::Texture	g_texture;
 Animation g_animation;
 Vector<UniquePtr<AnimationClip>> g_animationClipList;
 BlendAnimation g_blendAnimation;
@@ -91,7 +91,7 @@ void ActionTestScene::BeginPlay()
 	g_material.LoadShader(TEXT("SkinnedVertexShader"), TEXT("GrayManps"));
 
 	// テクスチャ読み込み
-	g_texture.Load("GraymanMaskTex.png", "Assets");
+	g_texture.Load("GraymanMaskTex.png");
 
 	DX11MtxIdentity(g_playerMtx);
 
@@ -139,7 +139,7 @@ void ActionTestScene::Render()
 	// データをシェーダーに転送
 	g_animation.UpdateConstantBufferBoneMatrix();
 	g_material.SetShader();
-	g_texture.SetTexture(0);
+	g_texture.BindTexture(0);
 
 	// プレイヤー描画
 	DX11SetTransform::GetInstance()->SetTransform(DX11SetTransform::TYPE::WORLD, g_playerMtx);

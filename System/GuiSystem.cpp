@@ -81,5 +81,5 @@ bool systems::GuiSystem::Run()
 
 void systems::GuiSystem::EditorSetUp()
 {
-    EditorManager::GetInstance()->Create<TestEditor>("TestEdit", 0.0f, 0.0f);
+    EditorManager::GetInstance()->Create<TestEditor>(TEXT("TestEdit"), 0.0f, 0.0f);
 }

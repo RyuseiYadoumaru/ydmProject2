@@ -21,12 +21,14 @@ USING_GAME_SYSTEMS
 
 #define ANIM_BLEND
 
+#include "Texture.h"
 #include "Material.h"
 #include "Mesh.h"
 #include "Skeleton.h"
 
+#include "TextureManager.h"
+
 #include "../System/ThirdParty/Assimp/Assimpscene.h"
-#include "../Texture.h"
 #include "../Animation.h"
 #include "../AnimationClip.h"
 #include "../BlendAnimation.h"
@@ -46,14 +48,9 @@ void GAME_SYSTEMS::SkinnedMeshRenderer::Start()
 	m_mesh->Load(TEXT("Assets/ThirdPerson.fbx"));
 	m_mesh->SetAnimationClip(TEXT("Assets/ThirdPersonIdle.FBX"));
 
-	// マテリアル生成
-	// TODO : 現在はサンプルコードを直接生成することでマテリアルを作成している
 	m_material = std::make_shared<Material>();
 	m_material->LoadShader(TEXT("SkinnedVertexShader"), TEXT("GrayManps"));
-
-	// テクスチャ生成
-	m_texture = std::make_shared<Texture>();
-	m_texture->Load(TEXT("GraymanMaskTex.png"), "Assets");
+	m_material->AddTexture(TextureManager::GetInstance()->GetTexture("GraymanMaskTex.png"), 0);
 
 }
 
@@ -61,8 +58,6 @@ void GAME_SYSTEMS::SkinnedMeshRenderer::Update()
 {
 	// シェーダー生成
 	m_material->SetShader();
-	// テクスチャ生成
-	m_texture->SetTexture(0);
 
 	// ワールド行列をコンスタントバッファに生成する
 	auto worldMatrix = m_ownerTransform->GetWorldMatrix();

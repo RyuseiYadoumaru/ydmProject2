@@ -205,6 +205,9 @@
     <Filter Include="System\Editor\Header">
       <UniqueIdentifier>{80645fd3-ad39-4a7c-8ed9-551dacfa12ed}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\Resource\Texture">
+      <UniqueIdentifier>{abbfa942-ad2e-4138-8a2f-89d59ddd0474}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="System\Console.cpp">
@@ -342,9 +345,6 @@
     <ClCompile Include="Motion.cpp">
       <Filter>UseSample\Resorce</Filter>
     </ClCompile>
-    <ClCompile Include="Texture.cpp">
-      <Filter>UseSample\Resorce</Filter>
-    </ClCompile>
     <ClCompile Include="System\GamePadSystem.cpp">
       <Filter>System\GameSubSystem\Input</Filter>
     </ClCompile>
@@ -449,6 +449,12 @@
     </ClCompile>
     <ClCompile Include="Editor\TestEditor.cpp">
       <Filter>System\Editor\TestEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="Contents\Texture.cpp">
+      <Filter>Contents\Resource\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Contents\TextureManager.cpp">
+      <Filter>Contents\Manager\Private</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -632,9 +638,6 @@
     <ClInclude Include="Motion.h">
       <Filter>UseSample\Resorce</Filter>
     </ClInclude>
-    <ClInclude Include="Texture.h">
-      <Filter>UseSample\Resorce</Filter>
-    </ClInclude>
     <ClInclude Include="System\GamePadSystem.h">
       <Filter>System\GameSubSystem\Input</Filter>
     </ClInclude>
@@ -775,6 +778,12 @@
     </ClInclude>
     <ClInclude Include="Editor\EditorHeader.h">
       <Filter>System\Editor\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Contents\TextureManager.h">
+      <Filter>Contents\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Contents\Texture.h">
+      <Filter>Contents\Resource\Texture</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

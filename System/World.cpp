@@ -12,6 +12,7 @@
 #include "SceneManager.h"
 #include "GameObjectManager.h"
 #include "MeshManager.h"
+#include "TextureManager.h"
 
 
 #include "DirectXGraphics.h"
@@ -54,6 +55,7 @@ bool GAME_SYSTEMS::World::Run()
     {
         GameObjectManager::GetInstance()->GameObjectShutDown();
         MeshManager::GetInstance()->Releace();
+        TextureManager::GetInstance()->Releace();
         sceneManager->SceneShutdown();
     }
     return true;

@@ -13,7 +13,6 @@
 #include <DirectXMath.h>
 #include "../dx11mathutil.h"
 
-class Texture;
 class Animation;
 class AnimationClip;
 
@@ -21,6 +20,7 @@ namespace GAME_SYSTEMS
 {
 	class StaticMesh;
 	class Material;
+	class Texture;
 	class Mesh;
 	class Skeleton;
 	class Transform;

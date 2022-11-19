@@ -34,6 +34,7 @@ namespace SYSTEMS
 	private:
 		T_String m_windowName;
 		DirectX::XMFLOAT2 m_position;
+		DirectX::XMFLOAT2 m_size =  { 300.0f, 100.0f };
 
 	};
 }

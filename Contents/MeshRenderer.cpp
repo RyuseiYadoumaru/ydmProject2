@@ -13,6 +13,7 @@
 #include "../System/DX11SetMaterial.h"
 #include "Debug.h"
 #include "GameObject.h"
+#include "TextureManager.h"
 
 USING_TOOLS;
 USING_SYSTEMS;
@@ -20,12 +21,13 @@ USING_GAME_SYSTEMS
 
 #include "StaticMesh.h"
 #include "Material.h"
+#include "Texture.h"
 #include "../System/ThirdParty/Assimp/Assimpscene.h"
-#include "../Texture.h"
 
 
 void GAME_SYSTEMS::MeshRenderer::Start()
 {
+	// トランスフォーム取得
 	m_ownerTransform = GetOwner()->m_transform;
 	if (m_ownerTransform == nullptr)
 	{
@@ -35,10 +37,7 @@ void GAME_SYSTEMS::MeshRenderer::Start()
 
 	// マテリアル生成
 	m_material = m_meshData->GetMaterial();
-
-	// テクスチャ生成
-	m_texture = std::make_shared<Texture>();
-	m_texture->Load(TEXT("MeshTexture.png"), TEXT("Assets"));
+	m_material->AddTexture(TextureManager::GetInstance()->GetTexture(TEXT("MeshTexture.png")), 0);
 }
 
 void GAME_SYSTEMS::MeshRenderer::Update()
@@ -50,8 +49,6 @@ void GAME_SYSTEMS::MeshRenderer::Update()
 
 	// シェーダー生成
 	m_material->SetShader();
-	// テクスチャ生成
-	m_texture->SetTexture(0);
 
 	// 描画
 	ID3D11DeviceContext& deviceContext = DirectXGraphics::GetInstance()->GetImmediateContext();
@@ -60,8 +57,7 @@ void GAME_SYSTEMS::MeshRenderer::Update()
 
 void GAME_SYSTEMS::MeshRenderer::End()
 {
-	//m_meshData->Releace();
-	//m_meshData->Unload();
-	//m_material->Unload();
+	m_material->Unload();
+	m_material = nullptr;
 	m_ownerTransform = nullptr;
 }

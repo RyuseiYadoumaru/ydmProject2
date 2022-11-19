@@ -18,14 +18,15 @@ namespace GAME_SYSTEMS
 {
 	class VertexShader;
 	class PixelShader;
+	class Texture;
 
 	class Material
 	{
 	public:
 		Material() :
-			m_ambientColor(255.0f, 255.0f, 255.0f, 255.0f),
-			m_diffuseColor(255.0f, 255.0f, 255.0f, 255.0f),
-			m_specularColor(255.0f, 255.0f, 255.0f, 255.0f) {}
+			m_ambientColor (1.0f, 1.0f, 1.0f, 1.0f),
+			m_diffuseColor (1.0f, 1.0f, 1.0f, 1.0f),
+			m_specularColor(1.0f, 1.0f, 1.0f, 1.0f) {}
 
 		~Material() = default;
 
@@ -39,17 +40,22 @@ namespace GAME_SYSTEMS
 
 	public:
 		bool LoadShader(T_String vertexShaderName, T_String pixelShaderName);
+		bool SetPixelShader(T_String pixelShaderName);
+		bool SetVertexShader(T_String vertexShaderName);
+		void AddTexture(SharedPtr<Texture> texture, uInt32 slot);
 		void Unload();
 		void SetShader();
 	
+
 	private:
 		myMath::Color m_ambientColor;
 		myMath::Color m_diffuseColor;
 		myMath::Color m_specularColor;
 
 	private:
-		SharedPtr<VertexShader> m_vertexShader	= nullptr;
-		SharedPtr<PixelShader> m_pixelShader	= nullptr;
+		SharedPtr<VertexShader>		m_vertexShader	= nullptr;
+		SharedPtr<PixelShader>		m_pixelShader	= nullptr;
+		Unordered_Map<uInt32, SharedPtr<Texture>>	m_textureList;
 	};
 }
 
