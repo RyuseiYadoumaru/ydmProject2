@@ -100,9 +100,6 @@ namespace gameSystems
 			return nullptr;
 		}
 
-	public:
-		void Releace();
-
 	private:
 		SystemStage m_gameSubSystemList;
 	};

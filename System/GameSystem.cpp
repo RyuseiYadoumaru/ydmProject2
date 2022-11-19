@@ -48,6 +48,8 @@ bool systems::GameSystem::SetUp()
 ============================================================================*/
 bool systems::GameSystem::ShutDown()
 {
+    auto gameSystem = GameSystemManager::GetInstance();
+    gameSystem->m_gameSubSystemList.clear();
     return true;
 }
 
@@ -100,12 +102,22 @@ bool systems::GameSystem::Run()
 
 
 /**============================================================================
-//! @func   Finalize
-//! @brief  ゲーム終了処理
+//! @func   GameSystemEnd
+//! @brief  ゲームサブシステム終了処理
 //! @retval TRUE　成功終了/FALSE　失敗終了
 ============================================================================*/
 bool systems::GameSystem::GameSystemEnd()
 {
-    gameSystems::GameSystemManager::GetInstance()->Releace();
+    auto gameSystem = GameSystemManager::GetInstance();
+    for (auto& stage : gameSystem->m_gameSubSystemList)
+    {
+        for (auto& subSystem : stage.second)
+        {
+            for (auto& system : subSystem.second)
+            {
+                system.second->Finalize();
+            }
+        }
+    }
     return true;
 }

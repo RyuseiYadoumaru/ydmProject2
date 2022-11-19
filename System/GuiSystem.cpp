@@ -8,6 +8,8 @@
 //*****************************************************************************
 
 #include "GuiSystem.h"
+#include "EditorManager.h"
+#include "Core/Editor.h"
 #include "ThirdParty/Imgui/imgui.h"
 #include "ThirdParty/Imgui/imgui_impl_dx11.h"
 #include "ThirdParty/Imgui/imgui_impl_win32.h"
@@ -17,6 +19,8 @@
 #include "Debug.h"
 
 
+#include "../Editor/TestEditor.h"
+USING_EDITOR_SYSTEMS;
 
 /**
  *  ‰Šú‰».
@@ -59,18 +63,23 @@ bool systems::GuiSystem::ShutDown()
     return true;
 }
 
-void systems::GuiSystem::CreateNewFrame()
+bool systems::GuiSystem::Run()
 {
-    //ImGui_ImplWin32_NewFrame();
-    //ImGui_ImplDX11_NewFrame();
-    //ImGui::NewFrame();
-    //bool show_demo_window = true;
-    //ImGui::ShowDemoWindow(&show_demo_window);
+    auto editorManager = EditorManager::GetInstance();
+
+    ImGui_ImplWin32_NewFrame();
+    ImGui_ImplDX11_NewFrame();
+    ImGui::NewFrame();
+    for (auto& editor : editorManager->m_editorList)
+    {
+        editor.second->Render();
+    }
+    ImGui::Render();
+    ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
+    return true;
 }
 
-/** ‰¼‚¨‚« */
-void systems::GuiSystem::Render()
+void systems::GuiSystem::EditorSetUp()
 {
-    //ImGui::Render();
-    //ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
+    EditorManager::GetInstance()->Create<TestEditor>("TestEdit", 0.0f, 0.0f);
 }

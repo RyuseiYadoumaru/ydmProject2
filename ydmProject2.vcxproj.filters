@@ -196,6 +196,15 @@
     <Filter Include="Contents\Resource\Mesh\Header">
       <UniqueIdentifier>{d583531e-0362-407b-8e57-af5e4df7cdc7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="System\Editor">
+      <UniqueIdentifier>{33e2d578-f62b-4db4-a2c2-dd69ac195a4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Editor\TestEditor">
+      <UniqueIdentifier>{506bee8f-0fd8-4b23-bcd0-712a3dd94ffc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Editor\Header">
+      <UniqueIdentifier>{80645fd3-ad39-4a7c-8ed9-551dacfa12ed}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="System\Console.cpp">
@@ -263,9 +272,6 @@
     </ClCompile>
     <ClCompile Include="System\ThirdParty\DirectTex\WICTextureLoader.cpp">
       <Filter>System\ThirdParty\DirectTex</Filter>
-    </ClCompile>
-    <ClCompile Include="System\GameSystemManager.cpp">
-      <Filter>System\GameSubSystem</Filter>
     </ClCompile>
     <ClCompile Include="Contents\Color.cpp">
       <Filter>Contents\Math\Private</Filter>
@@ -437,6 +443,12 @@
     </ClCompile>
     <ClCompile Include="System\RenderManager.cpp">
       <Filter>System\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="System\Core\Editor.cpp">
+      <Filter>System\Core\BaseClass</Filter>
+    </ClCompile>
+    <ClCompile Include="Editor\TestEditor.cpp">
+      <Filter>System\Editor\TestEditor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -751,6 +763,18 @@
     </ClInclude>
     <ClInclude Include="System\RenderManager.h">
       <Filter>System\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="System\EditorManager.h">
+      <Filter>System\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="Editor\TestEditor.h">
+      <Filter>System\Editor\TestEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Core\Editor.h">
+      <Filter>System\Core\BaseClass</Filter>
+    </ClInclude>
+    <ClInclude Include="Editor\EditorHeader.h">
+      <Filter>System\Editor\Header</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

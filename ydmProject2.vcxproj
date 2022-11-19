@@ -214,6 +214,7 @@
     <ClCompile Include="Contents\Transform.cpp" />
     <ClCompile Include="Contents\VertexShader.cpp" />
     <ClCompile Include="dx11mathutil.cpp" />
+    <ClCompile Include="Editor\TestEditor.cpp" />
     <ClCompile Include="Game\ActionTestScene.cpp" />
     <ClCompile Include="Game\CubeTest.cpp" />
     <ClCompile Include="Game\MainCamera.cpp" />
@@ -233,6 +234,7 @@
     <ClCompile Include="System\Audiosystem.cpp" />
     <ClCompile Include="System\Console.cpp" />
     <ClCompile Include="System\Core\Application.cpp" />
+    <ClCompile Include="System\Core\Editor.cpp" />
     <ClCompile Include="System\Core\Object.cpp" />
     <ClCompile Include="System\Core\WinMain.cpp" />
     <ClCompile Include="System\DirectXGraphics.cpp" />
@@ -240,7 +242,6 @@
     <ClCompile Include="System\DX11SetMaterial.cpp" />
     <ClCompile Include="System\GamePadSystem.cpp" />
     <ClCompile Include="System\GameSystem.cpp" />
-    <ClCompile Include="System\GameSystemManager.cpp" />
     <ClCompile Include="System\GuiSystem.cpp" />
     <ClCompile Include="System\Inputsystem.cpp" />
     <ClCompile Include="System\KeyboardSystem.cpp" />
@@ -365,6 +366,8 @@
     <ClInclude Include="Contents\Vector4.h" />
     <ClInclude Include="Contents\VertexShader.h" />
     <ClInclude Include="dx11mathutil.h" />
+    <ClInclude Include="Editor\EditorHeader.h" />
+    <ClInclude Include="Editor\TestEditor.h" />
     <ClInclude Include="Game\ActionTestScene.h" />
     <ClInclude Include="Game\CubeTest.h" />
     <ClInclude Include="Game\MainCamera.h" />
@@ -386,6 +389,7 @@
     <ClInclude Include="System\Console.h" />
     <ClInclude Include="System\Core\Application.h" />
     <ClInclude Include="System\Core\Component.h" />
+    <ClInclude Include="System\Core\Editor.h" />
     <ClInclude Include="System\Core\Object.h" />
     <ClInclude Include="System\Core\SubSystem.h" />
     <ClInclude Include="System\DirectXGraphics.h" />
@@ -397,6 +401,7 @@
     <ClInclude Include="System\GameSystemManager.h" />
     <ClInclude Include="System\GameSystem.h" />
     <ClInclude Include="System\GuiSystem.h" />
+    <ClInclude Include="System\EditorManager.h" />
     <ClInclude Include="System\Inputsystem.h" />
     <ClInclude Include="System\KeyboardSystem.h" />
     <ClInclude Include="System\MessageWindow.h" />

@@ -19,10 +19,9 @@ namespace systems
 	public:
 		bool SetUp()	override;
 		bool ShutDown() override;
+		bool Run();
 
-		void CreateNewFrame();
-		void Render();
-
+		void EditorSetUp();
 	};
 }
 

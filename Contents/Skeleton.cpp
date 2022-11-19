@@ -1,5 +1,5 @@
 #include "Skeleton.h"
-#include "../Assimpscene.h"
+#include "../System/ThirdParty/Assimp/Assimpscene.h"
 #include <assimp\scene.h>
 #include "../dx11mathutil.h"
 #include "../System/Shader.h"

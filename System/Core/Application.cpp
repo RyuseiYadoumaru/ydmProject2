@@ -85,18 +85,20 @@ uInt16 Application::Run()
 {
 
 	auto game = GameSystem::GetInstance();
+	auto gui = GuiSystem::GetInstance();
 	auto message = MessageWindow::GetInstance();
 	auto renderManager = RenderManager::GetInstance();
 
-
 	///** ƒQ[ƒ€‰Šú‰» */
 	game->GameSystemStart();
+	gui->EditorSetUp();
 
 	/** ƒQ[ƒ€XV */
 	while (message->ExecMessage() == true)
 	{
 		renderManager->ClearRenderer();
 		game->Run();
+		gui->Run();
 		renderManager->SwapRenderBuffer();
 	}
 
