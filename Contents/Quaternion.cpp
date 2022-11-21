@@ -6,6 +6,7 @@
 //* @author YadoumaruRyusei
 //* @date   July 2022
 //*****************************************************************************
+#include <DirectXMath.h>
 #include "Quaternion.h"
 #include "macro.h"
 #include "Matrix4x4.h"
@@ -61,6 +62,22 @@ myMath::Quaternion myMath::Quaternion::Multiply(const Quaternion& qt1, const Qua
 
 	return outQt;
 
+}
+
+myMath::Quaternion myMath::Quaternion::Slerp(const Quaternion& startQt, const Quaternion& endQt, Float32 t)
+{
+	Quaternion outQt;
+
+	ALIGN16 DirectX::XMVECTOR infromqt;
+	ALIGN16 DirectX::XMVECTOR intoqt;
+	ALIGN16 DirectX::XMVECTOR qt;
+
+	infromqt = DirectX::XMLoadFloat4(&startQt);
+	intoqt = DirectX::XMLoadFloat4(&endQt);
+	qt = DirectX::XMQuaternionSlerp(infromqt, intoqt, t);
+
+	outQt.Set(qt);
+	return outQt;
 }
 
 void myMath::Quaternion::CreateRotationAxis(Vector4& axis, Float32 angle)

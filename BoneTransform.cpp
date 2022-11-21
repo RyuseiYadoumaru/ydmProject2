@@ -3,68 +3,36 @@
 
 BoneTransform::BoneTransform()
 {
-	this->m_position = DirectX::XMFLOAT3(0.0f, 0.0f, 0.0f);
-	this->m_rotation = DirectX::XMFLOAT4(0.0f, 0.0f, 0.0f, 1.0f);
+	m_position = MY_MATH::Vector3(0.0f, 0.0f, 0.0f);
+	m_rotation = MY_MATH::Quaternion(0.0f, 0.0f, 0.0f, 1.0f);
 }
 
-BoneTransform::BoneTransform(DirectX::XMFLOAT3 pos, DirectX::XMFLOAT4 rot)
+BoneTransform::BoneTransform(MY_MATH::Vector3 pos, MY_MATH::Quaternion rot)
 {
-	this->m_position = pos;
-	this->m_rotation = rot;
+	m_position = pos;
+	m_rotation = rot;
 }
 
-DirectX::XMFLOAT3 BoneTransform::GetPosition() const
+
+MY_MATH::Matrix4x4 BoneTransform::GetMatrix() const
 {
-	return this->m_position;
-}
-
-void BoneTransform::SetPosition(DirectX::XMFLOAT3 pos)
-{
-	this->m_position = pos;
-}
-
-DirectX::XMFLOAT4 BoneTransform::GetRotation() const
-{
-	return this->m_rotation;
-}
-
-void BoneTransform::SetRotation(DirectX::XMFLOAT4 rot)
-{
-	this->m_rotation = rot;
-}
-
-DirectX::XMFLOAT4X4 BoneTransform::GetMatrix() const
-{
-	DirectX::XMFLOAT4X4 translateMat;
-	DX11MtxTranslation(m_position, translateMat);
-
-	DirectX::XMFLOAT4X4 rotMat;
-	DX11MtxFromQt(rotMat, m_rotation);
-
-	DirectX::XMFLOAT4X4 result;
-	DX11MtxMultiply(result, rotMat, translateMat);
-
+	MY_MATH::Matrix4x4 translateMat = MY_MATH::Matrix4x4::CreateTranslationMatrix(m_position);
+	MY_MATH::Matrix4x4 rotMat = MY_MATH::Matrix4x4::CreateMatrixFromQuaternion(m_rotation);
+	MY_MATH::Matrix4x4 result = MY_MATH::Matrix4x4::MatrixMultiply(rotMat, translateMat);
 	return result;
 }
 
 BoneTransform BoneTransform::Lerp(const BoneTransform& trans1,
 	const BoneTransform& trans2,
-	float rate)
+	Float32 rate)
 {
 	BoneTransform result;
 
 	// É|ÉWÉVÉáÉìÇÃï‚ä‘ÇãÅÇﬂÇÈ
-	result.m_position.x = trans1.m_position.x * rate + trans2.m_position.x * (1 - rate);
-	result.m_position.y = trans1.m_position.y * rate + trans2.m_position.y * (1 - rate);
-	result.m_position.z = trans1.m_position.z * rate + trans2.m_position.z * (1 - rate);
+	result.m_position = MY_MATH::Vector3::Larp(trans1.m_position, trans2.m_position, rate);
 
 	// âÒì]ÇÃï‚ä‘ÇãÅÇﬂÇÈ
-	DX11QtSlerp(
-		trans1.m_rotation,
-		trans2.m_rotation,
-		rate,
-		result.m_rotation
-	);
+	result.m_rotation = MY_MATH::Quaternion::Slerp(trans1.m_rotation, trans2.m_rotation, rate);
 
 	return result;
 }

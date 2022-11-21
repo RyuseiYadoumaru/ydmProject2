@@ -1,12 +1,13 @@
 #pragma once
-#include <DirectXMath.h>
-#include <vector>
+#include "std.h"
+#include "macro.h"
+#include "myMath.h"
 
 // キーフレーム
 struct KeyFrame
 {
-	DirectX::XMFLOAT4 rotation; // 回転
-	DirectX::XMFLOAT3 position; // 座標
-	bool shouldSlerpRotation;	// 回転を補間するべきかどうか
-	bool shouldLerpPosition;	// 座標を補間するべきかどうか
+	MY_MATH::Quaternion rotation;	// 回転
+	MY_MATH::Vector3	position;	// 座標
+	bool shouldSlerpRotation;		// 回転を補間するべきかどうか
+	bool shouldLerpPosition;		// 座標を補間するべきかどうか
 };

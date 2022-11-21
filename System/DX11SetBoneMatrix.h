@@ -35,7 +35,7 @@ namespace SYSTEMS
 	public:
 		bool Initialize();
 		bool Finalize();
-		void SetConstantBuffer(const Vector<DirectX::XMFLOAT4X4>& matrixList);
+		void SetConstantBuffer(Vector<DirectX::XMFLOAT4X4>& matrixList);
 
 	private:
 		ComPtr<ID3D11Buffer> m_constantBufferBone = nullptr;

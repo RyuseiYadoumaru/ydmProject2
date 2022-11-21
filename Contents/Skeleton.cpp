@@ -1,9 +1,19 @@
-#include "Skeleton.h"
-#include "../System/ThirdParty/Assimp/Assimpscene.h"
+//*****************************************************************************
+//* @file   Skeleton.cpp
+//* @brief  
+//* @note	ボーンの集合体
+//* 
+//* @author YadoumaruRyusei
+//* @date   November 2022
+//*****************************************************************************
 #include <assimp\scene.h>
+#include "Skeleton.h"
+#include "Debug.h"
+#include "../System/ThirdParty/Assimp/Assimpscene.h"
 #include "../dx11mathutil.h"
 #include "../System/Shader.h"
 #include "../System/DirectXGraphics.h"
+#include "../System/MessageWindow.h"
 
 USING_GAME_SYSTEMS
 USING_SYSTEMS;
@@ -13,16 +23,18 @@ bool Skeleton::Load(AssimpScene* assimpScene)
 {
 	if (assimpScene == nullptr)
 	{
-		this->m_isLoad = false;
+		m_isLoad = false;
+		MessageWindow::GetInstance()->Error("Assimpのデータがありません");
+		TOOLS::Debug::Assert(assimpScene == nullptr);
 		return false;
 	}
 
 	// ボーン配列用のメモリを確保
-	this->m_bones.clear();
-	this->m_bones.resize(assimpScene->GetBoneNum());
+	m_boneList.clear();
+	m_boneList.resize(assimpScene->GetBoneNum());
 
-	// ボーン生成
-	CreateBones(assimpScene,
+	// 親ボーン生成
+	CreateBoneList(assimpScene,
 		assimpScene->GetScene()->mRootNode,
 		Bone::NONE_PARENT);
 
@@ -31,50 +43,41 @@ bool Skeleton::Load(AssimpScene* assimpScene)
 
 	// ボーンオフセット行列初期化
 	InitBonesOffsetMatrix(assimpScene);
-	this->m_isLoad = true;
+	m_isLoad = true;
 
 	// 初期ボーンを保存
-	for (auto& boneMatrix : m_bones)
+	for (auto& boneMatrix : m_boneList)
 	{
 		m_defaultBonesMatrix.emplace_back(boneMatrix.GetOffsetMatrix());
 		m_bonesMatrix.emplace_back(boneMatrix.GetOffsetMatrix());
 	}
 
+	CalcBonesMatrix(
+		m_defaultBonesMatrix,
+		m_rootBone->GetBoneIndex(),
+		MY_MATH::Matrix4x4::CreateMatrixIdentity(),
+		m_bonesMatrix);
+
 	return true;
 }
 
-Bone* Skeleton::GetRootBone()
-{
-	return this->m_rootBone;
-}
-
-Bone* Skeleton::GetBoneByIndex(int index)
-{
-	return &m_bones[index];
-}
-
-int Skeleton::GetBoneNum() const
-{
-	return m_bones.size();
-}
-
 // ボーンを生成
-void Skeleton::CreateBones(AssimpScene* assimpScene, aiNode* node, int parentIndex)
+void Skeleton::CreateBoneList(AssimpScene* assimpScene, aiNode* node, Int32 parentIndex)
 {
 	// 名前からボーン配列のインデックス番号を取得
 	int boneIndex = assimpScene->GetBoneIndexByName(node->mName.C_Str());
 
 	// ボーン情報を保存する
-	Bone& bone = m_bones[boneIndex];
-	bone.SetParentIndex(parentIndex);
-	bone.SetName(node->mName.C_Str());
-	bone.SetBoneIndex(boneIndex);
+	m_boneList[boneIndex].SetParentIndex(parentIndex);
+	m_boneList[boneIndex].SetName(node->mName.C_Str());
+	m_boneList[boneIndex].SetBoneIndex(boneIndex);
 
-	const unsigned int childCount = node->mNumChildren;
-	for (int i = 0; i < childCount; i++)
+	// 子ボーンも生成する
+	const uInt32 childCount = node->mNumChildren;
+	for (uInt32 i = 0; i < childCount; i++)
 	{
 		aiNode* child = node->mChildren[i];
-		CreateBones(assimpScene, child, boneIndex);
+		CreateBoneList(assimpScene, child, boneIndex);
 	}
 }
 
@@ -82,18 +85,16 @@ void Skeleton::CreateBones(AssimpScene* assimpScene, aiNode* node, int parentInd
 void Skeleton::CreateBoneTree()
 {
 	// ルートボーンを設定
-	this->m_rootBone = &this->m_bones[0];
+	m_rootBone = &m_boneList[0];
 
-	const int boneNum = m_bones.size();
-	for (int i = 0; i < boneNum; i++)
+	for (int i = 0; i < m_boneList.size(); i++)
 	{
-		Bone* bone = &this->m_bones[i];
-
+		Bone* bone = &m_boneList[i];
 		// 親がいれば自分を子にする
-		const int parentIndex = this->m_bones[i].GetParentIndex();
+		const Int32 parentIndex = m_boneList[i].GetParentIndex();
 		if (parentIndex != Bone::NONE_PARENT)
 		{
-			this->m_bones[parentIndex].AddChild(bone);
+			this->m_boneList[parentIndex].AddChild(bone);
 		}
 	}
 }
@@ -101,50 +102,41 @@ void Skeleton::CreateBoneTree()
 void Skeleton::InitBonesOffsetMatrix(AssimpScene* assimpScene)
 {
 	// メッシュ情報取得の中にボーン情報がまぎれている
-	const int meshNum = assimpScene->GetScene()->mNumMeshes;
-	for (int meshIndex = 0; meshIndex < meshNum; meshIndex++)
+	const Int32 meshNum = assimpScene->GetScene()->mNumMeshes;
+	for (Int32 meshIndex = 0; meshIndex < meshNum; meshIndex++)
 	{
 		auto mesh = assimpScene->GetScene()->mMeshes[meshIndex];
 
-		const int boneNum = mesh->mNumBones;
+		const Int32 boneNum = mesh->mNumBones;
 		for (int boneIndex = 0; boneIndex < boneNum; boneIndex++)
 		{
 			auto bone = mesh->mBones[boneIndex];
-			int idx = assimpScene->GetBoneIndexByName(bone->mName.C_Str());
+			Int32 idx = assimpScene->GetBoneIndexByName(bone->mName.C_Str());
 
-			DirectX::XMFLOAT4X4 offset = DX11MtxaiToDX(bone->mOffsetMatrix);
-			m_bones[idx].SetOffsetMatrix(offset);
+			MY_MATH::Matrix4x4 offset = MY_MATH::Matrix4x4::CreateMatrixFromAIMatrix(bone->mOffsetMatrix);
+			m_boneList[idx].SetOffsetMatrix(offset);
 		}
 	}
 }
 
 void Skeleton::CalcBonesMatrix(
-	const std::vector<DirectX::XMFLOAT4X4>& animationMatrix,
+	const std::vector<MY_MATH::Matrix4x4>& animationMatrix,
 	int index,
-	DirectX::XMFLOAT4X4 parentMatrix,
-	std::vector<DirectX::XMFLOAT4X4>& outputMatrix)
+	MY_MATH::Matrix4x4 parentMatrix,
+	std::vector<MY_MATH::Matrix4x4>& outputMatrix)
 {
-	DirectX::XMFLOAT4X4 worldMatrix;
-	DX11MtxMultiply(
-		worldMatrix,
-		animationMatrix[index],
-		parentMatrix);
+	MY_MATH::Matrix4x4 animMatrix = animationMatrix[index];
+	MY_MATH::Matrix4x4 worldMatrix = MY_MATH::Matrix4x4::MatrixMultiply(animMatrix, parentMatrix);
 
-	DirectX::XMFLOAT4X4 offsetMatrix;
-	offsetMatrix = m_bones[index].GetOffsetMatrix();
+	MY_MATH::Matrix4x4 offsetMatrix;
+	offsetMatrix = m_boneList[index].GetOffsetMatrix();
 
-	DirectX::XMFLOAT4X4 boneMatrix;
-	DX11MtxMultiply(
-		boneMatrix,
-		offsetMatrix,
-		worldMatrix);
-
+	MY_MATH::Matrix4x4 boneMatrix = MY_MATH::Matrix4x4::MatrixMultiply(offsetMatrix, worldMatrix);
 	outputMatrix[index] = boneMatrix;
-
-	const int childNum = m_bones[index].GetChildCount();
-	for (int i = 0; i < childNum; i++)
+	const Int32 childNum = m_boneList[index].GetChildCount();
+	for (Int32 i = 0; i < childNum; i++)
 	{
-		Bone* child = m_bones[index].GetChild(i);
+		Bone* child = m_boneList[index].GetChild(i);
 		CalcBonesMatrix(
 			animationMatrix,
 			child->GetBoneIndex(),

@@ -50,6 +50,7 @@ bool GAME_SYSTEMS::Material::SetPixelShader(T_String pixelShaderName)
 		MessageWindow::GetInstance()->Error(TEXT("ピクセルシェーダが生成されていません"));
 		return false;
 	}
+	return true;
 }
 
 bool GAME_SYSTEMS::Material::SetVertexShader(T_String vertexShaderName)
@@ -60,6 +61,7 @@ bool GAME_SYSTEMS::Material::SetVertexShader(T_String vertexShaderName)
 		MessageWindow::GetInstance()->Error(TEXT("頂点シェーダが生成されていません"));
 		return false;
 	}
+	return true;
 }
 
 void GAME_SYSTEMS::Material::AddTexture(SharedPtr<Texture> texture, uInt32 slot)

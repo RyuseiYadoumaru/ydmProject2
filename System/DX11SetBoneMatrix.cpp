@@ -39,7 +39,7 @@ bool SYSTEMS::DX11SetBoneMatrix::Finalize()
     return true;
 }
 
-void SYSTEMS::DX11SetBoneMatrix::SetConstantBuffer(const Vector<DirectX::XMFLOAT4X4>& matrixList)
+void SYSTEMS::DX11SetBoneMatrix::SetConstantBuffer(Vector<DirectX::XMFLOAT4X4>& matrixList)
 {
 	// ‰Šú‰»
 	for (int i = 0; i < m_MaxBoneNum; i++)

@@ -4,14 +4,25 @@
 //!	@note	3DçsóÒä÷òA
 //!	@author	YadoumaruRyusei
 //*****************************************************************************
-
-
-//-----------------------------------------------------------------------------
-//	Include header files.
-//-----------------------------------------------------------------------------
 #include "Matrix4x4.h"
 #include "macro.h"
 
+
+myMath::Matrix4x4 myMath::Matrix4x4::MatrixMultiply(Matrix4x4& mtx1, Matrix4x4& mtx2) noexcept
+{
+	Matrix4x4 outMtx;
+	ALIGN16 DirectX::XMMATRIX mat1, mat2, matAns;
+
+	mat1 = mtx1.GetXMMatrix();
+	mat2 = mtx2.GetXMMatrix();
+
+	matAns = XMMatrixMultiply(mat1, mat2);
+
+	DirectX::XMFLOAT4X4 ans;
+	XMStoreFloat4x4(&ans, matAns);
+	outMtx.Set(ans);
+	return outMtx;
+}
 
 //==============================================================================
 //!	@fn		CreateMatrixIdentity
@@ -96,7 +107,18 @@ myMath::Matrix4x4 myMath::Matrix4x4::CreateProjectionMatrix(Float32 fov, Float32
 	return projection;
 }
 
-myMath::Matrix4x4 myMath::Matrix4x4::CreateMatrixQuaternion(Quaternion& quaternion) noexcept
+myMath::Matrix4x4 myMath::Matrix4x4::CreateTranslationMatrix(const Vector3& vector3)
+{
+	Matrix4x4 outMtx;
+
+	ALIGN16 DirectX::XMMATRIX matTrans;
+	matTrans = DirectX::XMMatrixTranslation(vector3.x, vector3.y, vector3.z);
+	outMtx.Set(matTrans);
+
+	return outMtx;
+}
+
+myMath::Matrix4x4 myMath::Matrix4x4::CreateMatrixFromQuaternion(Quaternion quaternion) noexcept
 {
 	ALIGN16 DirectX::XMMATRIX mtx;
 	ALIGN16 DirectX::XMVECTOR qtVec;
@@ -137,6 +159,32 @@ myMath::Matrix4x4 myMath::Matrix4x4::CreateRotationZMatrix(Float32 rotationZ)
 	Matrix4x4 out;
 	out.Set(mtxRotZ);
 	return out;
+}
+
+myMath::Matrix4x4 myMath::Matrix4x4::CreateMatrixFromAIMatrix(aiMatrix4x4& aiMtx)
+{
+	Matrix4x4 mtx;
+	mtx._11 = aiMtx.a1;
+	mtx._21 = aiMtx.a2;
+	mtx._31 = aiMtx.a3;
+	mtx._41 = aiMtx.a4;
+
+	mtx._12 = aiMtx.b1;
+	mtx._22 = aiMtx.b2;
+	mtx._32 = aiMtx.b3;
+	mtx._42 = aiMtx.b4;
+
+	mtx._13 = aiMtx.c1;
+	mtx._23 = aiMtx.c2;
+	mtx._33 = aiMtx.c3;
+	mtx._43 = aiMtx.c4;
+
+	mtx._14 = aiMtx.d1;
+	mtx._24 = aiMtx.d2;
+	mtx._34 = aiMtx.d3;
+	mtx._44 = aiMtx.d4;
+
+	return mtx;;
 }
 
 

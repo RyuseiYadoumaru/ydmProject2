@@ -91,7 +91,7 @@ void ActionTestScene::BeginPlay()
 	g_material.LoadShader(TEXT("SkinnedVertexShader"), TEXT("GrayManps"));
 
 	// テクスチャ読み込み
-	g_texture.Load("GraymanMaskTex.png");
+	g_texture.Load("Assets/GraymanMaskTex.png");
 
 	DX11MtxIdentity(g_playerMtx);
 

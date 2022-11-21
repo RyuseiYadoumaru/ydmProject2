@@ -39,6 +39,7 @@ namespace SYSTEMS
 			}
 			auto buff = std::make_shared<TYPE>(windowName, posX, posY);
 			m_editorList[windowName] = buff;
+			return buff;
 		}
 
 

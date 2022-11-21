@@ -1,29 +1,31 @@
 #pragma once
 #include <DirectXMath.h>
+#include "myMath.h"
+#include "std.h"
+#include "macro.h"
 
 class BoneTransform
 {
 public:
 	BoneTransform();
-	BoneTransform(DirectX::XMFLOAT3 pos, DirectX::XMFLOAT4 rot);
+	BoneTransform(MY_MATH::Vector3 pos, MY_MATH::Quaternion rot);
 
 public:
-	// ゲッターセッター
-	DirectX::XMFLOAT3 GetPosition() const;
-	void SetPosition(DirectX::XMFLOAT3 pos);
+	const MY_MATH::Vector3& GetPosition() const noexcept { return m_position; }
+	void SetPosition(MY_MATH::Vector3 pos) noexcept { m_position = pos; }
 
-	DirectX::XMFLOAT4 GetRotation() const;
-	void SetRotation(DirectX::XMFLOAT4 rot);
+	const MY_MATH::Quaternion& GetRotation() const noexcept { return m_rotation; }
+	void SetRotation(MY_MATH::Quaternion rot) noexcept { m_rotation = rot; }
 
-	DirectX::XMFLOAT4X4 GetMatrix() const;
+	MY_MATH::Matrix4x4 GetMatrix() const;
 
 public:
 	static BoneTransform Lerp(const BoneTransform& trans1,
 		const BoneTransform& trans2,
-		float rate);
+		Float32 rate);
 
 private:
-	DirectX::XMFLOAT3 m_position;
-	DirectX::XMFLOAT4 m_rotation;
+	MY_MATH::Vector3	m_position;
+	MY_MATH::Quaternion m_rotation;
 };
 

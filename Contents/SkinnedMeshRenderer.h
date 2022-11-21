@@ -34,13 +34,9 @@ namespace GAME_SYSTEMS
 		Float32 m_blendParam = 0.0f;
 
 	private:
-		SharedPtr<Transform> m_ownerTransform;
-
-		// ‰¼‚¨‚«
-		SharedPtr<Material> m_material = nullptr;
-		SharedPtr<Texture> m_texture = nullptr;
-
-		SharedPtr<SkeletalMesh> m_mesh = nullptr;
+		SharedPtr<Transform>	m_ownerTransform	= nullptr;
+		SharedPtr<SkeletalMesh> m_mesh				= nullptr;
+		SharedPtr<Material>		m_material			= nullptr;
 
 	private:
 		virtual void Start() override;

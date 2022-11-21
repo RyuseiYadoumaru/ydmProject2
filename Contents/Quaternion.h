@@ -7,6 +7,7 @@
 //* @date   July 2022
 //*****************************************************************************
 #pragma once
+#include <DirectXMath.h>
 #include "std.h"
 #include "Vector4.h"
 
@@ -22,6 +23,7 @@ namespace myMath
 	public:
 		static Quaternion CreateQuaternion(Matrix4x4& matrix);
 		static Quaternion Multiply(const Quaternion& qt1, const Quaternion& qt2);
+		static Quaternion Slerp(const Quaternion& startQt, const Quaternion& endQt, Float32 t);
 	public:
 		void Set(Float32 _x, Float32 _y, Float32 _z, Float32 _w) noexcept { x = _x; y = _y; z = _z; w = _w; }
 		void Set(DirectX::XMVECTOR& vector) noexcept { DirectX::XMStoreFloat4(this, vector); }

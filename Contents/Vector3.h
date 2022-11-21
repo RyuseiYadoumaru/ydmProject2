@@ -12,8 +12,13 @@
 
 namespace myMath
 {
+	class Matrix4x4;
+
 	class Vector3 : public DirectX::XMFLOAT3
 	{
+	public:
+		static Vector3 Larp(const Vector3& startVec3, const Vector3& endVec3, Float32 t);
+
 	public:
 		void Set(float _x, float _y, float _z) noexcept { x = _x; y = _y; z = _z; }
 		DirectX::XMVECTOR GetXMVector() noexcept { return DirectX::XMVectorSet(x, y, z, 0.0f); }

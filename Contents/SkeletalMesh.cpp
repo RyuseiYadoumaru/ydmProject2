@@ -8,10 +8,12 @@
 //*****************************************************************************
 #include "SkeletalMesh.h"
 #include "Skeleton.h"
+#include "AnimationClip.h"
 #include "Timer.h"
+#include "Matrix4x4.h"
 #include "../Animation.h"
-#include "../AnimationClip.h"
 #include "../System/DirectXGraphics.h"
+#include "../System/DX11SetBoneMatrix.h"
 
 #include <assimp/scene.h>
 
@@ -53,10 +55,19 @@ void GAME_SYSTEMS::SkeletalMesh::Releace()
 void GAME_SYSTEMS::SkeletalMesh::Render()
 {
 	// アニメーション更新
-	m_animation->SetBlendParameter(0.0f);
-	m_animation->UpdateAnimation(Timer::FixDeltaTime());
-	m_animation->UpdateConstantBufferBoneMatrix();
+	//m_animation->SetBlendParameter(0.0f);
+	m_animation->UpdateAnimation(0.0f);
+	//m_animation->UpdateConstantBufferBoneMatrix();
 
+	// ボーン行列生成
+	Vector<DirectX::XMFLOAT4X4> skeletonMatrixList;
+	for (auto& mtx : m_skeleton->GetBonesMatrix())
+	{
+		skeletonMatrixList.emplace_back(mtx);
+	}
+	systems::DX11SetBoneMatrix::GetInstance()->SetConstantBuffer(skeletonMatrixList);
+	
+	// メッシュ描画
 	ID3D11DeviceContext& devcon = systems::DirectXGraphics::GetInstance()->GetImmediateContext();
 	for (auto& polygon : m_meshList)
 	{
@@ -81,13 +92,16 @@ void GAME_SYSTEMS::SkeletalMesh::ProcessNode(aiNode* node, AssimpScene* assimpSc
 	// ノード内のメッシュの数分ループする
 	for (uInt32 i = 0; i < node->mNumMeshes; i++)
 	{
-		int meshindex = node->mMeshes[i];			// ノードのi番目メッシュのインデックスを取得
-		aiMesh* mesh = assimpScene->GetScene()->mMeshes[meshindex];	// シーンからメッシュ本体を取り出す
+		// ノードのi番目メッシュのインデックスを取得
+		Int32 meshindex = node->mMeshes[i];			
+		
+		// シーンからメッシュ本体を取り出す
+		aiMesh* mesh = assimpScene->GetScene()->mMeshes[meshindex];
 		m_meshList.push_back(this->ProcessMesh(mesh, assimpScene, meshindex));
 	}
 
 	// 子ノードについても解析
-	for (unsigned int i = 0; i < node->mNumChildren; i++)
+	for (uInt32 i = 0; i < node->mNumChildren; i++)
 	{
 		this->ProcessNode(node->mChildren[i], assimpScene);
 	}
@@ -96,11 +110,10 @@ void GAME_SYSTEMS::SkeletalMesh::ProcessNode(aiNode* node, AssimpScene* assimpSc
 GAME_SYSTEMS::Polygon<SkeletalMesh::Vertex> GAME_SYSTEMS::SkeletalMesh::ProcessMesh(aiMesh* mesh, AssimpScene* assimpScene, Int32 meshidx)
 {
 	std::vector<Vertex> vertices;			// 頂点
-	std::vector<unsigned int> indices;		// 面の構成情報
-	//std::vector<Texture> textures;			// テクスチャ
+	std::vector<uInt32> indices;		// 面の構成情報
 
 	// 頂点情報を取得
-	for (unsigned int i = 0; i < mesh->mNumVertices; i++)
+	for (uInt32 i = 0; i < mesh->mNumVertices; i++)
 	{
 		Vertex vertex;
 
@@ -109,42 +122,30 @@ GAME_SYSTEMS::Polygon<SkeletalMesh::Vertex> GAME_SYSTEMS::SkeletalMesh::ProcessM
 		vertex.m_Pos.z = mesh->mVertices[i].z;
 
 		// 法線ベクトルが存在するか？
-		if (mesh->HasNormals()) {
+		if (mesh->HasNormals()) 
+		{
 			vertex.m_Normal.x = mesh->mNormals[i].x;
 			vertex.m_Normal.y = mesh->mNormals[i].y;
 			vertex.m_Normal.z = mesh->mNormals[i].z;
 		}
-		else {
-			vertex.m_Normal.x = 0.0f;
-			vertex.m_Normal.y = 0.0f;
-			vertex.m_Normal.z = 0.0f;
-		}
 
 		// テクスチャ座標（０番目）が存在するか？
-		if (mesh->HasTextureCoords(0)) {
+		if (mesh->HasTextureCoords(0)) 
+		{
 			vertex.m_Tex.x = mesh->mTextureCoords[0][i].x;
 			vertex.m_Tex.y = mesh->mTextureCoords[0][i].y;
 		}
-
-		vertex.m_BoneNum = 0;
-
-		for (unsigned int b = 0; b < 4; b++)
-		{
-			vertex.m_BoneIndex[b] = -1;
-			vertex.m_BoneWeight[b] = 0.0f;
-		}
-
 		vertices.push_back(vertex);
 	}
 
 	//ボーンデータ初期化
-	for (unsigned int b = 0; b < mesh->mNumBones; b++)
+	for (uInt32 b = 0; b < mesh->mNumBones; b++)
 	{
 		// メッシュに関連づいてるボーン情報を取得
 		aiBone* bone = mesh->mBones[b];
 
 		// ボーンに関連づいている頂点を選び､ウェイト値をセットする
-		for (unsigned int widx = 0; widx < bone->mNumWeights; widx++)
+		for (uInt32 widx = 0; widx < bone->mNumWeights; widx++)
 		{
 			aiVertexWeight weight = bone->mWeights[widx];
 
@@ -154,8 +155,7 @@ GAME_SYSTEMS::Polygon<SkeletalMesh::Vertex> GAME_SYSTEMS::SkeletalMesh::ProcessM
 			vertices[vidx].m_BoneWeight[vertices[vidx].m_BoneNum] = weight.mWeight;
 
 			// 該当するボーン名のインデックス値をセット
-			vertices[vidx].m_BoneIndex[vertices[vidx].m_BoneNum] = assimpScene
-				->GetBoneIndexByName(bone->mName.C_Str());
+			vertices[vidx].m_BoneIndex[vertices[vidx].m_BoneNum] = assimpScene->GetBoneIndexByName(bone->mName.C_Str());
 
 			vertices[vidx].m_BoneNum++;
 
@@ -163,28 +163,12 @@ GAME_SYSTEMS::Polygon<SkeletalMesh::Vertex> GAME_SYSTEMS::SkeletalMesh::ProcessM
 		}
 	}
 
-	//// テクスチャ情報を取得する
-	//if (mesh->mMaterialIndex >= 0)
-	//{
-	//	// このメッシュのマテリアルインデックス値を取得する
-	//	int	mtrlidx = mesh->mMaterialIndex;
-
-	//	// シーンからマテリアルデータを取得する
-	//	aiMaterial* material = scene->mMaterials[mtrlidx];
-
-	//	// このマテリアルに関連づいたテクスチャを取り出す
-	//	std::vector<Texture> diffuseMaps = this->loadMaterialTextures(material, aiTextureType_DIFFUSE, "texture_diffuse", scene);
-
-	//	// このメッシュで使用しているテクスチャを保存
-	//	textures.insert(textures.end(), diffuseMaps.begin(), diffuseMaps.end());
-	//}
-
 	// 面の構成情報を取得
-	for (unsigned int i = 0; i < mesh->mNumFaces; i++)
+	for (uInt32 i = 0; i < mesh->mNumFaces; i++)
 	{
 		aiFace face = mesh->mFaces[i];
-
-		for (unsigned int j = 0; j < face.mNumIndices; j++) {
+		for (uInt32 j = 0; j < face.mNumIndices; j++)
+		{
 			indices.push_back(face.mIndices[j]);
 		}
 	}

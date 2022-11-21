@@ -16,7 +16,7 @@ SharedPtr<StaticMesh> GAME_SYSTEMS::MeshManager::GetStaticMesh(T_String fileName
 	else
 	{
 		if (TOOLS::FileSystem::GetFileExt(fileName) == "x" ||
-			TOOLS::FileSystem::GetFileExt(fileName) != "obj")
+			TOOLS::FileSystem::GetFileExt(fileName) == "obj")
 		{
 			m_staticMeshList[fileName] = std::make_shared<StaticMesh>();
 			m_staticMeshList[fileName]->Load(GetFilePath(fileName));
@@ -27,7 +27,19 @@ SharedPtr<StaticMesh> GAME_SYSTEMS::MeshManager::GetStaticMesh(T_String fileName
 
 SharedPtr<SkeletalMesh> GAME_SYSTEMS::MeshManager::GetSkeletalMesh(T_String fileName)
 {
-	return SharedPtr<SkeletalMesh>();
+	if (m_skeletalMeshList.contains(fileName) == true)
+	{
+		return m_skeletalMeshList[fileName];
+	}
+	else
+	{
+		if (TOOLS::FileSystem::GetFileExt(fileName) == "fbx")
+		{
+			m_skeletalMeshList[fileName] = std::make_shared<SkeletalMesh>();
+			m_skeletalMeshList[fileName]->Load(GetFilePath(fileName));
+		}
+	}
+	return m_skeletalMeshList[fileName];
 }
 
 void GAME_SYSTEMS::MeshManager::Releace()
@@ -41,6 +53,10 @@ void GAME_SYSTEMS::MeshManager::Releace()
 	{
 		mesh.second->Releace();
 	}
+
+	m_staticMeshList[TERRAIN] = std::make_shared<DefaultStaticMesh>();
+	m_staticMeshList[TERRAIN]->Load(TERRAIN);
+
 }
 
 void GAME_SYSTEMS::MeshManager::SetUp()

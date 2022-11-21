@@ -63,26 +63,26 @@ namespace systems
 
 
 	private:
-		ComPtr<ID3D11Device>			m_device;						//DIRECT3DDEVICE11デバイス
-		ComPtr<ID3D11DeviceContext>		m_immediateContext;				//DIRECT3DDEVICE11デバイスコンテキスト
-		ComPtr<IDXGISwapChain>			m_swapChain;					//スワップチェイン
+		ComPtr<ID3D11Device>			m_device				= nullptr;	// DIRECT3DDEVICE11デバイス
+		ComPtr<ID3D11DeviceContext>		m_immediateContext		= nullptr;	// DIRECT3DDEVICE11デバイスコンテキスト
+		ComPtr<IDXGISwapChain>			m_swapChain				= nullptr;	// スワップチェイン
 
-		ComPtr<ID3D11RenderTargetView>	m_renderTargetView;				//レンダーターゲットビュー
-		ComPtr<ID3D11Texture2D>			m_depthStencilBuffer;			//Ｚバッファ、ステンシルバッファ
-		ComPtr<ID3D11DepthStencilState>	m_depthStencilState;			//Ｚバッファ、ステンシルステート
-		ComPtr<ID3D11DepthStencilView>	m_depthStencilView;				//Ｚバッファ、ステンシルビュー
-		ComPtr<ID3D11RasterizerState>	m_rasterState;					//ラスターステータス
+		ComPtr<ID3D11RenderTargetView>	m_renderTargetView		= nullptr;	// レンダーターゲットビュー
+		ComPtr<ID3D11Texture2D>			m_depthStencilBuffer	= nullptr;	// Ｚバッファ、ステンシルバッファ
+		ComPtr<ID3D11DepthStencilState>	m_depthStencilState		= nullptr;	// Ｚバッファ、ステンシルステート
+		ComPtr<ID3D11DepthStencilView>	m_depthStencilView		= nullptr;	// Ｚバッファ、ステンシルビュー
+		ComPtr<ID3D11RasterizerState>	m_rasterState			= nullptr;	// ラスターステータス
 
-		D3D_DRIVER_TYPE					m_driverType;					//ドライバタイプ
-		D3D_FEATURE_LEVEL				m_featureLevel;					//機能レベル
+		D3D_DRIVER_TYPE					m_driverType			= D3D_DRIVER_TYPE::D3D_DRIVER_TYPE_NULL;		// ドライバタイプ
+		D3D_FEATURE_LEVEL				m_featureLevel			= D3D_FEATURE_LEVEL::D3D_FEATURE_LEVEL_11_0;	// 機能レベル
 
-		ComPtr<ID3D11BlendState>		m_alphaEnableBlendingState;		//アルファブレンドステート（有効）
-		ComPtr<ID3D11BlendState>		m_alphaDisableBlendingState;	//アルファブレンドステート（無効）
+		ComPtr<ID3D11BlendState>		m_alphaEnableBlendingState	= nullptr;	// アルファブレンドステート（有効）
+		ComPtr<ID3D11BlendState>		m_alphaDisableBlendingState	= nullptr;	// アルファブレンドステート（無効）
 
-		ComPtr<ID3D11SamplerState>		m_samplerState;					//サンプラーステート
+		ComPtr<ID3D11SamplerState>		m_samplerState				= nullptr;	// サンプラーステート
 
-		uInt32							m_backBufferWidth;				//バックバッファXサイズ
-		uInt32							m_backBufferHeight;				//バックバッファYサイズ
+		uInt32							m_backBufferWidth	= 0;				// バックバッファXサイズ
+		uInt32							m_backBufferHeight	= 0;				// バックバッファYサイズ
 
 	};
 }

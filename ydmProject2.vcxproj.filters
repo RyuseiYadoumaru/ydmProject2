@@ -208,6 +208,15 @@
     <Filter Include="Contents\Resource\Texture">
       <UniqueIdentifier>{abbfa942-ad2e-4138-8a2f-89d59ddd0474}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\Resource\Animation">
+      <UniqueIdentifier>{bdfc06a7-da81-46d8-a04f-51be619a1985}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Resource\Animation\Private">
+      <UniqueIdentifier>{0459e282-f207-4444-9625-c68ff1977bce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Resource\Animation\KeyFrame">
+      <UniqueIdentifier>{8d92627f-4e05-42c1-8bca-07726529a81f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="System\Console.cpp">
@@ -339,12 +348,6 @@
     <ClCompile Include="Animation.cpp">
       <Filter>UseSample\Animation</Filter>
     </ClCompile>
-    <ClCompile Include="AnimationClip.cpp">
-      <Filter>UseSample\Animation</Filter>
-    </ClCompile>
-    <ClCompile Include="Motion.cpp">
-      <Filter>UseSample\Resorce</Filter>
-    </ClCompile>
     <ClCompile Include="System\GamePadSystem.cpp">
       <Filter>System\GameSubSystem\Input</Filter>
     </ClCompile>
@@ -402,9 +405,6 @@
     <ClCompile Include="Contents\Skeleton.cpp">
       <Filter>Contents\Resource\Mesh\Private\Skelton</Filter>
     </ClCompile>
-    <ClCompile Include="Contents\Bone.cpp">
-      <Filter>Contents\Resource\Mesh\Private\Skelton</Filter>
-    </ClCompile>
     <ClCompile Include="Contents\SkinnedMeshRenderer.cpp">
       <Filter>Contents\Component\Graphics</Filter>
     </ClCompile>
@@ -438,9 +438,6 @@
     <ClCompile Include="Contents\StaticMesh.cpp">
       <Filter>Contents\Resource\Mesh\Private</Filter>
     </ClCompile>
-    <ClCompile Include="Contents\DefaultStaticMesh.cpp">
-      <Filter>Contents\Resource\Mesh</Filter>
-    </ClCompile>
     <ClCompile Include="System\RenderManager.cpp">
       <Filter>System\Renderer</Filter>
     </ClCompile>
@@ -455,6 +452,18 @@
     </ClCompile>
     <ClCompile Include="Contents\TextureManager.cpp">
       <Filter>Contents\Manager\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Contents\Vector3.cpp">
+      <Filter>Contents\Math\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Contents\DefaultStaticMesh.cpp">
+      <Filter>Contents\Resource\Mesh\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Contents\Motion.cpp">
+      <Filter>Contents\Resource\Animation\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Contents\AnimationClip.cpp">
+      <Filter>Contents\Resource\Animation\Private</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -629,20 +638,11 @@
     <ClInclude Include="Animation.h">
       <Filter>UseSample\Animation</Filter>
     </ClInclude>
-    <ClInclude Include="AnimationClip.h">
-      <Filter>UseSample\Animation</Filter>
-    </ClInclude>
     <ClInclude Include="KeyFrame.h">
-      <Filter>UseSample\Resorce</Filter>
-    </ClInclude>
-    <ClInclude Include="Motion.h">
       <Filter>UseSample\Resorce</Filter>
     </ClInclude>
     <ClInclude Include="System\GamePadSystem.h">
       <Filter>System\GameSubSystem\Input</Filter>
-    </ClInclude>
-    <ClInclude Include="BlendAnimation.h">
-      <Filter>UseSample\Animation</Filter>
     </ClInclude>
     <ClInclude Include="Contents\Graphics.h">
       <Filter>Contents\Component\Base</Filter>
@@ -734,9 +734,6 @@
     <ClInclude Include="Contents\SkeletalMesh.h">
       <Filter>Contents\Resource\Mesh</Filter>
     </ClInclude>
-    <ClInclude Include="Contents\Mesh.h">
-      <Filter>Contents\Resource\Mesh</Filter>
-    </ClInclude>
     <ClInclude Include="System\ThirdParty\Assimp\Assimpscene.h">
       <Filter>System\ThirdParty\Assimp</Filter>
     </ClInclude>
@@ -784,6 +781,21 @@
     </ClInclude>
     <ClInclude Include="Contents\Texture.h">
       <Filter>Contents\Resource\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Contents\myMath.h">
+      <Filter>Contents\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="BlendAnimation.h">
+      <Filter>UseSample\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Contents\Mesh.h">
+      <Filter>Contents\Resource\Mesh\Private</Filter>
+    </ClInclude>
+    <ClInclude Include="Contents\AnimationClip.h">
+      <Filter>Contents\Resource\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Contents\Motion.h">
+      <Filter>Contents\Resource\Animation</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

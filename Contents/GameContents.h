@@ -13,14 +13,7 @@
 #include "Tag.h"
 
 // 数学
-#include "Vector2.h"
-#include "Vector3.h"
-#include "Vector4.h"
-#include "Color.h"
-#include "Matrix4x4.h"
-#include "Quaternion.h" 
-#include "Easing.h"
-
+#include "myMath.h"
 
 // コンポーネント
 // 物理周り

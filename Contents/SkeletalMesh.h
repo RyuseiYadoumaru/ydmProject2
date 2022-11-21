@@ -15,12 +15,12 @@ namespace GAME_SYSTEMS
 	{
 		struct Vertex
 		{
-			DirectX::XMFLOAT3 m_Pos;	// 位置
-			DirectX::XMFLOAT3 m_Normal;	// 法線
-			DirectX::XMFLOAT2 m_Tex;	// UV座標
-			int32_t	m_BoneIndex[4];		// ボーンインデックス
-			float	m_BoneWeight[4];	// ウェイト値
-			int32_t	m_BoneNum;			// ボーン数
+			DirectX::XMFLOAT3 m_Pos		= {0.0f, 0.0f, 0.0f};			// 位置
+			DirectX::XMFLOAT3 m_Normal	= { 0.0f, 0.0f, 0.0f };			// 法線
+			DirectX::XMFLOAT2 m_Tex		= { 0.0f, 0.0f };				// UV座標
+			Int32	m_BoneIndex[4]		= { -1, -1, -1, -1 };			// ボーンインデックス
+			Float32	m_BoneWeight[4]		= { 0.0f, 0.0f, 0.0f, 0.0f };	// ウェイト値
+			Int32	m_BoneNum			= 0;							// ボーン数
 		};
 
 	public:
@@ -39,7 +39,7 @@ namespace GAME_SYSTEMS
 	private:
 		Vector<Polygon<SkeletalMesh::Vertex>> m_meshList;
 		SharedPtr<Skeleton> m_skeleton		= nullptr;
+		SharedPtr<AnimationClip> m_animationClip = nullptr;
 		SharedPtr<Animation> m_animation	= nullptr;
-		Vector<SharedPtr<AnimationClip>> m_animationClipList;
 	};
 }

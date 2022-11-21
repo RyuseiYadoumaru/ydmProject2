@@ -35,12 +35,9 @@ namespace GAME_SYSTEMS
 		bool m_useLit = false;
 
 	private:
-		SharedPtr<Transform> m_ownerTransform;
-
-		// ‰¼‚¨‚«
-		SharedPtr<StaticMesh> m_meshData;
-		SharedPtr<Material> m_material = nullptr;
-		SharedPtr<Texture> m_texture = nullptr;
+		SharedPtr<Transform>	m_ownerTransform	= nullptr;
+		SharedPtr<StaticMesh>	m_meshData			= nullptr;
+		SharedPtr<Material>		m_material			= nullptr;
 
 	private:
 		virtual void Start() override;
