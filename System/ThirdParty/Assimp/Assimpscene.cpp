@@ -2,6 +2,7 @@
 #include	<assimp\postprocess.h>
 #include	<assimp/cimport.h>
 #include	<assimp/scene.h>
+#include	<assimp/mesh.h>
 
 #include	"Assimpscene.h"
 
@@ -11,12 +12,12 @@ bool AssimpScene::Init(T_String filename) {
 		aiProcess_ConvertToLeftHanded |
 		aiProcessPreset_TargetRealtime_MaxQuality);
 
-	if (m_Scene == nullptr) {
+	if (m_Scene == nullptr) 
+	{
 		return false;
 	}
 
 	CreateBoneIndexMap(m_Scene->mRootNode);
-
 	return true;
 }
 
@@ -29,6 +30,7 @@ void AssimpScene::Exit() {
 const aiScene* AssimpScene::GetScene() const {
 	return m_Scene;
 }
+
 
 // アニメーションを持っているか
 bool AssimpScene::HasAnimation() {
