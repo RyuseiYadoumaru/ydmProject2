@@ -24,6 +24,15 @@ USING_GAME_SYSTEMS
 #include "Texture.h"
 #include "../System/ThirdParty/Assimp/Assimpscene.h"
 
+SharedPtr<Material> GAME_SYSTEMS::MeshRenderer::GetMaterial() noexcept
+{
+	if (m_material == nullptr)
+	{
+		m_material = std::make_shared<Material>();
+		m_material->LoadShader(TEXT("DefaultMeshVertexShader"), TEXT("UnlitDefaultPixelShader"));
+	}
+	return m_material;
+}
 
 void GAME_SYSTEMS::MeshRenderer::Start()
 {
@@ -36,12 +45,21 @@ void GAME_SYSTEMS::MeshRenderer::Start()
 	}
 
 	// マテリアル生成
-	m_material = m_meshData->GetMaterial();
-	m_material->AddTexture(TextureManager::GetInstance()->GetTexture(TEXT("MeshTexture.png")), 0);
+	if (m_material == nullptr)
+	{
+		m_material = std::make_shared<Material>();
+		m_material->LoadShader(TEXT("DefaultMeshVertexShader"), TEXT("UnlitDefaultPixelShader"));
+	}
 }
 
 void GAME_SYSTEMS::MeshRenderer::Update()
 {
+	if (m_meshData == nullptr)
+	{
+		SYSTEMS::MessageWindow::GetInstance()->Error("Not Static Mesh");
+		return;
+	}
+
 	// 定数バッファ設定
 	auto worldMatrix = m_ownerTransform->GetWorldMatrix();
 	DX11SetTransform::GetInstance()->SetTransform(DX11SetTransform::TYPE::WORLD, worldMatrix);

@@ -12,7 +12,7 @@ USING_SYSTEMS;
 
 #include "../System/ThirdParty/Assimp/Assimpscene.h"
 #include "../Animation.h"
-#include "../AnimationClip.h"
+#include "AnimationClip.h"
 #include "../BlendAnimation.h"
 
 #include "../dx11mathutil.h"
@@ -25,9 +25,9 @@ DirectX::XMFLOAT4X4 g_playerMtx;
 gameSystems::Material	g_material;
 gameSystems::Skeleton	g_skeleton;
 gameSystems::Texture	g_texture;
-Animation g_animation;
-Vector<UniquePtr<AnimationClip>> g_animationClipList;
-BlendAnimation g_blendAnimation;
+//Animation g_animation;
+Vector<UniquePtr<gameSystems::AnimationClip>> g_animationClipList;
+//BlendAnimation g_blendAnimation;
 
 Float32 g_animParam = 0.0f;
 
@@ -49,7 +49,7 @@ void ActionTestScene::BeginPlay()
 	//g_meshData.Load(&assimpScene);
 	// データからスケルトン読み込み
 	g_skeleton.Load(&assimpScene);
-	g_animation.SetSkeleton(&g_skeleton);
+	//g_animation.SetSkeleton(&g_skeleton);
 
 	// AssimpScene解放
 	assimpScene.Exit();
@@ -65,27 +65,27 @@ void ActionTestScene::BeginPlay()
 	for (int i = 0; i < animationNameList.size(); i++)
 	{
 		assimpScene.Init(animationNameList[i]);
-		UniquePtr<AnimationClip> animPtr;
-		animPtr = std::make_unique<AnimationClip>();
+		UniquePtr<gameSystems::AnimationClip> animPtr;
+		animPtr = std::make_unique<gameSystems::AnimationClip>();
 		animPtr->Load(&assimpScene, 0);
 		g_animationClipList.emplace_back(std::move(animPtr));
 		assimpScene.Exit();
 	}
 
 	// ブレンドアニメーション作成
-	Float32 param = 0.0f;
-	for (auto& animClip : g_animationClipList)
-	{
-		g_blendAnimation.AddBlendSample(animClip.get(), param);
-		param += 0.5f;
-	}
-	g_animation.AddAnimationClips(&g_blendAnimation);
+	//Float32 param = 0.0f;
+	//for (auto& animClip : g_animationClipList)
+	//{
+	//	g_blendAnimation.AddBlendSample(animClip.get(), param);
+	//	param += 0.5f;
+	//}
+	//g_animation.AddAnimationClips(&g_blendAnimation);
 
 	// アニメーション追加
-	for (auto& animClip : g_animationClipList)
-	{
-		g_animation.AddAnimationClips(animClip.get());
-	}
+	//for (auto& animClip : g_animationClipList)
+	//{
+	//	g_animation.AddAnimationClips(animClip.get());
+	//}
 
 	// シェーダ読み込み
 	g_material.LoadShader(TEXT("SkinnedVertexShader"), TEXT("GrayManps"));
@@ -122,10 +122,10 @@ void ActionTestScene::Tick()
 	DX11MakeWorldMatrix(g_playerMtx, angle, trans);
 
 	// ブレンドパラメーターセット
-	g_animation.SetBlendParameter(g_animParam);
+	//g_animation.SetBlendParameter(g_animParam);
 
 	// アニメーションを更新する
-	g_animation.UpdateAnimation(1.0f / 60.0f);
+	//g_animation.UpdateAnimation(1.0f / 60.0f);
 }
 
 void ActionTestScene::EndPlay()
@@ -137,7 +137,7 @@ void ActionTestScene::Render()
 	ID3D11DeviceContext& deviceContext = DirectXGraphics::GetInstance()->GetImmediateContext();
 
 	// データをシェーダーに転送
-	g_animation.UpdateConstantBufferBoneMatrix();
+	//g_animation.UpdateConstantBufferBoneMatrix();
 	g_material.SetShader();
 	g_texture.BindTexture(0);
 

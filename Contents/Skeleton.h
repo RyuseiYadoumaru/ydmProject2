@@ -22,20 +22,24 @@ namespace GAME_SYSTEMS
 	{
 	public:
 		bool Load(AssimpScene* assimpScene);
-
-		void CalcBonesMatrix(
-			const std::vector<MY_MATH::Matrix4x4>& animationMatrix,
-			int index,
-			MY_MATH::Matrix4x4 parentMatrix,
-			std::vector<MY_MATH::Matrix4x4>& outputMatrix);
+		void CreateAnimationMatrix(const Vector<MY_MATH::Matrix4x4>& animMtxList);
+		void InitDefaultMatrix();
 
 	public:
 		Vector<MY_MATH::Matrix4x4>& GetBonesMatrix()  noexcept { return m_bonesMatrix; }
 		Bone* GetRootBone() noexcept { return m_rootBone; }
 		Bone* GetBoneByIndex(Int32 index) noexcept { return &m_boneList[index]; }
-		Int32 GetBoneNum() const noexcept { return static_cast<uInt32>(m_boneList.size()); };
+		Int32 GetBoneNum() const noexcept { return static_cast<Int32>(m_boneList.size()); };
 
 	private:
+		// ボーン行列作成
+		void CalcBonesMatrix(
+			const Vector<MY_MATH::Matrix4x4>& animationMatrix,
+			Int32 index,
+			MY_MATH::Matrix4x4 parentMatrix,
+			Vector<MY_MATH::Matrix4x4>& outputMatrix);
+
+
 		// ボーンを生成
 		void CreateBoneList(AssimpScene* assimpScene, aiNode* node, Int32 parentIndex);
 

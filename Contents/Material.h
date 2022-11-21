@@ -45,7 +45,9 @@ namespace GAME_SYSTEMS
 		void AddTexture(SharedPtr<Texture> texture, uInt32 slot);
 		void Unload();
 		void SetShader();
-	
+
+	public:
+		Material& operator=(const Material& mat) noexcept;
 
 	private:
 		myMath::Color m_ambientColor;

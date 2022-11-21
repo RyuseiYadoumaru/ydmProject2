@@ -37,6 +37,17 @@ void GAME_SYSTEMS::StaticMesh::Render()
 	}
 }
 
+StaticMesh& GAME_SYSTEMS::StaticMesh::operator=(const StaticMesh& staticMesh) noexcept
+{
+	m_meshList = staticMesh.m_meshList;
+	if (m_material == nullptr)
+	{
+		m_material = std::make_shared<Material>();
+	}
+	m_material = staticMesh.m_material;
+	return *this;
+}
+
 void GAME_SYSTEMS::StaticMesh::LoadMaterial()
 {
 	m_material = std::make_shared <Material>();

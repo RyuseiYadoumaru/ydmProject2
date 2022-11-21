@@ -154,16 +154,16 @@
       </DeploymentContent>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </DeploymentContent>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="BlendAnimation.cpp">
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </DeploymentContent>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </DeploymentContent>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="BoneTransform.cpp">
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -174,6 +174,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Contents\AnimationClip.cpp" />
+    <ClCompile Include="Contents\Animator.cpp" />
     <ClCompile Include="Contents\Color.cpp" />
     <ClCompile Include="Contents\Debug.cpp" />
     <ClCompile Include="Contents\DefaultCamera.cpp" />
@@ -190,6 +191,7 @@
     <ClCompile Include="Contents\Matrix4x4.cpp" />
     <ClCompile Include="Contents\MeshManager.cpp" />
     <ClCompile Include="Contents\MeshRenderer.cpp" />
+    <ClCompile Include="Contents\Miscellaneous.cpp" />
     <ClCompile Include="Contents\Motion.cpp" />
     <ClCompile Include="Contents\Mouse.cpp" />
     <ClCompile Include="Contents\Physics.cpp" />
@@ -199,7 +201,10 @@
     <ClCompile Include="Contents\SceneManager.cpp" />
     <ClCompile Include="Contents\Script.cpp" />
     <ClCompile Include="Contents\ShaderManager.cpp" />
-    <ClCompile Include="Contents\SkeletalMesh.cpp" />
+    <ClCompile Include="Contents\SkeletalMesh.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Contents\Skeleton.cpp" />
     <ClCompile Include="Contents\SkinnedMeshRenderer.cpp" />
     <ClCompile Include="Contents\StaticMesh.cpp" />
@@ -259,16 +264,16 @@
       </DeploymentContent>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </DeploymentContent>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="BlendAnimation.h">
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </DeploymentContent>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </DeploymentContent>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="BoneTransform.h">
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -287,6 +292,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="Contents\AnimationClip.h" />
+    <ClInclude Include="Contents\Animator.h" />
     <ClInclude Include="Contents\Bone.h" />
     <ClInclude Include="Contents\Color.h" />
     <ClInclude Include="Contents\Debug.h" />
@@ -310,6 +316,7 @@
     <ClInclude Include="Contents\Matrix4x4.h" />
     <ClInclude Include="Contents\MeshHeader.h" />
     <ClInclude Include="Contents\MeshManager.h" />
+    <ClInclude Include="Contents\Miscellaneous.h" />
     <ClInclude Include="Contents\Motion.h" />
     <ClInclude Include="Contents\myMath.h" />
     <ClInclude Include="Contents\Polygon.h" />

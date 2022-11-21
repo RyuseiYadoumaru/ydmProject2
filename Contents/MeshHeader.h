@@ -21,7 +21,7 @@ namespace GAME_SYSTEMS
 	class Skeleton;
 	class AnimationClip;
 }
-class Animation;
+//class Animation;
 
 struct aiNode;
 struct aiMesh;

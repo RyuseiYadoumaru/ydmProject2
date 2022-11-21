@@ -29,9 +29,20 @@ void GAME_SYSTEMS::SkeletalMesh::Load(T_String meshName)
 
 	// ボーンデータ作成
 	m_skeleton = std::make_shared<Skeleton>();
-	m_animation = std::make_shared<Animation>();
 	m_skeleton->Load(&m_assimpScene);
-	m_animation->SetSkeleton(m_skeleton.get());
+
+	// アニメーションデータ作成
+	if (m_assimpScene.HasAnimation() == true)
+	{
+		m_animationClip = std::make_shared<AnimationClip>();
+		m_animationClip->Load(&m_assimpScene);
+	}
+
+	// デフォルトボーン行列作成
+	Vector<MY_MATH::Matrix4x4> animMtxList;
+	m_animationClip->CalcAnimationMatrix(animMtxList, m_skeleton->GetBoneNum());
+	m_skeleton->CreateAnimationMatrix(animMtxList);
+	m_skeleton->InitDefaultMatrix();
 
 	m_assimpScene.Exit();
 }
@@ -42,9 +53,9 @@ void GAME_SYSTEMS::SkeletalMesh::Releace()
 	{
 		polygon.Uninit();
 	}
-	if (m_animation != nullptr)
+	if (m_animationClip != nullptr)
 	{
-		m_animation = nullptr;
+		m_animationClip = nullptr;
 	}
 	if (m_skeleton != nullptr)
 	{
@@ -56,7 +67,7 @@ void GAME_SYSTEMS::SkeletalMesh::Render()
 {
 	// アニメーション更新
 	//m_animation->SetBlendParameter(0.0f);
-	m_animation->UpdateAnimation(0.0f);
+	//m_animation->UpdateAnimation(0.0f);
 	//m_animation->UpdateConstantBufferBoneMatrix();
 
 	// ボーン行列生成
@@ -75,16 +86,12 @@ void GAME_SYSTEMS::SkeletalMesh::Render()
 	}
 }
 
-void GAME_SYSTEMS::SkeletalMesh::SetAnimationClip(T_String animDataName)
+SkeletalMesh& GAME_SYSTEMS::SkeletalMesh::operator=(const SkeletalMesh& skeletal) noexcept
 {
-	m_assimpScene.Init(animDataName);
-
-	// アニメーションデータ作成
-	SharedPtr<AnimationClip> animClip = std::make_shared<AnimationClip>();
-	animClip->Load(&m_assimpScene, 0);
-	m_animation->AddAnimationClips(animClip.get());
-	m_animationClipList.emplace_back(std::move(animClip));
-	m_assimpScene.Exit();
+	m_meshList = skeletal.m_meshList;
+	m_animationClip = skeletal.m_animationClip;
+	m_skeleton = skeletal.m_skeleton;
+	return *this;
 }
 
 void GAME_SYSTEMS::SkeletalMesh::ProcessNode(aiNode* node, AssimpScene* assimpScene)

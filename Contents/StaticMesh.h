@@ -23,12 +23,14 @@ namespace GAME_SYSTEMS
 			DirectX::XMFLOAT3 Normal	= { 0.0f, 0.0f, 0.0f };
 		};
 	public:
-	SharedPtr<Material> GetMaterial() const noexcept { return m_material; }
+		SharedPtr<Material> GetMaterial() const noexcept { return m_material; }
 
 		virtual void Load(T_String meshName) override;
 		virtual void Releace() override;
 		virtual void Render() override;
 
+	public:
+		StaticMesh& operator=(const StaticMesh& staticMesh) noexcept;
 	protected:
 		Vector<Polygon<StaticMesh::Vertex>> m_meshList;
 		SharedPtr<Material> m_material = nullptr;

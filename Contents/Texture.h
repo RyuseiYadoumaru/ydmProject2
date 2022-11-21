@@ -20,6 +20,9 @@ namespace GAME_SYSTEMS
 		void BindTexture(uInt32 registerIndex);
 		void Releace();
 
+	public:
+		Texture& operator=(const Texture& texture) noexcept { m_srv = texture.m_srv; return *this; }
+
 	private:
 		ComPtr<ID3D11ShaderResourceView> m_srv = nullptr;
 

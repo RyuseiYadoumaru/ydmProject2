@@ -29,10 +29,20 @@ USING_GAME_SYSTEMS
 #include "TextureManager.h"
 
 #include "../System/ThirdParty/Assimp/Assimpscene.h"
-#include "../Animation.h"
-#include "../AnimationClip.h"
+//#include "../Animation.h"
+//#include "../AnimationClip.h"
 #include "../BlendAnimation.h"
 
+
+SharedPtr<Material> GAME_SYSTEMS::SkinnedMeshRenderer::GetMaterial() noexcept
+{
+	if (m_material == nullptr)
+	{
+		m_material = std::make_shared<Material>();
+		m_material->LoadShader(TEXT("SkinnedVertexShader"), TEXT("UnlitDefaultPixelShader"));
+	}
+	return m_material;
+}
 
 void GAME_SYSTEMS::SkinnedMeshRenderer::Start()
 {
@@ -43,19 +53,22 @@ void GAME_SYSTEMS::SkinnedMeshRenderer::Start()
 		MessageWindow::Error("トランスフォームがコンポーネントされていません!");
 	}
 
-	// メッシュデータ作成
-	m_mesh = std::make_shared<SkeletalMesh>();
-	m_mesh->Load(TEXT("Assets/ThirdPerson.fbx"));
-	m_mesh->SetAnimationClip(TEXT("Assets/ThirdPersonIdle.FBX"));
-
-	m_material = std::make_shared<Material>();
-	m_material->LoadShader(TEXT("SkinnedVertexShader"), TEXT("GrayManps"));
-	m_material->AddTexture(TextureManager::GetInstance()->GetTexture("GraymanMaskTex.png"), 0);
+	if (m_material == nullptr)
+	{
+		m_material = std::make_shared<Material>();
+		m_material->LoadShader(TEXT("SkinnedVertexShader"), TEXT("UnlitDefaultPixelShader"));
+	}
 
 }
 
 void GAME_SYSTEMS::SkinnedMeshRenderer::Update()
 {
+	if (m_mesh == nullptr)
+	{
+		SYSTEMS::MessageWindow::GetInstance()->Error("Not Skinned Mesh");
+		return;
+	}
+
 	// シェーダー生成
 	m_material->SetShader();
 

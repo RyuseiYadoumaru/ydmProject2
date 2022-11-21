@@ -20,6 +20,13 @@ namespace GAME_SYSTEMS
 		void Releace();
 		void BindShader();
 
+	public:
+		PixelShader& operator=(const PixelShader pixel) noexcept
+		{
+			m_pixelShader = pixel.m_pixelShader;
+			return *this;
+		}
+
 	private:
 		ComPtr<ID3D11PixelShader> m_pixelShader = nullptr;
 	};

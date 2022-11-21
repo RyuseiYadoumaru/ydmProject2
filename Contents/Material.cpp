@@ -85,3 +85,22 @@ void Material::SetShader()
 		tex.second->BindTexture(tex.first);
 	}
 }
+
+Material& GAME_SYSTEMS::Material::operator=(const Material& mat) noexcept
+{
+	m_ambientColor = mat.m_ambientColor;
+	m_diffuseColor = mat.m_diffuseColor;
+	m_specularColor = mat.m_specularColor;
+	if (m_vertexShader == nullptr)
+	{
+		m_vertexShader = std::make_shared<VertexShader>();
+	}
+	m_vertexShader = mat.m_vertexShader;
+	if (m_pixelShader == nullptr)
+	{
+		m_pixelShader = std::make_shared<PixelShader>();
+	}
+	m_pixelShader = mat.m_pixelShader;
+	m_textureList = mat.m_textureList;
+	return *this;
+}

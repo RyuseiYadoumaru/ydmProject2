@@ -9,6 +9,7 @@
 
 #include "GameObjectManager.h"
 #include "GameObject.h"
+#include "Miscellaneous.h"
 #include "Physics.h"
 #include "Graphics.h"
 #include "Script.h"
@@ -56,6 +57,7 @@ bool GAME_SYSTEMS::GameObjectManager::GameLogicUpdate()
 
 bool GAME_SYSTEMS::GameObjectManager::ComponentUpdate()
 {
+    Miscellaneous::MiscellaneousUpdate();
     Physics::PhysicsUpdate();
     //Graphics::GraphicsUpdate();
     return true;
@@ -69,6 +71,7 @@ bool GAME_SYSTEMS::GameObjectManager::GameObjectShutDown()
         object.second->ShutDown();
     }
 
+    Miscellaneous::MiscellaneousReleace();
     Physics::PhysicsReleace();
     Graphics::GraphicsReleace();
     Script::ScriptReleace();

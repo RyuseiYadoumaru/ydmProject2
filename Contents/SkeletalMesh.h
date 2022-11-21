@@ -28,7 +28,8 @@ namespace GAME_SYSTEMS
 		virtual void Releace() override;
 		virtual void Render() override;
 
-		void SetAnimationClip(T_String animDataName);
+	public:
+		SkeletalMesh& operator=(const SkeletalMesh& skeletal) noexcept;
 
 	private:
 		// ÉmÅ[ÉhâêÕ
@@ -38,8 +39,7 @@ namespace GAME_SYSTEMS
 
 	private:
 		Vector<Polygon<SkeletalMesh::Vertex>> m_meshList;
-		SharedPtr<Skeleton> m_skeleton		= nullptr;
-		SharedPtr<AnimationClip> m_animationClip = nullptr;
-		SharedPtr<Animation> m_animation	= nullptr;
+		SharedPtr<Skeleton>			m_skeleton		= nullptr;
+		SharedPtr<AnimationClip>	m_animationClip	= nullptr;
 	};
 }

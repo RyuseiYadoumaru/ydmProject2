@@ -23,6 +23,7 @@ class BlendAnimation;
 
 namespace GAME_SYSTEMS
 {
+	class SkeletalMesh;
 	class Material;
 	class Texture;
 	class Skeleton;
@@ -30,6 +31,13 @@ namespace GAME_SYSTEMS
 
 	class SkinnedMeshRenderer : public Graphics
 	{
+	public:
+		// メッシュ
+		void SetMesh(SharedPtr<SkeletalMesh> mesh) noexcept { m_mesh = mesh; }
+
+		// マテリアル
+		void SetMaterial(SharedPtr<Material> mat) noexcept { m_material = mat; }
+		SharedPtr<Material> GetMaterial() noexcept;
 	public:
 		Float32 m_blendParam = 0.0f;
 

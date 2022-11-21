@@ -7,6 +7,7 @@
 //* @date   November 2022
 //*****************************************************************************
 #include <assimp\scene.h>
+#include <assimp/mesh.h>
 #include "Skeleton.h"
 #include "Debug.h"
 #include "../System/ThirdParty/Assimp/Assimpscene.h"
@@ -61,11 +62,25 @@ bool Skeleton::Load(AssimpScene* assimpScene)
 	return true;
 }
 
+void GAME_SYSTEMS::Skeleton::CreateAnimationMatrix(const Vector<MY_MATH::Matrix4x4>& animMtxList)
+{
+	CalcBonesMatrix(
+		animMtxList,
+		m_rootBone->GetBoneIndex(),
+		MY_MATH::Matrix4x4::CreateMatrixIdentity(),
+		m_bonesMatrix);
+}
+
+void GAME_SYSTEMS::Skeleton::InitDefaultMatrix()
+{
+	m_defaultBonesMatrix = m_bonesMatrix;
+}
+
 // ボーンを生成
 void Skeleton::CreateBoneList(AssimpScene* assimpScene, aiNode* node, Int32 parentIndex)
 {
 	// 名前からボーン配列のインデックス番号を取得
-	int boneIndex = assimpScene->GetBoneIndexByName(node->mName.C_Str());
+	Int32 boneIndex = assimpScene->GetBoneIndexByName(node->mName.C_Str());
 
 	// ボーン情報を保存する
 	m_boneList[boneIndex].SetParentIndex(parentIndex);
@@ -120,10 +135,10 @@ void Skeleton::InitBonesOffsetMatrix(AssimpScene* assimpScene)
 }
 
 void Skeleton::CalcBonesMatrix(
-	const std::vector<MY_MATH::Matrix4x4>& animationMatrix,
-	int index,
+	const Vector<MY_MATH::Matrix4x4>& animationMatrix,
+	Int32 index,
 	MY_MATH::Matrix4x4 parentMatrix,
-	std::vector<MY_MATH::Matrix4x4>& outputMatrix)
+	Vector<MY_MATH::Matrix4x4>& outputMatrix)
 {
 	MY_MATH::Matrix4x4 animMatrix = animationMatrix[index];
 	MY_MATH::Matrix4x4 worldMatrix = MY_MATH::Matrix4x4::MatrixMultiply(animMatrix, parentMatrix);

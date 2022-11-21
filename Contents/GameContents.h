@@ -36,8 +36,13 @@
 #include "Timer.h"
 // リソース
 #include "MeshManager.h"
+#include "TextureManager.h"
 #include "StaticMesh.h"
 #include "SkeletalMesh.h"
+#include "Material.h"
+#include "Texture.h"
+#include "AnimationClip.h"
+
 
 
 // オブジェクト

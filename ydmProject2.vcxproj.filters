@@ -217,6 +217,9 @@
     <Filter Include="Contents\Resource\Animation\KeyFrame">
       <UniqueIdentifier>{8d92627f-4e05-42c1-8bca-07726529a81f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\Component\Miscellaneous">
+      <UniqueIdentifier>{504a8072-6491-427f-9931-8332d808a84d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="System\Console.cpp">
@@ -464,6 +467,12 @@
     </ClCompile>
     <ClCompile Include="Contents\AnimationClip.cpp">
       <Filter>Contents\Resource\Animation\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Contents\Miscellaneous.cpp">
+      <Filter>Contents\Component\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Contents\Animator.cpp">
+      <Filter>Contents\Component\Miscellaneous</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -796,6 +805,12 @@
     </ClInclude>
     <ClInclude Include="Contents\Motion.h">
       <Filter>Contents\Resource\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Contents\Miscellaneous.h">
+      <Filter>Contents\Component\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Contents\Animator.h">
+      <Filter>Contents\Component\Miscellaneous</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
