@@ -53,11 +53,11 @@ bool Skeleton::Load(AssimpScene* assimpScene)
 		m_bonesMatrix.emplace_back(boneMatrix.GetOffsetMatrix());
 	}
 
-	CalcBonesMatrix(
-		m_defaultBonesMatrix,
-		m_rootBone->GetBoneIndex(),
-		MY_MATH::Matrix4x4::CreateMatrixIdentity(),
-		m_bonesMatrix);
+	//CalcBonesMatrix(
+	//	m_defaultBonesMatrix,
+	//	m_rootBone->GetBoneIndex(),
+	//	MY_MATH::Matrix4x4::CreateMatrixIdentity(),
+	//	m_bonesMatrix);
 
 	return true;
 }

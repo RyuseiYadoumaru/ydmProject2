@@ -28,7 +28,7 @@ void AnimationClip::CalcAnimationTransforms(
 	AnimationInterpolationInfo info;
 	CalcAnimationInterpolationInfo(info, time * rate);
 
-	for (int i = 0; i < boneNum; i++)
+	for (Int32 i = 0; i < boneNum; i++)
 	{
 		KeyFrame& key1 = m_boneKeyFrameList[i][info.keyIndex1];
 		KeyFrame& key2 = m_boneKeyFrameList[i][info.keyIndex2];
@@ -40,7 +40,7 @@ void AnimationClip::CalcAnimationTransforms(
 	}
 }
 
-Float32 AnimationClip::GetDuration(Animation* animation)
+Float32 AnimationClip::GetDuration(Float32 blendParam)
 {
 	return GetKeyFrameDuration() / m_ticksPerSecond;
 }

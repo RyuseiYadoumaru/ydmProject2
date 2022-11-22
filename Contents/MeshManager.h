@@ -15,6 +15,7 @@ namespace GAME_SYSTEMS
 {
 	class StaticMesh;
 	class SkeletalMesh;
+	class AnimationClip;
 
 	class MeshManager
 	{
@@ -24,6 +25,9 @@ namespace GAME_SYSTEMS
 	public:
 		SharedPtr<StaticMesh> GetStaticMesh(T_String fileName);
 		SharedPtr<SkeletalMesh> GetSkeletalMesh(T_String fileName);
+		SharedPtr<AnimationClip> GetAnimationClip(T_String fileName);
+		T_String GetFilePath(T_String fileName);
+
 
 		void Releace();
 
@@ -32,7 +36,6 @@ namespace GAME_SYSTEMS
 		void ShutDown();
 
 	private:
-		T_String GetFilePath(T_String fileName);
 
 	private:
 		Unordered_Map <T_String, T_String> m_filePathList;

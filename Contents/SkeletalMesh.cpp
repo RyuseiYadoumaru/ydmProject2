@@ -10,6 +10,7 @@
 #include "Skeleton.h"
 #include "AnimationClip.h"
 #include "Timer.h"
+#include "FileSystem.h"
 #include "Matrix4x4.h"
 #include "../Animation.h"
 #include "../System/DirectXGraphics.h"
@@ -36,6 +37,8 @@ void GAME_SYSTEMS::SkeletalMesh::Load(T_String meshName)
 	{
 		m_animationClip = std::make_shared<AnimationClip>();
 		m_animationClip->Load(&m_assimpScene);
+		auto name = TOOLS::FileSystem::GetFileName(meshName);
+		m_animClipList[name] = m_animationClip;
 	}
 
 	// デフォルトボーン行列作成
@@ -61,6 +64,7 @@ void GAME_SYSTEMS::SkeletalMesh::Releace()
 	{
 		m_skeleton = nullptr;
 	}
+	m_animClipList.clear();
 }
 
 void GAME_SYSTEMS::SkeletalMesh::Render()
@@ -86,11 +90,21 @@ void GAME_SYSTEMS::SkeletalMesh::Render()
 	}
 }
 
+void GAME_SYSTEMS::SkeletalMesh::AddAnimationClip(T_String filePath)
+{
+	m_assimpScene.Init(filePath);
+	auto name = TOOLS::FileSystem::GetFileName(filePath);
+	m_animClipList[name] = std::make_shared<AnimationClip>();
+	m_animClipList[name]->Load(&m_assimpScene);
+	m_assimpScene.Exit();
+}
+
 SkeletalMesh& GAME_SYSTEMS::SkeletalMesh::operator=(const SkeletalMesh& skeletal) noexcept
 {
 	m_meshList = skeletal.m_meshList;
 	m_animationClip = skeletal.m_animationClip;
 	m_skeleton = skeletal.m_skeleton;
+	m_animClipList = skeletal.m_animClipList;
 	return *this;
 }
 
@@ -116,8 +130,8 @@ void GAME_SYSTEMS::SkeletalMesh::ProcessNode(aiNode* node, AssimpScene* assimpSc
 
 GAME_SYSTEMS::Polygon<SkeletalMesh::Vertex> GAME_SYSTEMS::SkeletalMesh::ProcessMesh(aiMesh* mesh, AssimpScene* assimpScene, Int32 meshidx)
 {
-	std::vector<Vertex> vertices;			// 頂点
-	std::vector<uInt32> indices;		// 面の構成情報
+	std::vector<Vertex> vertices;	// 頂点
+	std::vector<uInt32> indices;	// 面の構成情報
 
 	// 頂点情報を取得
 	for (uInt32 i = 0; i < mesh->mNumVertices; i++)

@@ -34,10 +34,15 @@ namespace GAME_SYSTEMS
 	public:
 		// メッシュ
 		void SetMesh(SharedPtr<SkeletalMesh> mesh) noexcept { m_mesh = mesh; }
+		SharedPtr<SkeletalMesh> GetMesh() const noexcept { return m_mesh; }
 
 		// マテリアル
 		void SetMaterial(SharedPtr<Material> mat) noexcept { m_material = mat; }
 		SharedPtr<Material> GetMaterial() noexcept;
+
+		// スケルトン
+		SharedPtr<Skeleton> GetSkeleton() noexcept;
+		
 	public:
 		Float32 m_blendParam = 0.0f;
 

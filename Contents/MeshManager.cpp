@@ -2,6 +2,7 @@
 #include "StaticMesh.h"
 #include "DefaultStaticMesh.h"
 #include "SkeletalMesh.h"
+#include "AnimationClip.h"
 #include "FileSystem.h"
 #include "../System/MessageWindow.h"
 
@@ -42,6 +43,22 @@ SharedPtr<SkeletalMesh> GAME_SYSTEMS::MeshManager::GetSkeletalMesh(T_String file
 	return m_skeletalMeshList[fileName];
 }
 
+SharedPtr<AnimationClip> GAME_SYSTEMS::MeshManager::GetAnimationClip(T_String fileName)
+{
+	if (m_skeletalMeshList.contains(fileName) == true)
+	{
+		return m_skeletalMeshList[fileName]->GetAnimationClip();
+	}
+
+	if (TOOLS::FileSystem::GetFileExt(fileName) == "fbx" || TOOLS::FileSystem::GetFileExt(fileName) == "FBX")
+	{
+		m_skeletalMeshList[fileName] = std::make_shared<SkeletalMesh>();
+		m_skeletalMeshList[fileName]->Load(GetFilePath(fileName));
+		return m_skeletalMeshList[fileName]->GetAnimationClip();
+	}
+	return nullptr;
+}
+
 void GAME_SYSTEMS::MeshManager::Releace()
 {
 	for (auto& mesh : m_staticMeshList)
@@ -56,14 +73,16 @@ void GAME_SYSTEMS::MeshManager::Releace()
 
 	m_staticMeshList[TERRAIN] = std::make_shared<DefaultStaticMesh>();
 	m_staticMeshList[TERRAIN]->Load(TERRAIN);
-
 }
 
 void GAME_SYSTEMS::MeshManager::SetUp()
 {
 	Vector<Vector<T_String>> filePathList;
-	filePathList.push_back(TOOLS::FileSystem::GetAllFileFromFolder(TEXT("Assets/"), TEXT("fbx")));
-	filePathList.push_back(TOOLS::FileSystem::GetAllFileFromFolder(TEXT("Assets/skydome/"), TEXT("x")));
+	auto add = TOOLS::FileSystem::GetAllFileFromFolder(TEXT("Assets/"), TEXT("fbx"));
+	filePathList.push_back(add);
+	add.clear();
+	add = TOOLS::FileSystem::GetAllFileFromFolder(TEXT("Assets/skydome/"), TEXT("x"));
+	filePathList.push_back(add);
 
 	for (auto& filePath : filePathList)
 	{

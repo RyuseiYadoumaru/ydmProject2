@@ -14,24 +14,43 @@
 
 namespace GAME_SYSTEMS
 {
+	class SkinnedMeshRenderer;
 	class Motion;
 
 	class Animator : public Miscellaneous
 	{
 	public:
-		void AddAnimation(T_String ,SharedPtr<Motion> anim);
+		void AddAnimation(T_String aninName,SharedPtr<Motion> anim);
 		void Play(T_String animationName);
 
+		// 再生時間
+		Float32 GetPlayTimer() const noexcept { return m_playTimer; }
 
+		// 再生速度
+		Float32 GetPlaySpeed() const noexcept { return m_playSpeed; }
+		void SetPlaySpeed(Float32 speed) noexcept { m_playSpeed = speed;}
+
+		// ブレンド
+		void SetBlendParam(Float32 blendParam) noexcept { m_blendParam = blendParam; }
 	private:
 		virtual void Start() override;
 		virtual void Update() override;
 		virtual void End() override;
 
 	private:
+		// スケルトンコンポーネント
+		SharedPtr<SkinnedMeshRenderer> m_skinnedRenderer;
+
+		// モーション
 		Unordered_Map<T_String, SharedPtr<Motion>> m_motionList;
+		SharedPtr<Motion> m_currentMotion = nullptr;
 
+		// 再生時間
+		Float32 m_playSpeed = 1.0f;
+		Float32 m_playTimer = 0.0f;
 
+		// ブレンド
+		Float32 m_blendParam = 1.0f;
 	public:
 		Animator() : Miscellaneous("Animator", Type::Animator) {}
 		~Animator() = default;

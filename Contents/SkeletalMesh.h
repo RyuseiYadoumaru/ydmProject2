@@ -28,6 +28,11 @@ namespace GAME_SYSTEMS
 		virtual void Releace() override;
 		virtual void Render() override;
 
+		void AddAnimationClip(T_String filePath);
+
+		SharedPtr<AnimationClip> GetAnimationClip() const noexcept { return m_animationClip; }
+		SharedPtr<AnimationClip> GetAnimationClip(T_String name)  noexcept { return m_animClipList[name]; }
+		SharedPtr<Skeleton> GetSkeleton() const noexcept { return m_skeleton; }
 	public:
 		SkeletalMesh& operator=(const SkeletalMesh& skeletal) noexcept;
 
@@ -41,5 +46,6 @@ namespace GAME_SYSTEMS
 		Vector<Polygon<SkeletalMesh::Vertex>> m_meshList;
 		SharedPtr<Skeleton>			m_skeleton		= nullptr;
 		SharedPtr<AnimationClip>	m_animationClip	= nullptr;
+		Unordered_Map<T_String, SharedPtr<AnimationClip>> m_animClipList;
 	};
 }

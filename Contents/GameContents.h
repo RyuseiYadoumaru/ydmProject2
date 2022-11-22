@@ -24,6 +24,9 @@
 #include "MeshRenderer.h"
 #include "SkinnedMeshRenderer.h"
 
+// その他
+#include "Animator.h"
+
 
 // マネージャー
 #include "SceneManager.h"

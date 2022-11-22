@@ -44,6 +44,11 @@ SharedPtr<Material> GAME_SYSTEMS::SkinnedMeshRenderer::GetMaterial() noexcept
 	return m_material;
 }
 
+SharedPtr<Skeleton> GAME_SYSTEMS::SkinnedMeshRenderer::GetSkeleton() noexcept
+{
+	return m_mesh->GetSkeleton();
+}
+
 void GAME_SYSTEMS::SkinnedMeshRenderer::Start()
 {
 	m_ownerTransform = GetOwner()->m_transform;
