@@ -11,6 +11,7 @@ void PlayerMovement::Start()
 	}
 
 	m_renderer = GetOwner()->GetComponent<SkinnedMeshRenderer>();
+	m_animator = GetOwner()->GetComponent<Animator>();
 
 }
 
@@ -63,8 +64,9 @@ void PlayerMovement::Update()
 		m_resetCamera = false;
 	}
 
-	// モーションブレンドパラメータ
-	m_renderer->m_blendParam = Easing::SineOut(m_moveForce.z, m_moveSpeed, 0.0f, 1.0f);
+	// アニメーション
+	auto blend = Easing::SineOut(m_moveForce.z, m_moveSpeed, 0.0f, 1.0f);
+	m_animator->Play("MoveMent", blend);
 }
 
 void PlayerMovement::End()

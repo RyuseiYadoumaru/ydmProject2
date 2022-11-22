@@ -12,7 +12,6 @@
 #include "Timer.h"
 #include "FileSystem.h"
 #include "Matrix4x4.h"
-#include "../Animation.h"
 #include "../System/DirectXGraphics.h"
 #include "../System/DX11SetBoneMatrix.h"
 
@@ -39,14 +38,13 @@ void GAME_SYSTEMS::SkeletalMesh::Load(T_String meshName)
 		m_animationClip->Load(&m_assimpScene);
 		auto name = TOOLS::FileSystem::GetFileName(meshName);
 		m_animClipList[name] = m_animationClip;
+		// デフォルトボーン行列作成
+		Vector<MY_MATH::Matrix4x4> animMtxList;
+		m_animationClip->CalcAnimationMatrix(animMtxList, m_skeleton->GetBoneNum());
+		m_skeleton->CreateAnimationMatrix(animMtxList);
 	}
 
-	// デフォルトボーン行列作成
-	Vector<MY_MATH::Matrix4x4> animMtxList;
-	m_animationClip->CalcAnimationMatrix(animMtxList, m_skeleton->GetBoneNum());
-	m_skeleton->CreateAnimationMatrix(animMtxList);
 	m_skeleton->InitDefaultMatrix();
-
 	m_assimpScene.Exit();
 }
 
@@ -92,11 +90,14 @@ void GAME_SYSTEMS::SkeletalMesh::Render()
 
 void GAME_SYSTEMS::SkeletalMesh::AddAnimationClip(T_String filePath)
 {
-	m_assimpScene.Init(filePath);
 	auto name = TOOLS::FileSystem::GetFileName(filePath);
-	m_animClipList[name] = std::make_shared<AnimationClip>();
-	m_animClipList[name]->Load(&m_assimpScene);
-	m_assimpScene.Exit();
+	if (m_animClipList.contains(name) == false)
+	{
+		m_assimpScene.Init(filePath);
+		m_animClipList[name] = std::make_shared<AnimationClip>();
+		m_animClipList[name]->Load(&m_assimpScene);
+		m_assimpScene.Exit();
+	}
 }
 
 SkeletalMesh& GAME_SYSTEMS::SkeletalMesh::operator=(const SkeletalMesh& skeletal) noexcept

@@ -10,7 +10,6 @@
 #include "../System/ThirdParty/Assimp/Assimpscene.h"
 #include "Motion.h"
 #include "Skeleton.h"
-#include "../Animation.h"
 
 USING_GAME_SYSTEMS;
 

@@ -3,7 +3,6 @@
 #include "../System/ThirdParty/Assimp/Assimpscene.h"
 //#include "dx11mathutil.h"
 #include "Skeleton.h"
-#include "../Animation.h"
 
 USING_GAME_SYSTEMS;
 
@@ -40,7 +39,7 @@ void AnimationClip::CalcAnimationTransforms(
 	}
 }
 
-Float32 AnimationClip::GetDuration(Float32 blendParam)
+Float32 AnimationClip::GetDuration()
 {
 	return GetKeyFrameDuration() / m_ticksPerSecond;
 }

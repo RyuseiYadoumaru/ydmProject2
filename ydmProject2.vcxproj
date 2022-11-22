@@ -149,32 +149,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Animation.cpp">
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </DeploymentContent>
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-      </DeploymentContent>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="BlendAnimation.cpp">
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </DeploymentContent>
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-      </DeploymentContent>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="BoneTransform.cpp">
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </DeploymentContent>
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-      </DeploymentContent>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="Contents\AnimationClip.cpp" />
     <ClCompile Include="Contents\Animator.cpp" />
+    <ClCompile Include="Contents\BlendAnimationClip.cpp" />
+    <ClCompile Include="Contents\BoneTransform.cpp" />
     <ClCompile Include="Contents\Color.cpp" />
     <ClCompile Include="Contents\Debug.cpp" />
     <ClCompile Include="Contents\DefaultCamera.cpp" />
@@ -259,30 +237,6 @@
     <ClCompile Include="System\World.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Animation.h">
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </DeploymentContent>
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-      </DeploymentContent>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="BlendAnimation.h">
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </DeploymentContent>
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-      </DeploymentContent>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="BoneTransform.h">
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </DeploymentContent>
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-      </DeploymentContent>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
-    </ClInclude>
     <ClInclude Include="CLight.h">
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </DeploymentContent>
@@ -293,7 +247,9 @@
     </ClInclude>
     <ClInclude Include="Contents\AnimationClip.h" />
     <ClInclude Include="Contents\Animator.h" />
+    <ClInclude Include="Contents\BlendAnimationClip.h" />
     <ClInclude Include="Contents\Bone.h" />
+    <ClInclude Include="Contents\BoneTransform.h" />
     <ClInclude Include="Contents\Color.h" />
     <ClInclude Include="Contents\Debug.h" />
     <ClInclude Include="Contents\DefaultCamera.h" />
@@ -309,6 +265,7 @@
     <ClInclude Include="Contents\Graphics.h" />
     <ClInclude Include="Contents\Keyboard.h" />
     <ClInclude Include="Contents\Keycode.h" />
+    <ClInclude Include="Contents\KeyFrame.h" />
     <ClInclude Include="Contents\macro.h" />
     <ClInclude Include="Contents\ManagerHeader.h" />
     <ClInclude Include="Contents\ManagerInterface.h" />
@@ -360,7 +317,6 @@
     <ClInclude Include="Game\TestScene.h" />
     <ClInclude Include="Game\TestScript.h" />
     <ClInclude Include="Game\ThirdPersonCamera.h" />
-    <ClInclude Include="KeyFrame.h" />
     <ClInclude Include="System\Audiosystem.h" />
     <ClInclude Include="System\Console.h" />
     <ClInclude Include="System\Core\Application.h" />

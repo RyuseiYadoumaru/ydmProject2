@@ -16,12 +16,15 @@ namespace GAME_SYSTEMS
 {
 	class SkinnedMeshRenderer;
 	class Motion;
+	class AnimationClip;
+	class BlendAnimationClip;
 
 	class Animator : public Miscellaneous
 	{
 	public:
 		void AddAnimation(T_String aninName,SharedPtr<Motion> anim);
 		void Play(T_String animationName);
+		void Play(T_String blendName, Float32 blendParam);
 
 		// 再生時間
 		Float32 GetPlayTimer() const noexcept { return m_playTimer; }
@@ -31,6 +34,7 @@ namespace GAME_SYSTEMS
 		void SetPlaySpeed(Float32 speed) noexcept { m_playSpeed = speed;}
 
 		// ブレンド
+		SharedPtr<BlendAnimationClip> CreateBlendAnimation(T_String name);
 		void SetBlendParam(Float32 blendParam) noexcept { m_blendParam = blendParam; }
 	private:
 		virtual void Start() override;
@@ -44,6 +48,7 @@ namespace GAME_SYSTEMS
 		// モーション
 		Unordered_Map<T_String, SharedPtr<Motion>> m_motionList;
 		SharedPtr<Motion> m_currentMotion = nullptr;
+		T_String m_currentMotionName;
 
 		// 再生時間
 		Float32 m_playSpeed = 1.0f;

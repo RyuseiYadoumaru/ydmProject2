@@ -43,9 +43,6 @@ namespace GAME_SYSTEMS
 		// ƒXƒPƒ‹ƒgƒ“
 		SharedPtr<Skeleton> GetSkeleton() noexcept;
 		
-	public:
-		Float32 m_blendParam = 0.0f;
-
 	private:
 		SharedPtr<Transform>	m_ownerTransform	= nullptr;
 		SharedPtr<SkeletalMesh> m_mesh				= nullptr;

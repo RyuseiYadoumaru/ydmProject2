@@ -10,8 +10,8 @@
 #include <DirectXMath.h>
 #include "myMath.h"
 #include "std.h"
-#include "../BoneTransform.h"
-#include "../KeyFrame.h"
+#include "BoneTransform.h"
+#include "KeyFrame.h"
 
 class Animation;
 class AssimpScene;
@@ -37,7 +37,7 @@ namespace GAME_SYSTEMS
 		// アニメーション行列を計算
 		void CalcAnimationMatrix(Vector<MY_MATH::Matrix4x4>& outMtxList ,const uInt32 boneNum, Float32 time = 0.0f);
 
-		virtual Float32 GetDuration(Float32 blendParam) abstract;
+		virtual Float32 GetDuration() abstract;
 
 		virtual void CalcAnimationTransforms(
 			Vector<BoneTransform>& output,

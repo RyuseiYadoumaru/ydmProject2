@@ -45,6 +45,7 @@
 #include "Material.h"
 #include "Texture.h"
 #include "AnimationClip.h"
+#include "BlendAnimationClip.h"
 
 
 

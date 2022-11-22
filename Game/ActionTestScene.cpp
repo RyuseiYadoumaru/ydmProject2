@@ -11,9 +11,7 @@ USING_SYSTEMS;
 #include "Texture.h"
 
 #include "../System/ThirdParty/Assimp/Assimpscene.h"
-#include "../Animation.h"
 #include "AnimationClip.h"
-#include "../BlendAnimation.h"
 
 #include "../dx11mathutil.h"
 #include "../System/DirectXGraphics.h"

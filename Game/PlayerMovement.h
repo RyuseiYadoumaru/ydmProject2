@@ -25,6 +25,7 @@ private:
 	Vector3 m_moveForce;
 	Float32 m_moveSpeed = 10.0f;
 	SharedPtr<SkinnedMeshRenderer> m_renderer = nullptr;
+	SharedPtr<Animator> m_animator = nullptr;
 	SharedPtr<ThirdPersonCamera> m_activeCamera = nullptr;
 	State m_state = State::Movement;
 

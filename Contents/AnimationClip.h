@@ -15,7 +15,7 @@ namespace GAME_SYSTEMS
 	class AnimationClip : public Motion
 	{
 	public:
-		virtual Float32 GetDuration(Float32 blendParam) override;
+		virtual Float32 GetDuration() override;
 
 		// アニメーションの姿勢を求める
 		virtual void CalcAnimationTransforms(

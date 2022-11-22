@@ -8,6 +8,8 @@
 //*****************************************************************************
 #include "Animator.h"
 #include "Motion.h"
+#include "BlendAnimationClip.h"
+#include "AnimationClip.h"
 #include "Skeleton.h"
 
 #include "SkinnedMeshRenderer.h"
@@ -31,10 +33,41 @@ void GAME_SYSTEMS::Animator::AddAnimation(T_String animName, SharedPtr<Motion> a
 
 void GAME_SYSTEMS::Animator::Play(T_String animationName)
 {
-	if (m_motionList.contains(animationName) == true)
+	if (m_motionList.contains(animationName) == true &&
+		m_currentMotionName != animationName)
 	{
 		m_currentMotion = m_motionList[animationName];
+		m_currentMotionName = animationName;
+		m_playTimer = 0.0f;
 	}
+}
+
+void GAME_SYSTEMS::Animator::Play(T_String blendName, Float32 blendParam)
+{
+	if (m_motionList.contains(blendName) == true)
+	{
+		// ブレンドアニメーション取得
+		auto blendAnim = std::dynamic_pointer_cast<BlendAnimationClip>(m_motionList[blendName]);
+		if (blendAnim != nullptr)
+		{
+			// ブレンドパラメータセット
+			blendAnim->SetBlendParam(blendParam);
+			if (m_currentMotionName != blendName)
+			{
+				// 前回と名前が違うときにアニメーション切り替え
+				m_currentMotion = blendAnim;
+				m_currentMotionName = blendName;
+				m_playTimer = 0.0f;
+			}
+		}
+	}
+}
+
+SharedPtr<BlendAnimationClip> GAME_SYSTEMS::Animator::CreateBlendAnimation(T_String name)
+{
+	auto blendAnim = std::make_shared<BlendAnimationClip>();
+	m_motionList[name] = blendAnim;
+	return blendAnim;
 }
 
 void GAME_SYSTEMS::Animator::Start()
@@ -57,7 +90,7 @@ void GAME_SYSTEMS::Animator::Update()
 	m_playTimer += Timer::DeltaTime() * m_playSpeed;
 
 	// 再生終了したとき
-	if (m_playTimer > m_currentMotion->GetDuration(m_blendParam))
+	if (m_playTimer > m_currentMotion->GetDuration())
 	{
 		// ループ再生
 		if (m_currentMotion->GetIsLoop() == true)
@@ -69,7 +102,7 @@ void GAME_SYSTEMS::Animator::Update()
 	{
 		if (m_currentMotion->GetIsLoop() == true)
 		{
-			m_playTimer = m_currentMotion->GetDuration(m_blendParam);
+			m_playTimer = m_currentMotion->GetDuration();
 		}
 	}
 

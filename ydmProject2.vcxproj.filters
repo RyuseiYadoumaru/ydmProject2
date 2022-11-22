@@ -127,15 +127,6 @@
     <Filter Include="UseSample\Math">
       <UniqueIdentifier>{17ae1da6-1f69-4110-87d4-1600aadb4b93}</UniqueIdentifier>
     </Filter>
-    <Filter Include="UseSample\Animation">
-      <UniqueIdentifier>{eca1a951-9847-4374-8699-498c010d1dd2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="UseSample\Resorce">
-      <UniqueIdentifier>{3b8e7692-ec1f-411d-99a5-e253d270eb9e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="UseSample\Transform">
-      <UniqueIdentifier>{0a0fc4d2-7b8d-4a7c-a1ab-3c31c4f5738f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Contents\Component\Graphics">
       <UniqueIdentifier>{9dac81a7-0a6b-40d6-a809-1eaaf5bb212b}</UniqueIdentifier>
     </Filter>
@@ -147,9 +138,6 @@
     </Filter>
     <Filter Include="Game\Script\GameLogic">
       <UniqueIdentifier>{c8aae06e-cb1a-44a9-8512-f468bda081ed}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Script\Tesst">
-      <UniqueIdentifier>{be4cf266-3b7d-490e-9922-c939056ede3f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Game\Script\GameLogic\Camera">
       <UniqueIdentifier>{4478fd60-b5e0-44e9-b1db-59f9aa4c6cc3}</UniqueIdentifier>
@@ -219,6 +207,12 @@
     </Filter>
     <Filter Include="Contents\Component\Miscellaneous">
       <UniqueIdentifier>{504a8072-6491-427f-9931-8332d808a84d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Script\Test">
+      <UniqueIdentifier>{be4cf266-3b7d-490e-9922-c939056ede3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Resource\Animation\Transform">
+      <UniqueIdentifier>{0a0fc4d2-7b8d-4a7c-a1ab-3c31c4f5738f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -342,20 +336,11 @@
     <ClCompile Include="System\Shader.cpp">
       <Filter>System\Renderer\Shader</Filter>
     </ClCompile>
-    <ClCompile Include="BoneTransform.cpp">
-      <Filter>UseSample\Transform</Filter>
-    </ClCompile>
     <ClCompile Include="dx11mathutil.cpp">
       <Filter>UseSample\Math</Filter>
     </ClCompile>
-    <ClCompile Include="Animation.cpp">
-      <Filter>UseSample\Animation</Filter>
-    </ClCompile>
     <ClCompile Include="System\GamePadSystem.cpp">
       <Filter>System\GameSubSystem\Input</Filter>
-    </ClCompile>
-    <ClCompile Include="BlendAnimation.cpp">
-      <Filter>UseSample\Animation</Filter>
     </ClCompile>
     <ClCompile Include="Contents\Graphics.cpp">
       <Filter>Contents\Component\Base</Filter>
@@ -370,7 +355,7 @@
       <Filter>Contents\Component\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="Game\TestScript.cpp">
-      <Filter>Game\Script\Tesst</Filter>
+      <Filter>Game\Script\Test</Filter>
     </ClCompile>
     <ClCompile Include="Game\ThirdPersonCamera.cpp">
       <Filter>Game\Script\GameLogic\Camera</Filter>
@@ -473,6 +458,12 @@
     </ClCompile>
     <ClCompile Include="Contents\Animator.cpp">
       <Filter>Contents\Component\Miscellaneous</Filter>
+    </ClCompile>
+    <ClCompile Include="Contents\BlendAnimationClip.cpp">
+      <Filter>Contents\Resource\Animation\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Contents\BoneTransform.cpp">
+      <Filter>Contents\Resource\Animation\Transform</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -638,17 +629,8 @@
     <ClInclude Include="System\Shader.h">
       <Filter>System\Renderer\Shader</Filter>
     </ClInclude>
-    <ClInclude Include="BoneTransform.h">
-      <Filter>UseSample\Transform</Filter>
-    </ClInclude>
     <ClInclude Include="dx11mathutil.h">
       <Filter>UseSample\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Animation.h">
-      <Filter>UseSample\Animation</Filter>
-    </ClInclude>
-    <ClInclude Include="KeyFrame.h">
-      <Filter>UseSample\Resorce</Filter>
     </ClInclude>
     <ClInclude Include="System\GamePadSystem.h">
       <Filter>System\GameSubSystem\Input</Filter>
@@ -672,7 +654,7 @@
       <Filter>Contents\Helper</Filter>
     </ClInclude>
     <ClInclude Include="Game\TestScript.h">
-      <Filter>Game\Script\Tesst</Filter>
+      <Filter>Game\Script\Test</Filter>
     </ClInclude>
     <ClInclude Include="Game\PlayerMovement.h">
       <Filter>Game\Script\GameLogic\Player</Filter>
@@ -794,9 +776,6 @@
     <ClInclude Include="Contents\myMath.h">
       <Filter>Contents\Math</Filter>
     </ClInclude>
-    <ClInclude Include="BlendAnimation.h">
-      <Filter>UseSample\Animation</Filter>
-    </ClInclude>
     <ClInclude Include="Contents\Mesh.h">
       <Filter>Contents\Resource\Mesh\Private</Filter>
     </ClInclude>
@@ -811,6 +790,15 @@
     </ClInclude>
     <ClInclude Include="Contents\Animator.h">
       <Filter>Contents\Component\Miscellaneous</Filter>
+    </ClInclude>
+    <ClInclude Include="Contents\BlendAnimationClip.h">
+      <Filter>Contents\Resource\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Contents\BoneTransform.h">
+      <Filter>Contents\Resource\Animation\Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="Contents\KeyFrame.h">
+      <Filter>Contents\Resource\Animation\KeyFrame</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
