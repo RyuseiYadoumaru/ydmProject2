@@ -27,8 +27,8 @@ bool GAME_SYSTEMS::Motion::Load(AssimpScene* assimpScene, uInt32 animationIndex)
 	auto animation = assimpScene->GetScene()->mAnimations[animationIndex];
 
 	m_name = animation->mName.C_Str();
-	m_ticksPerSecond = animation->mTicksPerSecond;
-	m_keyFrameDuration = animation->mDuration;
+	m_ticksPerSecond	= static_cast<Float32>(animation->mTicksPerSecond);
+	m_keyFrameDuration	= static_cast<Float32>(animation->mDuration);
 
 	// キーフレーム用配列初期化
 	const Int32 boneNum = assimpScene->GetBoneNum();
@@ -60,7 +60,7 @@ void GAME_SYSTEMS::Motion::CalcAnimationMatrix(Vector<MY_MATH::Matrix4x4>& outMt
 	CalcAnimationTransforms(outputTransforms, boneNum, time);
 
 	// 各ボーンごとにアニメーション行列を求める
-	for (Int32 boneIndex = 0; boneIndex < boneNum; boneIndex++)
+	for (uInt32 boneIndex = 0; boneIndex < boneNum; boneIndex++)
 	{
 		outMtxList[boneIndex].Set(outputTransforms[boneIndex].GetMatrix());
 	}
@@ -75,7 +75,8 @@ void GAME_SYSTEMS::Motion::ResizeKeyFrameList(const Int32 boneNum)
 	// フレーム数分容量を確保
 	for (auto& boneKeyFrame : m_boneKeyFrameList)
 	{
-		boneKeyFrame.resize(m_keyFrameDuration + 1);
+		uInt32 boneKeySize = static_cast<uInt32>(m_keyFrameDuration) + 1;
+		boneKeyFrame.resize(boneKeySize);
 
 		for (auto& key : boneKeyFrame)
 		{
@@ -93,7 +94,7 @@ void GAME_SYSTEMS::Motion::InitPositionKeyFrame(aiNodeAnim* nodeAnim, const Int3
 	for (Int32 keyIndex = 0; keyIndex < posKeyNum; keyIndex++)
 	{
 		// 各キーの情報取得
-		Int32 frameTime = nodeAnim->mPositionKeys[keyIndex].mTime;
+		Int32 frameTime = static_cast<Int32>(nodeAnim->mPositionKeys[keyIndex].mTime);
 		aiVector3D pos = nodeAnim->mPositionKeys[keyIndex].mValue;
 
 		auto& key = m_boneKeyFrameList[boneIndex][frameTime];
@@ -110,7 +111,7 @@ void GAME_SYSTEMS::Motion::InitRotationKeyFrame(aiNodeAnim* nodeAnim, const Int3
 	for (Int32 keyIndex = 0; keyIndex < rotKeyNum; keyIndex++)
 	{
 		// 各キーの情報取得
-		Int32 frameTime = nodeAnim->mRotationKeys[keyIndex].mTime;
+		Int32 frameTime = static_cast<Int32>(nodeAnim->mRotationKeys[keyIndex].mTime);
 		aiQuaternion rot = nodeAnim->mRotationKeys[keyIndex].mValue;
 
 		auto& key = m_boneKeyFrameList[boneIndex][frameTime];
@@ -123,7 +124,7 @@ void GAME_SYSTEMS::Motion::InitRotationKeyFrame(aiNodeAnim* nodeAnim, const Int3
 
 void GAME_SYSTEMS::Motion::InitLerpPositionKeyFrame(Int32 boneIndex)
 {
-	const Int32 keyNum = m_boneKeyFrameList[boneIndex].size();
+	const Int32 keyNum = static_cast<Int32>(m_boneKeyFrameList[boneIndex].size());
 	for (Int32 i = 0; i < keyNum; i++)
 	{
 		auto& key = m_boneKeyFrameList[boneIndex][i];
@@ -176,7 +177,7 @@ void GAME_SYSTEMS::Motion::InitLerpPositionKeyFrame(Int32 boneIndex)
 
 void GAME_SYSTEMS::Motion::InitSlerpRotationKeyFrame(Int32 boneIndex)
 {
-	const Int32 keyNum = m_boneKeyFrameList[boneIndex].size();
+	const Int32 keyNum = static_cast<Int32>(m_boneKeyFrameList[boneIndex].size());
 	for (Int32 i = 0; i < keyNum; i++)
 	{
 		auto& key = m_boneKeyFrameList[boneIndex][i];

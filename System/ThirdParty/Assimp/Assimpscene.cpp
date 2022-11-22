@@ -51,9 +51,9 @@ int AssimpScene::GetBoneIndexByName(std::string name) const
 		return -1;
 }
 
-unsigned int AssimpScene::GetBoneNum() const
+uInt32 AssimpScene::GetBoneNum() const
 {
-	return this->m_boneIndexMap.size();
+	return static_cast<uInt32>(m_boneIndexMap.size());
 }
 
 void AssimpScene::CreateBoneIndexMap(aiNode* node)
@@ -61,11 +61,11 @@ void AssimpScene::CreateBoneIndexMap(aiNode* node)
 	if (this->m_boneIndexMap.find(node->mName.C_Str()) != this->m_boneIndexMap.end())
 		return;
 
-	int index = this->m_boneIndexMap.size();
+	Int32 index = static_cast<Int32>(m_boneIndexMap.size());
 	this->m_boneIndexMap.emplace(node->mName.C_Str(), index);
 
-	const unsigned int childCount = node->mNumChildren;
-	for (int i = 0; i < childCount; i++)
+	const uInt32 childCount = node->mNumChildren;
+	for (uInt32 i = 0; i < childCount; i++)
 	{
 		aiNode* child = node->mChildren[i];
 		CreateBoneIndexMap(child);

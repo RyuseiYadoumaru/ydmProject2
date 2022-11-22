@@ -25,7 +25,7 @@ public:
 	int GetBoneIndexByName(std::string name) const;
 
 	// ボーンの数を取得
-	unsigned int GetBoneNum() const;
+	uInt32 GetBoneNum() const;
 
 private:
 	// ボーンの名前とインデックスを関連付けるマップ作成

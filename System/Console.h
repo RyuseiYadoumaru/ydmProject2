@@ -26,9 +26,9 @@ namespace systems
 		const HANDLE& GetHandle() const noexcept { return m_stdOutHandle; }
 
 	private:
-		HANDLE		m_stdOutHandle;
-		WORD		m_wAttributes;
-		FILE*		m_fp;
+		HANDLE		m_stdOutHandle = NULL;
+		WORD		m_wAttributes = NULL;
+		FILE*		m_fp = nullptr;
 
 	};
 }

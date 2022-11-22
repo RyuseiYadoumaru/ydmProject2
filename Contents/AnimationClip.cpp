@@ -27,7 +27,7 @@ void AnimationClip::CalcAnimationTransforms(
 	AnimationInterpolationInfo info;
 	CalcAnimationInterpolationInfo(info, time * rate);
 
-	for (Int32 i = 0; i < boneNum; i++)
+	for (uInt32 i = 0; i < boneNum; i++)
 	{
 		KeyFrame& key1 = m_boneKeyFrameList[i][info.keyIndex1];
 		KeyFrame& key2 = m_boneKeyFrameList[i][info.keyIndex2];

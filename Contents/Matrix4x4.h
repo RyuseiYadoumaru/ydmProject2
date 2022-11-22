@@ -55,7 +55,7 @@ namespace myMath
 		}
 
 		DirectX::XMMATRIX GetXMMatrix() noexcept { return DirectX::XMLoadFloat4x4(this); }
-		Vector4& GetQuaternion() noexcept;
+		Vector4 GetQuaternion() noexcept;
 
 	public:
 		Matrix4x4() = default;

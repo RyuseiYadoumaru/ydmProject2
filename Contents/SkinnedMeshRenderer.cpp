@@ -31,7 +31,6 @@ USING_GAME_SYSTEMS
 #include "../System/ThirdParty/Assimp/Assimpscene.h"
 //#include "../Animation.h"
 //#include "../AnimationClip.h"
-#include "../BlendAnimation.h"
 
 
 SharedPtr<Material> GAME_SYSTEMS::SkinnedMeshRenderer::GetMaterial() noexcept

@@ -29,9 +29,9 @@ namespace GAME_SYSTEMS
 		const myMath::Vector3& GetPosition() const noexcept { return m_position; }
 		const myMath::Vector3& GetRotation() const noexcept { return m_rotation; }
 		myMath::Matrix4x4& GetWorldMatrix() noexcept { return m_worldMatrix; }
-		myMath::Vector4& GetAxisX();
-		myMath::Vector4& GetAxisY();
-		myMath::Vector4& GetAxisZ();
+		myMath::Vector4 GetAxisX();
+		myMath::Vector4 GetAxisY();
+		myMath::Vector4 GetAxisZ();
 
 	private:
 		myMath::Quaternion m_quaternion;

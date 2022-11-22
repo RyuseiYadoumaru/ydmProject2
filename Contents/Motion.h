@@ -56,7 +56,7 @@ namespace GAME_SYSTEMS
 		// フレーム
 		Float32 GetKeyFrameDuration() const noexcept { return m_keyFrameDuration - m_beginFrameOffset - m_endFrameOffset; }
 		KeyFrame GetKeyFrame(Int32 boneIndex, Int32 frameIndex) const noexcept { return m_boneKeyFrameList[boneIndex][frameIndex]; }
-		Int32 GetKeyFrameNum(Int32 boneIndex = 0) const noexcept { return m_boneKeyFrameList[boneIndex].size(); };
+		Int32 GetKeyFrameNum(Int32 boneIndex = 0) const noexcept { return static_cast<Int32>(m_boneKeyFrameList[boneIndex].size()); };
 
 		// 開始フレーム
 		int GetBeginFrameOffset() const noexcept { return m_beginFrameOffset; }

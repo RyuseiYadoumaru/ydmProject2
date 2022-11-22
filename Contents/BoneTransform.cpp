@@ -1,5 +1,4 @@
 #include "BoneTransform.h"
-#include "dx11mathutil.h"
 
 BoneTransform::BoneTransform()
 {

@@ -62,7 +62,7 @@ void GAME_SYSTEMS::BlendAnimationClip::CalcAnimationTransforms(
 	info.sample2->CalcAnimationTransforms(boneTransforms2, boneNum, time, rate2);
 
 	// ƒuƒŒƒ“ƒh‚·‚é
-	for (Int32 i = 0; i < boneNum; i++)
+	for (uInt32 i = 0; i < boneNum; i++)
 	{
 		output[i] = BoneTransform::Lerp(
 			boneTransforms1[i],

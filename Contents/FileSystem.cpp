@@ -12,8 +12,8 @@
 T_String tools::FileSystem::GetFileName(T_StringView filePath, bool isExt) noexcept
 {
     T_String fileName;
-    uInt32 index = filePath.find_last_of(m_slash);
-    uInt32 dotIndex = filePath.find_last_of(m_dot);
+    uInt32 index    = static_cast<uInt32>(filePath.find_last_of(m_slash));
+    uInt32 dotIndex = static_cast<uInt32>(filePath.find_last_of(m_dot));
     
     /** 拡張子あり */
     if(isExt == true) fileName = filePath.substr(index + 1);
@@ -33,7 +33,7 @@ T_String tools::FileSystem::GetFileName(T_StringView filePath, bool isExt) noexc
 T_String tools::FileSystem::GetFileExt(T_StringView filePath) noexcept
 {
     T_String extName;
-    uInt32 dotIndex = filePath.find_last_of(m_dot);
+    uInt32 dotIndex = static_cast<uInt32>(filePath.find_last_of(m_dot));
 
     /** 拡張子を抽出する */
     extName = filePath.substr(dotIndex + 1, filePath.size() - dotIndex);
@@ -45,7 +45,7 @@ T_String tools::FileSystem::GetFileExt(T_StringView filePath) noexcept
 data::Type tools::FileSystem::JudgeFolderOrFile(T_StringView dataName) noexcept
 {
     uInt32 index = 0;
-    index = dataName.find(m_dot);
+    index = static_cast<uInt32>(dataName.find(m_dot));
     if (index != -1) return data::Type::File;
     return data::Type::Folder;
 }
@@ -97,7 +97,7 @@ T_String tools::FileSystem::GetDirectryPathFromFilePath(T_StringView filePath)
 {
     T_String directryPath;
     /** 最後のスラッシュのインデックスを保存 */
-    uInt32 index =  filePath.find_last_of(m_slash);
+    uInt32 index = static_cast<uInt32>(filePath.find_last_of(m_slash));
     directryPath = filePath.substr(0, index + 1);
     return directryPath;
 }

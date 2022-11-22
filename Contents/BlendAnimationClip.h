@@ -18,16 +18,16 @@ namespace GAME_SYSTEMS
 	// ブレンドサンプル
 	struct  BlendSample
 	{
-		SharedPtr<AnimationClip> sample;
-		Float32 blendParam;
+		SharedPtr<AnimationClip> sample = nullptr;
+		Float32 blendParam = 1.0f;
 	};
 
 	// ブレンド用の情報
 	struct AnimationBlendInterpolationInfo
 	{
-		SharedPtr<AnimationClip> sample1;
-		SharedPtr<AnimationClip> sample2;
-		Float32 interpolationRate;
+		SharedPtr<AnimationClip> sample1 = nullptr;
+		SharedPtr<AnimationClip> sample2 = nullptr;
+		Float32 interpolationRate = 0.0f;
 	};
 
 

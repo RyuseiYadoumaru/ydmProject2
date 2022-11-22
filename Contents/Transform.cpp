@@ -15,7 +15,7 @@ USING_MY_MATH;
 //!	@fn		GetAxisX
 //!	@brief	XŽ²Žæ“¾
 //==============================================================================
-myMath::Vector4& Transform::GetAxisX()
+myMath::Vector4 Transform::GetAxisX()
 {
 	myMath::Vector4 axisX;
 	axisX.x = m_worldMatrix._11;
@@ -31,7 +31,7 @@ myMath::Vector4& Transform::GetAxisX()
 //!	@fn		GetAxisY
 //!	@brief	YŽ²Žæ“¾
 //==============================================================================
-myMath::Vector4& Transform::GetAxisY()
+myMath::Vector4 Transform::GetAxisY()
 {
 	myMath::Vector4 axisY;
 	axisY.x = m_worldMatrix._21;
@@ -47,7 +47,7 @@ myMath::Vector4& Transform::GetAxisY()
 //!	@fn		GetAxisZ
 //!	@brief	ZŽ²Žæ“¾
 //==============================================================================
-myMath::Vector4& Transform::GetAxisZ()
+myMath::Vector4 Transform::GetAxisZ()
 {
 	myMath::Vector4 axisZ;
 	axisZ.x = m_worldMatrix._31;
