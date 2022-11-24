@@ -38,6 +38,9 @@ bool GAME_SYSTEMS::GameObjectManager::GameObjectStartUpdate()
         m_gameObjectList[instance->GetID()] = instance;
     }
 
+    // グラフィックコンポーネント初期化
+    Graphics::GraphicsFirstUpdate();
+
     for (auto& instance : m_instanceObjectList)
     {
         instance->ComponentStart();

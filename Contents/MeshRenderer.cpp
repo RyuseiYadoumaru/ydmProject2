@@ -75,7 +75,7 @@ void GAME_SYSTEMS::MeshRenderer::Update()
 
 void GAME_SYSTEMS::MeshRenderer::End()
 {
-	m_material->Unload();
+	//m_material->Unload();
 	m_material = nullptr;
 	m_ownerTransform = nullptr;
 }

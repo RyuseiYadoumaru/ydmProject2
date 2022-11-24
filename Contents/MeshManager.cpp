@@ -73,6 +73,10 @@ void GAME_SYSTEMS::MeshManager::Releace()
 
 	m_staticMeshList[TERRAIN] = std::make_shared<DefaultStaticMesh>();
 	m_staticMeshList[TERRAIN]->Load(TERRAIN);
+
+	m_staticMeshList[SPHERE] = std::make_shared<DefaultStaticMesh>();
+	m_staticMeshList[SPHERE]->Load(SPHERE);
+
 }
 
 void GAME_SYSTEMS::MeshManager::SetUp()
@@ -82,6 +86,8 @@ void GAME_SYSTEMS::MeshManager::SetUp()
 	filePathList.push_back(add);
 	add.clear();
 	add = TOOLS::FileSystem::GetAllFileFromFolder(TEXT("Assets/skydome/"), TEXT("x"));
+	filePathList.push_back(add);
+	add = TOOLS::FileSystem::GetAllFileFromFolder(TEXT("Assets/"), TEXT("obj"));
 	filePathList.push_back(add);
 
 	for (auto& filePath : filePathList)
@@ -94,6 +100,10 @@ void GAME_SYSTEMS::MeshManager::SetUp()
 
 	m_staticMeshList[TERRAIN] = std::make_shared<DefaultStaticMesh>();
 	m_staticMeshList[TERRAIN]->Load(TERRAIN);
+
+	m_staticMeshList[SPHERE] = std::make_shared<DefaultStaticMesh>();
+	m_staticMeshList[SPHERE]->Load(SPHERE);
+
 }
 
 void GAME_SYSTEMS::MeshManager::ShutDown()

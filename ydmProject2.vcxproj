@@ -196,8 +196,11 @@
     <ClCompile Include="Editor\TestEditor.cpp" />
     <ClCompile Include="Game\ActionTestScene.cpp" />
     <ClCompile Include="Game\CubeTest.cpp" />
+    <ClCompile Include="Game\EnemyGenerator.cpp" />
     <ClCompile Include="Game\MainCamera.cpp" />
+    <ClCompile Include="Game\MoveMentSphere.cpp" />
     <ClCompile Include="Game\PlayerMovement.cpp" />
+    <ClCompile Include="Game\SphareTest.cpp" />
     <ClCompile Include="Game\TestObject.cpp" />
     <ClCompile Include="Game\TestScene.cpp" />
     <ClCompile Include="Game\TestScript.cpp" />
@@ -311,8 +314,11 @@
     <ClInclude Include="Editor\TestEditor.h" />
     <ClInclude Include="Game\ActionTestScene.h" />
     <ClInclude Include="Game\CubeTest.h" />
+    <ClInclude Include="Game\EnemyGenerator.h" />
     <ClInclude Include="Game\MainCamera.h" />
+    <ClInclude Include="Game\MoveMentSphere.h" />
     <ClInclude Include="Game\PlayerMovement.h" />
+    <ClInclude Include="Game\SphareTest.h" />
     <ClInclude Include="Game\TestObject.h" />
     <ClInclude Include="Game\TestScene.h" />
     <ClInclude Include="Game\TestScript.h" />
@@ -435,6 +441,12 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+    </FxCompile>
+    <FxCompile Include="Shader\Spider.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
     </FxCompile>
     <FxCompile Include="Shader\UnlitDefaultPixelShader.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>

@@ -2,7 +2,23 @@
 USING_GAME_SYSTEMS;
 
 Map<Graphics::Type, Unordered_Map<uInt32, Graphics*>> Graphics::m_graphicsList;
+Map<Graphics::Type, Unordered_Map<uInt32, Graphics*>> Graphics::m_graphicsInstanceList;
 
+
+bool GAME_SYSTEMS::Graphics::GraphicsFirstUpdate()
+{
+    for (auto& instance : m_graphicsInstanceList)
+    {
+        Type type = instance.first;
+        for (auto& i : instance.second)
+        {
+            uInt32 id = i.first;
+            m_graphicsList[type][id] = std::move(i.second);
+        }
+    }
+    m_graphicsInstanceList.clear();
+    return true;
+}
 
 bool GAME_SYSTEMS::Graphics::GraphicsUpdate()
 {
@@ -30,7 +46,7 @@ bool GAME_SYSTEMS::Graphics::GraphicsReleace()
 
 void GAME_SYSTEMS::Graphics::Initialize()
 {
-    m_graphicsList[m_type][m_id] = this;
+    m_graphicsInstanceList[m_type][m_id] = this;
 }
 
 void GAME_SYSTEMS::Graphics::Finalize()

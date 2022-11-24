@@ -22,8 +22,8 @@ namespace GAME_SYSTEMS
 		enum class Type
 		{
 			Camera,
-			MeshFilter,
-			MeshRenderer
+			MeshRenderer,
+			SkinnedMeshRenderer
 		};
 
 		Graphics(String name, Type type) :
@@ -32,12 +32,14 @@ namespace GAME_SYSTEMS
 		~Graphics() = default;
 
 	private:
+		static bool GraphicsFirstUpdate();
 		static bool GraphicsUpdate();
 		static bool GraphicReset();
 		static bool GraphicsReleace();
 
 	private:
-		static Map<Type, Unordered_Map<uInt32, Graphics*>> m_graphicsList;;
+		static Map<Type, Unordered_Map<uInt32, Graphics*>> m_graphicsList;
+		static Map<Type, Unordered_Map<uInt32, Graphics*>> m_graphicsInstanceList;
 
 	public:
 		void Initialize() override;

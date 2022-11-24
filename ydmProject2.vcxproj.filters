@@ -121,12 +121,6 @@
     <Filter Include="System\Renderer\Shader\HLSL">
       <UniqueIdentifier>{56de2c19-c76f-4aac-96c3-e37b7272123c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="UseSample">
-      <UniqueIdentifier>{7be846d9-907e-4a95-afeb-925075ef8a77}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="UseSample\Math">
-      <UniqueIdentifier>{17ae1da6-1f69-4110-87d4-1600aadb4b93}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Contents\Component\Graphics">
       <UniqueIdentifier>{9dac81a7-0a6b-40d6-a809-1eaaf5bb212b}</UniqueIdentifier>
     </Filter>
@@ -336,9 +330,6 @@
     <ClCompile Include="System\Shader.cpp">
       <Filter>System\Renderer\Shader</Filter>
     </ClCompile>
-    <ClCompile Include="dx11mathutil.cpp">
-      <Filter>UseSample\Math</Filter>
-    </ClCompile>
     <ClCompile Include="System\GamePadSystem.cpp">
       <Filter>System\GameSubSystem\Input</Filter>
     </ClCompile>
@@ -464,6 +455,18 @@
     </ClCompile>
     <ClCompile Include="Contents\BoneTransform.cpp">
       <Filter>Contents\Resource\Animation\Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="dx11mathutil.cpp">
+      <Filter>Sample</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\SphareTest.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\EnemyGenerator.cpp">
+      <Filter>Game\Script\GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\MoveMentSphere.cpp">
+      <Filter>Game\Script\GameLogic</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -628,9 +631,6 @@
     </ClInclude>
     <ClInclude Include="System\Shader.h">
       <Filter>System\Renderer\Shader</Filter>
-    </ClInclude>
-    <ClInclude Include="dx11mathutil.h">
-      <Filter>UseSample\Math</Filter>
     </ClInclude>
     <ClInclude Include="System\GamePadSystem.h">
       <Filter>System\GameSubSystem\Input</Filter>
@@ -800,6 +800,18 @@
     <ClInclude Include="Contents\KeyFrame.h">
       <Filter>Contents\Resource\Animation\KeyFrame</Filter>
     </ClInclude>
+    <ClInclude Include="dx11mathutil.h">
+      <Filter>Sample</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\SphareTest.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\EnemyGenerator.h">
+      <Filter>Game\Script\GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\MoveMentSphere.h">
+      <Filter>Game\Script\GameLogic</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Shader\pscol.hlsl">
@@ -834,6 +846,9 @@
     </FxCompile>
     <FxCompile Include="Shader\DefaultMeshPixelShader.hlsl">
       <Filter>System\Renderer\Shader\HLSL\StandardShader</Filter>
+    </FxCompile>
+    <FxCompile Include="Shader\Spider.hlsl">
+      <Filter>System\Renderer\Shader\HLSL</Filter>
     </FxCompile>
   </ItemGroup>
   <ItemGroup>

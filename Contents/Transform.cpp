@@ -60,9 +60,9 @@ myMath::Vector4 Transform::GetAxisZ()
 
 void GAME_SYSTEMS::Transform::Start()
 {
-	m_position.Set(0.0f, 0.0f, 0.0f);
-	m_rotation.Set(90.0f, 0.0f, 0.0f);
-	m_scale.Set(1.0f, 1.0f, 1.0f);
+	//m_position.Set(0.0f, 0.0f, 0.0f);
+	//m_rotation.Set(90.0f, 0.0f, 0.0f);
+	//m_scale.Set(1.0f, 1.0f, 1.0f);
 
 }
 

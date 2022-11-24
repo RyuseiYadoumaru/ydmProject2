@@ -21,9 +21,9 @@ namespace GAME_SYSTEMS
 	class Transform final : public Physics
 	{
 	public:
-		myMath::Vector3 m_position;
-		myMath::Vector3 m_rotation;
-		myMath::Vector3 m_scale;
+		myMath::Vector3 m_position	= { 0.0f, 0.0f, 0.0f };
+		myMath::Vector3 m_rotation	= { 90.0f, 0.0f, 0.0f };
+		myMath::Vector3 m_scale		= { 1.0f, 1.0f, 1.0f };
 
 	public:
 		const myMath::Vector3& GetPosition() const noexcept { return m_position; }

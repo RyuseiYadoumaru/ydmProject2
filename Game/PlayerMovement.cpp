@@ -51,7 +51,6 @@ void PlayerMovement::Update()
 			if (v < 0 && h < 0) angle += 180.0f;
 			else if (v < 0) angle = (180.0f + angle);
 			else if( h < 0) angle = (360.0f + angle);
-			printf("angle : %f\n", angle);
 		}
 
 		// Šp“xŒˆ’è

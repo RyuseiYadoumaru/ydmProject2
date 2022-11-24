@@ -21,12 +21,12 @@ namespace GAME_SYSTEMS
 		void BindShader();
 
 	public:
-		VertexShader& operator=(const VertexShader& vertex) noexcept
-		{
-			m_vertexShader = vertex.m_vertexShader;
-			m_vertexLayout = vertex.m_vertexLayout;
-			return *this;
-		}
+		//VertexShader& operator=(const VertexShader& vertex) noexcept
+		//{
+		//	m_vertexShader = vertex.m_vertexShader;
+		//	m_vertexLayout = vertex.m_vertexLayout;
+		//	return *this;
+		//}
 
 	private:
 		ComPtr<ID3D11VertexShader> m_vertexShader = nullptr;

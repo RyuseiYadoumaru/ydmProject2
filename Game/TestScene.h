@@ -24,4 +24,5 @@ public:
 private:
 	GameObjectPtr m_test;
 	GameObjectPtr m_obj;
+	GameObjectPtr m_ene;
 };

@@ -54,7 +54,7 @@ namespace GAME_SYSTEMS
 		virtual void End() override;
 
 	public:
-		SkinnedMeshRenderer() : Graphics("SkinnedMeshRenderer", Graphics::Type::MeshRenderer) {}
+		SkinnedMeshRenderer() : Graphics("SkinnedMeshRenderer", Graphics::Type::SkinnedMeshRenderer) {}
 		~SkinnedMeshRenderer() = default;
 	};
 
