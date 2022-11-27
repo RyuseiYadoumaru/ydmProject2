@@ -45,10 +45,10 @@ unsigned int AssimpScene::GetAnimationsNum() const
 int AssimpScene::GetBoneIndexByName(std::string name) const
 {
 	if (this->m_boneIndexMap.find(name) != this->m_boneIndexMap.end())
+	{
 		return m_boneIndexMap.at(name);
-
-	else
-		return -1;
+	}
+	return -1;
 }
 
 uInt32 AssimpScene::GetBoneNum() const
@@ -59,7 +59,9 @@ uInt32 AssimpScene::GetBoneNum() const
 void AssimpScene::CreateBoneIndexMap(aiNode* node)
 {
 	if (this->m_boneIndexMap.find(node->mName.C_Str()) != this->m_boneIndexMap.end())
+	{
 		return;
+	}
 
 	Int32 index = static_cast<Int32>(m_boneIndexMap.size());
 	this->m_boneIndexMap.emplace(node->mName.C_Str(), index);

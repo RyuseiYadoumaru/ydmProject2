@@ -39,6 +39,7 @@ bool Skeleton::Load(AssimpScene* assimpScene)
 		assimpScene->GetScene()->mRootNode,
 		Bone::NONE_PARENT);
 
+
 	// ボーンの親子関係を形成
 	CreateBoneTree();
 
@@ -49,15 +50,15 @@ bool Skeleton::Load(AssimpScene* assimpScene)
 	// 初期ボーンを保存
 	for (auto& boneMatrix : m_boneList)
 	{
-		m_defaultBonesMatrix.emplace_back(boneMatrix.GetOffsetMatrix());
-		m_bonesMatrix.emplace_back(boneMatrix.GetOffsetMatrix());
+		m_defaultBonesMatrixList.emplace_back(boneMatrix.GetOffsetMatrix());
+		m_bonesMatrixList.emplace_back(boneMatrix.GetOffsetMatrix());
 	}
-
+	// デフォルトボーン行列生成
 	//CalcBonesMatrix(
-	//	m_defaultBonesMatrix,
+	//	m_bonesMatrix,
 	//	m_rootBone->GetBoneIndex(),
 	//	MY_MATH::Matrix4x4::CreateMatrixIdentity(),
-	//	m_bonesMatrix);
+	//	m_defaultBonesMatrix);
 
 	return true;
 }
@@ -68,12 +69,12 @@ void GAME_SYSTEMS::Skeleton::CreateAnimationMatrix(const Vector<MY_MATH::Matrix4
 		animMtxList,
 		m_rootBone->GetBoneIndex(),
 		MY_MATH::Matrix4x4::CreateMatrixIdentity(),
-		m_bonesMatrix);
+		m_bonesMatrixList);
 }
 
 void GAME_SYSTEMS::Skeleton::InitDefaultMatrix()
 {
-	m_defaultBonesMatrix = m_bonesMatrix;
+	m_defaultBonesMatrixList = m_bonesMatrixList;
 }
 
 // ボーンを生成
@@ -102,34 +103,34 @@ void Skeleton::CreateBoneTree()
 	// ルートボーンを設定
 	m_rootBone = &m_boneList[0];
 
-	for (int i = 0; i < m_boneList.size(); i++)
+	for (Int32 i = 0; i < m_boneList.size(); i++)
 	{
 		Bone* bone = &m_boneList[i];
 		// 親がいれば自分を子にする
 		const Int32 parentIndex = m_boneList[i].GetParentIndex();
 		if (parentIndex != Bone::NONE_PARENT)
 		{
-			this->m_boneList[parentIndex].AddChild(bone);
+			m_boneList[parentIndex].AddChild(bone);
 		}
 	}
 }
 
 void Skeleton::InitBonesOffsetMatrix(AssimpScene* assimpScene)
 {
-	// メッシュ情報取得の中にボーン情報がまぎれている
+	// メッシュ情報取得の中にボーン情報が入っている
 	const Int32 meshNum = assimpScene->GetScene()->mNumMeshes;
 	for (Int32 meshIndex = 0; meshIndex < meshNum; meshIndex++)
 	{
 		auto mesh = assimpScene->GetScene()->mMeshes[meshIndex];
 
 		const Int32 boneNum = mesh->mNumBones;
-		for (int boneIndex = 0; boneIndex < boneNum; boneIndex++)
+		for (Int32 boneIndex = 0; boneIndex < boneNum; boneIndex++)
 		{
 			auto bone = mesh->mBones[boneIndex];
-			Int32 idx = assimpScene->GetBoneIndexByName(bone->mName.C_Str());
+			Int32 index = assimpScene->GetBoneIndexByName(bone->mName.C_Str());
 
 			MY_MATH::Matrix4x4 offset = MY_MATH::Matrix4x4::CreateMatrixFromAIMatrix(bone->mOffsetMatrix);
-			m_boneList[idx].SetOffsetMatrix(offset);
+			m_boneList[index].SetOffsetMatrix(offset);
 		}
 	}
 }

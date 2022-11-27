@@ -36,7 +36,7 @@ bool GAME_SYSTEMS::Motion::Load(AssimpScene* assimpScene, uInt32 animationIndex)
 
 	// ボーン用のキーフレーム取得
 	const Int32 channelNum = animation->mNumChannels;
-	for (int i = 0; i < channelNum; i++)
+	for (Int32 i = 0; i < channelNum; i++)
 	{
 		auto nodeAnim = animation->mChannels[i];
 		Int32 boneIndex = assimpScene->GetBoneIndexByName(nodeAnim->mNodeName.C_Str());
@@ -97,9 +97,9 @@ void GAME_SYSTEMS::Motion::InitPositionKeyFrame(aiNodeAnim* nodeAnim, const Int3
 		Int32 frameTime = static_cast<Int32>(nodeAnim->mPositionKeys[keyIndex].mTime);
 		aiVector3D pos = nodeAnim->mPositionKeys[keyIndex].mValue;
 
-		auto& key = m_boneKeyFrameList[boneIndex][frameTime];
-		key.position = myMath::Vector3(pos.x, pos.y, pos.z);
-		key.shouldLerpPosition = false;
+		// フレームごとの情報を取得する
+		 m_boneKeyFrameList[boneIndex][frameTime].position = myMath::Vector3(pos.x, pos.y, pos.z);
+		 m_boneKeyFrameList[boneIndex][frameTime].shouldLerpPosition = false;
 	}
 	// キーフレームをLerp補完する
 	InitLerpPositionKeyFrame(boneIndex);
@@ -114,9 +114,9 @@ void GAME_SYSTEMS::Motion::InitRotationKeyFrame(aiNodeAnim* nodeAnim, const Int3
 		Int32 frameTime = static_cast<Int32>(nodeAnim->mRotationKeys[keyIndex].mTime);
 		aiQuaternion rot = nodeAnim->mRotationKeys[keyIndex].mValue;
 
-		auto& key = m_boneKeyFrameList[boneIndex][frameTime];
-		key.rotation = MY_MATH::Quaternion(rot.x, rot.y, rot.z, rot.w);
-		key.shouldSlerpRotation = false;
+		// ふれーむごとの情報を取得する
+		 m_boneKeyFrameList[boneIndex][frameTime].rotation = MY_MATH::Quaternion(rot.x, rot.y, rot.z, rot.w);
+		 m_boneKeyFrameList[boneIndex][frameTime].shouldSlerpRotation = false;
 	}
 	// キーフレームをSlerp補間する
 	InitSlerpRotationKeyFrame(boneIndex);

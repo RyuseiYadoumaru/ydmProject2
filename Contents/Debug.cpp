@@ -13,7 +13,7 @@
 
 /****	デバックブレイク	****/
 #ifdef  _DEBUG
-#ifdef _M_IX86 /*||_M_IX86FP*/
+#ifdef _M_IX86 ||_M_IX86FP
 #define DEBUG_BREAK _asm{ int 3 }
 #else
 #define DEBUG_BREAK __debugbreak()

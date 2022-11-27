@@ -33,6 +33,7 @@ namespace GAME_SYSTEMS
 		SharedPtr<AnimationClip> GetAnimationClip() const noexcept { return m_animationClip; }
 		SharedPtr<AnimationClip> GetAnimationClip(T_String name)  noexcept { return m_animClipList[name]; }
 		SharedPtr<Skeleton> GetSkeleton() const noexcept { return m_skeleton; }
+
 	public:
 		SkeletalMesh& operator=(const SkeletalMesh& skeletal) noexcept;
 

@@ -67,11 +67,6 @@ void GAME_SYSTEMS::SkeletalMesh::Releace()
 
 void GAME_SYSTEMS::SkeletalMesh::Render()
 {
-	// アニメーション更新
-	//m_animation->SetBlendParameter(0.0f);
-	//m_animation->UpdateAnimation(0.0f);
-	//m_animation->UpdateConstantBufferBoneMatrix();
-
 	// ボーン行列生成
 	Vector<DirectX::XMFLOAT4X4> skeletonMatrixList;
 	for (auto& mtx : m_skeleton->GetBonesMatrix())
@@ -131,14 +126,13 @@ void GAME_SYSTEMS::SkeletalMesh::ProcessNode(aiNode* node, AssimpScene* assimpSc
 
 GAME_SYSTEMS::Polygon<SkeletalMesh::Vertex> GAME_SYSTEMS::SkeletalMesh::ProcessMesh(aiMesh* mesh, AssimpScene* assimpScene, Int32 meshidx)
 {
-	std::vector<Vertex> vertices;	// 頂点
-	std::vector<uInt32> indices;	// 面の構成情報
+	Vector<Vertex> vertices;	// 頂点
+	Vector<uInt32> indices;		// 面の構成情報
 
 	// 頂点情報を取得
 	for (uInt32 i = 0; i < mesh->mNumVertices; i++)
 	{
 		Vertex vertex;
-
 		vertex.m_Pos.x = mesh->mVertices[i].x;
 		vertex.m_Pos.y = mesh->mVertices[i].y;
 		vertex.m_Pos.z = mesh->mVertices[i].z;
@@ -151,7 +145,7 @@ GAME_SYSTEMS::Polygon<SkeletalMesh::Vertex> GAME_SYSTEMS::SkeletalMesh::ProcessM
 			vertex.m_Normal.z = mesh->mNormals[i].z;
 		}
 
-		// テクスチャ座標（０番目）が存在するか？
+		// テクスチャ座標（0番目）が存在するか？
 		if (mesh->HasTextureCoords(0)) 
 		{
 			vertex.m_Tex.x = mesh->mTextureCoords[0][i].x;
@@ -170,8 +164,9 @@ GAME_SYSTEMS::Polygon<SkeletalMesh::Vertex> GAME_SYSTEMS::SkeletalMesh::ProcessM
 		for (uInt32 widx = 0; widx < bone->mNumWeights; widx++)
 		{
 			aiVertexWeight weight = bone->mWeights[widx];
-
-			unsigned int vidx = weight.mVertexId;			// このウエイトに関連づいてる頂点idx
+			
+			// このウエイトに関連づいてる頂点idx
+			uInt32 vidx = weight.mVertexId;			
 
 			// メッシュの中の何番目か
 			vertices[vidx].m_BoneWeight[vertices[vidx].m_BoneNum] = weight.mWeight;

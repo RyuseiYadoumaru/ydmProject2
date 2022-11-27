@@ -15,6 +15,7 @@
 #include "std.h"
 
 struct aiNode;
+struct aiMesh;
 
 namespace GAME_SYSTEMS
 {
@@ -26,7 +27,7 @@ namespace GAME_SYSTEMS
 		void InitDefaultMatrix();
 
 	public:
-		Vector<MY_MATH::Matrix4x4>& GetBonesMatrix()  noexcept { return m_bonesMatrix; }
+		Vector<MY_MATH::Matrix4x4>& GetBonesMatrix()  noexcept { return m_bonesMatrixList; }
 		Bone* GetRootBone() noexcept { return m_rootBone; }
 		Bone* GetBoneByIndex(Int32 index) noexcept { return &m_boneList[index]; }
 		Int32 GetBoneNum() const noexcept { return static_cast<Int32>(m_boneList.size()); };
@@ -38,7 +39,6 @@ namespace GAME_SYSTEMS
 			Int32 index,
 			MY_MATH::Matrix4x4 parentMatrix,
 			Vector<MY_MATH::Matrix4x4>& outputMatrix);
-
 
 		// ボーンを生成
 		void CreateBoneList(AssimpScene* assimpScene, aiNode* node, Int32 parentIndex);
@@ -53,9 +53,9 @@ namespace GAME_SYSTEMS
 		// ボーン配列
 		Vector<Bone> m_boneList;
 		// デフォルトボーン行列
-		Vector<MY_MATH::Matrix4x4> m_defaultBonesMatrix;
+		Vector<MY_MATH::Matrix4x4> m_defaultBonesMatrixList;
 		// 現在のボーン行列
-		Vector<MY_MATH::Matrix4x4> m_bonesMatrix;
+		Vector<MY_MATH::Matrix4x4> m_bonesMatrixList;
 		
 		Bone* m_rootBone = nullptr;		// ルートとなるボーン
 		bool m_isLoad = false;			// 初期化したかどうか

@@ -23,7 +23,7 @@ private:
 
 	// ˆÚ“®
 	bool m_isMove = false;
-	Float32 m_moveTime = 3.0f;
+	Float32 m_moveTime = 2.0f;
 	Float32 m_moveForce = 0.0f;
-	Float32 m_moveSpeed = 10.0f;
+	Float32 m_moveSpeed = 7.5f;
 };

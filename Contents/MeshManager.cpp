@@ -34,7 +34,8 @@ SharedPtr<SkeletalMesh> GAME_SYSTEMS::MeshManager::GetSkeletalMesh(T_String file
 	}
 	else
 	{
-		if (TOOLS::FileSystem::GetFileExt(fileName) == "fbx")
+		if (TOOLS::FileSystem::GetFileExt(fileName) == "fbx" ||
+			TOOLS::FileSystem::GetFileExt(fileName) == "x")
 		{
 			m_skeletalMeshList[fileName] = std::make_shared<SkeletalMesh>();
 			m_skeletalMeshList[fileName]->Load(GetFilePath(fileName));
@@ -85,7 +86,7 @@ void GAME_SYSTEMS::MeshManager::SetUp()
 	auto add = TOOLS::FileSystem::GetAllFileFromFolder(TEXT("Assets/"), TEXT("fbx"));
 	filePathList.push_back(add);
 	add.clear();
-	add = TOOLS::FileSystem::GetAllFileFromFolder(TEXT("Assets/skydome/"), TEXT("x"));
+	add = TOOLS::FileSystem::GetAllFileFromFolder(TEXT("Assets/"), TEXT("x"));
 	filePathList.push_back(add);
 	add = TOOLS::FileSystem::GetAllFileFromFolder(TEXT("Assets/"), TEXT("obj"));
 	filePathList.push_back(add);
