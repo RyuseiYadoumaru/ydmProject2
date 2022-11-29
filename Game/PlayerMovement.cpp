@@ -10,7 +10,7 @@ void PlayerMovement::Start()
 		GetOwner()->m_transform->m_rotation.y = (m_activeCamera->GetHorizontalAngle() + 0.0f);
 	}
 
-	m_renderer = GetOwner()->GetComponent<SkinnedMeshRenderer>();
+	//m_renderer = GetOwner()->GetComponent<SkinnedMeshRenderer>();
 	//m_animator = GetOwner()->GetComponent<Animator>();
 
 }

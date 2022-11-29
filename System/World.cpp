@@ -11,8 +11,7 @@
 #include "ManagerInterface.h"
 #include "SceneManager.h"
 #include "GameObjectManager.h"
-#include "MeshManager.h"
-#include "TextureManager.h"
+#include "ResourceManager.h"
 
 
 #include "DirectXGraphics.h"
@@ -54,8 +53,7 @@ bool GAME_SYSTEMS::World::Run()
     if (sceneManager->GetSceneState() == SceneManager::State::End)
     {
         GameObjectManager::GetInstance()->GameObjectShutDown();
-        MeshManager::GetInstance()->Releace();
-        TextureManager::GetInstance()->Releace();
+        ResourceManager::GetInstance()->Releace();
         sceneManager->SceneShutdown();
     }
     return true;

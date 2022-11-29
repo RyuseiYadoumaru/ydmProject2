@@ -7,18 +7,19 @@
 //* @date   November 2022
 //*****************************************************************************
 #pragma once
+#include <DirectXMath.h>
+#include "../System/DX11Mesh.h"
+#include "../dx11mathutil.h"
 #include "macro.h"
 #include "std.h"
 #include "Graphics.h"
-#include <DirectXMath.h>
-#include "../dx11mathutil.h"
 
 class Animation;
 class AnimationClip;
 
 namespace GAME_SYSTEMS
 {
-	class StaticMesh;
+	class Model;
 	class Material;
 	class Texture;
 	class Mesh;
@@ -27,9 +28,20 @@ namespace GAME_SYSTEMS
 
 	class MeshRenderer : public Graphics
 	{
+		// 描画で使用する頂点情報
+		struct Vertex
+		{
+			DirectX::XMFLOAT3 Position	= { 0.0f, 0.0f, 0.0f };
+			DirectX::XMFLOAT4 Color		= { 1.0f, 1.0f, 1.0f, 1.0f };
+			DirectX::XMFLOAT2 Texcoord	= { 0.0f, 0.0f };
+			DirectX::XMFLOAT3 Normal	= { 0.0f, 0.0f, 0.0f };
+		};
+		// 描画用メッシュ
+		using RenderMesh = SYSTEMS::DX11Mesh<MeshRenderer::Vertex>;
+
 	public:
 		// メッシュ
-		void SetMesh(SharedPtr<StaticMesh> mesh) noexcept { m_meshData = mesh; }
+		void SetMesh(SharedPtr<Model> mesh) noexcept { m_mesh = mesh; }
 		
 		// マテリアル
 		void SetMaterial(SharedPtr<Material> material) noexcept { m_material = material; }
@@ -38,12 +50,19 @@ namespace GAME_SYSTEMS
 		void SetUseLitFlag(bool flg) noexcept { m_useLit = flg; }
 
 	private:
+		void CreateStaticMesh();
+	
+
+	private:
 		bool m_useLit = false;
 
 	private:
 		SharedPtr<Transform>	m_ownerTransform	= nullptr;
-		SharedPtr<StaticMesh>	m_meshData			= nullptr;
+		SharedPtr<Model>		m_mesh				= nullptr;
 		SharedPtr<Material>		m_material			= nullptr;
+
+		Vector<UniquePtr<RenderMesh>> m_meshList;
+
 
 	private:
 		virtual void Start() override;

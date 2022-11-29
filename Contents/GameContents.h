@@ -38,10 +38,9 @@
 // ŠÔ
 #include "Timer.h"
 // ƒŠƒ\[ƒX
-#include "MeshManager.h"
-#include "TextureManager.h"
-#include "StaticMesh.h"
-#include "SkeletalMesh.h"
+#include "ResourceManager.h"
+#include "ModelData.h"
+#include "Model.h"
 #include "Material.h"
 #include "Texture.h"
 #include "AnimationClip.h"

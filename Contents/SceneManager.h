@@ -64,15 +64,15 @@ namespace GAME_SYSTEMS
 
 	private:
 		// シーン
-		ScenePtr m_currentScene;
-		ScenePtr m_standByScene;
+		ScenePtr m_currentScene = nullptr;
+		ScenePtr m_standByScene = nullptr;
 
 		// 管理用コンテナ
 		Unordered_Map<String ,ScenePtr> m_sceneList;
 		Stack<String> m_enebleSceneStack;
 
 		// シーンステート
-		State m_sceneState;
+		State m_sceneState = State::Start;
 
 	private:
 		friend World;

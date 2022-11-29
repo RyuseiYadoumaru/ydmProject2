@@ -13,9 +13,9 @@
 
 namespace SYSTEMS
 {
-	class RenderManager
+	class DX11Renderer
 	{
-		SINGLETON_CLASS(RenderManager);
+		SINGLETON_CLASS(DX11Renderer);
 		
 	public:
 		void SetScreenColor(float r, float g, float b) noexcept { m_screenColor = { r, g, b }; }

@@ -7,12 +7,12 @@
 //* @date   November 2022
 //*****************************************************************************
 #pragma once
+#include <DirectXMath.h>
+#include "../System/DX11Mesh.h"
+#include "../dx11mathutil.h"
 #include "macro.h"
 #include "std.h"
 #include "Graphics.h"
-#include <DirectXMath.h>
-#include "../dx11mathutil.h"
-#include "SkeletalMesh.h"
 
 class Animation;
 class AnimationClip;
@@ -23,30 +23,50 @@ class BlendAnimation;
 
 namespace GAME_SYSTEMS
 {
-	class SkeletalMesh;
+	class Model;
 	class Material;
 	class Texture;
+	class Mesh;
 	class Skeleton;
 	class Transform;
-
+	
 	class SkinnedMeshRenderer : public Graphics
 	{
+		// 描画で使用する頂点情報
+		struct Vertex
+		{
+			DirectX::XMFLOAT3 Position	= { 0.0f, 0.0f, 0.0f };
+			DirectX::XMFLOAT3 Normal	= { 0.0f, 0.0f, 0.0f };			
+			DirectX::XMFLOAT2 Texcoord	= { 0.0f, 0.0f };
+			Int32	BoneIndex[4]		= { -1, -1, -1, -1 };			
+			Float32	BoneWeight[4]		= { 0.0f, 0.0f, 0.0f, 0.0f };	
+			Int32	BoneNum				= 0;							
+		};
+
+		// 描画用メッシュ
+		using RenderMesh = SYSTEMS::DX11Mesh<SkinnedMeshRenderer::Vertex>;
+
 	public:
 		// メッシュ
-		void SetMesh(SharedPtr<SkeletalMesh> mesh) noexcept { m_mesh = mesh; }
-		SharedPtr<SkeletalMesh> GetMesh() const noexcept { return m_mesh; }
+		void SetMesh(SharedPtr<Model> mesh) noexcept { m_mesh = mesh; }
 
 		// マテリアル
 		void SetMaterial(SharedPtr<Material> mat) noexcept { m_material = mat; }
 		SharedPtr<Material> GetMaterial() noexcept;
 
 		// スケルトン
-		SharedPtr<Skeleton> GetSkeleton() noexcept;
+		void SetSkeleton(SharedPtr<Skeleton> skeleton) noexcept { m_skeleton = skeleton; }
 		
 	private:
-		SharedPtr<Transform>	m_ownerTransform	= nullptr;
-		SharedPtr<SkeletalMesh> m_mesh				= nullptr;
-		SharedPtr<Material>		m_material			= nullptr;
+		void CreateSkeletonMesh();
+
+	private:
+		SharedPtr<Transform> m_ownerTransform	= nullptr;
+		SharedPtr<Model>	 m_mesh				= nullptr;
+		SharedPtr<Skeleton>	 m_skeleton			= nullptr;
+		SharedPtr<Material>	 m_material			= nullptr;
+
+		Vector<UniquePtr<RenderMesh>> m_meshList;
 
 	private:
 		virtual void Start() override;

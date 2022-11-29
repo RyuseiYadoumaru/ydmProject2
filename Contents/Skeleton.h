@@ -16,21 +16,34 @@
 
 struct aiNode;
 struct aiMesh;
+struct aiScene;
 
 namespace GAME_SYSTEMS
 {
+	class ModelData;
+
 	class Skeleton
 	{
 	public:
-		bool Load(AssimpScene* assimpScene);
+		bool Load(const aiScene* assimpScene);
+		void Releace();
 		void CreateAnimationMatrix(const Vector<MY_MATH::Matrix4x4>& animMtxList);
-		void InitDefaultMatrix();
 
 	public:
-		Vector<MY_MATH::Matrix4x4>& GetBonesMatrix()  noexcept { return m_bonesMatrixList; }
+		// ボーン取得
 		Bone* GetRootBone() noexcept { return m_rootBone; }
 		Bone* GetBoneByIndex(Int32 index) noexcept { return &m_boneList[index]; }
 		Int32 GetBoneNum() const noexcept { return static_cast<Int32>(m_boneList.size()); };
+
+		// ボーンインデックス取得
+		uInt32 GetBoneIndexByName(T_String boneName) noexcept;
+
+		// ボーン行列取得
+		Vector<MY_MATH::Matrix4x4>& GetBonesMatrix()  noexcept { return m_bonesMatrixList; }
+
+	public:
+		explicit Skeleton(ModelData* modelData) : m_parent(modelData) {}
+		~Skeleton() = default;
 
 	private:
 		// ボーン行列作成
@@ -41,23 +54,21 @@ namespace GAME_SYSTEMS
 			Vector<MY_MATH::Matrix4x4>& outputMatrix);
 
 		// ボーンを生成
-		void CreateBoneList(AssimpScene* assimpScene, aiNode* node, Int32 parentIndex);
-
-		// ボーンの親子関係を形成
-		void CreateBoneTree();
-
-		// ボーンオフセット行列初期化
-		void InitBonesOffsetMatrix(AssimpScene* assimpScene);
+		void CreateBoneList(const aiScene* assimpScene, const aiNode* node, uInt32 parentIndex);
 
 	private:
-		// ボーン配列
+		// 親データ
+		ModelData* m_parent	 = nullptr;
+		
+		// ボーン
+		Bone* m_rootBone = nullptr;
+		uInt32 m_boneNum = 0;
 		Vector<Bone> m_boneList;
+		Unordered_Map<T_String, uInt32> m_boneIndexList;
+		
 		// デフォルトボーン行列
 		Vector<MY_MATH::Matrix4x4> m_defaultBonesMatrixList;
 		// 現在のボーン行列
 		Vector<MY_MATH::Matrix4x4> m_bonesMatrixList;
-		
-		Bone* m_rootBone = nullptr;		// ルートとなるボーン
-		bool m_isLoad = false;			// 初期化したかどうか
 	};
 }

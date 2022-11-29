@@ -1,13 +1,17 @@
-#include	<assimp/cimport.h>
-#include	<assimp\postprocess.h>
-#include	<assimp/cimport.h>
-#include	<assimp/scene.h>
-#include	<assimp/mesh.h>
+//*****************************************************************************
+//* @file   AssimpScene.cpp
+//* @brief  
+//* @note   Assimpでロードしたデータを管理する
+//* 
+//* @author YadoumaruRyusei
+//* @date   November 2022
+//*****************************************************************************
+#include "AssimpHeader.h"
+#include "AssimpScene.h"
+USING_SYSTEMS;
 
-#include	"Assimpscene.h"
-
-bool AssimpScene::Init(T_String filename) {
-
+bool AssimpScene::Init(T_String filename) 
+{
 	m_Scene = aiImportFile(filename.c_str(),
 		aiProcess_ConvertToLeftHanded |
 		aiProcessPreset_TargetRealtime_MaxQuality);
@@ -21,19 +25,28 @@ bool AssimpScene::Init(T_String filename) {
 	return true;
 }
 
-// 終了処理
-void AssimpScene::Exit() {
+void AssimpScene::Exit()
+{
 	aiReleaseImport(m_Scene);
 }
 
-// シーン取得
-const aiScene* AssimpScene::GetScene() const {
+const aiScene* AssimpScene::GetScene() const
+{
 	return m_Scene;
 }
 
+bool SYSTEMS::AssimpScene::HasMesh() const noexcept
+{
+	return m_Scene->HasMeshes();
+}
 
-// アニメーションを持っているか
-bool AssimpScene::HasAnimation() {
+uInt32 SYSTEMS::AssimpScene::GetMeshNum() const noexcept
+{
+	return m_Scene->mNumMeshes;
+}
+
+bool AssimpScene::HasAnimation() 
+{
 	return m_Scene->HasAnimations();
 }
 

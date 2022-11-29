@@ -156,7 +156,10 @@
     <ClCompile Include="Contents\Color.cpp" />
     <ClCompile Include="Contents\Debug.cpp" />
     <ClCompile Include="Contents\DefaultCamera.cpp" />
-    <ClCompile Include="Contents\DefaultStaticMesh.cpp" />
+    <ClCompile Include="Contents\DefaultStaticMesh.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Contents\FileSystem.cpp" />
     <ClCompile Include="Contents\GameObject.cpp" />
     <ClCompile Include="Contents\GameObjectManager.cpp" />
@@ -167,9 +170,12 @@
     <ClCompile Include="Contents\ManagerInterface.cpp" />
     <ClCompile Include="Contents\Material.cpp" />
     <ClCompile Include="Contents\Matrix4x4.cpp" />
-    <ClCompile Include="Contents\MeshManager.cpp" />
+    <ClCompile Include="Contents\Mesh.cpp" />
+    <ClCompile Include="Contents\ResouceManager.cpp" />
     <ClCompile Include="Contents\MeshRenderer.cpp" />
     <ClCompile Include="Contents\Miscellaneous.cpp" />
+    <ClCompile Include="Contents\Model.cpp" />
+    <ClCompile Include="Contents\ModelData.cpp" />
     <ClCompile Include="Contents\Motion.cpp" />
     <ClCompile Include="Contents\Mouse.cpp" />
     <ClCompile Include="Contents\Physics.cpp" />
@@ -180,21 +186,25 @@
     <ClCompile Include="Contents\Script.cpp" />
     <ClCompile Include="Contents\ShaderManager.cpp" />
     <ClCompile Include="Contents\SkeletalMesh.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Contents\Skeleton.cpp" />
+    <ClCompile Include="Contents\SkinnedMeshRenderer.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Contents\Skeleton.cpp" />
-    <ClCompile Include="Contents\SkinnedMeshRenderer.cpp" />
-    <ClCompile Include="Contents\StaticMesh.cpp" />
+    <ClCompile Include="Contents\StaticMesh.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Contents\Texture.cpp" />
-    <ClCompile Include="Contents\TextureManager.cpp" />
     <ClCompile Include="Contents\Timer.cpp" />
     <ClCompile Include="Contents\Transform.cpp" />
     <ClCompile Include="Contents\Vector3.cpp" />
     <ClCompile Include="Contents\VertexShader.cpp" />
     <ClCompile Include="dx11mathutil.cpp" />
     <ClCompile Include="Editor\TestEditor.cpp" />
-    <ClCompile Include="Game\ActionTestScene.cpp" />
     <ClCompile Include="Game\CubeTest.cpp" />
     <ClCompile Include="Game\EnemyGenerator.cpp" />
     <ClCompile Include="Game\MainCamera.cpp" />
@@ -221,11 +231,11 @@
     <ClCompile Include="System\KeyboardSystem.cpp" />
     <ClCompile Include="System\MessageWindow.cpp" />
     <ClCompile Include="System\MouseSystem.cpp" />
-    <ClCompile Include="System\RenderManager.cpp" />
+    <ClCompile Include="System\DX11Renderer.cpp" />
     <ClCompile Include="System\Shader.cpp" />
     <ClCompile Include="System\SystemTimer.cpp" />
     <ClCompile Include="System\Framelate.cpp" />
-    <ClCompile Include="System\ThirdParty\Assimp\Assimpscene.cpp" />
+    <ClCompile Include="System\ThirdParty\Assimp\AssimpScene.cpp" />
     <ClCompile Include="System\ThirdParty\DirectTex\DDSTextureLoader.cpp" />
     <ClCompile Include="System\ThirdParty\DirectTex\WICTextureLoader.cpp" />
     <ClCompile Include="System\ThirdParty\Imgui\imgui.cpp" />
@@ -256,7 +266,10 @@
     <ClInclude Include="Contents\Color.h" />
     <ClInclude Include="Contents\Debug.h" />
     <ClInclude Include="Contents\DefaultCamera.h" />
-    <ClInclude Include="Contents\DefaultStaticMesh.h" />
+    <ClInclude Include="Contents\DefaultStaticMesh.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="Contents\Easing.h" />
     <ClInclude Include="Contents\FileSystem.h" />
     <ClInclude Include="Contents\GameContents.h" />
@@ -275,11 +288,12 @@
     <ClInclude Include="Contents\Material.h" />
     <ClInclude Include="Contents\Matrix4x4.h" />
     <ClInclude Include="Contents\MeshHeader.h" />
-    <ClInclude Include="Contents\MeshManager.h" />
+    <ClInclude Include="Contents\ResourceManager.h" />
     <ClInclude Include="Contents\Miscellaneous.h" />
+    <ClInclude Include="Contents\Model.h" />
+    <ClInclude Include="Contents\ModelData.h" />
     <ClInclude Include="Contents\Motion.h" />
     <ClInclude Include="Contents\myMath.h" />
-    <ClInclude Include="Contents\Polygon.h" />
     <ClInclude Include="Contents\Mesh.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
@@ -295,14 +309,22 @@
     <ClInclude Include="Contents\SceneManager.h" />
     <ClInclude Include="Contents\Script.h" />
     <ClInclude Include="Contents\ShaderManager.h" />
-    <ClInclude Include="Contents\SkeletalMesh.h" />
+    <ClInclude Include="Contents\SkeletalMesh.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="Contents\Skeleton.h" />
-    <ClInclude Include="Contents\SkinnedMeshRenderer.h" />
-    <ClInclude Include="Contents\StaticMesh.h" />
+    <ClInclude Include="Contents\SkinnedMeshRenderer.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="Contents\StaticMesh.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="Contents\std.h" />
     <ClInclude Include="Contents\Tag.h" />
     <ClInclude Include="Contents\Texture.h" />
-    <ClInclude Include="Contents\TextureManager.h" />
     <ClInclude Include="Contents\Timer.h" />
     <ClInclude Include="Contents\Transform.h" />
     <ClInclude Include="Contents\Vector2.h" />
@@ -312,7 +334,6 @@
     <ClInclude Include="dx11mathutil.h" />
     <ClInclude Include="Editor\EditorHeader.h" />
     <ClInclude Include="Editor\TestEditor.h" />
-    <ClInclude Include="Game\ActionTestScene.h" />
     <ClInclude Include="Game\CubeTest.h" />
     <ClInclude Include="Game\EnemyGenerator.h" />
     <ClInclude Include="Game\MainCamera.h" />
@@ -331,6 +352,7 @@
     <ClInclude Include="System\Core\Object.h" />
     <ClInclude Include="System\Core\SubSystem.h" />
     <ClInclude Include="System\DirectXGraphics.h" />
+    <ClInclude Include="System\DX11Mesh.h" />
     <ClInclude Include="System\DX11SetBoneMatrix.h" />
     <ClInclude Include="System\DX11SetMaterial.h" />
     <ClInclude Include="System\DX11Settransform.h" />
@@ -342,13 +364,15 @@
     <ClInclude Include="System\EditorManager.h" />
     <ClInclude Include="System\Inputsystem.h" />
     <ClInclude Include="System\KeyboardSystem.h" />
+    <ClInclude Include="System\MeshInfo.h" />
     <ClInclude Include="System\MessageWindow.h" />
     <ClInclude Include="System\MouseSystem.h" />
-    <ClInclude Include="System\RenderManager.h" />
+    <ClInclude Include="System\DX11Renderer.h" />
     <ClInclude Include="System\Shader.h" />
     <ClInclude Include="System\SystemTimer.h" />
     <ClInclude Include="System\Framelate.h" />
-    <ClInclude Include="System\ThirdParty\Assimp\Assimpscene.h" />
+    <ClInclude Include="System\ThirdParty\Assimp\AssimpHeader.h" />
+    <ClInclude Include="System\ThirdParty\Assimp\AssimpScene.h" />
     <ClInclude Include="System\ThirdParty\DirectTex\DDSTextureLoader.h" />
     <ClInclude Include="System\ThirdParty\DirectTex\DirectXTex.h" />
     <ClInclude Include="System\ThirdParty\DirectTex\WICTextureLoader.h" />

@@ -17,7 +17,7 @@
 #include "../SystemTimer.h"
 #include "../Window.h"
 
-#include "../RenderManager.h"
+#include "../DX11Renderer.h"
 
 #include "Debug.h"
 
@@ -87,7 +87,7 @@ uInt16 Application::Run()
 	auto game = GameSystem::GetInstance();
 	auto gui = GuiSystem::GetInstance();
 	auto message = MessageWindow::GetInstance();
-	auto renderManager = RenderManager::GetInstance();
+	auto renderManager = DX11Renderer::GetInstance();
 
 	///** ƒQ[ƒ€‰Šú‰» */
 	game->GameSystemStart();

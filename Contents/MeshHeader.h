@@ -11,7 +11,7 @@
 #include "macro.h"
 
 #include "Mesh.h"
-#include "Polygon.h"
+//#include "Polygon.h"
 
 #include <d3d11.h>
 #include <DirectXMath.h>

@@ -7,10 +7,10 @@
 //* @date   November 2022
 //*****************************************************************************
 
-#include "RenderManager.h"
+#include "DX11Renderer.h"
 #include "../System/DirectXGraphics.h"
 
-void SYSTEMS::RenderManager::ClearRenderer()
+void SYSTEMS::DX11Renderer::ClearRenderer()
 {
 	/****	ターゲットバッファクリア	****/
 	ID3D11DeviceContext& deviceContext = DirectXGraphics::GetInstance()->GetImmediateContext();
@@ -24,7 +24,7 @@ void SYSTEMS::RenderManager::ClearRenderer()
 
 }
 
-void SYSTEMS::RenderManager::SwapRenderBuffer()
+void SYSTEMS::DX11Renderer::SwapRenderBuffer()
 {
 	IDXGISwapChain& swapChain = DirectXGraphics::GetInstance()->GetSwapChain();
 	swapChain.Present(0, 0);

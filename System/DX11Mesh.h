@@ -1,32 +1,32 @@
 //*****************************************************************************
-//* @file   Polygon.h
-//* @brief  ポリゴン
-//* @note   テンプレートで頂点バッファのレイアウトを定義します
+//* @file   DX11Mesh.h
+//* @brief  
+//* @note   DX11用描画メッシュ
 //* 
 //* @author YadoumaruRyusei
 //* @date   November 2022
 //*****************************************************************************
 #pragma once
+#include <DirectXMath.h>
+#include <d3d11.h>
 #include "macro.h"
 #include "std.h"
 #include "../System/Shader.h"
 #include "../System/DirectXGraphics.h"
-#include <DirectXMath.h>
-#include <d3d11.h>
 
-namespace GAME_SYSTEMS
+namespace SYSTEMS
 {
 	template<class VERTEX_TYPE>
-	class Polygon
+	class DX11Mesh
 	{
 	public:
-		Polygon(Vector<VERTEX_TYPE> vertices, Vector<uInt32> indices)
+		DX11Mesh(Vector<VERTEX_TYPE> vertices, Vector<uInt32> indices)
 		{
 			m_vertices = vertices;
 			m_indices = indices;
 			InitBuffers();
 		}
-		~Polygon() = default;
+		~DX11Mesh() = default;
 	public:
 		void Uninit()
 		{
@@ -103,11 +103,11 @@ namespace GAME_SYSTEMS
 			}
 			return true;
 		}
-	
+
 	private:
 		Vector<VERTEX_TYPE> m_vertices;		// 頂点データ		
 		Vector<uInt32> m_indices;			// インデックスデータ
-	
+
 		ComPtr<ID3D11Buffer> m_vertexBuffer;
 		ComPtr<ID3D11Buffer> m_indexBuffer;
 	};

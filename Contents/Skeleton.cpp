@@ -10,99 +10,40 @@
 #include <assimp/mesh.h>
 #include "Skeleton.h"
 #include "Debug.h"
-#include "../System/ThirdParty/Assimp/Assimpscene.h"
+#include "../System/ThirdParty/Assimp/AssimpScene.h"
 #include "../dx11mathutil.h"
 #include "../System/Shader.h"
 #include "../System/DirectXGraphics.h"
 #include "../System/MessageWindow.h"
 
-USING_GAME_SYSTEMS
+USING_GAME_SYSTEMS;
 USING_SYSTEMS;
 USING_DIRECTX;
 
-bool Skeleton::Load(AssimpScene* assimpScene)
+bool Skeleton::Load(const aiScene* assimpScene)
 {
-	if (assimpScene == nullptr)
-	{
-		m_isLoad = false;
-		MessageWindow::GetInstance()->Error("Assimpのデータがありません");
-		TOOLS::Debug::Assert(assimpScene == nullptr);
-		return false;
-	}
+	// メッシュ情報取得
+	auto mesh = assimpScene->mMeshes[0];
 
-	// ボーン配列用のメモリを確保
-	m_boneList.clear();
-	m_boneList.resize(assimpScene->GetBoneNum());
+	// ボーンインデックス生成
+	m_boneNum = mesh->mNumBones;
+	for (uInt32 num = 0; num < m_boneNum; num++)
+	{
+		T_String boneName = mesh->mBones[num]->mName.C_Str();
+		m_boneIndexList.emplace(boneName, num);
+	}
 
 	// 親ボーン生成
+	m_boneList.clear();
+	m_boneList.resize(m_boneNum);
 	CreateBoneList(assimpScene,
-		assimpScene->GetScene()->mRootNode,
+		assimpScene->mRootNode,
 		Bone::NONE_PARENT);
-
-
-	// ボーンの親子関係を形成
-	CreateBoneTree();
-
-	// ボーンオフセット行列初期化
-	InitBonesOffsetMatrix(assimpScene);
-	m_isLoad = true;
-
-	// 初期ボーンを保存
-	for (auto& boneMatrix : m_boneList)
-	{
-		m_defaultBonesMatrixList.emplace_back(boneMatrix.GetOffsetMatrix());
-		m_bonesMatrixList.emplace_back(boneMatrix.GetOffsetMatrix());
-	}
-	// デフォルトボーン行列生成
-	//CalcBonesMatrix(
-	//	m_bonesMatrix,
-	//	m_rootBone->GetBoneIndex(),
-	//	MY_MATH::Matrix4x4::CreateMatrixIdentity(),
-	//	m_defaultBonesMatrix);
-
-	return true;
-}
-
-void GAME_SYSTEMS::Skeleton::CreateAnimationMatrix(const Vector<MY_MATH::Matrix4x4>& animMtxList)
-{
-	CalcBonesMatrix(
-		animMtxList,
-		m_rootBone->GetBoneIndex(),
-		MY_MATH::Matrix4x4::CreateMatrixIdentity(),
-		m_bonesMatrixList);
-}
-
-void GAME_SYSTEMS::Skeleton::InitDefaultMatrix()
-{
-	m_defaultBonesMatrixList = m_bonesMatrixList;
-}
-
-// ボーンを生成
-void Skeleton::CreateBoneList(AssimpScene* assimpScene, aiNode* node, Int32 parentIndex)
-{
-	// 名前からボーン配列のインデックス番号を取得
-	Int32 boneIndex = assimpScene->GetBoneIndexByName(node->mName.C_Str());
-
-	// ボーン情報を保存する
-	m_boneList[boneIndex].SetParentIndex(parentIndex);
-	m_boneList[boneIndex].SetName(node->mName.C_Str());
-	m_boneList[boneIndex].SetBoneIndex(boneIndex);
-
-	// 子ボーンも生成する
-	const uInt32 childCount = node->mNumChildren;
-	for (uInt32 i = 0; i < childCount; i++)
-	{
-		aiNode* child = node->mChildren[i];
-		CreateBoneList(assimpScene, child, boneIndex);
-	}
-}
-
-// ボーンの親子関係を形成
-void Skeleton::CreateBoneTree()
-{
+ 
 	// ルートボーンを設定
 	m_rootBone = &m_boneList[0];
 
+	// ボーンの親子関係を形成
 	for (Int32 i = 0; i < m_boneList.size(); i++)
 	{
 		Bone* bone = &m_boneList[i];
@@ -113,27 +54,84 @@ void Skeleton::CreateBoneTree()
 			m_boneList[parentIndex].AddChild(bone);
 		}
 	}
-}
-
-void Skeleton::InitBonesOffsetMatrix(AssimpScene* assimpScene)
-{
-	// メッシュ情報取得の中にボーン情報が入っている
-	const Int32 meshNum = assimpScene->GetScene()->mNumMeshes;
+	// ボーンオフセット行列初期化
+	const Int32 meshNum = assimpScene->mNumMeshes;
 	for (Int32 meshIndex = 0; meshIndex < meshNum; meshIndex++)
 	{
-		auto mesh = assimpScene->GetScene()->mMeshes[meshIndex];
+		auto mesh = assimpScene->mMeshes[meshIndex];
 
 		const Int32 boneNum = mesh->mNumBones;
 		for (Int32 boneIndex = 0; boneIndex < boneNum; boneIndex++)
 		{
 			auto bone = mesh->mBones[boneIndex];
-			Int32 index = assimpScene->GetBoneIndexByName(bone->mName.C_Str());
+			Int32 index = GetBoneIndexByName(bone->mName.C_Str());
 
 			MY_MATH::Matrix4x4 offset = MY_MATH::Matrix4x4::CreateMatrixFromAIMatrix(bone->mOffsetMatrix);
 			m_boneList[index].SetOffsetMatrix(offset);
 		}
 	}
+	// 初期ボーンを保存
+	for (auto& boneMatrix : m_boneList)
+	{
+		m_defaultBonesMatrixList.emplace_back(boneMatrix.GetOffsetMatrix());
+		m_bonesMatrixList.emplace_back(boneMatrix.GetOffsetMatrix());
+	}
+	return true;
 }
+
+void GAME_SYSTEMS::Skeleton::Releace()
+{
+	m_rootBone = nullptr;
+	m_parent = nullptr;
+	m_boneList.clear();
+	m_boneIndexList.clear();
+	m_bonesMatrixList.clear();
+	m_defaultBonesMatrixList.clear();
+}
+
+
+void GAME_SYSTEMS::Skeleton::CreateAnimationMatrix(const Vector<MY_MATH::Matrix4x4>& animMtxList)
+{
+	CalcBonesMatrix(
+		animMtxList,
+		m_rootBone->GetBoneIndex(),
+		MY_MATH::Matrix4x4::CreateMatrixIdentity(),
+		m_bonesMatrixList);
+}
+
+
+uInt32 GAME_SYSTEMS::Skeleton::GetBoneIndexByName(T_String boneName) noexcept
+{
+	if (m_boneIndexList.contains(boneName) == false)
+	{
+		return -1;
+	}
+	return m_boneIndexList[boneName];
+}
+
+
+void Skeleton::CreateBoneList(const aiScene* assimpScene, const aiNode* node, uInt32 parentIndex)
+{
+	// 名前からボーン配列のインデックス番号を取得
+	Int32 boneIndex = GetBoneIndexByName(node->mName.C_Str());
+
+	// ボーン情報を保存する
+	if (boneIndex != -1)
+	{
+		m_boneList[boneIndex].SetParentIndex(parentIndex);
+		m_boneList[boneIndex].SetName(node->mName.C_Str());
+		m_boneList[boneIndex].SetBoneIndex(boneIndex);
+	}
+
+	// 子ボーンも生成する
+	const uInt32 childCount = node->mNumChildren;
+	for (uInt32 i = 0; i < childCount; i++)
+	{
+		aiNode* child = node->mChildren[i];
+		CreateBoneList(assimpScene, child, boneIndex);
+	}
+}
+
 
 void Skeleton::CalcBonesMatrix(
 	const Vector<MY_MATH::Matrix4x4>& animationMatrix,
@@ -148,7 +146,7 @@ void Skeleton::CalcBonesMatrix(
 	offsetMatrix = m_boneList[index].GetOffsetMatrix();
 
 	MY_MATH::Matrix4x4 boneMatrix = MY_MATH::Matrix4x4::MatrixMultiply(offsetMatrix, worldMatrix);
-	outputMatrix[index] = boneMatrix;
+	m_bonesMatrixList[index] = boneMatrix;
 	const Int32 childNum = m_boneList[index].GetChildCount();
 	for (Int32 i = 0; i < childNum; i++)
 	{
@@ -157,6 +155,6 @@ void Skeleton::CalcBonesMatrix(
 			animationMatrix,
 			child->GetBoneIndex(),
 			worldMatrix,
-			outputMatrix);
+			m_bonesMatrixList);
 	}
 }

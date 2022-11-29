@@ -1,13 +1,13 @@
-//*****************************************************************************
+ï»¿//*****************************************************************************
 //* @file   FileSystem.cpp
-//* @brief  ƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€
-//* @note   ƒtƒ@ƒCƒ‹‚Ì•Ö—˜ŠÖ”‚ğ‚Ü‚Æ‚ß‚é
+//* @brief  ãƒ•ã‚¡ã‚¤ãƒ«ã‚·ã‚¹ãƒ†ãƒ 
+//* @note   ãƒ•ã‚¡ã‚¤ãƒ«ã®ä¾¿åˆ©é–¢æ•°ã‚’ã¾ã¨ã‚ã‚‹
 //* 
 //* @author YadoumaruRyusei
 //* @date   August 2022
 //*****************************************************************************
 #include "FileSystem.h"
-
+#include "Debug.h"
 
 T_String tools::FileSystem::GetFileName(T_StringView filePath, bool isExt) noexcept
 {
@@ -15,10 +15,10 @@ T_String tools::FileSystem::GetFileName(T_StringView filePath, bool isExt) noexc
     uInt32 index    = static_cast<uInt32>(filePath.find_last_of(m_slash));
     uInt32 dotIndex = static_cast<uInt32>(filePath.find_last_of(m_dot));
     
-    /** Šg’£q‚ ‚è */
+    /** æ‹¡å¼µå­ã‚ã‚Š */
     if(isExt == true) fileName = filePath.substr(index + 1);
     
-    /** Šg’£q‚È‚µ */
+    /** æ‹¡å¼µå­ãªã— */
     else
     {
         uInt32 nameLength = dotIndex - (index + 1);
@@ -35,7 +35,7 @@ T_String tools::FileSystem::GetFileExt(T_StringView filePath) noexcept
     T_String extName;
     uInt32 dotIndex = static_cast<uInt32>(filePath.find_last_of(m_dot));
 
-    /** Šg’£q‚ğ’Šo‚·‚é */
+    /** æ‹¡å¼µå­ã‚’æŠ½å‡ºã™ã‚‹ */
     extName = filePath.substr(dotIndex + 1, filePath.size() - dotIndex);
     return extName;
 }
@@ -59,7 +59,7 @@ Vector<T_String> tools::FileSystem::GetAllFileFromFolder(T_StringView folderPath
     HANDLE hFind;
     WIN32_FIND_DATA win32fd;
 
-    /** ’Tõ—p‰¼ƒpƒX */
+    /** æ¢ç´¢ç”¨ä»®ãƒ‘ã‚¹ */
     T_String path;
     T_String ext;
     path = folderPath;
@@ -67,13 +67,16 @@ Vector<T_String> tools::FileSystem::GetAllFileFromFolder(T_StringView folderPath
     T_String searchPath = path + TEXT("*.") + ext;
 
     /*
-     * ’TõŠJn
-     * ƒtƒHƒ‹ƒ_“à‚Éƒf[ƒ^‚ª‚È‚¢‚ÍAssert‚Å–³—‚â‚è~‚ß‚é.
+     * æ¢ç´¢é–‹å§‹
+     * ãƒ•ã‚©ãƒ«ãƒ€å†…ã«ãƒ‡ãƒ¼ã‚¿ãŒãªã„æ™‚ã¯Assertã§ç„¡ç†ã‚„ã‚Šæ­¢ã‚ã‚‹.
     */ 
     hFind = FindFirstFile(searchPath.c_str(), &win32fd);
-    
+    if (INVALID_HANDLE_VALUE == hFind)
+    {
+        Debug::Assert(true, "Not FileData" + searchPath);
+    }
 
-    /** ’Tõ */
+    /** æ¢ç´¢ */
     do
     {
         if (win32fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) {}
@@ -91,12 +94,10 @@ Vector<T_String> tools::FileSystem::GetAllFileFromFolder(T_StringView folderPath
 }
 
 
-
-
 T_String tools::FileSystem::GetDirectryPathFromFilePath(T_StringView filePath)
 {
     T_String directryPath;
-    /** ÅŒã‚ÌƒXƒ‰ƒbƒVƒ…‚ÌƒCƒ“ƒfƒbƒNƒX‚ğ•Û‘¶ */
+    /** æœ€å¾Œã®ã‚¹ãƒ©ãƒƒã‚·ãƒ¥ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ä¿å­˜ */
     uInt32 index = static_cast<uInt32>(filePath.find_last_of(m_slash));
     directryPath = filePath.substr(0, index + 1);
     return directryPath;

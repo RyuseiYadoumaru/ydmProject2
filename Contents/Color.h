@@ -9,12 +9,12 @@
 #pragma once
 
 #include <DirectXMath.h>
-#include "Vector4.h"
 #include "std.h"
 
 
 namespace myMath
 {
+	class Vector4;
 	class Color
 	{
 	public:
@@ -36,12 +36,6 @@ namespace myMath
 			return m_colorFloat;
 		}
 
-		Vector4 GetVector4() noexcept
-		{
-			Vector4 vec4;
-			vec4.Set(r, g, b, a);
-			return vec4;
-		}
 
 
 	public:
@@ -69,6 +63,12 @@ namespace myMath
 		Color operator/(const Color& color) const noexcept { return Color(r / color.r, g / color.g, b / color.b, a / color.a); }
 		bool operator!=(const Color& color) const noexcept { return (r != color.r && g != color.g && b != color.b && a != color.a); }
 		bool operator==(const Color& color) const noexcept { return (r == color.r && g == color.g && b == color.b && a == color.a); }
+
+	public:
+		// ÉxÉNÉgÉãé¸ÇËÇÃä÷êî
+		Color& operator=(const Vector4& color) noexcept;
+		Vector4 GetVector4() noexcept;
+
 
 	private:
 		Float32 m_colorFloat[4] = {0.0f, 0.0f, 0.0f, 0.0f};

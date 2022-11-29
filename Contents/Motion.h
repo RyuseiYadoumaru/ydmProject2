@@ -14,9 +14,11 @@
 #include "KeyFrame.h"
 
 class Animation;
-class AssimpScene;
 struct aiNodeAnim;
-
+namespace SYSTEMS
+{
+	class AssimpScene;
+}
 
 // アニメーションの補間用のデータ構造体
 struct AnimationInterpolationInfo
@@ -32,7 +34,7 @@ namespace GAME_SYSTEMS
 	class Motion
 	{
 	public:
-		bool Load(AssimpScene* assimpScene, uInt32 animationIndex = 0);
+		bool Load(SYSTEMS::AssimpScene* assimpScene, uInt32 animationIndex = 0);
 
 		// アニメーション行列を計算
 		void CalcAnimationMatrix(Vector<MY_MATH::Matrix4x4>& outMtxList ,const uInt32 boneNum, Float32 time = 0.0f);

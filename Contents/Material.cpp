@@ -10,7 +10,7 @@
 #include "VertexShader.h"
 #include "PixelShader.h"
 #include "ShaderManager.h"
-#include "TextureManager.h"
+#include "ResourceManager.h"
 #include "Texture.h"
 
 #include "../System/Shader.h"
@@ -38,7 +38,7 @@ bool Material::LoadShader(T_String vertexShaderName, T_String pixelShaderName)
 	}
 
 	// 白のテクスチャをセットする
-	AddTexture(TextureManager::GetInstance()->GetTexture(TEXT("white.bmp")), 0);
+	AddTexture(ResourceManager::GetInstance()->GetTexture(TEXT("white.bmp")), 0);
 	return true;
 }
 

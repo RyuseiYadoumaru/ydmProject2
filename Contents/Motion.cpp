@@ -12,6 +12,7 @@
 #include "Skeleton.h"
 
 USING_GAME_SYSTEMS;
+USING_SYSTEMS;
 
 bool GAME_SYSTEMS::Motion::Load(AssimpScene* assimpScene, uInt32 animationIndex)
 {

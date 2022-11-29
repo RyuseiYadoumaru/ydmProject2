@@ -7,12 +7,14 @@
 //* @date   November 2022
 //*****************************************************************************
 #pragma once
+#include "BoneTransform.h"
 #include "Matrix4x4.h"
-#include <DirectXMath.h>
 #include "std.h"
 #include "macro.h"
-
-class AssimpScene;
+namespace SYSTEMS
+{
+	class AssimpScene;
+}
 
 namespace GAME_SYSTEMS
 {
@@ -45,6 +47,15 @@ namespace GAME_SYSTEMS
 		T_String GetName() const noexcept { return m_name; };
 		void SetName(std::string name) noexcept { m_name = name; }
 
+		// 座標系
+		void SetBoneTransform(const BoneTransform& transform) noexcept
+		{
+			m_transform.SetPosition(transform.GetPosition());
+			m_transform.SetRotation(transform.GetRotation());
+		}
+		MY_MATH::Matrix4x4 GetBoneMatrix() noexcept { return m_transform.GetMatrix(); }
+
+		// オフセット行列
 		const MY_MATH::Matrix4x4& GetOffsetMatrix() const noexcept { return m_offsetMatrix; }
 		void SetOffsetMatrix(MY_MATH::Matrix4x4 matrix) noexcept { m_offsetMatrix = matrix; }
 
@@ -54,6 +65,8 @@ namespace GAME_SYSTEMS
 		Int32 m_boneIndex;					// 自分の番号
 		Vector<Bone*> m_children;			// 子供のポインタ
 
-		MY_MATH::Matrix4x4 m_offsetMatrix;	// オフセット行列
+		// 座標系
+		BoneTransform m_transform;
+		MY_MATH::Matrix4x4 m_offsetMatrix;
 	};
 }

@@ -5,7 +5,7 @@ USING_GAME_SYSTEMS;
 void SphareTest::Setting()
 {
 	AddComponent<MeshRenderer>();
-	GetComponent<MeshRenderer>()->SetMesh(MeshManager::GetInstance()->GetStaticMesh(TEXT("Sphere")));
+	//GetComponent<MeshRenderer>()->SetMesh(ResourceManager::GetInstance()->GetStaticMesh(TEXT("Sphere")));
 	auto mat = GetComponent<MeshRenderer>()->GetMaterial();
 
 	AddComponent<MoveMentSphere>();

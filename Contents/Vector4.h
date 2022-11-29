@@ -8,8 +8,9 @@
 //*****************************************************************************
 #pragma once
 
-#include "std.h"
 #include <DirectXMath.h>
+#include "std.h"
+#include "Color.h"
 
 namespace myMath
 {
@@ -48,6 +49,7 @@ namespace myMath
 
 		Vector4& operator=(const Vector4& vec4) noexcept { x = vec4.x; y = vec4.y; z = vec4.z; w = vec4.w; return *this; }
 		Vector4& operator=(const DirectX::XMFLOAT4& vec4) noexcept { x = vec4.x; y = vec4.y; z = vec4.z; w = vec4.w; return *this; }
+		Vector4& operator=(const Color& vec4) noexcept { x = vec4.r; y = vec4.g; z = vec4.b; w = vec4.a; return *this; }
 		Vector4 operator+(const Vector4& vec4) const noexcept { return Vector4(x + vec4.x, y + vec4.y, z + vec4.z, w + vec4.w); }
 		Vector4& operator+=(const Vector4& vec4)  noexcept { x += vec4.x; y += vec4.y; z += vec4.z; w += vec4.w; return *this; }
 		Vector4 operator-(const Vector4& vec4) const noexcept { return Vector4(x - vec4.x, y - vec4.y, z - vec4.z, w - vec4.w); }

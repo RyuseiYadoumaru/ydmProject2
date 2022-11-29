@@ -1,6 +1,8 @@
 #pragma once
 
 #include "GameObject.h"
+#include "ModelData.h"
+
 class TestObject : public gameSystems::GameObject
 {
 public:
@@ -8,5 +10,6 @@ public:
 
 public:
 	virtual void Setting() override;
+	SharedPtr<GAME_SYSTEMS::ModelData> m_modelData;
 
 };

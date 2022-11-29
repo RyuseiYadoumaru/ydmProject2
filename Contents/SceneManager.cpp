@@ -11,10 +11,9 @@
 #include "SceneManager.h"
 
 #include "../Game/TestScene.h"
-#include "../Game/ActionTestScene.h"
 
 #include "Graphics.h"
-#include "../System/RenderManager.h"
+#include "../System/DX11Renderer.h"
 
 /**
  *  シーンリストからシーンを取得し、更新スタックに挿入します.
@@ -42,8 +41,6 @@ void gameSystems::SceneManager::LoadScene(String sceneName, bool isStackClear)
 void GAME_SYSTEMS::SceneManager::Setup()
 {
 	RegisterScene<TestScene>("TestScene");
-	RegisterScene<ActionTestScene>("ActionTestScene");
-
 	m_currentScene = m_sceneList["TestScene"];
 }
 
@@ -67,7 +64,7 @@ void GAME_SYSTEMS::SceneManager::SceneRun()
 void GAME_SYSTEMS::SceneManager::SceneRendering()
 {
 	// クリアカラー
-	systems::RenderManager::GetInstance()->SetScreenColor(
+	systems::DX11Renderer::GetInstance()->SetScreenColor(
 		m_currentScene->GetDisPlayColor().r,
 		m_currentScene->GetDisPlayColor().g,
 		m_currentScene->GetDisPlayColor().b);

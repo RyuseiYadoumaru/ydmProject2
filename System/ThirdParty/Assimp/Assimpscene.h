@@ -1,39 +1,55 @@
+//*****************************************************************************
+//* @file   AssimpScene.h
+//* @brief  
+//* @note   Assimpでロードしたデータを管理する
+//* 
+//* @author YadoumaruRyusei
+//* @date   November 2022
+//*****************************************************************************
 #pragma once
 #include "std.h"
+#include "macro.h"
 
 struct aiScene;
 struct aiNode;
+struct aiMesh;
+struct aiBone;
+struct aiFace;
 
-class AssimpScene
+
+namespace SYSTEMS
 {
-public:
-	// 初期処理
-	bool Init(T_String filename);
-	// 終了処理
-	void Exit();
+	class AssimpScene
+	{
+	public:
+		// 初期処理
+		bool Init(T_String filename);
+		// 終了処理
+		void Exit();
 
-	// シーン取得
-	const aiScene* GetScene() const;
+		// シーン取得
+		const aiScene* GetScene() const;
 
-	// アニメーションを持っているか
-	bool HasAnimation();
+		// メッシュ
+		bool HasMesh() const noexcept;
+		uInt32 GetMeshNum() const noexcept;
 
-	// アニメーションの数
-	unsigned int GetAnimationsNum() const;
+		// アニメーション
+		bool HasAnimation();
+		uInt32 GetAnimationsNum() const;
 
-	// 名前からボーンのインデックスを取得する
-	int GetBoneIndexByName(std::string name) const;
+		// ボーン
+		int GetBoneIndexByName(std::string name) const;
+		uInt32 GetBoneNum() const;
 
-	// ボーンの数を取得
-	uInt32 GetBoneNum() const;
+	private:
+		// ボーンの名前とインデックスを関連付けるマップ作成
+		void CreateBoneIndexMap(aiNode* node);
 
-private:
-	// ボーンの名前とインデックスを関連付けるマップ作成
-	void CreateBoneIndexMap(aiNode* node);
+	private:
+		const aiScene* m_Scene = nullptr;
 
-private:
-	const aiScene* m_Scene = nullptr;	// assimp scene
-
-	// ボーンの名前とインデックスを関連付ける
-	Unordered_Map<T_String, int> m_boneIndexMap;
-};
+		// ボーンの名前とインデックスを関連付ける
+		Unordered_Map<T_String, int> m_boneIndexMap;
+	};
+}
