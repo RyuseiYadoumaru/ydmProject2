@@ -8,8 +8,8 @@
 //*****************************************************************************
 #include "Animator.h"
 #include "Motion.h"
-#include "BlendAnimationClip.h"
 #include "AnimationClip.h"
+#include "BlendAnimationClip.h"
 #include "Skeleton.h"
 
 #include "SkinnedMeshRenderer.h"
@@ -65,14 +65,14 @@ void GAME_SYSTEMS::Animator::Play(T_String blendName, Float32 blendParam)
 
 SharedPtr<BlendAnimationClip> GAME_SYSTEMS::Animator::CreateBlendAnimation(T_String name)
 {
-	auto blendAnim = std::make_shared<BlendAnimationClip>();
+	SharedPtr<BlendAnimationClip> blendAnim = std::make_shared<BlendAnimationClip>();
 	m_motionList[name] = blendAnim;
 	return blendAnim;
 }
 
 void GAME_SYSTEMS::Animator::Start()
 {
-	//m_skinnedRenderer = GetOwner()->GetComponent<SkinnedMeshRenderer>();
+	m_skinnedRenderer = GetOwner()->GetComponent<SkinnedMeshRenderer>();
 	if (m_skinnedRenderer == nullptr)
 	{
 		Debug::LogError("AnimatorError : ", GetOwner()->ToString());
@@ -107,13 +107,8 @@ void GAME_SYSTEMS::Animator::Update()
 	}
 
 	// アニメーション行列計算
-	Vector<MY_MATH::Matrix4x4> animMtx;
-	//auto skeleton = m_skinnedRenderer->GetSkeleton();
-	//uInt32 boneNum = skeleton->GetBoneNum();
-	//m_currentMotion->CalcAnimationMatrix(animMtx, boneNum, m_playTimer);
-
-	// ボーン行列更新
-	//skeleton->CreateAnimationMatrix(animMtx);
+	auto skeleton = m_skinnedRenderer->GetSkeleton();
+	m_currentMotion->CalcAnimationTransform(skeleton.get(), m_playTimer);
 }
 
 void GAME_SYSTEMS::Animator::End()

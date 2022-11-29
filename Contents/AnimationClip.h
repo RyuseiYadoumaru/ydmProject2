@@ -12,21 +12,18 @@
 //　アニメーションクリップ
 namespace GAME_SYSTEMS
 {
+	class BlendAnimationClip;
+	class Skeleton;
 	class AnimationClip : public Motion
 	{
 	public:
 		virtual Float32 GetDuration() override;
 
-		// アニメーションの姿勢を求める
-		virtual void CalcAnimationTransforms(
-			Vector<BoneTransform>& output,
-			const uInt32 boneNum,
-			Float32 time,
-			Float32 rate) override;
-
+	private:
+		// アニメーションのトランスフォームを生成する
+		virtual void CreateAnimationTransform(Float32 time, Float32 rate = 1.0f) override;
 		// アニメーションの補間用の情報取得
-		void CalcAnimationInterpolationInfo(
-			AnimationInterpolationInfo& output,
-			Float32 currentTime);
+		void CalcAnimationInterpolationInfo(AnimationInterpolationInfo& output, Float32 currentTime);
+		friend GAME_SYSTEMS::BlendAnimationClip;
 	};
 }

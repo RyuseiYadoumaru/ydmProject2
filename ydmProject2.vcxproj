@@ -151,7 +151,10 @@
   <ItemGroup>
     <ClCompile Include="Contents\AnimationClip.cpp" />
     <ClCompile Include="Contents\Animator.cpp" />
-    <ClCompile Include="Contents\BlendAnimationClip.cpp" />
+    <ClCompile Include="Contents\BlendAnimationClip.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Contents\BoneTransform.cpp" />
     <ClCompile Include="Contents\Color.cpp" />
     <ClCompile Include="Contents\Debug.cpp" />
@@ -260,7 +263,10 @@
     </ClInclude>
     <ClInclude Include="Contents\AnimationClip.h" />
     <ClInclude Include="Contents\Animator.h" />
-    <ClInclude Include="Contents\BlendAnimationClip.h" />
+    <ClInclude Include="Contents\BlendAnimationClip.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="Contents\Bone.h" />
     <ClInclude Include="Contents\BoneTransform.h" />
     <ClInclude Include="Contents\Color.h" />

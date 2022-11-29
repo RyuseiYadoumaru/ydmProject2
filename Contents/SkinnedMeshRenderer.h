@@ -56,7 +56,8 @@ namespace GAME_SYSTEMS
 
 		// ƒXƒPƒ‹ƒgƒ“
 		void SetSkeleton(SharedPtr<Skeleton> skeleton) noexcept { m_skeleton = skeleton; }
-		
+		SharedPtr<Skeleton> GetSkeleton() const noexcept { return m_skeleton; }
+
 	private:
 		void CreateSkeletonMesh();
 

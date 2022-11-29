@@ -89,18 +89,13 @@ void GAME_SYSTEMS::Skeleton::Releace()
 	m_defaultBonesMatrixList.clear();
 }
 
-
-void GAME_SYSTEMS::Skeleton::CreateAnimationMatrix(const Vector<MY_MATH::Matrix4x4>& animMtxList)
+void GAME_SYSTEMS::Skeleton::UpdateBoneMatrix()
 {
-	CalcBonesMatrix(
-		animMtxList,
-		m_rootBone->GetBoneIndex(),
-		MY_MATH::Matrix4x4::CreateMatrixIdentity(),
-		m_bonesMatrixList);
+	CalcBonesMatrix(m_rootBone->GetBoneIndex(), MY_MATH::Matrix4x4::CreateMatrixIdentity());
 }
 
 
-uInt32 GAME_SYSTEMS::Skeleton::GetBoneIndexByName(T_String boneName) noexcept
+Int32 GAME_SYSTEMS::Skeleton::GetBoneIndexByName(T_String boneName) noexcept
 {
 	if (m_boneIndexList.contains(boneName) == false)
 	{
@@ -133,28 +128,22 @@ void Skeleton::CreateBoneList(const aiScene* assimpScene, const aiNode* node, uI
 }
 
 
-void Skeleton::CalcBonesMatrix(
-	const Vector<MY_MATH::Matrix4x4>& animationMatrix,
-	Int32 index,
-	MY_MATH::Matrix4x4 parentMatrix,
-	Vector<MY_MATH::Matrix4x4>& outputMatrix)
+void Skeleton::CalcBonesMatrix(Int32 index, MY_MATH::Matrix4x4 parentMatrix)
 {
-	MY_MATH::Matrix4x4 animMatrix = animationMatrix[index];
-	MY_MATH::Matrix4x4 worldMatrix = MY_MATH::Matrix4x4::MatrixMultiply(animMatrix, parentMatrix);
+	// 親ボーンと組み合わせる
+	MY_MATH::Matrix4x4 boneTransformMatrix = m_boneList[index].GetBoneMatrix();
+	MY_MATH::Matrix4x4 worldMatrix = MY_MATH::Matrix4x4::MatrixMultiply(boneTransformMatrix, parentMatrix);
 
-	MY_MATH::Matrix4x4 offsetMatrix;
-	offsetMatrix = m_boneList[index].GetOffsetMatrix();
-
+	// ボーン行列生成
+	MY_MATH::Matrix4x4 offsetMatrix = m_boneList[index].GetOffsetMatrix();
 	MY_MATH::Matrix4x4 boneMatrix = MY_MATH::Matrix4x4::MatrixMultiply(offsetMatrix, worldMatrix);
 	m_bonesMatrixList[index] = boneMatrix;
+
+	// 子ボーンの行列計算
 	const Int32 childNum = m_boneList[index].GetChildCount();
 	for (Int32 i = 0; i < childNum; i++)
 	{
 		Bone* child = m_boneList[index].GetChild(i);
-		CalcBonesMatrix(
-			animationMatrix,
-			child->GetBoneIndex(),
-			worldMatrix,
-			m_bonesMatrixList);
+		CalcBonesMatrix(child->GetBoneIndex(), worldMatrix);
 	}
 }

@@ -81,8 +81,6 @@ void ThirdPersonCamera::Update()
 				m_resetStartAngle = m_horizontalAngle;
 				m_totalDeltaTime = 0.0f;
 				m_isReset = true;
-				printf("----------\ntarget:%f\n", m_resetTargetAngle);
-				printf("start:%f\n-----------\n", m_resetStartAngle);
 			}
 		}
 		moveForce.x = m_movevSensitivity * GamePad::RightStick().x;
@@ -104,6 +102,17 @@ void ThirdPersonCamera::Update()
 		if (m_verticalAngle < -m_limitVerticalAngle) m_verticalAngle = -m_limitVerticalAngle;
 
 	}
+
+	if (Keyboard::Press(Keycode::F1))
+	{
+		m_horizontalRadius += 10;
+	}
+
+	if (Keyboard::Press(Keycode::F2))
+	{
+		m_horizontalRadius -= 10;
+	}
+
 }
 
 void ThirdPersonCamera::End()

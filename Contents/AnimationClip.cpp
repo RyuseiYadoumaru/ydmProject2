@@ -13,29 +13,21 @@ void AnimationClip::CalcAnimationInterpolationInfo(AnimationInterpolationInfo& o
 	output.InterpolationRate = (currentTime * m_ticksPerSecond) - static_cast<Int32>(currentTime * m_ticksPerSecond);
 }
 
-void AnimationClip::CalcAnimationTransforms(
-	Vector<BoneTransform>& output,
-	const uInt32 boneNum,
-	Float32 time,
-	Float32 rate)
+void AnimationClip::CreateAnimationTransform(Float32 time, Float32 rate)
 {
-	// アニメーション行列用配列初期化
-	output.clear();
-	output.resize(boneNum);
-
 	// 補間用の情報を取得
 	AnimationInterpolationInfo info;
 	CalcAnimationInterpolationInfo(info, time * rate);
 
-	for (uInt32 i = 0; i < boneNum; i++)
+	for (const auto& keyName : m_keyNameList)
 	{
-		KeyFrame& key1 = m_boneKeyFrameList[i][info.keyIndex1];
-		KeyFrame& key2 = m_boneKeyFrameList[i][info.keyIndex2];
+		KeyFrame& key1 = m_boneKeyFrameList[keyName][info.keyIndex1];
+		KeyFrame& key2 = m_boneKeyFrameList[keyName][info.keyIndex2];
 
 		BoneTransform trans1(key1.position, key1.rotation);
 		BoneTransform trans2(key2.position, key2.rotation);
 
-		output[i] = BoneTransform::Lerp(trans1, trans2, info.InterpolationRate);
+		m_boneTransformList[keyName] = BoneTransform::Lerp(trans1, trans2, info.InterpolationRate);
 	}
 }
 

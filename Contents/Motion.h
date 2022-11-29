@@ -7,18 +7,18 @@
 //* @date   November 2022
 //*****************************************************************************
 #pragma once
-#include <DirectXMath.h>
+#include "../System/ThirdParty/Assimp/AssimpScene.h"
 #include "myMath.h"
 #include "std.h"
 #include "BoneTransform.h"
 #include "KeyFrame.h"
 
-class Animation;
-struct aiNodeAnim;
 namespace SYSTEMS
 {
 	class AssimpScene;
 }
+struct aiNodeAnim;
+struct aiAnimation;
 
 // アニメーションの補間用のデータ構造体
 struct AnimationInterpolationInfo
@@ -33,32 +33,29 @@ namespace GAME_SYSTEMS
 	class Skeleton;
 	class Motion
 	{
+		using AnimationFrame = Unordered_Map<T_String, Vector<KeyFrame>>;
+
 	public:
-		bool Load(SYSTEMS::AssimpScene* assimpScene, uInt32 animationIndex = 0);
+		bool Load(const aiAnimation* assimpAnimation);
+		bool Load(T_String filePath);
+		void Releace();
 
 		// アニメーション行列を計算
-		void CalcAnimationMatrix(Vector<MY_MATH::Matrix4x4>& outMtxList ,const uInt32 boneNum, Float32 time = 0.0f);
+		void CalcAnimationTransform(Skeleton* skeleton, Float32 time, Float32 rate = 1.0f);
 
 		virtual Float32 GetDuration() abstract;
 
-		virtual void CalcAnimationTransforms(
-			Vector<BoneTransform>& output,
-			const uInt32 boneNum,
-			Float32 time,
-			Float32 rate = 1.0f) abstract;
 
 	public:
 		// アニメーション名前
 		T_String GetName() const noexcept { return m_name; };
 		// ループフラグ
 		bool GetIsLoop() const noexcept { return m_isLoop; };
-		// ロードフラグ
-		bool IsLoad() const noexcept { return m_isLoad; }
 
 		// フレーム
 		Float32 GetKeyFrameDuration() const noexcept { return m_keyFrameDuration - m_beginFrameOffset - m_endFrameOffset; }
-		KeyFrame GetKeyFrame(Int32 boneIndex, Int32 frameIndex) const noexcept { return m_boneKeyFrameList[boneIndex][frameIndex]; }
-		Int32 GetKeyFrameNum(Int32 boneIndex = 0) const noexcept { return static_cast<Int32>(m_boneKeyFrameList[boneIndex].size()); };
+		KeyFrame GetKeyFrame(T_String boneName, Int32 frameIndex)  noexcept { return m_boneKeyFrameList[boneName][frameIndex]; }
+		Int32 GetKeyFrameNum() const noexcept { return m_keyFrameNum; };
 
 		// 開始フレーム
 		int GetBeginFrameOffset() const noexcept { return m_beginFrameOffset; }
@@ -72,23 +69,32 @@ namespace GAME_SYSTEMS
 		Float32 GetTicksPerSecond() const noexcept { return m_ticksPerSecond; }
 
 	private:
-		void ResizeKeyFrameList(const Int32 boneNum); // キーフレーム配列のメモリを確保
-		void InitPositionKeyFrame(aiNodeAnim* nodeAnim, const Int32 boneIndex);
-		void InitRotationKeyFrame(aiNodeAnim* nodeAnim, const Int32 boneIndex);
-		void InitLerpPositionKeyFrame(Int32 boneIndex);
-		void InitSlerpRotationKeyFrame(Int32 boneIndex);
-
+		void InitPositionKeyFrame(aiNodeAnim* nodeAnim, T_String boneName);
+		void InitRotationKeyFrame(aiNodeAnim* nodeAnim, T_String boneName);
+		void InitLerpPositionKeyFrame(T_String boneName);
+		void InitSlerpRotationKeyFrame(T_String boneName);
 
 	protected:
+		virtual void CreateAnimationTransform(Float32 time, Float32 rate = 1.0f) abstract;
+
+	protected:
+		SYSTEMS::AssimpScene m_animationLoader;
+
 		Float32 m_keyFrameDuration	= 0.0f;	// アニメーションの時間
 		Float32 m_ticksPerSecond	= 0.0f;	// アニメーションの1フレームの時間
 		Int32 m_beginFrameOffset	= 0;	// 始まりのフレームのオフセット
 		Int32 m_endFrameOffset		= 0;	// 終わりのフレームのオフセット
-		Vector<Vector<KeyFrame>> m_boneKeyFrameList;  // キーフレーム情報
-
+		
+		// アニメーション
+		AnimationFrame m_boneKeyFrameList;
+		Unordered_Map<T_String, BoneTransform> m_boneTransformList;
+		Vector<T_String> m_keyNameList;
+		
+		// キーフレーム
+		uInt32 m_keyFrameNum = 0;
+	
 	private:
 		T_String m_name;
 		bool m_isLoop = true;
-		bool m_isLoad = false;
 	};
 }

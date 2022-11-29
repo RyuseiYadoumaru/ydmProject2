@@ -39,17 +39,11 @@ namespace GAME_SYSTEMS
 
 	public:
 		virtual Float32 GetDuration() override;
-		
-		// アニメーションの姿勢を求める
-		virtual void CalcAnimationTransforms(
-			Vector<BoneTransform>& output,
-			const uInt32 boneNum,
-			Float32 time,
-			Float32 rate) override;
 
-		void CalcBlendInterpolationInfo(
-			AnimationBlendInterpolationInfo* blendInfo,
-			Float32 blendParam);
+	private:
+		// アニメーションの姿勢を求める
+		virtual void CreateAnimationTransform(Float32 time, Float32 rate = 1.0f) override;
+		void CalcBlendInterpolationInfo(AnimationBlendInterpolationInfo* blendInfo, Float32 blendParam);
 
 	private:
 		Vector<BlendSample> m_blendSampleList;

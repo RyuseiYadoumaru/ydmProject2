@@ -21,10 +21,17 @@ namespace GAME_SYSTEMS
 
 	class Model
 	{
+		enum class Geometry
+		{
+			Cube,
+			Sphare,
+			Terrain
+		};
 		using MeshContainer	= Vector<SharedPtr<Mesh>>;
 
 	public:
 		void Load(const aiNode* assimpNode, const aiScene* assimpScene);
+		void LoadGeometry(Geometry type);
 		void Releace();
 
 	public:
@@ -36,6 +43,11 @@ namespace GAME_SYSTEMS
 	public:
 		explicit Model(ModelData* parent) : m_parent(parent) {}
 		~Model() = default;
+
+	private:
+		void CreateCube();
+		void CreateSphare();
+		void CreateTerrain();
 
 	private:
 		// 親データ

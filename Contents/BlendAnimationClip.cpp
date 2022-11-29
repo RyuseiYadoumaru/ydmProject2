@@ -6,16 +6,15 @@
 //* @author YadoumaruRyusei
 //* @date   November 2022
 //*****************************************************************************
-
 #include "BlendAnimationClip.h"
 #include "AnimationClip.h"
 
 void GAME_SYSTEMS::BlendAnimationClip::AddBlendAnimation(SharedPtr<AnimationClip> blendAnim, Float32 blendParam)
 {
     BlendSample blend;
-    blend.sample = std::make_shared<AnimationClip>();
     blend.sample = blendAnim;
     blend.blendParam = blendParam;
+	m_keyNameList = blendAnim->m_keyNameList;
     m_blendSampleList.emplace_back(blend);
 }
 
@@ -35,46 +34,31 @@ Float32 GAME_SYSTEMS::BlendAnimationClip::GetDuration()
 	return result;
 }
 
-void GAME_SYSTEMS::BlendAnimationClip::CalcAnimationTransforms(
-	Vector<BoneTransform>& output,
-	const uInt32 boneNum,
-	Float32 time,
-	Float32 rate)
+void GAME_SYSTEMS::BlendAnimationClip::CreateAnimationTransform(Float32 time, Float32 rate)
 {
-	// アニメーション行列用配列初期化
-	output.clear();
-	output.resize(boneNum);
-
 	// 補間すべきアニメーションを計算して求める
 	AnimationBlendInterpolationInfo info;
 	CalcBlendInterpolationInfo(&info, m_blendParam);
-
-	Vector<BoneTransform> boneTransforms1, boneTransforms2;
 
 	Float32 duration = GetDuration();
 
 	Float32 rate1 = info.sample1->GetDuration() / duration;
 	Float32 rate2 = info.sample2->GetDuration() / duration;
 
-
 	// 補間する二つのアニメーションの姿勢を求める
-	info.sample1->CalcAnimationTransforms(boneTransforms1, boneNum, time, rate1);
-	info.sample2->CalcAnimationTransforms(boneTransforms2, boneNum, time, rate2);
+	info.sample1->CreateAnimationTransform(time, rate1);
+	info.sample2->CreateAnimationTransform(time, rate2);
 
-	// ブレンドする
-	for (uInt32 i = 0; i < boneNum; i++)
+	// ブレンド
+	for (const auto& keyName : m_keyNameList)
 	{
-		output[i] = BoneTransform::Lerp(
-			boneTransforms1[i],
-			boneTransforms2[i],
-			info.interpolationRate);
+		auto boneTrans1 = info.sample1->m_boneTransformList[keyName];
+		auto boneTrans2 = info.sample2->m_boneTransformList[keyName];
+		m_boneTransformList[keyName] = BoneTransform::Lerp(boneTrans1, boneTrans2, info.interpolationRate);
 	}
-
 }
 
-void GAME_SYSTEMS::BlendAnimationClip::CalcBlendInterpolationInfo(
-	AnimationBlendInterpolationInfo* blendInfo,
-	Float32 blendParam)
+void GAME_SYSTEMS::BlendAnimationClip::CalcBlendInterpolationInfo(AnimationBlendInterpolationInfo* blendInfo, Float32 blendParam)
 {
 	if (m_blendSampleList.empty() == true)
 	{

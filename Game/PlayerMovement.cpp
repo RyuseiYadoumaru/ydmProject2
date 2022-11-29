@@ -10,8 +10,8 @@ void PlayerMovement::Start()
 		GetOwner()->m_transform->m_rotation.y = (m_activeCamera->GetHorizontalAngle() + 0.0f);
 	}
 
-	//m_renderer = GetOwner()->GetComponent<SkinnedMeshRenderer>();
-	//m_animator = GetOwner()->GetComponent<Animator>();
+	m_renderer = GetOwner()->GetComponent<SkinnedMeshRenderer>();
+	m_animator = GetOwner()->GetComponent<Animator>();
 
 }
 
@@ -65,7 +65,7 @@ void PlayerMovement::Update()
 
 	// アニメーション
 	auto blend = Easing::SineOut(m_moveForce.z, m_moveSpeed, 0.0f, 1.0f);
-	//m_animator->Play("MoveMent", blend);
+	m_animator->Play("MoveMent", blend);
 }
 
 void PlayerMovement::End()

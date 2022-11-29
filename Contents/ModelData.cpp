@@ -9,6 +9,7 @@
 #include "ModelData.h"
 #include "Model.h"
 #include "Skeleton.h"
+#include "AnimationClip.h"
 #include "Material.h"
 #include "Debug.h"
 #include "../System/ThirdParty/Assimp/AssimpHeader.h"
@@ -30,7 +31,9 @@ void GAME_SYSTEMS::ModelData::Load(T_String filePath)
 	// アニメーション取得
 	if (modelScene->HasAnimations() == true)
 	{
-
+		m_animationClip = std::make_shared<AnimationClip>();
+		m_animationClip->Load(modelScene->mAnimations[0]);
+		m_animationClip->CalcAnimationTransform(m_skeleton.get(), 0.0f);
 	}
 
 	// ノード解析
@@ -73,7 +76,7 @@ void GAME_SYSTEMS::ModelData::ProcessNode(aiNode* node)
 			SharedPtr<Model> addModel = std::make_shared<Model>(this);
 			addModel->Load(node, m_modelLoader.GetScene());
 			m_modelList.emplace_back(addModel);
-			m_modelNameList[node->mName.C_Str()] = m_modelList.size() - 1;
+			m_modelNameList[node->mName.C_Str()] = static_cast<uInt32>(m_modelList.size()) - 1;
 		}
 	}
 

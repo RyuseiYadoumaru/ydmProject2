@@ -6,9 +6,9 @@
 //* @author YadoumaruRyusei
 //* @date   November 2022
 //*****************************************************************************
-
 #include "ResourceManager.h"
 #include "ModelData.h"
+#include "Model.h"
 #include "Texture.h"
 #include "AnimationClip.h"
 #include "FileSystem.h"
@@ -52,6 +52,30 @@ SharedPtr<Texture> GAME_SYSTEMS::ResourceManager::GetTexture(T_String fileName)
 	return m_textureList[fileName];
 }
 
+SharedPtr<AnimationClip> GAME_SYSTEMS::ResourceManager::GetAnimationClip(T_String fileName)
+{
+	if (m_animationList.contains(fileName) == true)
+	{
+		return m_animationList[fileName];
+	}
+	else
+	{
+		auto ext = TOOLS::FileSystem::GetFileExt(fileName);
+		if (CheckExt(ext, FileData::Animation) == true)
+		{
+			m_animationList[fileName] = std::make_shared<AnimationClip>();
+			bool sts =  m_animationList[fileName]->Load(GetFilePath(fileName));
+			if (sts == false)
+			{
+				m_animationList[fileName]->Releace();
+				m_animationList.erase(fileName);
+				return nullptr;
+			}
+		}
+	}
+	return m_animationList[fileName];
+}
+
 
 void GAME_SYSTEMS::ResourceManager::Releace()
 {
@@ -64,14 +88,20 @@ void GAME_SYSTEMS::ResourceManager::Releace()
 
 void GAME_SYSTEMS::ResourceManager::SetUp()
 {
-	// モデルデータ拡張子
-	m_fileDataExtList[FileData::Model].emplace_back("fbx");
-	m_fileDataExtList[FileData::Model].emplace_back("obj");
-	m_fileDataExtList[FileData::Model].emplace_back("x");
+	// アニメーションデータ拡張子
+	m_fileDataExtList[FileData::Animation].emplace_back("fbx");
+	m_fileDataExtList[FileData::Animation].emplace_back("FBX");
+	m_fileDataExtList[FileData::Animation].emplace_back("x");
+
 
 	// オーディオデータ拡張子
 	m_fileDataExtList[FileData::Audio].emplace_back("wav");
 	m_fileDataExtList[FileData::Audio].emplace_back("mp3");
+
+	// モデルデータ拡張子
+	m_fileDataExtList[FileData::Model].emplace_back("fbx");
+	m_fileDataExtList[FileData::Model].emplace_back("obj");
+	m_fileDataExtList[FileData::Model].emplace_back("x");
 
 	// スプライトデータ拡張子
 	m_fileDataExtList[FileData::Sprite].emplace_back("png");
@@ -80,10 +110,11 @@ void GAME_SYSTEMS::ResourceManager::SetUp()
 	m_fileDataExtList[FileData::Sprite].emplace_back("bmp");
 
 	// ファイルパスリスト生成
-
 	Vector<Vector<T_String>> filePathList;
 	filePathList.emplace_back(TOOLS::FileSystem::GetAllFileFromFolder(TEXT("Assets/"), TEXT("*")));
-	filePathList.emplace_back(TOOLS::FileSystem::GetAllFileFromFolder(TEXT("Assets/skydome"), TEXT("*")));
+	filePathList.emplace_back(TOOLS::FileSystem::GetAllFileFromFolder(TEXT("Assets/skydome/"), TEXT("*")));
+	filePathList.emplace_back(TOOLS::FileSystem::GetAllFileFromFolder(TEXT("Assets/Human/"), TEXT("*")));
+	filePathList.emplace_back(TOOLS::FileSystem::GetAllFileFromFolder(TEXT("Assets/ThirdPerson/"), TEXT("*")));
 
 	for (auto& filePath : filePathList)
 	{
@@ -92,6 +123,8 @@ void GAME_SYSTEMS::ResourceManager::SetUp()
 			m_filePathList[TOOLS::FileSystem::GetFileName(file)] = file;
 		}
 	}
+
+	m_geometryList["Terrain"] = 
 }
 
 void GAME_SYSTEMS::ResourceManager::ShutDown()

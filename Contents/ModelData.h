@@ -13,6 +13,7 @@
 
 namespace GAME_SYSTEMS
 {
+	class AnimationClip;
 	class Model;
 	class Skeleton;
 	class Material;
@@ -34,6 +35,7 @@ namespace GAME_SYSTEMS
 		bool HasBone() const noexcept { return m_hasBone; }
 
 		// アニメーション
+		SharedPtr<AnimationClip> GetAnimationClip() const noexcept { return m_animationClip; }
 		bool HasAnimation() const noexcept { return m_hasAnimation; }
 
 	public:
@@ -57,6 +59,7 @@ namespace GAME_SYSTEMS
 		bool m_hasBone = false;
 
 		// アニメーション
+		SharedPtr<AnimationClip> m_animationClip = nullptr;
 		bool m_hasAnimation = false;
 
 	};

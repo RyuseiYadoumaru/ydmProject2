@@ -24,8 +24,9 @@ namespace GAME_SYSTEMS
 
 		enum class FileData
 		{
-			Model,
+			Animation,
 			Audio,
+			Model,
 			Sprite
 		};
 
@@ -33,12 +34,14 @@ namespace GAME_SYSTEMS
 		// ファイル
 		T_String GetFilePath(T_String fileName);
 		
+		// アニメーション
+		SharedPtr<AnimationClip> GetAnimationClip(T_String fileName);
+		
 		// モデル
 		SharedPtr<ModelData> GetModelData(T_String fileName);
 		
 		// テクスチャ
 		SharedPtr<Texture> GetTexture(T_String fileName);
-		SharedPtr<AnimationClip> GetAnimationClip(T_String fileName);
 
 
 		void Releace();
@@ -55,7 +58,11 @@ namespace GAME_SYSTEMS
 		Unordered_Map <T_String, T_String> m_filePathList;
 		Unordered_Map<FileData, Vector<T_String>> m_fileDataExtList;
 		
+		// アニメーション
+		Unordered_Map<T_String, SharedPtr<AnimationClip>> m_animationList;
+
 		// モデル
+		Unordered_Map < T_String, SharedPtr<Model>> m_geometryList;
 		Unordered_Map <T_String, SharedPtr<ModelData>> m_modelDataList;
 
 		// スプライトテクスチャ
