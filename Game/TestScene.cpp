@@ -20,7 +20,7 @@ void TestScene::ObjectEntry()
 {
 	GameObjectManager::GetInstance()->Instance<MainCamera>("Camera");
 	m_test = GameObjectManager::GetInstance()->Instance<TestObject>("Player");
-	//m_obj = GameObjectManager::GetInstance()->Instance<CubeTest>("Cube");
+	m_obj = GameObjectManager::GetInstance()->Instance<CubeTest>("Cube");
 	
 	//m_ene = GameObjectManager::GetInstance()->Instance("EnemyGenerator");
 	//m_ene->AddComponent<EnemyGenerator>();
@@ -35,7 +35,7 @@ void TestScene::BeginPlay()
 	SetDisplayColor(0.0f, 1.0f, 0.0f);
 	//m_test->m_transform->m_rotation.y = 90.0f;
 	//m_obj->m_transform->m_scale.Set(100.0f, 100.0f, 100.0f);
-	//m_obj->m_transform->m_rotation.Set(0.0f, 90.0f, 0.0f);
+	m_obj->m_transform->m_rotation.Set(0.0f, 90.0f, 0.0f);
 
 	//m_ene->m_transform->m_position.Set(2000.0f, 50.0f, -2000.0f);
 	//m_ene->m_transform->m_rotation.Set(0.0f, 0.0f, 0.0f);

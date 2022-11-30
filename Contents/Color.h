@@ -55,6 +55,7 @@ namespace myMath
 		Color() : r(1.0f), g(1.0f), b(1.0f), a(1.0f) {}
 		Color(float _r, float _g, float _b, float _a) : r(_r), g(_g), b(_b), a(_a) {}
 		Color(Color& color) : r(color.r), g(color.g), b(color.b), a(color.a) {}
+		Color(const Color&) = default;
 
 		Color& operator=(const Color& color) noexcept { r = color.r; g = color.g; b = color.b; a = color.a; return *this; }
 		Color operator+(const Color& color) const noexcept { return Color(r + color.r, g + color.g, b + color.b, a + color.a); }

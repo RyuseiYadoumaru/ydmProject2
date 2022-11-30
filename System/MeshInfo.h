@@ -16,6 +16,9 @@ namespace SYSTEMS
 	// ‘S‚Ä‚Ì’¸“_î•ñ
 	struct VertexData
 	{
+		VertexData() = default;
+		VertexData(const VertexData&) = default;
+
 		MY_MATH::Vector3 Position = { 0.0f, 0.0f, 0.0f };
 		MY_MATH::Color	 Color = { 1.0f, 1.0f, 1.0f, 1.0f };
 		MY_MATH::Vector2 Texcoord = { 0.0f, 0.0f };

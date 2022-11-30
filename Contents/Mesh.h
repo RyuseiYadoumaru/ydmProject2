@@ -25,6 +25,9 @@ namespace GAME_SYSTEMS
 	{
 	public:
 		void Load(const aiMesh* assimpMesh, Skeleton* skeleton);
+		void LoadCube(Float32 meshSize);
+		void LoadSphere(uInt32 devision);
+		void LoadTerrain(Float32 meshSize, uInt32 terrainSizeX, uInt32 terrainSizeY);
 		void Releace();
 
 		// –¼‘O

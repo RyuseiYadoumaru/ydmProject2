@@ -184,18 +184,6 @@
     <Filter Include="Contents\Resource\3DModel\Model">
       <UniqueIdentifier>{60be3e4b-4b05-4c3e-bc66-120882a30b82}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Contents\Resource\3DModel\Animation">
-      <UniqueIdentifier>{bdfc06a7-da81-46d8-a04f-51be619a1985}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Contents\Resource\3DModel\Animation\Private">
-      <UniqueIdentifier>{0459e282-f207-4444-9625-c68ff1977bce}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Contents\Resource\3DModel\Animation\KeyFrame">
-      <UniqueIdentifier>{8d92627f-4e05-42c1-8bca-07726529a81f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Contents\Resource\3DModel\Skelton">
-      <UniqueIdentifier>{506f9922-f647-4800-9a3b-4a636c2dc995}</UniqueIdentifier>
-    </Filter>
     <Filter Include="System\Renderer\DX11">
       <UniqueIdentifier>{6be60daf-4dce-4208-99c1-5c2ce98dc28a}</UniqueIdentifier>
     </Filter>
@@ -210,6 +198,18 @@
     </Filter>
     <Filter Include="Contents\Resource\3DModel\Model\Mesh">
       <UniqueIdentifier>{396d458c-6033-4352-a615-1fcc25d76b8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Resource\Animation">
+      <UniqueIdentifier>{bdfc06a7-da81-46d8-a04f-51be619a1985}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Resource\Animation\Private">
+      <UniqueIdentifier>{0459e282-f207-4444-9625-c68ff1977bce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Resource\Animation\KeyFrame">
+      <UniqueIdentifier>{8d92627f-4e05-42c1-8bca-07726529a81f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Resource\3DModel\Skelton">
+      <UniqueIdentifier>{506f9922-f647-4800-9a3b-4a636c2dc995}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -424,10 +424,10 @@
       <Filter>Contents\Math\Private</Filter>
     </ClCompile>
     <ClCompile Include="Contents\Motion.cpp">
-      <Filter>Contents\Resource\3DModel\Animation\Private</Filter>
+      <Filter>Contents\Resource\Animation\Private</Filter>
     </ClCompile>
     <ClCompile Include="Contents\AnimationClip.cpp">
-      <Filter>Contents\Resource\3DModel\Animation\Private</Filter>
+      <Filter>Contents\Resource\Animation\Private</Filter>
     </ClCompile>
     <ClCompile Include="Contents\Miscellaneous.cpp">
       <Filter>Contents\Component\Base</Filter>
@@ -436,7 +436,7 @@
       <Filter>Contents\Component\Miscellaneous</Filter>
     </ClCompile>
     <ClCompile Include="Contents\BlendAnimationClip.cpp">
-      <Filter>Contents\Resource\3DModel\Animation\Private</Filter>
+      <Filter>Contents\Resource\Animation\Private</Filter>
     </ClCompile>
     <ClCompile Include="dx11mathutil.cpp">
       <Filter>Sample</Filter>
@@ -762,10 +762,10 @@
       <Filter>Contents\Math</Filter>
     </ClInclude>
     <ClInclude Include="Contents\AnimationClip.h">
-      <Filter>Contents\Resource\3DModel\Animation</Filter>
+      <Filter>Contents\Resource\Animation</Filter>
     </ClInclude>
     <ClInclude Include="Contents\Motion.h">
-      <Filter>Contents\Resource\3DModel\Animation</Filter>
+      <Filter>Contents\Resource\Animation</Filter>
     </ClInclude>
     <ClInclude Include="Contents\Miscellaneous.h">
       <Filter>Contents\Component\Base</Filter>
@@ -774,10 +774,10 @@
       <Filter>Contents\Component\Miscellaneous</Filter>
     </ClInclude>
     <ClInclude Include="Contents\BlendAnimationClip.h">
-      <Filter>Contents\Resource\3DModel\Animation</Filter>
+      <Filter>Contents\Resource\Animation</Filter>
     </ClInclude>
     <ClInclude Include="Contents\KeyFrame.h">
-      <Filter>Contents\Resource\3DModel\Animation\KeyFrame</Filter>
+      <Filter>Contents\Resource\Animation\KeyFrame</Filter>
     </ClInclude>
     <ClInclude Include="dx11mathutil.h">
       <Filter>Sample</Filter>

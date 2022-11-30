@@ -39,17 +39,19 @@ void GAME_SYSTEMS::Model::Load(const aiNode* assimpNode, const aiScene* assimpSc
 
 void GAME_SYSTEMS::Model::LoadGeometry(Geometry type)
 {
+	m_meshDataList.resize(1);
+	m_meshDataList[0] = std::make_shared<Mesh>();
+	m_meshNum++;
+	m_hasMesh = true;
 	if (type == Model::Geometry::Cube)
 	{
-		CreateCube();
 	}
 	else if (type == Model::Geometry::Sphare)
 	{
-		CreateSphare();
 	}
 	else if (type == Model::Geometry::Terrain)
 	{
-		CreateTerrain();
+		m_meshDataList[0]->LoadTerrain(m_geometrySize, 50.0f, 50.0f);
 	}
 }
 
@@ -72,16 +74,4 @@ const SharedPtr<GAME_SYSTEMS::Mesh>& GAME_SYSTEMS::Model::GetMeshData(uInt32 ind
 	}
 
 	return m_meshDataList[index];
-}
-
-void GAME_SYSTEMS::Model::CreateCube()
-{
-}
-
-void GAME_SYSTEMS::Model::CreateSphare()
-{
-}
-
-void GAME_SYSTEMS::Model::CreateTerrain()
-{
 }

@@ -14,6 +14,7 @@
 namespace GAME_SYSTEMS
 {
 	class ModelData;
+	class Model;
 	class Texture;
 	class AnimationClip;
 
@@ -29,6 +30,11 @@ namespace GAME_SYSTEMS
 			Model,
 			Sprite
 		};
+	public:
+		enum class GeometryType
+		{
+			Terrain
+		};
 
 	public:
 		// ファイル
@@ -39,6 +45,7 @@ namespace GAME_SYSTEMS
 		
 		// モデル
 		SharedPtr<ModelData> GetModelData(T_String fileName);
+		SharedPtr<Model> GetGeometry(GeometryType type) noexcept { return m_geometryList[type]; }
 		
 		// テクスチャ
 		SharedPtr<Texture> GetTexture(T_String fileName);
@@ -62,7 +69,7 @@ namespace GAME_SYSTEMS
 		Unordered_Map<T_String, SharedPtr<AnimationClip>> m_animationList;
 
 		// モデル
-		Unordered_Map < T_String, SharedPtr<Model>> m_geometryList;
+		Unordered_Map <GeometryType, SharedPtr<Model>> m_geometryList;
 		Unordered_Map <T_String, SharedPtr<ModelData>> m_modelDataList;
 
 		// スプライトテクスチャ

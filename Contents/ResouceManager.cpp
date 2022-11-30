@@ -124,7 +124,9 @@ void GAME_SYSTEMS::ResourceManager::SetUp()
 		}
 	}
 
-	m_geometryList["Terrain"] = 
+	// ƒWƒIƒƒgƒŠ¶¬
+	m_geometryList[GeometryType::Terrain] = std::make_shared<Model>(nullptr);
+	m_geometryList[GeometryType::Terrain]->LoadGeometry(Model::Geometry::Terrain);
 }
 
 void GAME_SYSTEMS::ResourceManager::ShutDown()
@@ -136,6 +138,11 @@ void GAME_SYSTEMS::ResourceManager::ShutDown()
 		model.second->Releace();
 	}
 	m_modelDataList.clear();
+
+	for (auto& model : m_geometryList)
+	{
+		model.second->Releace();
+	}
 }
 
 bool GAME_SYSTEMS::ResourceManager::CheckExt(T_String ext, ResourceManager::FileData data)
