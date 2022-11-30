@@ -1,4 +1,4 @@
-#include "TestScene.h"
+#include "TestScene.h"\
 #include "SceneManager.h"
 #include "GameObjectManager.h"
 #include "Keyboard.h"
@@ -54,10 +54,6 @@ void TestScene::Tick()
 }
 
 void TestScene::EndPlay()
-{
-}
-
-void TestScene::Render()
 {
 }
 

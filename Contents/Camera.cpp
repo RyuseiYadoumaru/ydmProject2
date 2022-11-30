@@ -18,8 +18,8 @@ Int32 Camera::m_activeCameraPriority = 0;
 
 void GAME_SYSTEMS::Camera::Start()
 {
-	m_eye.Set(0.0f,100.0f,-300.0f);
-	m_lookAt.Set(0.0f,100.0f,0.0f);
+	m_eye.Set(-100.0f,0.0f,-100.0f);
+	m_lookAt.Set(50.0f,0.0f,50.0f);
 	m_up.Set(0.0f,1.0f,0.0f);
 
 	// ÉNÉäÉbÉvê›íË

@@ -118,12 +118,12 @@ void GAME_SYSTEMS::Mesh::LoadTerrain(Float32 meshSize, uInt32 terrainSizeX, uInt
 		{
 			Float32 meshOffsetX = meshDistance * x;
 			SYSTEMS::VertexData addVertex[6];
-			addVertex[0].Position.Set(-meshSize + meshOffsetX, 0.0f,  meshSize + meshOffsetY);
-			addVertex[1].Position.Set(-meshSize + meshOffsetX, 0.0f, -meshSize + meshOffsetY);
-			addVertex[2].Position.Set( meshSize + meshOffsetX, 0.0f, -meshSize + meshOffsetY);
-			addVertex[3].Position.Set( meshSize + meshOffsetX, 0.0f,  meshSize + meshOffsetY);
-			addVertex[4].Position.Set(-meshSize + meshOffsetX, 0.0f,  meshSize + meshOffsetY);
-			addVertex[5].Position.Set( meshSize + meshOffsetX, 0.0f, -meshSize + meshOffsetY);
+			addVertex[0].Position.Set(-meshSize + meshOffsetX,  meshSize + meshOffsetY, 0.0f);
+			addVertex[1].Position.Set(-meshSize + meshOffsetX, -meshSize + meshOffsetY, 0.0f);
+			addVertex[2].Position.Set( meshSize + meshOffsetX, -meshSize + meshOffsetY, 0.0f);
+			addVertex[3].Position.Set( meshSize + meshOffsetX,  meshSize + meshOffsetY, 0.0f);
+			addVertex[4].Position.Set(-meshSize + meshOffsetX,  meshSize + meshOffsetY, 0.0f);
+			addVertex[5].Position.Set( meshSize + meshOffsetX, -meshSize + meshOffsetY, 0.0f);
 
 			addVertex[0].Texcoord.Set(0.0f,0.0f);
 			addVertex[1].Texcoord.Set(0.0f,1.0f);

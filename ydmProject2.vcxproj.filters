@@ -133,12 +133,6 @@
     <Filter Include="Game\Script\GameLogic">
       <UniqueIdentifier>{c8aae06e-cb1a-44a9-8512-f468bda081ed}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Script\GameLogic\Camera">
-      <UniqueIdentifier>{4478fd60-b5e0-44e9-b1db-59f9aa4c6cc3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Script\GameLogic\Player">
-      <UniqueIdentifier>{bd641f56-0bbc-4349-9cae-b82081ab1a31}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Contents\Resource">
       <UniqueIdentifier>{f7fbf963-3d25-414f-9e19-47ba03eeea8a}</UniqueIdentifier>
     </Filter>
@@ -210,6 +204,27 @@
     </Filter>
     <Filter Include="Contents\Resource\3DModel\Skelton">
       <UniqueIdentifier>{506f9922-f647-4800-9a3b-4a636c2dc995}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\LogicTools">
+      <UniqueIdentifier>{8a51bf95-2031-4350-b7c9-06f7745ac6c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\LogicTools\StateMachine">
+      <UniqueIdentifier>{be3e6f3a-49e5-4a53-bb5c-951794afbd24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Player">
+      <UniqueIdentifier>{5efa4485-a4d9-4296-86ee-f0bcdc085080}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Camera">
+      <UniqueIdentifier>{083aeb85-5034-492c-a2b5-92e4cbd04559}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Player\PlayerScript">
+      <UniqueIdentifier>{bd641f56-0bbc-4349-9cae-b82081ab1a31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Script\GameLogic\CameraCommon">
+      <UniqueIdentifier>{4478fd60-b5e0-44e9-b1db-59f9aa4c6cc3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Player\PlayerScript\State">
+      <UniqueIdentifier>{51db6164-ff04-4aa6-af75-a443dae9aaa4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -349,13 +364,10 @@
       <Filter>Game\Script\Test</Filter>
     </ClCompile>
     <ClCompile Include="Game\ThirdPersonCamera.cpp">
-      <Filter>Game\Script\GameLogic\Camera</Filter>
+      <Filter>Game\Script\GameLogic\CameraCommon</Filter>
     </ClCompile>
     <ClCompile Include="Game\PlayerMovement.cpp">
-      <Filter>Game\Script\GameLogic\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\MainCamera.cpp">
-      <Filter>Game</Filter>
+      <Filter>Game\Player\PlayerScript</Filter>
     </ClCompile>
     <ClCompile Include="Contents\VertexShader.cpp">
       <Filter>Contents\Resource\Shader</Filter>
@@ -465,14 +477,23 @@
     <ClCompile Include="Contents\DefaultStaticMesh.cpp">
       <Filter>Contents\Resource\3DModel\Model\Mesh</Filter>
     </ClCompile>
-    <ClCompile Include="Contents\SkeletalMesh.cpp">
-      <Filter>Contents\Resource\3DModel\Model\Mesh</Filter>
-    </ClCompile>
-    <ClCompile Include="Contents\StaticMesh.cpp">
-      <Filter>Contents\Resource\3DModel\Model\Mesh</Filter>
-    </ClCompile>
     <ClCompile Include="Contents\BoneTransform.cpp">
       <Filter>Contents\Resource\3DModel\Skelton</Filter>
+    </ClCompile>
+    <ClCompile Include="Contents\StateMachine.cpp">
+      <Filter>Contents\LogicTools\StateMachine</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Player.cpp">
+      <Filter>Game\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\ActionScene.cpp">
+      <Filter>Game\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\MainCamera.cpp">
+      <Filter>Game\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\PlayerMoveGround.cpp">
+      <Filter>Game\Player\PlayerScript\State</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -660,13 +681,10 @@
       <Filter>Game\Script\Test</Filter>
     </ClInclude>
     <ClInclude Include="Game\PlayerMovement.h">
-      <Filter>Game\Script\GameLogic\Player</Filter>
+      <Filter>Game\Player\PlayerScript</Filter>
     </ClInclude>
     <ClInclude Include="Game\ThirdPersonCamera.h">
-      <Filter>Game\Script\GameLogic\Camera</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\MainCamera.h">
-      <Filter>Game</Filter>
+      <Filter>Game\Script\GameLogic\CameraCommon</Filter>
     </ClInclude>
     <ClInclude Include="Contents\VertexShader.h">
       <Filter>Contents\Resource\Shader</Filter>
@@ -718,12 +736,6 @@
     </ClInclude>
     <ClInclude Include="Contents\Timer.h">
       <Filter>Contents\Timer</Filter>
-    </ClInclude>
-    <ClInclude Include="Contents\StaticMesh.h">
-      <Filter>Contents\Resource\3DModel\Model\Mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="Contents\SkeletalMesh.h">
-      <Filter>Contents\Resource\3DModel\Model\Mesh</Filter>
     </ClInclude>
     <ClInclude Include="System\ThirdParty\Assimp\AssimpScene.h">
       <Filter>System\ThirdParty\Assimp</Filter>
@@ -823,6 +835,27 @@
     </ClInclude>
     <ClInclude Include="Contents\Skeleton.h">
       <Filter>Contents\Resource\3DModel\Skelton</Filter>
+    </ClInclude>
+    <ClInclude Include="Contents\StateBase.h">
+      <Filter>Contents\LogicTools\StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="Contents\StateMachine.h">
+      <Filter>Contents\LogicTools\StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Player.h">
+      <Filter>Game\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\ActionScene.h">
+      <Filter>Game\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\MainCamera.h">
+      <Filter>Game\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\PlayerMoveGround.h">
+      <Filter>Game\Player\PlayerScript\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\PlayerActionState.h">
+      <Filter>Game\Player\PlayerScript\State</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

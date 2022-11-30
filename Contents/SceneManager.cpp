@@ -11,6 +11,7 @@
 #include "SceneManager.h"
 
 #include "../Game/TestScene.h"
+#include "../Game/ActionScene.h"
 
 #include "Graphics.h"
 #include "../System/DX11Renderer.h"
@@ -41,7 +42,8 @@ void gameSystems::SceneManager::LoadScene(String sceneName, bool isStackClear)
 void GAME_SYSTEMS::SceneManager::Setup()
 {
 	RegisterScene<TestScene>("TestScene");
-	m_currentScene = m_sceneList["TestScene"];
+	RegisterScene<ActionScene>("ActionScene");
+	m_currentScene = m_sceneList["ActionScene"];
 }
 
 void GAME_SYSTEMS::SceneManager::SceneSetup()
@@ -71,7 +73,7 @@ void GAME_SYSTEMS::SceneManager::SceneRendering()
 
 	// ƒV[ƒ“•`‰æ
 	Graphics::GraphicsUpdate();
-	m_currentScene->Render();
+
 }
 
 void GAME_SYSTEMS::SceneManager::SceneShutdown()

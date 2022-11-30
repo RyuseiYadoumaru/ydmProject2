@@ -26,8 +26,8 @@ void TestObject::Setting()
 	animClip = ResourceManager::GetInstance()->GetAnimationClip("ThirdPersonRun.fbx");
 	blendAnim->AddBlendAnimation(animClip, 1.0f);
 
-	//auto skinned = AddComponent<SkinnedMeshRenderer>();
 	AddComponent<PlayerMovement>();
+	//auto skinned = AddComponent<SkinnedMeshRenderer>();
 	//skinned->SetMesh(ResourceManager::GetInstance()->GetSkeletalMesh("ThirdPerson.fbx"));
 	//skinned->GetMaterial()->SetPixelShader("GrayManps");
 	//skinned->GetMaterial()->AddTexture(TextureManager::GetInstance()->GetTexture("GraymanMaskTex.png"), 0);

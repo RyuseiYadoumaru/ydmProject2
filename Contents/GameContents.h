@@ -46,8 +46,6 @@
 #include "AnimationClip.h"
 #include "BlendAnimationClip.h"
 
-
-
 // オブジェクト
 #include "GameObject.h"
 #include "DefaultCamera.h"
@@ -55,4 +53,6 @@
 #include "Script.h"
 
 // ツール
+#include "StateMachine.h"
+#include "StateBase.h"
 #include "Debug.h"

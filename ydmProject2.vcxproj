@@ -193,6 +193,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="Contents\StateMachine.cpp" />
     <ClCompile Include="Contents\Texture.cpp" />
     <ClCompile Include="Contents\Timer.cpp" />
     <ClCompile Include="Contents\Transform.cpp" />
@@ -200,10 +201,13 @@
     <ClCompile Include="Contents\VertexShader.cpp" />
     <ClCompile Include="dx11mathutil.cpp" />
     <ClCompile Include="Editor\TestEditor.cpp" />
+    <ClCompile Include="Game\ActionScene.cpp" />
     <ClCompile Include="Game\CubeTest.cpp" />
     <ClCompile Include="Game\EnemyGenerator.cpp" />
     <ClCompile Include="Game\MainCamera.cpp" />
     <ClCompile Include="Game\MoveMentSphere.cpp" />
+    <ClCompile Include="Game\Player.cpp" />
+    <ClCompile Include="Game\PlayerMoveGround.cpp" />
     <ClCompile Include="Game\PlayerMovement.cpp" />
     <ClCompile Include="Game\SphareTest.cpp" />
     <ClCompile Include="Game\TestObject.cpp" />
@@ -312,6 +316,8 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="Contents\StateBase.h" />
+    <ClInclude Include="Contents\StateMachine.h" />
     <ClInclude Include="Contents\std.h" />
     <ClInclude Include="Contents\Tag.h" />
     <ClInclude Include="Contents\Texture.h" />
@@ -324,10 +330,14 @@
     <ClInclude Include="dx11mathutil.h" />
     <ClInclude Include="Editor\EditorHeader.h" />
     <ClInclude Include="Editor\TestEditor.h" />
+    <ClInclude Include="Game\ActionScene.h" />
     <ClInclude Include="Game\CubeTest.h" />
     <ClInclude Include="Game\EnemyGenerator.h" />
     <ClInclude Include="Game\MainCamera.h" />
     <ClInclude Include="Game\MoveMentSphere.h" />
+    <ClInclude Include="Game\Player.h" />
+    <ClInclude Include="Game\PlayerActionState.h" />
+    <ClInclude Include="Game\PlayerMoveGround.h" />
     <ClInclude Include="Game\PlayerMovement.h" />
     <ClInclude Include="Game\SphareTest.h" />
     <ClInclude Include="Game\TestObject.h" />

@@ -34,8 +34,7 @@ void ThirdPersonCamera::FocusObject()
 	//m_camera->m_up.Set(
 	//	m_focusTransform->GetAxisY().x,
 	//	m_focusTransform->GetAxisY().y,
-	//	m_focusTransform->GetAxisY().z
-	//);
+	//	m_focusTransform->GetAxisY().z);
 
 }
 
@@ -102,17 +101,6 @@ void ThirdPersonCamera::Update()
 		if (m_verticalAngle < -m_limitVerticalAngle) m_verticalAngle = -m_limitVerticalAngle;
 
 	}
-
-	if (Keyboard::Press(Keycode::F1))
-	{
-		m_horizontalRadius += 10;
-	}
-
-	if (Keyboard::Press(Keycode::F2))
-	{
-		m_horizontalRadius -= 10;
-	}
-
 }
 
 void ThirdPersonCamera::End()

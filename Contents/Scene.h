@@ -21,7 +21,6 @@ namespace GAME_SYSTEMS
 		bool Initialize();
 		bool Run();
 		bool Finalize();
-		virtual void Render()		= 0;
 
 	public:
 		OBJECT_CLASS;
