@@ -51,13 +51,20 @@ namespace GAME_SYSTEMS
 		static myMath::Vector2 LeftStick(uInt32 index = 0);
 		static myMath::Vector2 RightStick(uInt32 index = 0);
 
+		static Float32 LeftTrigger(uInt32 index = 0);
+		static Float32 RightTrigger(uInt32 index = 0);
+
 	public:
 		constexpr static uInt32 m_XinputLeftVibrationMax = (0xffff * 0x02);
 		constexpr static uInt32 m_XinputRightVibrationMax = (0xffff);
 		constexpr static uInt32 m_XinputLeftThubmDeadZone = (7849);
 		constexpr static uInt32 m_XinputRightThubmDeadZone = (8689);
+		constexpr static Float32 m_XinputTriggerMax = 1.0f;
+		constexpr static Float32 m_XinputStickMax = 1.0f;
 
-		constexpr static Float32 m_stickMax = 32767.0f;
+	private:
+		constexpr static Float32 m_stickMax		= 32767.0f;
+		constexpr static Float32 m_triggerMax	= 255.0f;
 	};
 
 }

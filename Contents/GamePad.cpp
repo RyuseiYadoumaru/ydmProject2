@@ -53,3 +53,17 @@ myMath::Vector2 GAME_SYSTEMS::GamePad::RightStick(uInt32 index)
     stick.y = pad->GetXinputState(index).Gamepad.sThumbRY / m_stickMax;
     return stick;
 }
+
+Float32 GAME_SYSTEMS::GamePad::LeftTrigger(uInt32 index)
+{
+    auto pad = GameSystemManager::GetInstance()->GetSubSystem<GamePadSystem>("GamePadSystem");
+    Float32 param = pad->GetXinputState(index).Gamepad.bLeftTrigger;
+    return param / m_triggerMax;
+}
+
+Float32 GAME_SYSTEMS::GamePad::RightTrigger(uInt32 index)
+{
+    auto pad = GameSystemManager::GetInstance()->GetSubSystem<GamePadSystem>("GamePadSystem");
+    Float32 param = pad->GetXinputState(index).Gamepad.bRightTrigger;
+    return param / m_triggerMax;
+}

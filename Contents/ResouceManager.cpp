@@ -93,13 +93,13 @@ void GAME_SYSTEMS::ResourceManager::SetUp()
 	m_fileDataExtList[FileData::Animation].emplace_back("FBX");
 	m_fileDataExtList[FileData::Animation].emplace_back("x");
 
-
 	// オーディオデータ拡張子
 	m_fileDataExtList[FileData::Audio].emplace_back("wav");
 	m_fileDataExtList[FileData::Audio].emplace_back("mp3");
 
 	// モデルデータ拡張子
 	m_fileDataExtList[FileData::Model].emplace_back("fbx");
+	m_fileDataExtList[FileData::Model].emplace_back("FBX");
 	m_fileDataExtList[FileData::Model].emplace_back("obj");
 	m_fileDataExtList[FileData::Model].emplace_back("x");
 

@@ -87,7 +87,7 @@ void GAME_SYSTEMS::Animator::Update()
 		return;
 	}
 
-	m_playTimer += Timer::DeltaTime() * m_playSpeed;
+	m_playTimer += Timer::FixDeltaTime() * m_playSpeed;
 
 	// Ä¶I—¹‚µ‚½‚Æ‚«
 	if (m_playTimer > m_currentMotion->GetDuration())

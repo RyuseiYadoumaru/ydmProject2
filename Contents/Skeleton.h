@@ -52,6 +52,9 @@ namespace GAME_SYSTEMS
 		// ボーンを生成
 		void CreateBoneList(const aiScene* assimpScene, const aiNode* node, uInt32 parentIndex);
 
+		// ボーンインデックス生成
+		void CreateBoneIndexList(const aiNode* node);
+
 	private:
 		// 親データ
 		ModelData* m_parent	 = nullptr;

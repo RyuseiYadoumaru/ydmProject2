@@ -38,18 +38,10 @@ namespace SYSTEMS
 		bool HasAnimation();
 		uInt32 GetAnimationsNum() const;
 
-		// ボーン
-		int GetBoneIndexByName(std::string name) const;
-		uInt32 GetBoneNum() const;
-
-	private:
-		// ボーンの名前とインデックスを関連付けるマップ作成
-		void CreateBoneIndexMap(aiNode* node);
-
 	private:
 		const aiScene* m_Scene = nullptr;
 
 		// ボーンの名前とインデックスを関連付ける
-		Unordered_Map<T_String, int> m_boneIndexMap;
+		Unordered_Map<T_String, int> m_boneIndexList;
 	};
 }

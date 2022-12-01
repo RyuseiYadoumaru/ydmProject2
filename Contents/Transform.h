@@ -22,7 +22,7 @@ namespace GAME_SYSTEMS
 	{
 	public:
 		myMath::Vector3 m_position	= { 0.0f, 0.0f, 0.0f };
-		myMath::Vector3 m_rotation	= { 90.0f, 0.0f, 0.0f };
+		myMath::Vector3 m_rotation	= { 0.0f, 0.0f, 0.0f };
 		myMath::Vector3 m_scale		= { 1.0f, 1.0f, 1.0f };
 
 	public:

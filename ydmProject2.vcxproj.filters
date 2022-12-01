@@ -495,6 +495,9 @@
     <ClCompile Include="Game\PlayerMoveGround.cpp">
       <Filter>Game\Player\PlayerScript\State</Filter>
     </ClCompile>
+    <ClCompile Include="Game\PlayerMoveAir.cpp">
+      <Filter>Game\Player\PlayerScript\State</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="System\Console.h">
@@ -855,6 +858,9 @@
       <Filter>Game\Player\PlayerScript\State</Filter>
     </ClInclude>
     <ClInclude Include="Game\PlayerActionState.h">
+      <Filter>Game\Player\PlayerScript\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\PlayerMoveAir.h">
       <Filter>Game\Player\PlayerScript\State</Filter>
     </ClInclude>
   </ItemGroup>

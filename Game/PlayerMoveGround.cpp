@@ -22,6 +22,7 @@ void PlayerMoveGround::Update()
 	Float32 angle = 0.0f;
 	Float32 movePower = 0.0f;
 
+	// 移動
 	if (GamePad::LeftStick().x != 0.0f || GamePad::LeftStick().y != 0.0f)
 	{
 		// 入力処理
@@ -61,6 +62,13 @@ void PlayerMoveGround::Update()
 	else
 	{
 		m_isResetCamera = false;
+	}
+
+	// 空中モード
+	if (GamePad::RightTrigger() >= GamePad::m_XinputTriggerMax)
+	{
+		m_owner->GetStateMachine().ChangeState("MoveAir");
+		return;
 	}
 
 	// アニメーション

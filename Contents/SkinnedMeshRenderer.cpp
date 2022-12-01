@@ -20,8 +20,6 @@ USING_TOOLS;
 USING_SYSTEMS;
 USING_GAME_SYSTEMS
 
-#define ANIM_BLEND
-
 #include "Texture.h"
 #include "Material.h"
 #include "Mesh.h"

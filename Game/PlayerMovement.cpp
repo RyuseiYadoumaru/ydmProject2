@@ -2,6 +2,7 @@
 #include "ThirdPersonCamera.h"
 
 #include "PlayerMoveGround.h"
+#include "PlayerMoveAir.h"
 
 void PlayerMovement::Start()
 {
@@ -18,6 +19,7 @@ void PlayerMovement::Start()
 
 	// ステートマシン初期化
 	m_stateMachine.Register("MoveGround", std::make_shared<PlayerMoveGround>(this));
+	m_stateMachine.Register("MoveAir", std::make_shared<PlayerMoveAir>(this));
 	m_stateMachine.ChangeState("MoveGround");
 
 }

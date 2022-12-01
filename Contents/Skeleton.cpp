@@ -26,19 +26,16 @@ bool Skeleton::Load(const aiScene* assimpScene)
 	auto mesh = assimpScene->mMeshes[0];
 
 	// ボーンインデックス生成
-	m_boneNum = mesh->mNumBones;
-	for (uInt32 num = 0; num < m_boneNum; num++)
-	{
-		T_String boneName = mesh->mBones[num]->mName.C_Str();
-		m_boneIndexList.emplace(boneName, num);
-	}
+	// 現在全てのノードを取得してボーンマップを生成しているため
+	// ボーンの情報のみ取得できるようにする仕組みにしたい…
+	auto rootNode = assimpScene->mRootNode;
+	CreateBoneIndexList(rootNode);
 
-	// 親ボーン生成
+	// ボーン生成
 	m_boneList.clear();
-	m_boneList.resize(m_boneNum);
-	CreateBoneList(assimpScene,
-		assimpScene->mRootNode,
-		Bone::NONE_PARENT);
+	uInt32 boneSize = m_boneIndexList.size();
+	m_boneList.resize(boneSize);
+	CreateBoneList(assimpScene, rootNode, Bone::NONE_PARENT);
  
 	// ルートボーンを設定
 	m_rootBone = &m_boneList[0];
@@ -124,6 +121,28 @@ void Skeleton::CreateBoneList(const aiScene* assimpScene, const aiNode* node, uI
 	{
 		aiNode* child = node->mChildren[i];
 		CreateBoneList(assimpScene, child, boneIndex);
+	}
+}
+
+void GAME_SYSTEMS::Skeleton::CreateBoneIndexList(const aiNode* node)
+{
+	// リスト探索
+	auto nodeName = node->mName.C_Str();
+	if (m_boneIndexList.contains(nodeName) == true)
+	{
+		return;
+	}
+
+	// ボーンマップ追加
+	Int32 index = static_cast<Int32>(m_boneIndexList.size());
+	m_boneIndexList.emplace(nodeName, index);
+
+	// 子供も探索
+	const uInt32 childCount = node->mNumChildren;
+	for (uInt32 i = 0; i < childCount; i++)
+	{
+		aiNode* child = node->mChildren[i];
+		CreateBoneIndexList(child);
 	}
 }
 

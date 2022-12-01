@@ -13,5 +13,6 @@ private:
 
 private:
 	GameObjectPtr m_player = nullptr;
+	uInt32 m_frameCounter = 0;
 
 };
