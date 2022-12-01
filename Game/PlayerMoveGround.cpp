@@ -80,5 +80,4 @@ void PlayerMoveGround::Update()
 	moveForwardForce * transform->GetAxisY().x * -1.0f,
 	moveForwardForce * transform->GetAxisY().y * -1.0f,
 	moveForwardForce * transform->GetAxisY().z * -1.0f);
-
 }

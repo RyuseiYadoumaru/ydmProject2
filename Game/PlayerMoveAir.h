@@ -12,6 +12,9 @@ public:
 	virtual void Update() override;
 
 private:
+	void AirMoveMent();
+
+private:
 	bool m_canAirMove = false;
 	
 	// 無重力パラメータ
@@ -19,5 +22,7 @@ private:
 	MY_MATH::Vector3 m_endPosition;
 
 	uInt32 m_counter = 0;
+
+	bool m_isResetCamera = false;
 };
 

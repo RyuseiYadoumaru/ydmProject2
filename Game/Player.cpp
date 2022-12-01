@@ -14,6 +14,8 @@ void Player::Setting()
 
 	// アニメーション設定
 	auto anim = AddComponent<Animator>();
+
+	// 地面移動
 	auto blendAnim = anim->CreateBlendAnimation("MoveMent");
 	auto animClip = ResourceManager::GetInstance()->GetAnimationClip("BasicMotions_Idle01.fbx");
 	blendAnim->AddBlendAnimation(animClip, 0.0f);
@@ -23,6 +25,11 @@ void Player::Setting()
 	blendAnim->AddBlendAnimation(animClip, 0.7f);
 	animClip = ResourceManager::GetInstance()->GetAnimationClip("BasicMotions_Sprint01.fbx");
 	blendAnim->AddBlendAnimation(animClip, 1.0f);
+	
+	// 空中時
+	animClip = ResourceManager::GetInstance()->GetAnimationClip("BasicMotions_AirMove.fbx");
+	anim->AddAnimation("AirMove", animClip);
+
 	AddComponent<PlayerMovement>();
 
 	// 座標設定

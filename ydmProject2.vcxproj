@@ -207,6 +207,7 @@
     <ClCompile Include="Game\MainCamera.cpp" />
     <ClCompile Include="Game\MoveMentSphere.cpp" />
     <ClCompile Include="Game\Player.cpp" />
+    <ClCompile Include="Game\PlayerFallState.cpp" />
     <ClCompile Include="Game\PlayerMoveAir.cpp" />
     <ClCompile Include="Game\PlayerMoveGround.cpp" />
     <ClCompile Include="Game\PlayerMovement.cpp" />
@@ -338,6 +339,7 @@
     <ClInclude Include="Game\MoveMentSphere.h" />
     <ClInclude Include="Game\Player.h" />
     <ClInclude Include="Game\PlayerActionState.h" />
+    <ClInclude Include="Game\PlayerFallState.h" />
     <ClInclude Include="Game\PlayerMoveAir.h" />
     <ClInclude Include="Game\PlayerMoveGround.h" />
     <ClInclude Include="Game\PlayerMovement.h" />

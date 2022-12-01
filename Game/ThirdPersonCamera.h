@@ -32,7 +32,7 @@ private:
 	Float32 m_horizontalAngle = 0.0f;
 	Float32 m_verticalAngle = 0.0f;
 
-	Float32 m_movevSensitivity = 10.0f;
+	Float32 m_movevSensitivity = 8.0f;
 
 	bool m_isReset = false;
 	Float32 m_resetTargetAngle = 0.0f;

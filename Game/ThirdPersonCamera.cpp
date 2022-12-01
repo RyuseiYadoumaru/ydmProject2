@@ -26,8 +26,7 @@ void ThirdPersonCamera::FocusObject()
 	m_camera->m_lookAt.Set(
 		m_focusTransform->GetPosition().x,
 		m_focusTransform->GetPosition().y,
-		m_focusTransform->GetPosition().z
-	);
+		m_focusTransform->GetPosition().z);
 	m_camera->m_lookAt += m_lookAtOffset;
 
 	// カメラの上ベクトルをフォーカスオブジェクトに同期
@@ -61,7 +60,7 @@ void ThirdPersonCamera::Update()
 	
 	if (m_isReset == true)
 	{
-		m_totalDeltaTime += Timer::DeltaTime();
+		m_totalDeltaTime += Timer::FixDeltaTime();
 		if (m_totalDeltaTime >= m_resetTime)
 		{
 			m_totalDeltaTime = m_resetTime;

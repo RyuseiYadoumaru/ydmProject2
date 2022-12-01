@@ -43,7 +43,7 @@ private:
 	Vector3 m_moveForce;
 
 	// ‹ó’†ˆÚ“®
-	Float32 m_airHeight = 20.0f;
+	Float32 m_airHeight = 300.0f;
 	uInt32 m_airFrameCount = 20;
 
 	// ƒJƒƒ‰
