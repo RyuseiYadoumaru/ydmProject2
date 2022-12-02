@@ -1,5 +1,6 @@
 #include "GameContents.h"
 #include "ActionScene.h"
+#include "PlayerTrackingCamera.h"
 #include "MainCamera.h"
 #include "Player.h"
 
@@ -8,7 +9,7 @@
 
 void ActionScene::ObjectEntry()
 {
-	GameObjectManager::GetInstance()->Instance<MainCamera>("Camera");
+	GameObjectManager::GetInstance()->Instance<PlayerTrackingCamera>("Camera");
 	GameObjectManager::GetInstance()->Instance<Player>("Player");
 	GameObjectManager::GetInstance()->Instance<CubeTest>("Cube");
 }

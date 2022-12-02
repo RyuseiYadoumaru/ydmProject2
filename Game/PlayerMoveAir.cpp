@@ -1,7 +1,7 @@
 #include "GameContents.h"
 #include "PlayerMoveAir.h"
 #include "PlayerMovement.h"
-#include "ThirdPersonCamera.h"
+#include "PlayerActionCamera.h"
 
 void PlayerMoveAir::EnterState()
 {
@@ -29,7 +29,7 @@ void PlayerMoveAir::Update()
 	if (m_canAirMove == true)
 	{
 		// ˆÚ“®ˆ—
-		AirMoveMent();
+		//AirMoveMent();
 
 		if (GamePad::LeftTrigger() >= GamePad::m_XinputTriggerMax)
 		{

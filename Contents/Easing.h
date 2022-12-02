@@ -117,8 +117,7 @@ namespace myMath
 		template<class Ty = float>
 		[[nodiscard]] static Ty CubicInOut(float time, float totalTime, Ty min, Ty max) noexcept
 		{
-			assert(max > min);
-			assert(time <= totalTime);
+
 			max -= min;
 			time /= totalTime / 2.0f;
 			if (time < 1.0f) return max / 2.0f * time * time * time + min;
@@ -132,8 +131,6 @@ namespace myMath
 		template<class Ty = float>
 		[[nodiscard]] static Ty ExpoIn(float time, float totalTime, Ty min, Ty max) noexcept
 		{
-			assert(max > min);
-			assert(time <= totalTime);
 			max -= min;
 			return (time == 0.0f) ? min : max * pow(2.0f, 10.0f * (time / totalTime - 1.0f)) + min;
 		}
@@ -144,8 +141,6 @@ namespace myMath
 		template<class Ty = float>
 		[[nodiscard]] static Ty ExpoOut(float time, float totalTime, Ty min, Ty max) noexcept
 		{
-			assert(max > min);
-			assert(time <= totalTime);
 			max -= min;
 			return (time == totalTime) ? (max + min) : max * (-pow(2.0f, -10.0f * time / totalTime) + 1.0f) + min;
 		}
@@ -156,8 +151,6 @@ namespace myMath
 		template<class Ty = float>
 		[[nodiscard]] static Ty ExpoInOut(float time, float totalTime, Ty min, Ty max) noexcept
 		{
-			assert(max > min);
-			assert(time <= totalTime);
 			if (time == 0.0f) return min;
 			if (time == totalTime) return max;
 			max -= min;

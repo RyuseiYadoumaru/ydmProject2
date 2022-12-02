@@ -1,7 +1,7 @@
 #pragma once
 #include "PlayerActionState.h"
 
-class PlayerFallState : public PlayerActionState
+class PlayerLandGround : public PlayerActionState
 {
 public:
 	PLAYER_ACTION_STATE;

@@ -1,14 +1,15 @@
 #include "PlayerMovement.h"
-#include "ThirdPersonCamera.h"
+#include "PlayerActionCamera.h"
 
 #include "PlayerMoveGround.h"
 #include "PlayerMoveAir.h"
 #include "PlayerFallState.h"
+#include "PlayerLandGround.h"
 
 void PlayerMovement::Start()
 {
 	// ƒJƒƒ‰Žæ“¾
-	m_activeCamera = GameObjectManager::GetInstance()->Find("Camera")->GetComponent<ThirdPersonCamera>();
+	m_activeCamera = GameObjectManager::GetInstance()->Find("Camera")->GetComponent<PlayerActionCamera>();
 	if (m_activeCamera != nullptr)
 	{
 
@@ -22,6 +23,7 @@ void PlayerMovement::Start()
 	m_stateMachine.Register("MoveGround", std::make_shared<PlayerMoveGround>(this));
 	m_stateMachine.Register("MoveAir", std::make_shared<PlayerMoveAir>(this));
 	m_stateMachine.Register("Fall", std::make_shared<PlayerFallState>(this));
+	m_stateMachine.Register("LandGround", std::make_shared<PlayerLandGround>(this));
 	m_stateMachine.ChangeState("MoveGround");
 
 }

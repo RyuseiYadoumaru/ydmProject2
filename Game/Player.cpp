@@ -30,6 +30,10 @@ void Player::Setting()
 	animClip = ResourceManager::GetInstance()->GetAnimationClip("BasicMotions_AirMove.fbx");
 	anim->AddAnimation("AirMove", animClip);
 
+	// ’…’n
+	animClip = ResourceManager::GetInstance()->GetAnimationClip("BasicMotions_Landing02.fbx");
+	anim->AddAnimation("LandGround", animClip);
+
 	AddComponent<PlayerMovement>();
 
 	// À•Wİ’è
