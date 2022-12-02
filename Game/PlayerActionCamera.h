@@ -1,12 +1,16 @@
 #pragma once
 #include "GameContents.h"
 
+class PlayerMovement;
+
 class PlayerActionCamera : public GAME_SYSTEMS::Script
 {
 public:
+	// 地面のカメラ
 	const Float32& GetHorizontalAngle() const noexcept { return m_horizontalAngle; }
 	bool IsReset() const noexcept { return m_isReset; }
 
+	// ステートマシン
 	GAME_SYSTEMS::StateMachine& GetStateMachine() noexcept { return m_stateMachine; }
 
 private:
@@ -20,10 +24,11 @@ private:
 	GAME_SYSTEMS::GameObjectPtr m_trackingPlayer = nullptr;
 
 	// コンポーネント
+	SharedPtr<PlayerMovement> m_playerMovement = nullptr;
 	SharedPtr<GAME_SYSTEMS::Transform> m_focusTransform = nullptr;
 	SharedPtr <GAME_SYSTEMS::Camera> m_camera = nullptr;
 
-
+	// アングル
 	MY_MATH::Vector3 m_lookAtOffset;
 	Float32 m_heightOffset = 200.0f;
 	Float32 m_horizontalRadius = 300.0f;
@@ -31,8 +36,10 @@ private:
 	Float32 m_horizontalAngle = 0.0f;
 	Float32 m_verticalAngle = 0.0f;
 
+	// カメラアクション
 	Float32 m_movevSensitivity = 8.0f;
 
+	// カメラリセット
 	bool m_isReset = false;
 	Float32 m_resetTargetAngle = 0.0f;
 	Float32 m_resetStartAngle = 0.0f;

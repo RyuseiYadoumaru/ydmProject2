@@ -3,5 +3,5 @@
 
 void MainCamera::Setting()
 {
-	AddComponent<ThirdPersonCamera>();
+	//AddComponent<ThirdPersonCamera>();
 }

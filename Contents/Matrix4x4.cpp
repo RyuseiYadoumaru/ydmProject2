@@ -187,12 +187,6 @@ myMath::Matrix4x4 myMath::Matrix4x4::CreateMatrixFromAIMatrix(aiMatrix4x4& aiMtx
 	return mtx;;
 }
 
-
-//==============================================================================
-//!	@fn		CreateQuaternion
-//!	@brief	クオータニオン生成
-//!	@retval	クオータニオン
-//==============================================================================
 myMath::Vector4 myMath::Matrix4x4::GetQuaternion() noexcept
 {
 	ALIGN16 DirectX::XMMATRIX mtx;

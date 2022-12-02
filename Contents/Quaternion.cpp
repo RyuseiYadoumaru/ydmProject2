@@ -18,7 +18,7 @@
 #endif // USE_DIRECTMATH
 
 //整理
-myMath::Quaternion myMath::Quaternion::CreateQuaternion(myMath::Matrix4x4& matrix)
+myMath::Quaternion myMath::Quaternion::CreateByMartix(myMath::Matrix4x4& matrix)
 {
 	ALIGN16 DirectX::XMMATRIX mtx;
 	ALIGN16 DirectX::XMVECTOR qt;
@@ -29,6 +29,32 @@ myMath::Quaternion myMath::Quaternion::CreateQuaternion(myMath::Matrix4x4& matri
 	outQt.Set(qt);
 
 	return outQt;
+}
+
+myMath::Quaternion myMath::Quaternion::CreateByRotation(Float32 x, Float32 y, Float32 z)
+{
+	ALIGN16 DirectX::XMVECTOR qt;
+	qt = DirectX::XMQuaternionRotationRollPitchYaw(x, y, z);
+	
+	myMath::Quaternion outQt;
+	outQt.Set(qt);
+
+	return outQt;
+}
+
+myMath::Quaternion myMath::Quaternion::CreateByRotationAxis(const Vector4& axis, Float32 angle)
+{
+	DirectX::XMVECTOR outQt;
+	DirectX::XMVECTOR axisVec;
+
+	/****	クォータニオン生成	****/
+	axisVec = DirectX::XMLoadFloat4(&axis);
+	Float32 radian = angle * DirectX::XM_PI / 180.0f;
+	outQt = DirectX::XMQuaternionRotationAxis(axisVec, radian);
+
+	myMath::Quaternion out;
+	out.Set(outQt);
+	return out;
 }
 
 

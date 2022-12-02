@@ -1,4 +1,6 @@
 #include "PlayerActionCamera.h"
+#include "PlayerMovement.h"
+
 
 USING_GAME_SYSTEMS;
 USING_MY_MATH;
@@ -49,6 +51,10 @@ void PlayerActionCamera::Start()
 
 	m_lookAtOffset.Set(0.0f, 30.0f, 0.0f);
 
+	// プレイヤー移動スクリプトを取得
+	m_playerMovement = m_trackingPlayer->GetComponent<PlayerMovement>();
+	Debug::Assert(m_playerMovement == nullptr);
+
 	// フォーカスオブジェクトの向いてる方向にカメラアングルをセットする
 	m_horizontalAngle = m_focusTransform->GetRotation().y;
 	FocusObject();
@@ -97,9 +103,15 @@ void PlayerActionCamera::Update()
 			m_horizontalAngle -= 360.0f;
 		}
 
-		if (m_verticalAngle > m_limitVerticalAngle) m_verticalAngle = m_limitVerticalAngle;
-		if (m_verticalAngle < -m_limitVerticalAngle) m_verticalAngle = -m_limitVerticalAngle;
-
+		// 縦の移動が最大
+		if (m_verticalAngle > m_limitVerticalAngle)
+		{
+			m_verticalAngle = m_limitVerticalAngle;
+		}
+		else if (m_verticalAngle < -m_limitVerticalAngle)
+		{
+			m_verticalAngle = -m_limitVerticalAngle;
+		}
 	}
 
 }

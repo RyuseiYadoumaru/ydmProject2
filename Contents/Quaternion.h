@@ -21,7 +21,10 @@ namespace myMath
 	class Quaternion : public DirectX::XMFLOAT4
 	{
 	public:
-		static Quaternion CreateQuaternion(Matrix4x4& matrix);
+		static Quaternion CreateByMartix(Matrix4x4& matrix);
+		static Quaternion CreateByRotation(Float32 x, Float32 y, Float32 z);
+		static Quaternion CreateByRotationAxis(const Vector4& axis, Float32 angle);
+
 		static Quaternion Multiply(const Quaternion& qt1, const Quaternion& qt2);
 		static Quaternion Slerp(const Quaternion& startQt, const Quaternion& endQt, Float32 t);
 	public:
@@ -45,5 +48,6 @@ namespace myMath
 
 	private:
 		Vector4 m_axis;
+
 	};
 }
