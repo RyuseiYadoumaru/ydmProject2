@@ -51,7 +51,7 @@ void GAME_SYSTEMS::Model::LoadGeometry(Geometry type)
 	}
 	else if (type == Model::Geometry::Terrain)
 	{
-		m_meshDataList[0]->LoadTerrain(m_geometrySize, 50.0f, 50.0f);
+		m_meshDataList[0]->LoadTerrain(m_geometrySize, 50, 50);
 	}
 }
 
@@ -65,7 +65,7 @@ void GAME_SYSTEMS::Model::Releace()
 	m_meshDataList.clear();
 }
 
-const SharedPtr<GAME_SYSTEMS::Mesh>& GAME_SYSTEMS::Model::GetMeshData(uInt32 index) noexcept
+const SharedPtr<GAME_SYSTEMS::Mesh> GAME_SYSTEMS::Model::GetMeshData(uInt32 index) noexcept
 {
 	if (index >= m_meshDataList.size() || m_meshDataList.empty() == true)
 	{

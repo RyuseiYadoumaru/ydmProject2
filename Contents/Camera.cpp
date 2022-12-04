@@ -13,8 +13,36 @@
 
 USING_SYSTEMS;
 USING_GAME_SYSTEMS;
+USING_MY_MATH;
 
 Int32 Camera::m_activeCameraPriority = 0;
+
+MY_MATH::Vector3 GAME_SYSTEMS::Camera::GetAxisX() noexcept
+{
+	Vector3 outVec;
+	outVec.x = m_viewTransformMatrix._11;
+	outVec.y = m_viewTransformMatrix._21;
+	outVec.z = m_viewTransformMatrix._31;
+	return outVec;
+}
+
+MY_MATH::Vector3 GAME_SYSTEMS::Camera::GetAxisY() noexcept
+{
+	Vector3 outVec;
+	outVec.x = m_viewTransformMatrix._12;
+	outVec.y = m_viewTransformMatrix._22;
+	outVec.z = m_viewTransformMatrix._32;
+	return outVec;
+}
+
+MY_MATH::Vector3 GAME_SYSTEMS::Camera::GetAxisZ() noexcept
+{
+	Vector3 outVec;
+	outVec.x = m_viewTransformMatrix._13;
+	outVec.y = m_viewTransformMatrix._23;
+	outVec.z = m_viewTransformMatrix._33;
+	return outVec;
+}
 
 void GAME_SYSTEMS::Camera::Start()
 {
@@ -36,18 +64,18 @@ void GAME_SYSTEMS::Camera::Start()
 
 void GAME_SYSTEMS::Camera::Update()
 {
-	// カメラ行列を生成する
-	m_cameraMatrix = myMath::Matrix4x4::CreateLookAtMatrix(m_eye, m_lookAt, m_up);
+	// ビュー変換行列を生成する
+	m_viewTransformMatrix = myMath::Matrix4x4::CreateLookAtMatrix(m_eye, m_lookAt, m_up);
 
 	// プロジェクション行列を生成する
-	m_projectionMatrix = myMath::Matrix4x4::CreateProjectionMatrix(m_fov, m_aspect, m_nearClip, m_farClip);
+	m_projectionTransformMatrix = myMath::Matrix4x4::CreateProjectionMatrix(m_fov, m_aspect, m_nearClip, m_farClip);
 
 	if (m_priority >= m_activeCameraPriority)
 	{
 		// カメラの優先度が高い時にカメラ行列を切り替えます
 		m_activeCameraPriority = m_priority;
-		DX11SetTransform::GetInstance()->SetTransform(DX11SetTransform::TYPE::VIEW, m_cameraMatrix);
-		DX11SetTransform::GetInstance()->SetTransform(DX11SetTransform::TYPE::PROJECTION, m_projectionMatrix);
+		DX11SetTransform::GetInstance()->SetTransform(DX11SetTransform::TYPE::VIEW, m_viewTransformMatrix);
+		DX11SetTransform::GetInstance()->SetTransform(DX11SetTransform::TYPE::PROJECTION, m_projectionTransformMatrix);
 	}
 }
 

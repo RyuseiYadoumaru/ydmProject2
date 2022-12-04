@@ -232,6 +232,15 @@
     <Filter Include="Game\PlayerTrackingCamera\Script">
       <UniqueIdentifier>{ec002363-8652-4a69-93fd-717b11b32a9a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="System\Renderer\Shader\HLSL\DebugShader">
+      <UniqueIdentifier>{324ef5ca-c270-4035-8ebb-c10d23525ccb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Developer">
+      <UniqueIdentifier>{ddf41b5a-53ac-479f-a84e-01dd5b21e893}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Resource\Line">
+      <UniqueIdentifier>{dbd2e253-dd2c-4bad-9f9c-0c4a1a5b5972}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="System\Console.cpp">
@@ -515,6 +524,12 @@
     </ClCompile>
     <ClCompile Include="Game\PlayerActionCamera.cpp">
       <Filter>Game\PlayerTrackingCamera\Script</Filter>
+    </ClCompile>
+    <ClCompile Include="Contents\Line.cpp">
+      <Filter>Contents\Resource\Line</Filter>
+    </ClCompile>
+    <ClCompile Include="Contents\DeveloperMenu.cpp">
+      <Filter>Contents\Developer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -893,6 +908,12 @@
     <ClInclude Include="Game\PlayerActionCamera.h">
       <Filter>Game\PlayerTrackingCamera\Script</Filter>
     </ClInclude>
+    <ClInclude Include="Contents\DeveloperMenu.h">
+      <Filter>Contents\Developer</Filter>
+    </ClInclude>
+    <ClInclude Include="Contents\Line.h">
+      <Filter>Contents\Resource\Line</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Shader\pscol.hlsl">
@@ -930,6 +951,12 @@
     </FxCompile>
     <FxCompile Include="Shader\Spider.hlsl">
       <Filter>System\Renderer\Shader\HLSL</Filter>
+    </FxCompile>
+    <FxCompile Include="Shader\DebugVertexShader.hlsl">
+      <Filter>System\Renderer\Shader\HLSL\DebugShader</Filter>
+    </FxCompile>
+    <FxCompile Include="Shader\DebugPixelShader.hlsl">
+      <Filter>System\Renderer\Shader\HLSL\DebugShader</Filter>
     </FxCompile>
   </ItemGroup>
   <ItemGroup>

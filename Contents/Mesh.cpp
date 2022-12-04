@@ -107,7 +107,7 @@ void GAME_SYSTEMS::Mesh::Load(const aiMesh* assimpMesh, Skeleton* skeleton)
 void GAME_SYSTEMS::Mesh::LoadTerrain(Float32 meshSize, uInt32 terrainSizeX, uInt32 terrainSizeY)
 {
 	// í∏ì_çÏê¨
-	Float32 meshDistance = meshSize * 2.0;
+	Float32 meshDistance = meshSize * 2.0f;
 	m_faceNum = terrainSizeX * terrainSizeY;
 	m_vertexNum = m_faceNum * 6;
 	Vector<SYSTEMS::VertexData> vertexList;

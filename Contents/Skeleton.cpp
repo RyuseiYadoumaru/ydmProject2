@@ -33,7 +33,7 @@ bool Skeleton::Load(const aiScene* assimpScene)
 
 	// É{Å[Éìê∂ê¨
 	m_boneList.clear();
-	uInt32 boneSize = m_boneIndexList.size();
+	uInt32 boneSize = static_cast<uInt32>(m_boneIndexList.size());
 	m_boneList.resize(boneSize);
 	CreateBoneList(assimpScene, rootNode, Bone::NONE_PARENT);
  

@@ -26,13 +26,20 @@ namespace GAME_SYSTEMS
 	public:
 		// ƒJƒƒ‰‚Ì—Dæ“x
 		void SetPriority(Int32 priority) noexcept { m_priority = priority; }
+		const Int32& GetPriority() const noexcept { return m_priority; }
+
+		// ƒJƒƒ‰Œü‚«
+		MY_MATH::Vector3 GetAxisX() noexcept;
+		MY_MATH::Vector3 GetAxisY() noexcept;
+		MY_MATH::Vector3 GetAxisZ() noexcept;
+
 
 	private:
 		static Int32 m_activeCameraPriority;
 
 	private:
-		myMath::Matrix4x4 m_projectionMatrix;
-		myMath::Matrix4x4 m_cameraMatrix;
+		myMath::Matrix4x4 m_projectionTransformMatrix;
+		myMath::Matrix4x4 m_viewTransformMatrix;
 
 		Float32 m_nearClip	= 0.0f;
 		Float32 m_farClip	= 0.0f;

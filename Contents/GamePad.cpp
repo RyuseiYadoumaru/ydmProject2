@@ -67,3 +67,17 @@ Float32 GAME_SYSTEMS::GamePad::RightTrigger(uInt32 index)
     Float32 param = pad->GetXinputState(index).Gamepad.bRightTrigger;
     return param / m_triggerMax;
 }
+
+Float32 GAME_SYSTEMS::GamePad::OldLeftTrigger(uInt32 index)
+{
+    auto pad = GameSystemManager::GetInstance()->GetSubSystem<GamePadSystem>("GamePadSystem");
+    Float32 param = pad->GetOldXinputState(index).Gamepad.bLeftTrigger;
+    return param / m_triggerMax;
+}
+
+Float32 GAME_SYSTEMS::GamePad::OldRightTrigger(uInt32 index)
+{
+    auto pad = GameSystemManager::GetInstance()->GetSubSystem<GamePadSystem>("GamePadSystem");
+    Float32 param = pad->GetOldXinputState(index).Gamepad.bRightTrigger;
+    return param / m_triggerMax;
+}

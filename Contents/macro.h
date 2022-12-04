@@ -59,6 +59,7 @@ CLASS& operator=(const CLASS&) = delete;
 #define EDITOR_SYSTEMS	editorSystems
 #define TOOLS			tools
 #define MY_MATH			myMath
+#define DEVELOPER		developer
 
 
 #define USING_SYSTEMS			using namespace systems;
@@ -67,5 +68,6 @@ CLASS& operator=(const CLASS&) = delete;
 #define USING_TOOLS				using namespace tools;
 #define USING_MY_MATH			using namespace myMath;
 #define USING_DIRECTX			using namespace DirectX;
+#define USING_DEVELOPER			using namespace developer;
 
 

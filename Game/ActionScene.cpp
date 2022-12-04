@@ -16,6 +16,7 @@ void ActionScene::ObjectEntry()
 
 void ActionScene::BeginPlay()
 {
+	SetDisplayColor(0.0f, 0.0f, 0.0f);
 	m_player = GameObjectManager::GetInstance()->Find("Player");
 	m_frameCounter = 0;
 }

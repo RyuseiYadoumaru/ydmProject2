@@ -48,11 +48,14 @@ namespace GAME_SYSTEMS
 		static bool Trigger(Xinput input, uInt32 index = 0);
 		static bool Releace(Xinput input, uInt32 index = 0);
 
+
 		static myMath::Vector2 LeftStick(uInt32 index = 0);
 		static myMath::Vector2 RightStick(uInt32 index = 0);
 
 		static Float32 LeftTrigger(uInt32 index = 0);
 		static Float32 RightTrigger(uInt32 index = 0);
+		static Float32 OldLeftTrigger(uInt32 index = 0);
+		static Float32 OldRightTrigger(uInt32 index = 0);
 
 	public:
 		constexpr static uInt32 m_XinputLeftVibrationMax = (0xffff * 0x02);

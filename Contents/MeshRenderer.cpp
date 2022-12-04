@@ -13,6 +13,7 @@
 #include "../System/DX11Settransform.h"
 #include "../System/DX11SetMaterial.h"
 #include "Debug.h"
+#include "DeveloperMenu.h"
 #include "GameObject.h"
 
 USING_TOOLS;
@@ -135,6 +136,10 @@ void GAME_SYSTEMS::MeshRenderer::Update()
 	for (auto& mesh : m_meshList)
 	{
 		mesh->Draw(&deviceContext);
+	}
+	if (DEVELOPER::DeveloperMenu::GetType() == DEVELOPER::DeveloperMenu::Type::Develop)
+	{
+		Debug::DrawAxis(worldMatrix, 200.0f);
 	}
 }
 

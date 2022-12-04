@@ -36,6 +36,16 @@ namespace myMath
 			return m_colorFloat;
 		}
 
+		DirectX::XMFLOAT4 GetXMFLOAT() noexcept 
+		{
+			DirectX::XMFLOAT4 color;
+			color.x = r;
+			color.y = g;
+			color.z = b;
+			color.w = a;
+			return color;
+		}
+
 
 
 	public:

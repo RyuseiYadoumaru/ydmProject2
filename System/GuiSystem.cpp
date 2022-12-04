@@ -29,7 +29,6 @@ USING_EDITOR_SYSTEMS;
  */
 bool systems::GuiSystem::SetUp()
 {
-#ifdef _DEBUG
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
     ImGui::StyleColorsDark();
@@ -43,7 +42,6 @@ bool systems::GuiSystem::SetUp()
         tools::Debug::LogError("Gui‚Ì‰Šú‰»‚ÉŽ¸”s‚µ‚Ü‚µ‚½");
         return false;
     }
-#endif // _DEBUG
     return true;
 }
 
@@ -54,12 +52,9 @@ bool systems::GuiSystem::SetUp()
  */
 bool systems::GuiSystem::ShutDown()
 {
-#ifdef _DEBUG
     ImGui_ImplDX11_Shutdown();
     ImGui_ImplWin32_Shutdown();
     ImGui::DestroyContext();
-#endif // _DEBUG
-
     return true;
 }
 
@@ -67,15 +62,15 @@ bool systems::GuiSystem::Run()
 {
     auto editorManager = EditorManager::GetInstance();
 
-    ImGui_ImplWin32_NewFrame();
-    ImGui_ImplDX11_NewFrame();
-    ImGui::NewFrame();
     for (auto& editor : editorManager->m_editorList)
     {
+        ImGui_ImplWin32_NewFrame();
+        ImGui_ImplDX11_NewFrame();
+        ImGui::NewFrame();
         editor.second->Render();
+        ImGui::Render();
+        ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
     }
-    ImGui::Render();
-    ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
     return true;
 }
 

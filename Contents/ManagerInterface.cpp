@@ -3,6 +3,7 @@
 #include "SceneManager.h"
 #include "ResourceManager.h"
 #include "GameObjectManager.h"
+#include "DeveloperMenu.h"
 
 #include "../System/DX11Settransform.h"
 #include "../System/DX11SetMaterial.h"
@@ -19,11 +20,12 @@ void GAME_SYSTEMS::ManagerInterface::SetUp()
 	DX11SetTransform::GetInstance()->Init();
 	DX11SetMaterial::GetInstance()->Initialize();
 	DX11SetBoneMatrix::GetInstance()->Initialize();
-
+	developer::DeveloperMenu::SetUp();
 }
 
 void GAME_SYSTEMS::ManagerInterface::ShutDown()
 {
+	developer::DeveloperMenu::ShutDown();
 	ResourceManager::GetInstance()->ShutDown();
 	ShaderManager::GetInstance()->ShutDown();
 	SceneManager::GetInstance()->Shutdown();

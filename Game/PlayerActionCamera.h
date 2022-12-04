@@ -13,6 +13,9 @@ public:
 	// ステートマシン
 	GAME_SYSTEMS::StateMachine& GetStateMachine() noexcept { return m_stateMachine; }
 
+	// カメラアクション
+	const MY_MATH::Vector3& GetLookAt() const noexcept { return m_camera->m_lookAt; }
+
 private:
 	constexpr static  Float32 m_limitVerticalAngle = 90.0f;
 

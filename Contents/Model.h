@@ -37,7 +37,7 @@ namespace GAME_SYSTEMS
 
 	public:
 		// ƒƒbƒVƒ…
-		const SharedPtr<Mesh>& GetMeshData(uInt32 index) noexcept;
+		const SharedPtr<Mesh> GetMeshData(uInt32 index) noexcept;
 		uInt32 GetMeshNum() const noexcept { return m_meshNum; }
 		bool HasMesh() const noexcept { return m_hasMesh; }
 		

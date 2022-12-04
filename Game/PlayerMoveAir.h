@@ -1,5 +1,7 @@
 #pragma once
+#include "GameContents.h"
 #include "PlayerActionState.h"
+
 
 class PlayerMoveAir : public PlayerActionState
 {
@@ -16,6 +18,7 @@ private:
 
 private:
 	bool m_canAirMove = false;
+	bool m_isAirMove = false;
 	
 	// 無重力パラメータ
 	MY_MATH::Vector3 m_startPosition;
@@ -24,5 +27,8 @@ private:
 	uInt32 m_counter = 0;
 
 	bool m_isResetCamera = false;
+
+	// カメラコンポーネント
+	SharedPtr<GAME_SYSTEMS::Camera> m_camera = nullptr;
 };
 

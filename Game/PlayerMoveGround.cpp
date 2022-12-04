@@ -65,7 +65,8 @@ void PlayerMoveGround::Update()
 	}
 
 	// ‹ó’†ƒ‚[ƒh
-	if (GamePad::RightTrigger() >= GamePad::m_XinputTriggerMax)
+	if (GamePad::RightTrigger() >= GamePad::m_XinputTriggerMax &&
+		GamePad::OldRightTrigger() != GamePad::m_XinputTriggerMax)
 	{
 		m_owner->GetStateMachine().ChangeState("MoveAir");
 		return;

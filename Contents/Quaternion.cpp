@@ -11,12 +11,6 @@
 #include "macro.h"
 #include "Matrix4x4.h"
 
-#if USE_DIRECTMATH
-#define DIRECTMATH
-#else
-#define NOT_DIRECTMATH
-#endif // USE_DIRECTMATH
-
 //êÆóù
 myMath::Quaternion myMath::Quaternion::CreateByMartix(myMath::Matrix4x4& matrix)
 {
@@ -60,10 +54,10 @@ myMath::Quaternion myMath::Quaternion::CreateByRotationAxis(const Vector4& axis,
 
 myMath::Quaternion myMath::Quaternion::Multiply(const Quaternion& qt1, const Quaternion& qt2)
 {
-	Quaternion outQt;
-
-#ifdef DIRECTMATH
-
+//	outQt.x = qt1.w * qt2.x - qt1.z * qt2.y + qt1.y * qt2.z + qt1.x * qt2.w;
+//	outQt.y = qt1.z * qt2.x + qt1.w * qt2.y - qt1.x * qt2.z + qt1.y * qt2.w;
+//	outQt.z = -qt1.y * qt2.x + qt1.x * qt2.y + qt1.w * qt2.z + qt1.z * qt2.w;
+//	outQt.w = -qt1.x * qt2.x - qt1.y * qt2.y - qt1.z * qt2.z + qt1.w * qt2.w;
 	ALIGN16 DirectX::XMVECTOR qtVec1;
 	ALIGN16 DirectX::XMVECTOR qtVec2;
 	ALIGN16 DirectX::XMVECTOR outQtVec;
@@ -73,21 +67,9 @@ myMath::Quaternion myMath::Quaternion::Multiply(const Quaternion& qt1, const Qua
 
 	outQtVec = DirectX::XMQuaternionMultiply(qtVec1, qtVec2);
 
+	Quaternion outQt;
 	outQt.Set(outQtVec);
-
 	return outQt;
-
-#else
-
-	outQt.x = qt1.w * qt2.x - qt1.z * qt2.y + qt1.y * qt2.z + qt1.x * qt2.w;
-	outQt.y = qt1.z * qt2.x + qt1.w * qt2.y - qt1.x * qt2.z + qt1.y * qt2.w;
-	outQt.z = -qt1.y * qt2.x + qt1.x * qt2.y + qt1.w * qt2.z + qt1.z * qt2.w;
-	outQt.w = -qt1.x * qt2.x - qt1.y * qt2.y - qt1.z * qt2.z + qt1.w * qt2.w;
-
-#endif 
-
-	return outQt;
-
 }
 
 myMath::Quaternion myMath::Quaternion::Slerp(const Quaternion& startQt, const Quaternion& endQt, Float32 t)

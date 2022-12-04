@@ -83,7 +83,6 @@ bool Application::SetUp(HINSTANCE h_instance, int windowMode)
 ============================================================================*/
 uInt16 Application::Run()
 {
-
 	auto game = GameSystem::GetInstance();
 	auto gui = GuiSystem::GetInstance();
 	auto message = MessageWindow::GetInstance();

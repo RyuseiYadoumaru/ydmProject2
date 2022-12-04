@@ -8,6 +8,8 @@
 //*****************************************************************************
 #pragma once
 #include "std.h"
+#include "macro.h"
+#include "myMath.h"
 
 namespace tools
 {
@@ -70,6 +72,10 @@ namespace tools
 		static void Stop();
 		static void Assert(bool flag) noexcept;
 		static void Assert(bool flag, String log) noexcept;
+
+		static void DrawAxis(const MY_MATH::Matrix4x4& mtx, Float32 length);
+		static void DrawRay(const MY_MATH::Vector3& pos, const MY_MATH::Vector3 dir, Float32 length = 100.0f, MY_MATH::Color color = MY_MATH::Color::Red);
+	
 	};
 
 }

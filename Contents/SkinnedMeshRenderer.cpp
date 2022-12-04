@@ -14,6 +14,7 @@
 #include "../System/DX11SetMaterial.h"
 #include "../System/DX11SetBoneMatrix.h"
 #include "Debug.h"
+#include "DeveloperMenu.h"
 #include "GameObject.h"
 
 USING_TOOLS;
@@ -29,7 +30,6 @@ USING_GAME_SYSTEMS
 #include "../System/ThirdParty/Assimp/Assimpscene.h"
 //#include "../Animation.h"
 //#include "../AnimationClip.h"
-
 
 SharedPtr<Material> GAME_SYSTEMS::SkinnedMeshRenderer::GetMaterial() noexcept
 {
@@ -155,7 +155,12 @@ void GAME_SYSTEMS::SkinnedMeshRenderer::Update()
 	{
 		mesh->Draw(&deviceContext);
 	}
+	if (DEVELOPER::DeveloperMenu::GetType() == DEVELOPER::DeveloperMenu::Type::Develop)
+	{
+		Debug::DrawAxis(worldMatrix, 200.0f);
+	}
 }
+
 void GAME_SYSTEMS::SkinnedMeshRenderer::End()
 {
 	m_mesh = nullptr;

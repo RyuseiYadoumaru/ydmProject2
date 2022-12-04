@@ -8,6 +8,9 @@
 //*****************************************************************************
 #include <iostream>
 #include "Debug.h"
+#include "DeveloperMenu.h"
+#include "Line.h"
+#include "../System/DX11Settransform.h"
 #include "../System/Console.h"
 
 
@@ -110,6 +113,71 @@ void tools::Debug::Assert(bool flag, String log) noexcept
 	}
 }
 
+void tools::Debug::DrawAxis(const MY_MATH::Matrix4x4& mtx, Float32 length)
+{	
+	auto line = developer::DeveloperMenu::GetLine();
+	Vector<gameSystems::Line::Vertex> v;
+	v.resize(2);
+	// XŽ²
+	v[0].Position.x = mtx._41 + mtx._11 * -length / 2.0f;
+	v[0].Position.y = mtx._42 + mtx._12 * -length / 2.0f;
+	v[0].Position.z = mtx._43 + mtx._13 * -length / 2.0f;
+
+	v[1].Position.x = mtx._41 + mtx._11 * length / 2.0f;
+	v[1].Position.y = mtx._42 + mtx._12 * length / 2.0f;
+	v[1].Position.z = mtx._43 + mtx._13 * length / 2.0f;
+
+	v[0].Color = v[1].Color = DirectX::XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f);
+	line->SetVertex(v);
+	line->Render();
+
+
+	// YŽ²
+	v[0].Position.x = mtx._41 + mtx._21 * -length / 2.0f;
+	v[0].Position.y = mtx._42 + mtx._22 * -length / 2.0f;
+	v[0].Position.z = mtx._43 + mtx._23 * -length / 2.0f;
+
+	v[1].Position.x = mtx._41 + mtx._21 * length / 2.0f;
+	v[1].Position.y = mtx._42 + mtx._22 * length / 2.0f;
+	v[1].Position.z = mtx._43 + mtx._23 * length / 2.0f;
+
+	v[0].Color = v[1].Color = DirectX::XMFLOAT4(0.0f, 1.0f, 0.0f, 1.0f);
+	line->SetVertex(v);
+	line->Render();
+
+	// ZŽ²
+	v[0].Position.x = mtx._41 + mtx._31 * -length / 2.0f;
+	v[0].Position.y = mtx._42 + mtx._32 * -length / 2.0f;
+	v[0].Position.z = mtx._43 + mtx._33 * -length / 2.0f;
+
+	v[1].Position.x = mtx._41 + mtx._31 * length / 2.0f;
+	v[1].Position.y = mtx._42 + mtx._32 * length / 2.0f;
+	v[1].Position.z = mtx._43 + mtx._33 * length / 2.0f;
+
+	v[0].Color = v[1].Color = DirectX::XMFLOAT4(0.0f, 0.0f, 1.0f, 1.0f);
+	line->SetVertex(v);
+	line->Render();
+}
+
+void tools::Debug::DrawRay(const MY_MATH::Vector3& pos, const MY_MATH::Vector3 dir, Float32 length, MY_MATH::Color color)
+{
+	auto line = developer::DeveloperMenu::GetLine();
+	Vector<gameSystems::Line::Vertex> v;
+	v.resize(2);
+	// XŽ²
+	v[0].Position.x = pos.x + dir.x * -length / 2.0f;
+	v[0].Position.y = pos.y + dir.y * -length / 2.0f;
+	v[0].Position.z = pos.z + dir.z * -length / 2.0f;
+
+	v[1].Position.x = pos.x + dir.x * length / 2.0f;
+	v[1].Position.y = pos.y + dir.y * length / 2.0f;
+	v[1].Position.z = pos.z + dir.z * length / 2.0f;
+
+	v[0].Color = v[1].Color = color.GetXMFLOAT();
+	line->SetVertex(v);
+	line->Render();
+}
+
 
 #else
 //==============================================================================
@@ -170,6 +238,10 @@ void tools::Debug::Assert(bool flag) noexcept
 //! @param log
 ============================================================================*/
 void tools::Debug::Assert(bool flag, String log) noexcept
+{
+}
+
+void tools::Debug::DrawAxis(const MY_MATH::Matrix4x4& mtx, Float32 length)
 {
 }
 

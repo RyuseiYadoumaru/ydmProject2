@@ -15,11 +15,10 @@ namespace EDITOR_SYSTEMS
 	{
 	public:
 		EDITOR_CLASS;
-
-
-
-		// Editor ‚ğ‰î‚µ‚ÄŒp³‚³‚ê‚Ü‚µ‚½
 		virtual void Update() override;
+
+	private:
+		bool m_isDevelop = false;
 
 	};
 }
