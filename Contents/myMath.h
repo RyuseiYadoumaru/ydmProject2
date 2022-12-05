@@ -31,7 +31,7 @@ namespace myMath
 
 		static Float32 RadiansToDegrees(Float32 radians) noexcept
 		{
-			 return (_PI / 180.0f) * radians;
+			 return (180.0f / _PI) * radians;
 		}
 
 	};

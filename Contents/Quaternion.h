@@ -29,7 +29,15 @@ namespace myMath
 		static Quaternion Slerp(const Quaternion& startQt, const Quaternion& endQt, Float32 t);
 	public:
 		void Set(Float32 _x, Float32 _y, Float32 _z, Float32 _w) noexcept { x = _x; y = _y; z = _z; w = _w; }
-		void Set(DirectX::XMVECTOR& vector) noexcept { DirectX::XMStoreFloat4(this, vector); }
+		void Set(DirectX::XMVECTOR& vector) noexcept 
+		{
+			Quaternion set(0.0f, 0.0f, 0.0f, 0.0f);
+			DirectX::XMStoreFloat4(&set, vector);
+			this->x = set.x;
+			this->y = set.y;
+			this->z = set.z;
+			this->w = set.w;
+		}
 
 		void CreateRotationAxis(Vector4& axis, Float32 angle);
 
@@ -39,9 +47,8 @@ namespace myMath
 		void Normalize();
 
 	public:
-		Quaternion() = default;
-		Quaternion(const Quaternion& qt) :
-			DirectX::XMFLOAT4(qt.x, qt.y, qt.z, qt.w) { this->m_axis = qt.GetAxis(); }
+		Quaternion() : DirectX::XMFLOAT4(0.0f, 0.0f, 0.0f, 0.0f) {}
+		Quaternion(const Quaternion& qt) = default;
 		Quaternion(Float32 _x, Float32 _y, Float32 _z, Float32 _w) : DirectX::XMFLOAT4(_x, _y, _z, _w) {}
 
 		Quaternion& operator=(const Quaternion&) = default;

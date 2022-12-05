@@ -5,5 +5,5 @@ void DebugCamera::Setting()
 {
 	auto debugCamera = AddComponent<DebugCameraMovement>();
 	debugCamera->SetDebugCamera(this);
-	GetComponent<GAME_SYSTEMS::Camera>()->SetPriority(-1);
+	GetComponent<GAME_SYSTEMS::Camera>()->SetPriority(5);
 }

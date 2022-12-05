@@ -22,6 +22,9 @@ void PlayerMoveGround::Update()
 	Float32 angle = 0.0f;
 	Float32 movePower = 0.0f;
 
+	// ‰ñ“]
+	auto rotation = transform->GetEulerAngles();
+
 	// ˆÚ“®
 	if (GamePad::LeftStick().x != 0.0f || GamePad::LeftStick().y != 0.0f)
 	{
@@ -50,10 +53,10 @@ void PlayerMoveGround::Update()
 		}
 
 		// Šp“xŒˆ’è
-		transform->m_rotation.y = (camera->GetHorizontalAngle() + angle);
-		if (transform->m_rotation.y > 360.0f)
+		rotation.y = (camera->GetHorizontalAngle() + angle);
+		if (rotation.y > 360.0f)
 		{
-			transform->m_rotation.y -= 360.0f;
+			rotation.y -= 360.0f;
 		}
 
 		// ˆÚ“®—ÊŒˆ’è
@@ -81,4 +84,7 @@ void PlayerMoveGround::Update()
 	moveForwardForce * transform->GetAxisY().x * -1.0f,
 	moveForwardForce * transform->GetAxisY().y * -1.0f,
 	moveForwardForce * transform->GetAxisY().z * -1.0f);
+
+	// ‰ñ“]
+	//transform->SetRotation(rotation.x, rotation.y, rotation.z);
 }

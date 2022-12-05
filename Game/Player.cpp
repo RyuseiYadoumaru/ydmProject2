@@ -37,5 +37,5 @@ void Player::Setting()
 	AddComponent<PlayerMovement>();
 
 	// À•WÝ’è
-	m_transform->m_rotation.Set(90.0f, 0.0f, 0.0f);
+	m_transform->SetRotation(90.0f, 0.0f, 0.0f);
 }

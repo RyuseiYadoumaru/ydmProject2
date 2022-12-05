@@ -12,10 +12,34 @@
 USING_GAME_SYSTEMS;
 USING_MY_MATH;
 
-//==============================================================================
-//!	@fn		GetAxisX
-//!	@brief	X軸取得
-//==============================================================================
+Vector3 GAME_SYSTEMS::Transform::RotationMatrixToEuler(const Matrix4x4& rotMtx)
+{
+	Vector3 radian;
+	auto mtx = Matrix4x4::CreateTransposeMatrix(rotMtx);
+	radian.x = atan2(mtx._32, mtx._33);
+	radian.y = asin(mtx._31 * -1.0f);
+	radian.z = atan2(mtx._21, mtx._11);
+
+	Vector3 degree;
+	degree.x = Math::RadiansToDegrees(radian.x);
+	degree.y = Math::RadiansToDegrees(radian.y);
+	degree.z = Math::RadiansToDegrees(radian.z);
+
+	return degree;
+}
+
+void GAME_SYSTEMS::Transform::SetRotation(Float32 x, Float32 y, Float32 z) noexcept
+{
+	m_rotation = myMath::Quaternion::CreateByRotation(x, y, z);
+}
+
+Vector3 GAME_SYSTEMS::Transform::GetEulerAngles() noexcept
+{
+	Matrix4x4 mtx = Matrix4x4::CreateMatrixFromQuaternion(m_rotation);
+	Vector3 outRot = Transform::RotationMatrixToEuler(mtx);
+	return outRot;
+}
+
 myMath::Vector4 Transform::GetAxisX()
 {
 	myMath::Vector4 axisX;
@@ -27,11 +51,6 @@ myMath::Vector4 Transform::GetAxisX()
 	return axisX;
 }
 
-
-//==============================================================================
-//!	@fn		GetAxisY
-//!	@brief	Y軸取得
-//==============================================================================
 myMath::Vector4 Transform::GetAxisY()
 {
 	myMath::Vector4 axisY;
@@ -43,11 +62,6 @@ myMath::Vector4 Transform::GetAxisY()
 	return axisY;
 }
 
-
-//==============================================================================
-//!	@fn		GetAxisZ
-//!	@brief	Z軸取得
-//==============================================================================
 myMath::Vector4 Transform::GetAxisZ()
 {
 	myMath::Vector4 axisZ;
@@ -64,15 +78,9 @@ void GAME_SYSTEMS::Transform::Start()
 }
 
 void Transform::Update()
-{
-	// クォータニオン生成
-	Float32 roll = MY_MATH::Math::DegreesToRadians(m_rotation.x);
-	Float32 pich = MY_MATH::Math::DegreesToRadians(m_rotation.y);
-	Float32 yow = MY_MATH::Math::DegreesToRadians(m_rotation.z);
-	m_quaternion = Quaternion::CreateByRotation(roll, pich, yow);
-	
+{	
 	// 行列生成
-	Matrix4x4 matrix = Matrix4x4::CreateMatrixFromQuaternion(m_quaternion);
+	Matrix4x4 matrix = Matrix4x4::CreateMatrixFromQuaternion(m_rotation);
 	matrix._11 *= m_scale.x;
 	matrix._12 *= m_scale.x;
 	matrix._13 *= m_scale.x;

@@ -40,6 +40,25 @@ myMath::Matrix4x4 myMath::Matrix4x4::CreateMatrixIdentity() noexcept
 	return out;
 }
 
+/**
+ *  転置行列生成.
+ * 
+ * !@param  mtx : 転置を行う行列
+ * !@return 転置後の行列
+ */
+myMath::Matrix4x4 myMath::Matrix4x4::CreateTransposeMatrix(const Matrix4x4& mtx) noexcept
+{
+	ALIGN16 DirectX::XMMATRIX mtxin;
+	ALIGN16 DirectX::XMMATRIX mtxout;
+
+	mtxin = XMLoadFloat4x4(&mtx);
+	mtxout = XMMatrixTranspose(mtxin);
+
+	Matrix4x4 out;
+	out.Set(mtxout);
+	return out;
+}
+
 //==============================================================================
 //!	@fn		CreateWorldMatrix
 //!	@brief	ワールド座標行列生成
@@ -128,6 +147,17 @@ myMath::Matrix4x4 myMath::Matrix4x4::CreateMatrixFromQuaternion(Quaternion quate
 	Matrix4x4 out;
 	out.Set(mtx);
 	return out;
+}
+
+myMath::Matrix4x4 myMath::Matrix4x4::CreateRotationMatrix(Float32 x, Float32 y, Float32 z) noexcept
+{
+	myMath::Matrix4x4 rotMtx;
+	ALIGN16 DirectX::XMMATRIX mtxX = CreateRotationXMatrix(x).GetXMMatrix();
+	ALIGN16 DirectX::XMMATRIX mtxY = CreateRotationYMatrix(y).GetXMMatrix();
+	ALIGN16 DirectX::XMMATRIX mtxZ = CreateRotationZMatrix(z).GetXMMatrix();
+	ALIGN16 DirectX::XMMATRIX rot = mtxX * mtxZ * mtxY;
+	rotMtx.Set(rot);
+	return rotMtx;
 }
 
 //整理

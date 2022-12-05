@@ -27,6 +27,7 @@ namespace myMath
 	public:
 		static Matrix4x4 MatrixMultiply(Matrix4x4& mtx1, Matrix4x4& mtx2) noexcept;
 		static Matrix4x4 CreateMatrixIdentity() noexcept;
+		static Matrix4x4 CreateTransposeMatrix(const Matrix4x4& mtx) noexcept;
 		
 		static Matrix4x4 CreateWorldMatrix(Vector3& position, Vector3& rotation, Vector3 scale) noexcept;
 		static Matrix4x4 CreateWorldMatrix(Matrix4x4& position, Matrix4x4& rotation, Matrix4x4& scale) noexcept;
@@ -38,6 +39,7 @@ namespace myMath
 
 		static Matrix4x4 CreateMatrixFromQuaternion(Quaternion quaternion) noexcept;
 
+		static Matrix4x4 CreateRotationMatrix(Float32 x, Float32 y, Float32 z) noexcept;
 		static Matrix4x4 CreateRotationXMatrix(Float32 rotationX);
 		static Matrix4x4 CreateRotationYMatrix(Float32 rotationY);
 		static Matrix4x4 CreateRotationZMatrix(Float32 rotationZ);
