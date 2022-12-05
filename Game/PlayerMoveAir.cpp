@@ -97,4 +97,5 @@ void PlayerMoveAir::AirMoveMent()
 		moveForwardForce * cameraForwardVec.x * 1.0f,
 		moveForwardForce * cameraForwardVec.y * 1.0f,
 		moveForwardForce * cameraForwardVec.z * 1.0f);
+
 }

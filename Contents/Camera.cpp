@@ -10,6 +10,8 @@
 #include "Camera.h"
 #include "../System/Window.h"
 #include "../System/DX11Settransform.h"
+#include "DeveloperMenu.h"
+#include "Debug.h"
 
 USING_SYSTEMS;
 USING_GAME_SYSTEMS;
@@ -76,6 +78,13 @@ void GAME_SYSTEMS::Camera::Update()
 		m_activeCameraPriority = m_priority;
 		DX11SetTransform::GetInstance()->SetTransform(DX11SetTransform::TYPE::VIEW, m_viewTransformMatrix);
 		DX11SetTransform::GetInstance()->SetTransform(DX11SetTransform::TYPE::PROJECTION, m_projectionTransformMatrix);
+	}
+
+	if (DEVELOPER::DeveloperMenu::GetType() == DEVELOPER::DeveloperMenu::Type::Develop)
+	{
+		TOOLS::Debug::DrawRay(m_eye, GetAxisX(), 300.0f, MY_MATH::Color::Red);
+		TOOLS::Debug::DrawRay(m_eye, GetAxisY(), 300.0f, MY_MATH::Color::Green);
+		TOOLS::Debug::DrawRay(m_eye, GetAxisZ(), 300.0f, MY_MATH::Color::Blue);
 	}
 }
 

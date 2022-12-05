@@ -23,8 +23,7 @@ void PlayerActionCamera::FocusObject()
 	m_camera->m_eye.Set(
 		m_focusTransform->GetPosition().x + addPositionX,
 		m_focusTransform->GetPosition().y + addPositionY + m_heightOffset,
-		m_focusTransform->GetPosition().z + addPositionZ
-	);
+		m_focusTransform->GetPosition().z + addPositionZ);
 
 	// 注視点をフォーカスオブジェクトに向ける
 	m_camera->m_lookAt.Set(
@@ -49,7 +48,7 @@ void PlayerActionCamera::Start()
 	m_camera = GetOwner()->GetComponent<Camera>();
 	Debug::Assert(m_camera == nullptr);
 
-	m_lookAtOffset.Set(0.0f, 30.0f, 0.0f);
+	m_lookAtOffset.Set(0.0f, 100.0f, 0.0f);
 
 	// プレイヤー移動スクリプトを取得
 	m_playerMovement = m_trackingPlayer->GetComponent<PlayerMovement>();
@@ -113,7 +112,6 @@ void PlayerActionCamera::Update()
 			m_verticalAngle = -m_limitVerticalAngle;
 		}
 	}
-
 }
 
 void PlayerActionCamera::End()

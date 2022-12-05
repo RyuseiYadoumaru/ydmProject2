@@ -13,6 +13,7 @@ private:
 
 private:
 	GameObjectPtr m_player = nullptr;
+	GameObjectPtr m_test = nullptr;
 	uInt32 m_frameCounter = 0;
 
 };

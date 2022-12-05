@@ -241,6 +241,12 @@
     <Filter Include="Contents\Resource\Line">
       <UniqueIdentifier>{dbd2e253-dd2c-4bad-9f9c-0c4a1a5b5972}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Camera\DebugCamera">
+      <UniqueIdentifier>{33b8224b-2959-41eb-8bed-ab4c15715638}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Script\DebugLogic">
+      <UniqueIdentifier>{55dcec35-5b0c-4eaa-8348-3037d3eb4f9d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="System\Console.cpp">
@@ -530,6 +536,12 @@
     </ClCompile>
     <ClCompile Include="Contents\DeveloperMenu.cpp">
       <Filter>Contents\Developer</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\DebugCamera.cpp">
+      <Filter>Game\Camera\DebugCamera</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\DebugCameraMovement.cpp">
+      <Filter>Game\Script\DebugLogic</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -913,6 +925,15 @@
     </ClInclude>
     <ClInclude Include="Contents\Line.h">
       <Filter>Contents\Resource\Line</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\DebugCamera.h">
+      <Filter>Game\Camera\DebugCamera</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\DebugCameraMovement.h">
+      <Filter>Game\Script\DebugLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="Contents\SpriteRenderer.h">
+      <Filter>Contents\Component\Graphics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
