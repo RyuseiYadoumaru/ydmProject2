@@ -247,6 +247,9 @@
     <Filter Include="Game\Script\DebugLogic">
       <UniqueIdentifier>{55dcec35-5b0c-4eaa-8348-3037d3eb4f9d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="System\GameSubSystem\ComponentManager">
+      <UniqueIdentifier>{e06c6c38-915a-44b1-af97-9b504a8aad1a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="System\Console.cpp">
@@ -934,6 +937,18 @@
     </ClInclude>
     <ClInclude Include="Contents\SpriteRenderer.h">
       <Filter>Contents\Component\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="System\PhysicsManager.h">
+      <Filter>System\GameSubSystem\ComponentManager</Filter>
+    </ClInclude>
+    <ClInclude Include="System\ScriptManager.h">
+      <Filter>System\GameSubSystem\ComponentManager</Filter>
+    </ClInclude>
+    <ClInclude Include="System\MiscellaneousManager.h">
+      <Filter>System\GameSubSystem\ComponentManager</Filter>
+    </ClInclude>
+    <ClInclude Include="System\GraphicsManager.h">
+      <Filter>System\GameSubSystem\ComponentManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

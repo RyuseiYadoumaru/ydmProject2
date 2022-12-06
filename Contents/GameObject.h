@@ -57,6 +57,25 @@ namespace GAME_SYSTEMS
 			return component;
 		}
 
+		/**
+		 *  コンポーネントを削除します.
+		 * 
+		 */
+		template<TComponent T>
+		void RemoveComponent()
+		{
+			for (auto& comp : m_componentList)
+			{
+				auto component = std::dynamic_pointer_cast<T>(comp);
+				if (component != nullptr)
+				{
+					component->Finalize();
+					m_componentList.erase(component);
+					return;
+				}
+			}
+		}
+
 	protected:
 		virtual void Setting() {};
 		virtual void SetUp();
@@ -67,10 +86,6 @@ namespace GAME_SYSTEMS
 
 	private:
 		ComponentContainer m_componentList;
-		ScriptContainer m_scriptList;
-
-		void ComponentStart();
-		void ComponentEnd();
 
 	public:
 		GameObject(String name = "nonameObject") :

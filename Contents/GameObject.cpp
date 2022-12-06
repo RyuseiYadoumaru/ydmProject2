@@ -17,22 +17,9 @@ void GAME_SYSTEMS::GameObject::SetUp()
 
 void GAME_SYSTEMS::GameObject::ShutDown()
 {
-	m_componentList.clear();
-}
-
-void GAME_SYSTEMS::GameObject::ComponentStart()
-{
 	for (auto& comp : m_componentList)
 	{
-		comp->Start();
-	}
-}
-
-void GAME_SYSTEMS::GameObject::ComponentEnd()
-{
-	for (auto& comp : m_componentList)
-	{
-		comp->End();
 		comp->Finalize();
 	}
+	m_componentList.clear();
 }

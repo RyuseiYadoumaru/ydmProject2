@@ -14,8 +14,7 @@
 
 namespace GAME_SYSTEMS
 {
-	class GameObjectManager;
-
+	class MiscellaneousManager;
 	class Miscellaneous : public systems::Component
 	{
 	public:
@@ -29,21 +28,14 @@ namespace GAME_SYSTEMS
 			m_type(type) {}
 		~Miscellaneous() = default;
 
-	private:
-		static bool MiscellaneousUpdate();
-		static bool MiscellaneousReleace();
-
-	private:
-		static Map<Type, Unordered_Map<uInt32, Miscellaneous*>> m_miscellaneousList;
-
 	public:
 		void Initialize() override;
 		void Finalize() override;
 
-
 	private:
 		Type m_type;
+
 	private:
-		friend GameObjectManager;
+		friend MiscellaneousManager;
 	};
 }

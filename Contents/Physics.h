@@ -15,8 +15,7 @@
 
 namespace GAME_SYSTEMS
 {
-	class GameObjectManager;
-
+	class PhysicsManager;
 	class Physics : public systems::Component
 	{
 	public:
@@ -25,17 +24,10 @@ namespace GAME_SYSTEMS
 			Transform
 		};
 
-		Physics(String name, Type type) :
+		explicit Physics(String name, Type type) :
 			systems::Component(name, true),
 			m_type(type) {}
 		~Physics() = default;
-
-	private:
-		static bool PhysicsUpdate();
-		static bool PhysicsReleace();
-
-	private:
-		static Map<Type, Unordered_Map<uInt32, Physics*>> m_physicsList;;
 
 	public:
 		void Initialize() override;
@@ -45,7 +37,7 @@ namespace GAME_SYSTEMS
 		Type m_type;
 
 	private:
-		friend GameObjectManager;
+		friend PhysicsManager;
 
 	};
 }

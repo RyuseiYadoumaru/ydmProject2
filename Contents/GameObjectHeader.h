@@ -31,7 +31,4 @@ namespace GAME_SYSTEMS
 	template<TComponent T>
 	using TComponentPtr = SharedPtr<T>;
 
-	using ScriptPtr = SharedPtr<Script>;
-	using ScriptContainer = List<ScriptPtr>;
-
 }

@@ -14,8 +14,7 @@
 
 namespace GAME_SYSTEMS
 {
-	class GameObjectManager;
-	class SceneManager;
+	class GraphicsManager;
 	class Graphics : public systems::Component
 	{
 	public:
@@ -31,16 +30,6 @@ namespace GAME_SYSTEMS
 			m_type(type) {}
 		~Graphics() = default;
 
-	private:
-		static bool GraphicsFirstUpdate();
-		static bool GraphicsUpdate();
-		static bool GraphicReset();
-		static bool GraphicsReleace();
-
-	private:
-		static Map<Type, Unordered_Map<uInt32, Graphics*>> m_graphicsList;
-		static Map<Type, Unordered_Map<uInt32, Graphics*>> m_graphicsInstanceList;
-
 	public:
 		void Initialize() override;
 		void Finalize() override;
@@ -49,8 +38,7 @@ namespace GAME_SYSTEMS
 		Type m_type;
 
 	private:
-		friend GameObjectManager;
-		friend SceneManager;
+		friend GraphicsManager;
 
 	};
 }

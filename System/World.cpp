@@ -44,10 +44,10 @@ bool GAME_SYSTEMS::World::Run()
     if (sceneManager->GetSceneState() == SceneManager::State::Run)
     {
         gameObjectManager->GameObjectStartUpdate();
-        gameObjectManager->GameLogicUpdate();
-        sceneManager->SceneRun();
         gameObjectManager->ComponentUpdate();
         sceneManager->SceneRendering();
+        gameObjectManager->GameLogicUpdate();
+        sceneManager->SceneRun();
     }
 
     if (sceneManager->GetSceneState() == SceneManager::State::End)
