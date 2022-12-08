@@ -12,6 +12,9 @@ private:
 	virtual void EndPlay() override;
 
 private:
+	void DebugTick();
+
+private:
 	GameObjectPtr m_player = nullptr;
 	GameObjectPtr m_test = nullptr;
 	uInt32 m_frameCounter = 0;

@@ -37,6 +37,7 @@ bool GAME_SYSTEMS::World::Run()
     {
         sceneManager->SceneSetup();
         gameObjectManager->GameObjectStartUpdate();
+        gameObjectManager->ComponentUpdate();
         sceneManager->BeginPlay();
 
     }

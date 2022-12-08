@@ -2,6 +2,7 @@
 #include "PlayerActionState.h"
 
 class PlayerMovement;
+class PlayerOriginTransform;
 
 class PlayerMoveGround : public PlayerActionState
 {
@@ -15,5 +16,8 @@ public:
 
 private:
 	bool m_isResetCamera = false;
+	bool m_isStart = false;
+
+	PlayerOriginTransform* m_originTransform = nullptr;
 
 };

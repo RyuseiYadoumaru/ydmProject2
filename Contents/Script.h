@@ -15,37 +15,34 @@
 
 namespace GAME_SYSTEMS
 {
+	class ScriptManager;
 	class GameObjectManager;
 
 	class Script : public systems::Component
 	{
-		using ScriptContainer = Map<uInt32, Unordered_Map<uInt32, Script*>>;
-
 	public:
-		Script() : systems::Component("Script", true) {}
+		explicit Script() : systems::Component("Script", true) {}
+		explicit Script(Int32 priority) :
+			systems::Component("Script", true),
+		m_priority(priority){}
 		~Script() = default;
-
-	private:
-		static bool ScriptUpdate();
-		static bool ScriptReleace();
-
-	private:
-		static ScriptContainer m_scriptList;
 
 	public:
 		void Initialize() override;
 		void Finalize() override;
 
+		void SetPriority(Int32 priority) noexcept { m_priority = priority; }
+
 	protected:
-		virtual void Setting() {}
 		virtual void Start()	= 0;
 		virtual void Update()	= 0;
 		virtual void End()		= 0;
 
 	protected:
-		uInt32 m_priority = 128;
+		Int32 m_priority = 128;
 
 	protected:
+		friend ScriptManager;
 		friend gameSystems::GameObjectManager;
 		friend gameSystems::GameObject;
 

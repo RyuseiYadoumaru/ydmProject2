@@ -1,40 +1,22 @@
+//*****************************************************************************
+//* @file   Script.cpp
+//* @brief  
+//* @note   スクリプトベースを継承して、のオブジェクトの処理を書く
+//* 
+//* @author YadoumaruRyusei
+//* @date   November 2022
+//*****************************************************************************
 #include "Script.h"
 #include "GameObject.h"
+#include "../System/ScriptManager.h"
 USING_GAME_SYSTEMS;
-
-Script::ScriptContainer Script::m_scriptList;
-
-
-
-bool GAME_SYSTEMS::Script::ScriptUpdate()
-{
-	for (auto& scriptList : m_scriptList)
-	{
-		for (auto& script : scriptList.second)
-		{
-			script.second->Update();
-		}
-	}
-	return true;
-}
-
-bool GAME_SYSTEMS::Script::ScriptReleace()
-{
-	m_scriptList.clear();
-	return true;
-}
 
 void Script::Initialize()
 {
-	// スクリプト設定
-	Setting();
-	
-	// オブジェクト追加
-	auto owner = GetOwner();
-	m_scriptList[m_priority][owner->GetID()] = this;
+	ScriptManager::GetInstance()->Register(this);
 }
 
 void GAME_SYSTEMS::Script::Finalize()
 {
-	m_scriptList[m_priority].erase(m_id);
+	ScriptManager::GetInstance()->Remove(this);
 }

@@ -191,6 +191,14 @@ myMath::Matrix4x4 myMath::Matrix4x4::CreateRotationZMatrix(Float32 rotationZ)
 	return out;
 }
 
+myMath::Matrix4x4 myMath::Matrix4x4::CreateScaleMatrix(const Vector3& scale)
+{
+	DirectX::XMMATRIX mtxScale = DirectX::XMMatrixScaling(scale.x, scale.y, scale.z);
+	Matrix4x4 out;
+	out.Set(mtxScale);
+	return out;
+}
+
 myMath::Matrix4x4 myMath::Matrix4x4::CreateMatrixFromAIMatrix(aiMatrix4x4& aiMtx)
 {
 	Matrix4x4 mtx;

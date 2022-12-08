@@ -10,6 +10,6 @@ void SphareTest::Setting()
 
 	AddComponent<MoveMentSphere>();
 
-	m_transform->m_scale.Set(1.0f, 1.0f, 1.0f);
+	m_transform->m_Scale.Set(1.0f, 1.0f, 1.0f);
 
 }

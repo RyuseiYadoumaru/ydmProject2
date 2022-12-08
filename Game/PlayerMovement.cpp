@@ -1,10 +1,12 @@
 #include "PlayerMovement.h"
 #include "PlayerActionCamera.h"
+#include "PlayerOriginTransform.h"
 
 #include "PlayerMoveGround.h"
 #include "PlayerMoveAir.h"
 #include "PlayerFallState.h"
 #include "PlayerLandGround.h"
+#include "PlayerAirIdle.h"
 
 void PlayerMovement::Start()
 {
@@ -13,7 +15,7 @@ void PlayerMovement::Start()
 	if (m_activeCamera != nullptr)
 	{
 
-		GetOwner()->m_transform->m_rotation.y = (m_activeCamera->GetHorizontalAngle() + 0.0f);
+		GetOwner()->m_transform->m_Rotation.y = (m_activeCamera->GetHorizontalAngle() + 0.0f);
 	}
 
 	// アニメーター取得
@@ -24,8 +26,11 @@ void PlayerMovement::Start()
 	m_stateMachine.Register("MoveAir", std::make_shared<PlayerMoveAir>(this));
 	m_stateMachine.Register("Fall", std::make_shared<PlayerFallState>(this));
 	m_stateMachine.Register("LandGround", std::make_shared<PlayerLandGround>(this));
+	m_stateMachine.Register("IdleAir", std::make_shared<PlayerAirIdle>(this));
 	m_stateMachine.ChangeState("MoveGround");
 
+	// オリジナル座標系取得
+	m_originTransform = GetOwner()->GetComponent<PlayerOriginTransform>();
 }
 
 void PlayerMovement::Update()
@@ -37,7 +42,8 @@ void PlayerMovement::Update()
 	m_stateMachine.Update();
 
 	// 移動
-	GetOwner()->m_transform->m_position += m_moveForce;
+	m_originTransform->m_Position += m_moveForce;
+	//GetOwner()->m_transform->m_Position += m_moveForce;
 }
 
 void PlayerMovement::End()

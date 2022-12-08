@@ -1,6 +1,11 @@
 #include "PlayerActionCamera.h"
 #include "PlayerMovement.h"
+#include "PlayerOriginTransform.h"
 
+//#include "GameContents.h"
+
+#include "Camera.h"
+#include "Transform.h"
 
 USING_GAME_SYSTEMS;
 USING_MY_MATH;
@@ -43,16 +48,17 @@ void PlayerActionCamera::Start()
 {
 	m_trackingPlayer = GameObjectManager::GetInstance()->Find("Player");
 	Debug::Assert(m_trackingPlayer == nullptr);
-	m_focusTransform = m_trackingPlayer->GetComponent<Transform>();
-	Debug::Assert(m_focusTransform == nullptr);
-	m_camera = GetOwner()->GetComponent<Camera>();
+	m_camera = GetOwner()->GetComponent<gameSystems::Camera>();
 	Debug::Assert(m_camera == nullptr);
 
-	m_lookAtOffset.Set(0.0f, 100.0f, 0.0f);
-
+	m_focusTransform = m_trackingPlayer->GetComponent<gameSystems::Transform>();
+	Debug::Assert(m_focusTransform == nullptr);
 	// プレイヤー移動スクリプトを取得
 	m_playerMovement = m_trackingPlayer->GetComponent<PlayerMovement>();
 	Debug::Assert(m_playerMovement == nullptr);
+
+	m_lookAtOffset.Set(0.0f, 100.0f, 0.0f);
+
 
 	// フォーカスオブジェクトの向いてる方向にカメラアングルをセットする
 	m_horizontalAngle = m_focusTransform->GetRotation().y;
@@ -76,17 +82,18 @@ void PlayerActionCamera::Update()
 	}
 	else
 	{
-		if (GamePad::Trigger(Xinput::Y))
-		{
-			if (m_horizontalAngle != m_focusTransform->GetRotation().y)
-			{
-				m_resetTargetAngle = m_focusTransform->GetRotation().y;
-				if (m_horizontalAngle - m_resetTargetAngle > 180.0f) m_resetTargetAngle += 360.0f;
-				m_resetStartAngle = m_horizontalAngle;
-				m_totalDeltaTime = 0.0f;
-				m_isReset = true;
-			}
-		}
+		//if (GamePad::Trigger(Xinput::Y))
+		//{
+		//	auto eulerAngile = Quaternion::EulerAngles(m_focusTransform->m_Rotation);
+		//	if (m_horizontalAngle != eulerAngile.z)
+		//	{
+		//		m_resetTargetAngle = eulerAngile.z;
+		//		if (m_horizontalAngle - m_resetTargetAngle > 180.0f) m_resetTargetAngle += 360.0f;
+		//		m_resetStartAngle = m_horizontalAngle;
+		//		m_totalDeltaTime = 0.0f;
+		//		m_isReset = true;
+		//	}
+		//}
 		moveForce.x = m_movevSensitivity * GamePad::RightStick().x;
 		moveForce.y = m_movevSensitivity * GamePad::RightStick().y;
 

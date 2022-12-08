@@ -13,7 +13,7 @@
 #include "../Game/TestScene.h"
 #include "../Game/ActionScene.h"
 
-#include "Graphics.h"
+#include "../System/GraphicsManager.h"
 #include "../System/DX11Renderer.h"
 
 /**
@@ -72,7 +72,7 @@ void GAME_SYSTEMS::SceneManager::SceneRendering()
 		m_currentScene->GetDisPlayColor().b);
 
 	// ƒV[ƒ“•`‰æ
-	Graphics::GraphicsUpdate();
+	GraphicsManager::GetInstance()->Update();
 
 }
 

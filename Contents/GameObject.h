@@ -61,20 +61,20 @@ namespace GAME_SYSTEMS
 		 *  コンポーネントを削除します.
 		 * 
 		 */
-		template<TComponent T>
-		void RemoveComponent()
-		{
-			for (auto& comp : m_componentList)
-			{
-				auto component = std::dynamic_pointer_cast<T>(comp);
-				if (component != nullptr)
-				{
-					component->Finalize();
-					m_componentList.erase(component);
-					return;
-				}
-			}
-		}
+		//template<TComponent T>
+		//void RemoveComponent()
+		//{
+		//	for (auto& comp : m_componentList)
+		//	{
+		//		auto component = std::dynamic_pointer_cast<T>(comp);
+		//		if (component != nullptr)
+		//		{
+		//			component->Finalize();
+		//			m_componentList.erase(component);
+		//			return;
+		//		}
+		//	}
+		//}
 
 	protected:
 		virtual void Setting() {};

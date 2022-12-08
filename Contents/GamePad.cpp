@@ -45,6 +45,22 @@ myMath::Vector2 GAME_SYSTEMS::GamePad::LeftStick(uInt32 index)
     return stick;
 }
 
+Float32 GAME_SYSTEMS::GamePad::LeftStickAngle(uInt32 index)
+{
+    Float32 h = GamePad::LeftStick().x;
+    Float32 v = GamePad::LeftStick().y;
+    Float32 rad = atanf(h / v);
+    Float32 angle = 0.0f;
+    angle = Math::RadiansToDegrees(rad);
+    // 角度が90度以上で負の値になるため
+    // 補正の360度になるように修正する
+    if (v < 0 && h < 0) angle += 180.0f;
+    else if (v < 0) angle = (180.0f + angle);
+    else if (h < 0) angle = (360.0f + angle);
+
+    return angle;
+}
+
 myMath::Vector2 GAME_SYSTEMS::GamePad::RightStick(uInt32 index)
 {
     Vector2 stick = { 0.0f, 0.0f };;
@@ -52,6 +68,22 @@ myMath::Vector2 GAME_SYSTEMS::GamePad::RightStick(uInt32 index)
     stick.x = pad->GetXinputState(index).Gamepad.sThumbRX / m_stickMax;
     stick.y = pad->GetXinputState(index).Gamepad.sThumbRY / m_stickMax;
     return stick;
+}
+
+Float32 GAME_SYSTEMS::GamePad::RightStickAngle(uInt32 index)
+{
+    Float32 h = GamePad::RightStick().x;
+    Float32 v = GamePad::RightStick().y;
+    Float32 rad = atanf(h / v);
+    Float32 angle = 0.0f;
+    angle = Math::RadiansToDegrees(rad);
+    // 角度が90度以上で負の値になるため
+    // 補正の360度になるように修正する
+    if (v < 0 && h < 0) angle += 180.0f;
+    else if (v < 0) angle = (180.0f + angle);
+    else if (h < 0) angle = (360.0f + angle);
+
+    return angle;
 }
 
 Float32 GAME_SYSTEMS::GamePad::LeftTrigger(uInt32 index)

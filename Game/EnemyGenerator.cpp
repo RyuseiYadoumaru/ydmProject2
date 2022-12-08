@@ -11,8 +11,8 @@ void EnemyGenerator::Update()
 	{
 		m_moveForce = m_moveSpeed;
 
-		GetOwner()->m_transform->m_position.x += m_moveForce * GetOwner()->m_transform->GetAxisZ().x;
-		GetOwner()->m_transform->m_position.z += m_moveForce * GetOwner()->m_transform->GetAxisZ().y;
+		GetOwner()->m_transform->m_Position.x += m_moveForce * GetOwner()->m_transform->GetAxisZ().x;
+		GetOwner()->m_transform->m_Position.z += m_moveForce * GetOwner()->m_transform->GetAxisZ().y;
 
 		if (m_timer >= m_moveTime)
 		{
@@ -23,7 +23,7 @@ void EnemyGenerator::Update()
 	else
 	{
 		// ‰ñ“]
-		GetOwner()->m_transform->m_rotation.y += m_rotSpeed * Timer::DeltaTime();
+		GetOwner()->m_transform->m_Rotation.y += m_rotSpeed * Timer::DeltaTime();
 
 		// ’e”­ŽË
 		if (m_timer >= m_fireInterval)

@@ -81,8 +81,16 @@ namespace GAME_SYSTEMS
 			return m_stateList[state];
 		}
 
+		/**
+		 * ステート名取得.
+		 */
+		String GetCurrentStateName() const noexcept { return m_currentName; }
+		String GetBeforeName() const noexcept { return m_beforeName; }
+
 	private:
 		StateContainer m_stateList;
 		StatePtr m_currentState = nullptr;
+		String m_currentName;
+		String m_beforeName;
 	};
 }

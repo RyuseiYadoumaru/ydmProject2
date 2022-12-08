@@ -223,9 +223,6 @@
     <Filter Include="Game\Script\GameLogic\CameraCommon">
       <UniqueIdentifier>{4478fd60-b5e0-44e9-b1db-59f9aa4c6cc3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Player\PlayerScript\State">
-      <UniqueIdentifier>{51db6164-ff04-4aa6-af75-a443dae9aaa4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\PlayerTrackingCamera">
       <UniqueIdentifier>{637bd7c0-4eb6-4f0b-bddb-819596291699}</UniqueIdentifier>
     </Filter>
@@ -249,6 +246,9 @@
     </Filter>
     <Filter Include="System\GameSubSystem\ComponentManager">
       <UniqueIdentifier>{e06c6c38-915a-44b1-af97-9b504a8aad1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Player\PlayerScript\ActionState">
+      <UniqueIdentifier>{51db6164-ff04-4aa6-af75-a443dae9aaa4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -517,16 +517,16 @@
       <Filter>Game\Camera</Filter>
     </ClCompile>
     <ClCompile Include="Game\PlayerMoveGround.cpp">
-      <Filter>Game\Player\PlayerScript\State</Filter>
+      <Filter>Game\Player\PlayerScript\ActionState</Filter>
     </ClCompile>
     <ClCompile Include="Game\PlayerMoveAir.cpp">
-      <Filter>Game\Player\PlayerScript\State</Filter>
+      <Filter>Game\Player\PlayerScript\ActionState</Filter>
     </ClCompile>
     <ClCompile Include="Game\PlayerFallState.cpp">
-      <Filter>Game\Player\PlayerScript\State</Filter>
+      <Filter>Game\Player\PlayerScript\ActionState</Filter>
     </ClCompile>
     <ClCompile Include="Game\PlayerLandGround.cpp">
-      <Filter>Game\Player\PlayerScript\State</Filter>
+      <Filter>Game\Player\PlayerScript\ActionState</Filter>
     </ClCompile>
     <ClCompile Include="Game\PlayerTrackingCamera.cpp">
       <Filter>Game\PlayerTrackingCamera</Filter>
@@ -545,6 +545,12 @@
     </ClCompile>
     <ClCompile Include="Game\DebugCameraMovement.cpp">
       <Filter>Game\Script\DebugLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\PlayerOriginTransform.cpp">
+      <Filter>Game\Player\PlayerScript</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\PlayerAirIdle.cpp">
+      <Filter>Game\Player\PlayerScript\ActionState</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -903,19 +909,19 @@
       <Filter>Game\Camera</Filter>
     </ClInclude>
     <ClInclude Include="Game\PlayerMoveGround.h">
-      <Filter>Game\Player\PlayerScript\State</Filter>
+      <Filter>Game\Player\PlayerScript\ActionState</Filter>
     </ClInclude>
     <ClInclude Include="Game\PlayerActionState.h">
-      <Filter>Game\Player\PlayerScript\State</Filter>
+      <Filter>Game\Player\PlayerScript\ActionState</Filter>
     </ClInclude>
     <ClInclude Include="Game\PlayerMoveAir.h">
-      <Filter>Game\Player\PlayerScript\State</Filter>
+      <Filter>Game\Player\PlayerScript\ActionState</Filter>
     </ClInclude>
     <ClInclude Include="Game\PlayerFallState.h">
-      <Filter>Game\Player\PlayerScript\State</Filter>
+      <Filter>Game\Player\PlayerScript\ActionState</Filter>
     </ClInclude>
     <ClInclude Include="Game\PlayerLandGround.h">
-      <Filter>Game\Player\PlayerScript\State</Filter>
+      <Filter>Game\Player\PlayerScript\ActionState</Filter>
     </ClInclude>
     <ClInclude Include="Game\PlayerTrackingCamera.h">
       <Filter>Game\PlayerTrackingCamera</Filter>
@@ -949,6 +955,12 @@
     </ClInclude>
     <ClInclude Include="System\GraphicsManager.h">
       <Filter>System\GameSubSystem\ComponentManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\PlayerOriginTransform.h">
+      <Filter>Game\Player\PlayerScript</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\PlayerAirIdle.h">
+      <Filter>Game\Player\PlayerScript\ActionState</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -24,16 +24,16 @@ namespace GAME_SYSTEMS
 		static myMath::Vector3 RotationMatrixToEuler(const myMath::Matrix4x4& rotMtx);
 
 	public:
-		myMath::Vector3		m_position;
-		myMath::Quaternion  m_rotation;
-		myMath::Vector3		m_scale;
+		myMath::Vector3		m_Position;
+		myMath::Quaternion  m_Rotation;
+		myMath::Vector3		m_Scale;
 
 	public:
 		void SetRotation(Float32 x, Float32 y, Float32 z) noexcept;
 		myMath::Vector3 GetEulerAngles() noexcept;
-		const myMath::Vector3& GetPosition() const noexcept { return m_position; }
-		const myMath::Quaternion& GetRotation() const noexcept { return m_rotation; }
-		const myMath::Vector3& GetScale() const noexcept { return m_scale; }
+		const myMath::Vector3& GetPosition() const noexcept { return m_Position; }
+		const myMath::Quaternion& GetRotation() const noexcept { return m_Rotation; }
+		const myMath::Vector3& GetScale() const noexcept { return m_Scale; }
 
 		myMath::Matrix4x4& GetWorldMatrix() noexcept { return m_worldMatrix; }
 
@@ -52,10 +52,10 @@ namespace GAME_SYSTEMS
 	public:
 		explicit Transform() : 
 			Physics("Transform", Type::Transform),
-			m_position(0.0f, 0.0f, 0.0f),
-			m_rotation(myMath::Quaternion::CreateByRotation(0.0f, 0.0f, 0.0f)),
-			m_scale(1.0f, 1.0f, 1.0f) {}
-		Transform(const Transform&) = default;
+			m_Position(0.0f, 0.0f, 0.0f),
+			m_Rotation(myMath::Quaternion::CreateByRotation(0.0f, 0.0f, 0.0f)),
+			m_Scale(1.0f, 1.0f, 1.0f) {}
+		Transform(Transform&) = default;
 		~Transform() = default;
 	};
 }

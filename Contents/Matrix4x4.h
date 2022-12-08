@@ -44,6 +44,8 @@ namespace myMath
 		static Matrix4x4 CreateRotationYMatrix(Float32 rotationY);
 		static Matrix4x4 CreateRotationZMatrix(Float32 rotationZ);
 
+		static Matrix4x4 CreateScaleMatrix(const Vector3& scale);
+
 		static Matrix4x4 CreateMatrixFromAIMatrix(aiMatrix4x4& aiMtx);
 
 	public:
@@ -63,7 +65,7 @@ namespace myMath
 		Matrix4x4() = default;
 		~Matrix4x4() = default;
 		Matrix4x4& operator=(const Matrix4x4&) = default;
-
+		Matrix4x4 operator*(Matrix4x4 mtx) { return Matrix4x4::MatrixMultiply(*this, mtx); }
 
 	};
 }

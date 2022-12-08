@@ -50,7 +50,9 @@ namespace GAME_SYSTEMS
 
 
 		static myMath::Vector2 LeftStick(uInt32 index = 0);
+		static Float32 LeftStickAngle(uInt32 index = 0);
 		static myMath::Vector2 RightStick(uInt32 index = 0);
+		static Float32 RightStickAngle(uInt32 index = 0);
 
 		static Float32 LeftTrigger(uInt32 index = 0);
 		static Float32 RightTrigger(uInt32 index = 0);

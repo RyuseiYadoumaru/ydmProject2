@@ -12,6 +12,7 @@ USING_GAME_SYSTEMS;
 USING_MY_MATH;
 
 class PlayerActionCamera;
+class PlayerOriginTransform;
 
 class PlayerMovement : public Script
 {
@@ -40,6 +41,13 @@ public:
 	const uInt32& GetMaxFallSpeedFrame() const noexcept { return m_maxFallSpeedFrame; }
 	const uInt32& GetLandStopFrame() const noexcept { return m_landStopFrame; }
 
+	// 姿勢
+	const Vector4& GetForwardAxis() const noexcept { return m_forwardAxis; }
+	void SetForwardAxis(const Vector4& forwardAxis) noexcept { m_forwardAxis = forwardAxis; }
+
+	// オリジナル座標系
+	SharedPtr<PlayerOriginTransform> GetOriginTransform() noexcept { return m_originTransform; }
+
 private:
 	// ステートマシン
 	GAME_SYSTEMS::StateMachine m_stateMachine;
@@ -63,6 +71,12 @@ private:
 
 	// アニメーション
 	SharedPtr<Animator> m_animator = nullptr;
+
+	// 姿勢
+	Vector4 m_forwardAxis;
+
+	// オリジナル座標系
+	SharedPtr<PlayerOriginTransform> m_originTransform = nullptr;
 
 private:
 	virtual void Start() override;

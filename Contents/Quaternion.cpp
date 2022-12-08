@@ -49,12 +49,32 @@ myMath::Quaternion myMath::Quaternion::CreateByRotationAxis(const Vector4& axis,
 
 	/****	クォータニオン生成	****/
 	axisVec = DirectX::XMLoadFloat4(&axis);
-	Float32 radian = angle * DirectX::XM_PI / 180.0f;
+	Float32 radian = MY_MATH::Math::DegreesToRadians(angle);
 	outQt = DirectX::XMQuaternionRotationAxis(axisVec, radian);
 
 	myMath::Quaternion out;
 	out.Set(outQt);
 	return out;
+}
+
+myMath::Vector3 myMath::Quaternion::EulerAngles(const myMath::Quaternion& qt)
+{
+	const Float32 check = 2.0f * (-qt.y * qt.z + qt.w * qt.x);
+	if (check < -0.995f)
+	{
+		Float32 radZ = -atan2f(2.0f * (qt.x * qt.z - -qt.w * qt.y), 1.0f - 2.0f * (qt.y * qt.y + qt.z * qt.z));
+		return Vector3(-90.0f, 0.0f, Math::RadiansToDegrees(radZ));
+	}
+	if (check > 0.995f)
+	{
+		Float32 radZ = atan2f(2.0f * (qt.x * qt.z - qt.w * qt.y), 1.0f - 2.0f * (qt.y * qt.y + qt.z * qt.z));
+		return Vector3(90.0f, 0.0f, Math::RadiansToDegrees(radZ));
+	}
+
+	Float32 radX = asinf(check);
+	Float32 radY = atan2f(2.0f * (qt.x * qt.z - qt.w * qt.y), 1.0f - 2.0f * (qt.x * qt.x + qt.y * qt.y));
+	Float32 radZ = atan2f(2.0f * (qt.x * qt.z - qt.w * qt.y), 1.0f - 2.0f * (qt.x * qt.x + qt.z * qt.z));
+	return Vector3(radX, radY, radZ);
 }
 
 
@@ -94,15 +114,24 @@ myMath::Quaternion myMath::Quaternion::Slerp(const Quaternion& startQt, const Qu
 	return outQt;
 }
 
+myMath::Quaternion myMath::Quaternion::Normalize(Quaternion& qt)
+{
+	ALIGN16 DirectX::XMVECTOR qtVec;
+	qtVec = qt.GetXMVector();
+
+	ALIGN16 DirectX::XMVECTOR outQtVec;
+	outQtVec = DirectX::XMQuaternionNormalize(qtVec);
+
+	Quaternion out;
+	out.Set(outQtVec);
+	return out;
+}
+
 void myMath::Quaternion::CreateRotationAxis(Vector4& axis, Float32 angle)
 {
 	DirectX::XMVECTOR outQt;
 	DirectX::XMVECTOR axisVec;
 
-	/****	軸保存	****/
-	m_axis = axis;
-
-	/****	クォータニオン生成	****/
 	axisVec = DirectX::XMLoadFloat4(&axis);
 	Float32 radian = angle * DirectX::XM_PI / 180.0f;
 	outQt = DirectX::XMQuaternionRotationAxis(axisVec, radian);
@@ -113,11 +142,11 @@ void myMath::Quaternion::CreateRotationAxis(Vector4& axis, Float32 angle)
 void myMath::Quaternion::Normalize()
 {
 	ALIGN16 DirectX::XMVECTOR qtVec;
-	ALIGN16 DirectX::XMVECTOR outQtVec;
-
 	qtVec = this->GetXMVector();
+
+	ALIGN16 DirectX::XMVECTOR outQtVec;
 	outQtVec = DirectX::XMQuaternionNormalize(qtVec);
+
 	this->Set(outQtVec);
 }
-
 

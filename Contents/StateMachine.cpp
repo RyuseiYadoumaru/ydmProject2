@@ -30,7 +30,12 @@ void GAME_SYSTEMS::StateMachine::ChangeState(StateType stateName)
 	{
 		return;
 	}
-	if (m_currentState != nullptr) m_currentState->ExitState();
+	if (m_currentState != nullptr)
+	{
+		m_currentState->ExitState();
+		m_beforeName = m_currentName;
+	}
 	m_currentState = m_stateList[stateName];
 	m_currentState->EnterState();
+	m_currentName = stateName;
 }

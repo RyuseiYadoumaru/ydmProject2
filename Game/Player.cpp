@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "PlayerMovement.h"
+#include "PlayerOriginTransform.h"
 USING_GAME_SYSTEMS;
 
 void Player::Setting()
@@ -35,7 +36,9 @@ void Player::Setting()
 	anim->AddAnimation("LandGround", animClip);
 
 	AddComponent<PlayerMovement>();
+	auto playerOriginTrans = AddComponent<PlayerOriginTransform>();
 
 	// À•WÝ’è
-	m_transform->SetRotation(90.0f, 0.0f, 0.0f);
+	//m_transform->SetRotation(90.0f, 90.0f, 0.0f);
+	playerOriginTrans->m_Rotation.Set(90.0f, 0.0f, 0.0f);
 }

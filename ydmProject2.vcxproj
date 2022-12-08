@@ -212,11 +212,13 @@
     <ClCompile Include="Game\MoveMentSphere.cpp" />
     <ClCompile Include="Game\Player.cpp" />
     <ClCompile Include="Game\PlayerActionCamera.cpp" />
+    <ClCompile Include="Game\PlayerAirIdle.cpp" />
     <ClCompile Include="Game\PlayerFallState.cpp" />
     <ClCompile Include="Game\PlayerLandGround.cpp" />
     <ClCompile Include="Game\PlayerMoveAir.cpp" />
     <ClCompile Include="Game\PlayerMoveGround.cpp" />
     <ClCompile Include="Game\PlayerMovement.cpp" />
+    <ClCompile Include="Game\PlayerOriginTransform.cpp" />
     <ClCompile Include="Game\PlayerTrackingCamera.cpp" />
     <ClCompile Include="Game\SphareTest.cpp" />
     <ClCompile Include="Game\TestObject.cpp" />
@@ -352,11 +354,13 @@
     <ClInclude Include="Game\Player.h" />
     <ClInclude Include="Game\PlayerActionCamera.h" />
     <ClInclude Include="Game\PlayerActionState.h" />
+    <ClInclude Include="Game\PlayerAirIdle.h" />
     <ClInclude Include="Game\PlayerFallState.h" />
     <ClInclude Include="Game\PlayerLandGround.h" />
     <ClInclude Include="Game\PlayerMoveAir.h" />
     <ClInclude Include="Game\PlayerMoveGround.h" />
     <ClInclude Include="Game\PlayerMovement.h" />
+    <ClInclude Include="Game\PlayerOriginTransform.h" />
     <ClInclude Include="Game\PlayerTrackingCamera.h" />
     <ClInclude Include="Game\SphareTest.h" />
     <ClInclude Include="Game\TestObject.h" />

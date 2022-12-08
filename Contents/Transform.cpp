@@ -24,18 +24,17 @@ Vector3 GAME_SYSTEMS::Transform::RotationMatrixToEuler(const Matrix4x4& rotMtx)
 	degree.x = Math::RadiansToDegrees(radian.x);
 	degree.y = Math::RadiansToDegrees(radian.y);
 	degree.z = Math::RadiansToDegrees(radian.z);
-
 	return degree;
 }
 
 void GAME_SYSTEMS::Transform::SetRotation(Float32 x, Float32 y, Float32 z) noexcept
 {
-	m_rotation = myMath::Quaternion::CreateByRotation(x, y, z);
+	m_Rotation = myMath::Quaternion::CreateByRotation(x, y, z);
 }
 
 Vector3 GAME_SYSTEMS::Transform::GetEulerAngles() noexcept
 {
-	Matrix4x4 mtx = Matrix4x4::CreateMatrixFromQuaternion(m_rotation);
+	Matrix4x4 mtx = Matrix4x4::CreateMatrixFromQuaternion(m_Rotation);
 	Vector3 outRot = Transform::RotationMatrixToEuler(mtx);
 	return outRot;
 }
@@ -80,28 +79,13 @@ void GAME_SYSTEMS::Transform::Start()
 void Transform::Update()
 {	
 	// çsóÒê∂ê¨
-	Matrix4x4 matrix = Matrix4x4::CreateMatrixFromQuaternion(m_rotation);
-	matrix._11 *= m_scale.x;
-	matrix._12 *= m_scale.x;
-	matrix._13 *= m_scale.x;
-	matrix._14 = 0.0f;
-
-	matrix._21 *= m_scale.y;
-	matrix._22 *= m_scale.y;
-	matrix._23 *= m_scale.y;
-	matrix._24 = 0.0f;
-
-	matrix._31 *= m_scale.z;
-	matrix._32 *= m_scale.z;
-	matrix._33 *= m_scale.z;
-	matrix._34 = 0.0f;
-
-	matrix._41 = m_position.x;
-	matrix._42 = m_position.y;
-	matrix._43 = m_position.z;
-	matrix._44 = 1.0f;
-
-	m_worldMatrix = matrix;
+	m_Rotation.Normalize();
+	Matrix4x4 posMat = Matrix4x4::CreateTranslationMatrix(m_Position);
+	Matrix4x4 rotMat = Matrix4x4::CreateMatrixFromQuaternion(m_Rotation);
+	Matrix4x4 scaleMat = Matrix4x4::CreateScaleMatrix(m_Scale);
+	Matrix4x4 mtx = Matrix4x4::CreateWorldMatrix(posMat, rotMat, scaleMat);
+	m_worldMatrix = mtx;
+	m_Rotation = Quaternion::CreateByMartix(m_worldMatrix);
 }
 
 void GAME_SYSTEMS::Transform::End()
