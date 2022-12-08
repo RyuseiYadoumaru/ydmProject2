@@ -250,6 +250,9 @@
     <Filter Include="Game\Player\PlayerScript\ActionState">
       <UniqueIdentifier>{51db6164-ff04-4aa6-af75-a443dae9aaa4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Item">
+      <UniqueIdentifier>{66ab15b6-6dcc-4d78-bde6-f1866a4539ca}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="System\Console.cpp">
@@ -551,6 +554,12 @@
     </ClCompile>
     <ClCompile Include="Game\PlayerAirIdle.cpp">
       <Filter>Game\Player\PlayerScript\ActionState</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Item.cpp">
+      <Filter>Game\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="Contents\SphareCollider.cpp">
+      <Filter>Contents\Component\Physics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -961,6 +970,12 @@
     </ClInclude>
     <ClInclude Include="Game\PlayerAirIdle.h">
       <Filter>Game\Player\PlayerScript\ActionState</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Item.h">
+      <Filter>Game\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="Contents\SphareCollider.h">
+      <Filter>Contents\Component\Physics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

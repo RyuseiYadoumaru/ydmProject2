@@ -21,7 +21,8 @@ namespace GAME_SYSTEMS
 	public:
 		enum class Type
 		{
-			Transform
+			Transform,
+			SphereCollider
 		};
 
 		explicit Physics(String name, Type type) :

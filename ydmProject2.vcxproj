@@ -195,6 +195,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="Contents\SphareCollider.cpp" />
     <ClCompile Include="Contents\StateMachine.cpp" />
     <ClCompile Include="Contents\Texture.cpp" />
     <ClCompile Include="Contents\Timer.cpp" />
@@ -208,6 +209,7 @@
     <ClCompile Include="Game\DebugCamera.cpp" />
     <ClCompile Include="Game\DebugCameraMovement.cpp" />
     <ClCompile Include="Game\EnemyGenerator.cpp" />
+    <ClCompile Include="Game\Item.cpp" />
     <ClCompile Include="Game\MainCamera.cpp" />
     <ClCompile Include="Game\MoveMentSphere.cpp" />
     <ClCompile Include="Game\Player.cpp" />
@@ -329,6 +331,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="Contents\SphareCollider.h" />
     <ClInclude Include="Contents\SpriteRenderer.h" />
     <ClInclude Include="Contents\StateBase.h" />
     <ClInclude Include="Contents\StateMachine.h" />
@@ -349,6 +352,7 @@
     <ClInclude Include="Game\DebugCamera.h" />
     <ClInclude Include="Game\DebugCameraMovement.h" />
     <ClInclude Include="Game\EnemyGenerator.h" />
+    <ClInclude Include="Game\Item.h" />
     <ClInclude Include="Game\MainCamera.h" />
     <ClInclude Include="Game\MoveMentSphere.h" />
     <ClInclude Include="Game\Player.h" />
