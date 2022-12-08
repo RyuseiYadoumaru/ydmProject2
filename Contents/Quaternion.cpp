@@ -74,7 +74,7 @@ myMath::Vector3 myMath::Quaternion::EulerAngles(const myMath::Quaternion& qt)
 	Float32 radX = asinf(check);
 	Float32 radY = atan2f(2.0f * (qt.x * qt.z - qt.w * qt.y), 1.0f - 2.0f * (qt.x * qt.x + qt.y * qt.y));
 	Float32 radZ = atan2f(2.0f * (qt.x * qt.z - qt.w * qt.y), 1.0f - 2.0f * (qt.x * qt.x + qt.z * qt.z));
-	return Vector3(radX, radY, radZ);
+	return Vector3(Math::RadiansToDegrees(radX), Math::RadiansToDegrees(radY), Math::RadiansToDegrees(radZ));
 }
 
 
@@ -125,18 +125,6 @@ myMath::Quaternion myMath::Quaternion::Normalize(Quaternion& qt)
 	Quaternion out;
 	out.Set(outQtVec);
 	return out;
-}
-
-void myMath::Quaternion::CreateRotationAxis(Vector4& axis, Float32 angle)
-{
-	DirectX::XMVECTOR outQt;
-	DirectX::XMVECTOR axisVec;
-
-	axisVec = DirectX::XMLoadFloat4(&axis);
-	Float32 radian = angle * DirectX::XM_PI / 180.0f;
-	outQt = DirectX::XMQuaternionRotationAxis(axisVec, radian);
-
-	DirectX::XMStoreFloat4(this, outQt);
 }
 
 void myMath::Quaternion::Normalize()

@@ -5,6 +5,8 @@
 #include "PlayerActionCamera.h"
 
 USING_GAME_SYSTEMS;
+USING_MY_MATH;
+
 
 void PlayerMoveAir::EnterState()
 {
@@ -12,6 +14,23 @@ void PlayerMoveAir::EnterState()
 	m_camera = m_owner->GetActiveCamera()->GetOwner()->GetComponent<Camera>();
 
 	m_owner->GetOriginTransform()->SetType(PlayerOriginTransform::Type::ZeroGravity);
+	m_isRotation = true;
+
+	m_startAxis = m_owner->GetOriginTransform()->m_QtRotation;
+
+	//auto transPos = m_owner->GetOriginTransform()->m_Position;
+	//Vector3 forwardVec = m_camera->m_eye - transPos;
+	//m_endAxis.x = forwardVec.x;
+	//m_endAxis.y = forwardVec.y;
+	//m_endAxis.z = forwardVec.z;
+	//m_endAxis.w = 0.0f;
+	m_counter = 0;
+	m_rotCounter = 0;
+
+	m_moveVector = m_camera->GetAxisZ();
+	m_endAxis = m_moveVector * -1.0f;
+	m_endAxis.Normalize();
+
 }
 
 void PlayerMoveAir::ExitState()
@@ -24,6 +43,22 @@ void PlayerMoveAir::Update()
 	auto transform = m_owner->GetOriginTransform();
 	AirMoveMent();
 	
+	if (m_isRotation == true)
+	{
+		TOOLS::Debug::DrawAxis(transform->m_Position, m_endAxis.GetVector4(), 500.0f, Color::Yellow);
+		Float32 slerp = Easing::Liner(m_counter, m_owner->GetAirRotationCount(), 0.001f, 1.0f);
+		if (m_rotCounter >= m_owner->GetAirRotationCount())
+		{
+			slerp = 1.0f;
+			m_isRotation = false;
+			m_rotCounter = 0;
+		}
+		auto slerpQt = Quaternion::Slerp(m_startAxis, m_endAxis, slerp);
+		transform->m_QtRotation = slerpQt;
+		m_rotCounter++;
+	}
+
+
 	// ‚à‚¤ˆê“x“ü—Í‚µ‚½‚Æ‚«‚ÉŽ~‚Ü‚é
 	if (GamePad::RightTrigger() >= GamePad::m_XinputTriggerMax &&
 		GamePad::OldRightTrigger() != GamePad::m_XinputTriggerMax)
@@ -50,7 +85,7 @@ void PlayerMoveAir::AirMoveMent()
 	// ˆÚ“®
 	auto cameraForwardVec = m_camera->GetAxisZ();
 	m_owner->SetMoveForce(
-		moveForwardForce * cameraForwardVec.x * 1.0f,
-		moveForwardForce * cameraForwardVec.y * 1.0f,
-		moveForwardForce * cameraForwardVec.z * 1.0f);
+		moveForwardForce * m_moveVector.x,
+		moveForwardForce * m_moveVector.y,
+		moveForwardForce * m_moveVector.z);
 }

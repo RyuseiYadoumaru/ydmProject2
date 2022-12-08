@@ -13,10 +13,12 @@
 namespace myMath
 {
 	class Matrix4x4;
+	class Vector4;
 
 	class Vector3 : public DirectX::XMFLOAT3
 	{
 	public:
+		static Vector3 Cross(const Vector3& vec1, const Vector3& vec2);
 		static Vector3 Larp(const Vector3& startVec3, const Vector3& endVec3, Float32 t);
 
 	public:
@@ -35,10 +37,13 @@ namespace myMath
 		Vector3 operator-(const Vector3& vec3) const noexcept { return Vector3(x - vec3.x, y - vec3.y, z - vec3.z); }
 		Vector3& operator-=(const Vector3& vec3) noexcept { x -= vec3.x; y -= vec3.y; z -= vec3.z; return *this; }
 		Vector3 operator*(const Vector3& vec3) const noexcept { return Vector3(x * vec3.x, y * vec3.y, z * vec3.z); }
+		Vector3 operator*(Float32 mul) const noexcept { return Vector3(x * mul, y * mul, z * mul); }
 		Vector3& operator*=(const Vector3& vec3) noexcept { x *= vec3.x; y *= vec3.y; z *= vec3.z; return *this; }
 		Vector3 operator/(const Vector3& vec3) const noexcept { return Vector3(x / vec3.x, y / vec3.y, z / vec3.z); }
 		Vector3& operator/=(const Vector3& vec3) noexcept { x /= vec3.x; y /= vec3.y; z /= vec3.z; return *this; }
 		bool operator!=(const Vector3& vec3)const noexcept { return (this->x != vec3.x && this->y != vec3.y && this->z != vec3.z); }
 		bool operator==(const Vector3& vec3)const noexcept { return (this->x == vec3.x && this->y == vec3.y && this->z == vec3.z); }
+
+		Vector3& operator=(const myMath::Vector4& vec4) noexcept;
 	};
 }

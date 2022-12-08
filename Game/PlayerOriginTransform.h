@@ -14,7 +14,7 @@ public:
 	};
 
 public:
-	void SetType(Type type) noexcept { m_type = type; }
+	void SetType(Type type) noexcept;
 
 public:
 	Vector3 m_Position;
@@ -29,6 +29,8 @@ private:
 private:
 	SharedPtr<Transform> m_transform;
 	Type m_type;
+	Vector3 m_saveRotation;
+	bool m_isStart = false;
 public:
 	PlayerOriginTransform() : Script(400), m_type(Type::Ground) {}
 };

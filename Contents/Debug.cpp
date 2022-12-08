@@ -159,19 +159,19 @@ void tools::Debug::DrawAxis(const MY_MATH::Matrix4x4& mtx, Float32 length)
 	line->Render();
 }
 
-void tools::Debug::DrawAxis(const MY_MATH::Vector3& pos, const MY_MATH::Vector4 dir, Float32 length, MY_MATH::Color color)
+void tools::Debug::DrawAxis(const MY_MATH::Vector3& pos, const MY_MATH::Vector4& dir, Float32 length, MY_MATH::Color color)
 {
 	auto line = developer::DeveloperMenu::GetLine();
 	Vector<gameSystems::Line::Vertex> v;
 	v.resize(2);
 
-	v[0].Position.x = pos.x + dir.x * -length / 2.0f;
-	v[0].Position.y = pos.y + dir.y * -length / 2.0f;
-	v[0].Position.z = pos.z + dir.z * -length / 2.0f;
+	v[0].Position.x = pos.x;
+	v[0].Position.y = pos.y;
+	v[0].Position.z = pos.z;
 
-	v[1].Position.x = pos.x + dir.x * length / 2.0f;
-	v[1].Position.y = pos.y + dir.y * length / 2.0f;
-	v[1].Position.z = pos.z + dir.z * length / 2.0f;
+	v[1].Position.x = pos.x + (length * dir.x);
+	v[1].Position.y = pos.y + (length * dir.y);
+	v[1].Position.z = pos.z + (length * dir.z);
 
 	v[0].Color = v[1].Color = color.GetXMFLOAT();
 	line->SetVertex(v);

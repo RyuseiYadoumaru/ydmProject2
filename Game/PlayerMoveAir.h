@@ -2,7 +2,6 @@
 #include "GameContents.h"
 #include "PlayerActionState.h"
 
-
 class PlayerMoveAir : public PlayerActionState
 {
 public:
@@ -19,10 +18,17 @@ private:
 private:
 
 	uInt32 m_counter = 0;
-
-	bool m_isResetCamera = false;
+	uInt32 m_rotCounter = 0;
 
 	// カメラコンポーネント
 	SharedPtr<GAME_SYSTEMS::Camera> m_camera = nullptr;
+
+	MY_MATH::Quaternion m_startAxis;
+	MY_MATH::Quaternion m_endAxis;
+
+	MY_MATH::Vector3 m_moveVector;
+
+	bool m_isRotation = false;
+
 };
 

@@ -34,6 +34,7 @@ public:
 	// ‹ó’†ˆÚ“®
 	const Float32& GetAirHeight() const noexcept { return m_airHeight; }
 	const uInt32& GetAirFrameCount() const noexcept { return m_airFrameCount; }
+	const uInt32& GetAirRotationCount() const noexcept { return m_airRotationCount; }
 
 	// ’…’n
 	const Float32& GetGravity() const noexcept { return m_gravity; }
@@ -59,6 +60,7 @@ private:
 	// ‹ó’†ˆÚ“®
 	Float32 m_airHeight = 300.0f;
 	uInt32 m_airFrameCount = 20;
+	uInt32 m_airRotationCount = 20;
 
 	// ’…’n
 	Float32 m_gravity = 9.8f;

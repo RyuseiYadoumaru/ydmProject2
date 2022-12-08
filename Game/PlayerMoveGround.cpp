@@ -50,8 +50,8 @@ void PlayerMoveGround::Update()
 		}
 		if (m_isResetCamera == false)
 		{
-			Float32 angle = GamePad::LeftStickAngle();
 			// ‰ñ“]—ÊŒˆ’è
+			Float32 angle = GamePad::LeftStickAngle();
 			m_originTransform->m_Rotation.y = (camera->GetHorizontalAngle() + angle);
 			if (m_originTransform->m_Rotation.y > 360.0f)
 			{

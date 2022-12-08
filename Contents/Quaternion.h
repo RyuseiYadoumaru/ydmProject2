@@ -45,15 +45,17 @@ namespace myMath
 
 
 		DirectX::XMVECTOR GetXMVector() noexcept { return DirectX::XMVectorSet(x, y, z, w); }
-		void CreateRotationAxis(Vector4& axis, Float32 angle);
+		myMath::Vector3 GetVector3() const noexcept { return myMath::Vector3(x, y, z); }
+		myMath::Vector4 GetVector4() const noexcept { return myMath::Vector4(x, y, z, w); }
 		void Normalize();
 
 	public:
-		Quaternion() : DirectX::XMFLOAT4(0.0f, 0.0f, 0.0f, 1.0f) {}
+		explicit Quaternion() : DirectX::XMFLOAT4(0.0f, 0.0f, 0.0f, 1.0f) {}
+		explicit Quaternion(Float32 _x, Float32 _y, Float32 _z, Float32 _w) : DirectX::XMFLOAT4(_x, _y, _z, _w) {}
 		Quaternion(const Quaternion& qt) = default;
-		Quaternion(Float32 _x, Float32 _y, Float32 _z, Float32 _w) : DirectX::XMFLOAT4(_x, _y, _z, _w) {}
 		Quaternion& operator=(const Quaternion&) = default;
 		Quaternion operator*(const Quaternion& qt) { return Quaternion::Multiply(*this, qt); }
-
+		Quaternion& operator=(const Vector3& vec3) { x = vec3.x; y = vec3.y; z = vec3.z; w = 0.0f; return *this; }
+		Quaternion& operator=(const Vector4& vec4) { x = vec4.x; y = vec4.y; z = vec4.z; w = vec4.w; return *this; }
 	};
 }
