@@ -18,18 +18,8 @@ namespace GAME_SYSTEMS
 		SINGLETON_CLASS(ScriptManager);
 
 	public:
-		bool FirstUpdate()
+		bool StartUpdate()
 		{
-			for (auto& scriptStage : m_destroyList)
-			{
-				for (auto& script : scriptStage.second)
-				{
-					script->End();
-					script = nullptr;
-				}
-			}
-			m_destroyList.clear();
-
 			for (auto& scriptStage : m_instanceList)
 			{
 				for (auto& script : scriptStage.second)
@@ -40,6 +30,20 @@ namespace GAME_SYSTEMS
 				}
 			}
 			m_instanceList.clear();
+			return true;
+		}
+
+		bool DestroyUpdate()
+		{
+			for (auto& scriptStage : m_destroyList)
+			{
+				for (auto& script : scriptStage.second)
+				{
+					script->End();
+					script = nullptr;
+				}
+			}
+			m_destroyList.clear();
 			return true;
 		}
 

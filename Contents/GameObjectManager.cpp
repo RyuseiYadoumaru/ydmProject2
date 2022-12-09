@@ -21,7 +21,7 @@
 void GAME_SYSTEMS::GameObjectManager::Destroy(GameObjectPtr gameObject)
 {
     gameObject->ShutDown();
-    m_destroyObjectList.push_back(gameObject);
+    m_destroyObjectList.emplace_back(gameObject);
 }
 
 bool GAME_SYSTEMS::GameObjectManager::GameObjectSetUp()
@@ -31,13 +31,25 @@ bool GAME_SYSTEMS::GameObjectManager::GameObjectSetUp()
 
 bool GAME_SYSTEMS::GameObjectManager::GameObjectStartUpdate()
 {
+    // スクリプト削除
+    ScriptManager::GetInstance()->DestroyUpdate();
+
+    // システムコンポーネント削除
+    MiscellaneousManager::GetInstance()->DestroyUpdate();
+
+    // 物理コンポーネント削除
+    PhysicsManager::GetInstance()->DestroyUpdate();
+
+    // グラフィックコンポーネント削除
+    GraphicsManager::GetInstance()->DestroyUpdate();
+
+
     // オブジェクト削除
     for (auto& destroy : m_destroyObjectList)
     {
         m_gameObjectList.erase(destroy->m_id);
     }
     m_destroyObjectList.clear();
-
     // オブジェクト初期化
     for (auto& instance : m_instanceObjectList)
     {
@@ -46,16 +58,16 @@ bool GAME_SYSTEMS::GameObjectManager::GameObjectStartUpdate()
     m_instanceObjectList.clear();
 
     // システムコンポーネント初期化
-    MiscellaneousManager::GetInstance()->FirstUpdate();
+    MiscellaneousManager::GetInstance()->StartUpdate();
 
     // 物理コンポーネント初期化
-    PhysicsManager::GetInstance()->FirstUpdate();
+    PhysicsManager::GetInstance()->StartUpdate();
 
     // グラフィックコンポーネント初期化
-    GraphicsManager::GetInstance()->FirstUpdate();
+    GraphicsManager::GetInstance()->StartUpdate();
 
     // スクリプト初期化
-    ScriptManager::GetInstance()->FirstUpdate();
+    ScriptManager::GetInstance()->StartUpdate();
     return true;
 }
 

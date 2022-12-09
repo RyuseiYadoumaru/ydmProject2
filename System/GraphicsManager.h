@@ -18,18 +18,8 @@ namespace GAME_SYSTEMS
 		SINGLETON_CLASS(GraphicsManager);
 
 	public:
-		bool FirstUpdate()
+		bool StartUpdate()
 		{
-			for (auto& graphicsStage : m_destroyList)
-			{
-				for (auto& graphics : graphicsStage.second)
-				{
-					graphics->End();
-					graphics = nullptr;
-				}
-			}
-			m_destroyList.clear();
-
 			for (auto& graphicsStage : m_instanceList)
 			{
 				for (auto& graphics : graphicsStage.second)
@@ -40,6 +30,20 @@ namespace GAME_SYSTEMS
 				}
 			}
 			m_instanceList.clear();
+			return true;
+		}
+
+		bool DestroyUpdate()
+		{
+			for (auto& graphicsStage : m_destroyList)
+			{
+				for (auto& graphics : graphicsStage.second)
+				{
+					graphics->End();
+					graphics = nullptr;
+				}
+			}
+			m_destroyList.clear();
 			return true;
 		}
 

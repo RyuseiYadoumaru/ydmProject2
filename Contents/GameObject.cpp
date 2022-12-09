@@ -21,5 +21,4 @@ void GAME_SYSTEMS::GameObject::ShutDown()
 	{
 		comp->Finalize();
 	}
-	m_componentList.clear();
 }

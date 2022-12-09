@@ -18,18 +18,8 @@ namespace GAME_SYSTEMS
 		SINGLETON_CLASS(MiscellaneousManager);
 
 	public:
-		bool FirstUpdate()
+		bool StartUpdate()
 		{
-			for (auto& miscellaneousStage : m_destroyList)
-			{
-				for (auto& miscellaneous : miscellaneousStage.second)
-				{
-					miscellaneous->End();
-					miscellaneous = nullptr;
-				}
-			}
-			m_destroyList.clear();
-
 			for (auto& miscellaneousStage : m_instanceList)
 			{
 				for (auto& miscellaneous : miscellaneousStage.second)
@@ -40,6 +30,20 @@ namespace GAME_SYSTEMS
 				}
 			}
 			m_instanceList.clear();
+			return true;
+		}
+
+		bool DestroyUpdate()
+		{
+			for (auto& miscellaneousStage : m_destroyList)
+			{
+				for (auto& miscellaneous : miscellaneousStage.second)
+				{
+					miscellaneous->End();
+					miscellaneous = nullptr;
+				}
+			}
+			m_destroyList.clear();
 			return true;
 		}
 

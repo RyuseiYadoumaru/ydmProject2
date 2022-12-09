@@ -91,7 +91,8 @@ namespace GAME_SYSTEMS
 		GameObject(String name = "nonameObject") :
 			systems::Object(name, true),
 			m_tag(Tag::Default) {}
-		~GameObject() = default;
+		GameObject(const GameObject&) = default;
+		~GameObject() { m_componentList.clear(); }
 
 		friend GameObjectManager;
 	};

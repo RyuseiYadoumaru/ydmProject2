@@ -70,6 +70,11 @@ namespace GAME_SYSTEMS
 		}
 
 
+		Unordered_Map<uInt32, GameObjectPtr> GetGameObjectList() noexcept
+		{
+			return m_gameObjectList;
+		}
+
 	private:
 		bool GameObjectSetUp();
 		bool GameObjectStartUpdate();

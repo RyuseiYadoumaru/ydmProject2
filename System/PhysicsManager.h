@@ -18,17 +18,8 @@ namespace GAME_SYSTEMS
 		SINGLETON_CLASS(PhysicsManager);
 
 	public:
-		bool FirstUpdate()
+		bool StartUpdate()
 		{
-			for (auto& physicsStage : m_destroyList)
-			{
-				for (auto& physics : physicsStage.second)
-				{
-					physics->End();
-					physics = nullptr;
-				}				
-			}
-			m_destroyList.clear();
 
 			for (auto& physicsStage : m_instanceList)
 			{
@@ -40,6 +31,20 @@ namespace GAME_SYSTEMS
 				}
 			}
 			m_instanceList.clear();
+			return true;
+		}
+
+		bool DestroyUpdate()
+		{
+			for (auto& physicsStage : m_destroyList)
+			{
+				for (auto& physics : physicsStage.second)
+				{
+					physics->End();
+					physics = nullptr;
+				}
+			}
+			m_destroyList.clear();
 			return true;
 		}
 
