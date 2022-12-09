@@ -18,6 +18,7 @@
 // コンポーネント
 // 物理周り
 #include "Transform.h"
+#include "SphareCollider.h"
 
 // グラフィック周り
 #include "Camera.h"

@@ -61,20 +61,22 @@ namespace GAME_SYSTEMS
 			struct Vertex
 			{
 				DirectX::XMFLOAT3 Position = { 0.0f, 0.0f, 0.0f };
-				DirectX::XMFLOAT4 Color = { 0.1f, 0.9f, 0.0f, 0.3f };
+				DirectX::XMFLOAT4 Color = { 0.2f, 0.9f, 0.0f, 0.3f };
 			};
 			using RenderMesh = SYSTEMS::DX11Mesh<DebugRenderer::Vertex>;
 
 		public:
-			void Initialize();
-			void Render();
+			void Initialize(Float32 radius);
+			void Render(const MY_MATH::Matrix4x4& mtx);
 			void Finalize();
 
 		private:
-			Vector<UniquePtr<RenderMesh>> m_meshList;
+			UniquePtr<RenderMesh> m_mesh;
+			Vector<uInt32> m_indexList;
 			SharedPtr<VertexShader>	m_vertexShader	= nullptr;
 			SharedPtr<PixelShader>	m_pixelShader	= nullptr;
 
+			constexpr static uInt32 m_division = 20;
 		};
 
 		//	デバッグ用レンダー

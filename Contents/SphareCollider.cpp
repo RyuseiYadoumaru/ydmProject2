@@ -13,6 +13,10 @@
 #include "PixelShader.h"
 #include "ShaderManager.h"
 #include "../System/DirectXGraphics.h"
+#include "ResourceManager.h"
+#include "Model.h"
+#include "Mesh.h"
+#include "../System/DX11Settransform.h"
 
 bool GAME_SYSTEMS::SphereCollider::HitCheck(SharedPtr<SphereCollider> collider)
 {
@@ -26,7 +30,7 @@ bool GAME_SYSTEMS::SphereCollider::HitCheck(SharedPtr<SphereCollider> collider)
 	Float32 check = 0.0f;
 	check = std::powf(checkX, 2.0f) + std::powf(checkY, 2.0f) + std::powf(checkZ, 2.0f);
 
-	Float32 checkRad = std::powf((collider->m_radius - m_radius), 2.0f);
+	Float32 checkRad = std::powf((collider->m_radius + m_radius), 2.0f);
 
 	if (check <= checkRad)
 	{
@@ -41,7 +45,7 @@ void GAME_SYSTEMS::SphereCollider::Start()
 	m_position = transform->GetPosition();
 #ifdef _DEBUG
 	m_debug = std::make_shared<DebugRenderer>();
-	m_debug->Initialize();
+	m_debug->Initialize(m_radius);
 
 #endif
 }
@@ -55,7 +59,12 @@ void GAME_SYSTEMS::SphereCollider::Update()
 #ifdef _DEBUG
 	if (m_isDebug == true)
 	{
-		m_debug->Render();
+		MY_MATH::Matrix4x4 mtx;
+		mtx = MY_MATH::Matrix4x4::CreateMatrixIdentity();
+		mtx._41 = m_position.x;
+		mtx._42 = m_position.y;
+		mtx._43 = m_position.z;
+		m_debug->Render(mtx);
 	}
 #endif
 
@@ -69,34 +78,88 @@ void GAME_SYSTEMS::SphereCollider::End()
 }
 
 
-void GAME_SYSTEMS::SphereCollider::DebugRenderer::Initialize()
+void GAME_SYSTEMS::SphereCollider::DebugRenderer::Initialize(Float32 radius)
 {
-	m_vertexShader = ShaderManager::GetInstance()->GetVertexShader("DebugVertexShader");
+	m_vertexShader = ShaderManager::GetInstance()->GetVertexShader("DebugColliderVertexShader");
 	m_pixelShader = ShaderManager::GetInstance()->GetPixelShader("DebugPixelShader");
 
 	// 球体のメッシュを作る
+	// インデックス生成a
+	for (uInt32 y = 0; y < m_division; y++)
+	{
+		for (uInt32 x = 0; x < m_division; x++)
+		{
+			// 左上座標のインデックス
+			Int32 count = (30 + 1) * y + x;
 
+			Vector<uInt32> f;
+			f.resize(3);
+			// 上半分
+			f[0] = count;
+			f[1] = count + 1;
+			f[2] = count + 1 + (m_division + 1);
+
+			for (auto& i : f)
+			{
+				m_indexList.emplace_back(i);
+			}
+
+			// 下半分
+			f[0] = count;
+			f[1] = count + (m_division + 1) + 1;
+			f[2] = count + (m_division + 1);
+
+			for (auto& i : f)
+			{
+				m_indexList.emplace_back(i);
+			}
+		}
+	}
+
+	Vector<Vertex> vertexList;
+	for (uInt32 y = 0; y <= m_division; y++)
+	{
+		// 仰角をセット
+		Float32 elevation = (DirectX::XM_PI * static_cast<Float32>(y)) / static_cast<Float32>(m_division);
+
+		// 仰角に応じた半径を計算
+		Float32 r = radius * sinf(elevation);
+
+		for (uInt32 x = 0; x <= m_division; x++)
+		{
+			// 方位角をセット
+			Float32 azimuth = (2.0f * DirectX::XM_PI * static_cast<Float32>(x)) /  static_cast<Float32>(m_division);
+
+			Vertex v;
+			v.Position.x = r * cosf(azimuth);
+			v.Position.y = radius * cosf(elevation);
+			v.Position.z = r * sinf(azimuth);
+
+			vertexList.emplace_back(v);
+		}
+	}
+
+	// ポリゴン生成
+	m_mesh = std::make_unique<RenderMesh>(vertexList, m_indexList);
 }
 
-void GAME_SYSTEMS::SphereCollider::DebugRenderer::Render()
+void GAME_SYSTEMS::SphereCollider::DebugRenderer::Render(const MY_MATH::Matrix4x4& mtx)
 {
 	// ワールド行列を作る
+	MY_MATH::Matrix4x4 world = mtx;
+	SYSTEMS::DX11SetTransform::GetInstance()->SetTransform(SYSTEMS::DX11SetTransform::TYPE::WORLD, world);
 
 	// 定数バッファに送る
 	m_vertexShader->BindShader();
 	m_pixelShader->BindShader();
 
 	ID3D11DeviceContext& deviceContext = SYSTEMS::DirectXGraphics::GetInstance()->GetImmediateContext();
-	for (auto& mesh : m_meshList)
-	{
-		mesh->Draw(&deviceContext);
-	}
-
+	m_mesh->Draw(&deviceContext);
 }
 
 void GAME_SYSTEMS::SphereCollider::DebugRenderer::Finalize()
 {
 	m_vertexShader = nullptr;
 	m_pixelShader = nullptr;
-	m_meshList.clear();
+	m_mesh->Uninit();
 }
