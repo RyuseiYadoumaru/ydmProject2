@@ -45,9 +45,11 @@ void GAME_SYSTEMS::Model::LoadGeometry(Geometry type)
 	m_hasMesh = true;
 	if (type == Model::Geometry::Cube)
 	{
+		m_meshDataList[0]->LoadCube(m_geometrySize);
 	}
 	else if (type == Model::Geometry::Sphare)
 	{
+		m_meshDataList[0]->LoadSphere(m_geometrySize, m_sphereDivision);
 	}
 	else if (type == Model::Geometry::Terrain)
 	{

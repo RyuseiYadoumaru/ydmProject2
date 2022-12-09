@@ -58,7 +58,7 @@ namespace GAME_SYSTEMS
 
 	private:
 		static constexpr Float32 m_geometrySize = 50.0f;
-
+		static constexpr uInt32 m_sphereDivision = 50;
 
 	};
 }

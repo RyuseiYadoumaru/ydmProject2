@@ -9,7 +9,6 @@
 #pragma once
 #include <DirectXMath.h>
 #include "../System/DX11Mesh.h"
-#include "../dx11mathutil.h"
 #include "macro.h"
 #include "std.h"
 #include "Graphics.h"

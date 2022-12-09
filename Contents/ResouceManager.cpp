@@ -127,6 +127,10 @@ void GAME_SYSTEMS::ResourceManager::SetUp()
 	// ƒWƒIƒƒgƒŠ¶¬
 	m_geometryList[GeometryType::Terrain] = std::make_shared<Model>(nullptr);
 	m_geometryList[GeometryType::Terrain]->LoadGeometry(Model::Geometry::Terrain);
+	m_geometryList[GeometryType::Cube] = std::make_shared<Model>(nullptr);
+	m_geometryList[GeometryType::Cube]->LoadGeometry(Model::Geometry::Cube);
+	m_geometryList[GeometryType::Sphare] = std::make_shared<Model>(nullptr);
+	m_geometryList[GeometryType::Sphare]->LoadGeometry(Model::Geometry::Sphare);
 }
 
 void GAME_SYSTEMS::ResourceManager::ShutDown()

@@ -33,6 +33,8 @@ namespace GAME_SYSTEMS
 	public:
 		enum class GeometryType
 		{
+			Cube,
+			Sphare,
 			Terrain
 		};
 
@@ -74,5 +76,7 @@ namespace GAME_SYSTEMS
 
 		// スプライトテクスチャ
 		Unordered_Map <T_String, SharedPtr<Texture>> m_textureList;
+
+		//  オーディオ
 	};
 }

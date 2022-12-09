@@ -49,8 +49,11 @@ void GAME_SYSTEMS::ModelData::Releace()
 		model->Releace();
 	}
 
-	m_skeleton->Releace();
-	m_skeleton = nullptr;
+	if (m_skeleton != nullptr)
+	{
+		m_skeleton->Releace();
+		m_skeleton = nullptr;
+	}
 	m_modelList.clear();
 	m_modelNameList.clear();
 }
