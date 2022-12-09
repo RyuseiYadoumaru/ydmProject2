@@ -7,13 +7,13 @@
 //* @date   July 2022
 //*****************************************************************************
 #pragma once
-
 #include <DirectXMath.h>
 #include "std.h"
 #include "Color.h"
 
 namespace myMath
 {
+	class Vector3;
 	class Vector4 : public DirectX::XMFLOAT4
 	{
 	public:
@@ -32,6 +32,13 @@ namespace myMath
 			return dotVec.x;
 		}
 
+		//static Vector4 Cross(const Vector4& vec1, const Vector4& vec2)
+		//{
+		//	Vector4 v1 = vec1;
+		//	Vector4 v2 = vec2;
+		//	DirectX::XMVECTOR cross = DirectX::XMVector4Cross(v1.GetXMVector(), v2.GetXMVector());
+		//}
+
 	public:
 		// パラメータセット
 		void Set(Float32 _x, Float32 _y, Float32 _z, Float32 _w) noexcept { x = _x; y = _y; z = _z; w = _w; }
@@ -44,8 +51,8 @@ namespace myMath
 		Vector4 Reverse() noexcept { return Vector4(x * -1.0f, y * -1.0f, z * -1.0f, w); }
 
 	public:
-		Vector4() : DirectX::XMFLOAT4(0.0f, 0.0f, 0.0f, 0.0f) {}
-		Vector4(float _x, float _y, float _z, float _w) : DirectX::XMFLOAT4(_x, _y, _z, _w) {}
+		explicit Vector4() : DirectX::XMFLOAT4(0.0f, 0.0f, 0.0f, 0.0f) {}
+		explicit Vector4(float _x, float _y, float _z, float _w) : DirectX::XMFLOAT4(_x, _y, _z, _w) {}
 
 		Vector4& operator=(const Vector4& vec4) noexcept { x = vec4.x; y = vec4.y; z = vec4.z; w = vec4.w; return *this; }
 		Vector4& operator=(const DirectX::XMFLOAT4& vec4) noexcept { x = vec4.x; y = vec4.y; z = vec4.z; w = vec4.w; return *this; }
@@ -60,5 +67,7 @@ namespace myMath
 		Vector4& operator/=(const Vector4& vec4) noexcept { x /= vec4.x; y /= vec4.y; z /= vec4.z; w /= vec4.w; return *this; }
 		bool operator!=(const Vector4& vec4)const noexcept { return (this->x != vec4.x && this->y != vec4.y && this->z != vec4.z && this->w != vec4.w); }
 		bool operator==(const Vector4& vec4)const noexcept { return (this->x == vec4.x && this->y == vec4.y && this->z == vec4.z && this->w == vec4.w); }
+
+		Vector4& operator=(const Vector3& vec3) noexcept;
 	};
 }

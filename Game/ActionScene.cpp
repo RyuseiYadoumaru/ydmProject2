@@ -16,9 +16,12 @@ void ActionScene::ObjectEntry()
 	GameObjectManager::GetInstance()->Instance<DebugCamera>("DebugCamera");
 	GameObjectManager::GetInstance()->Instance<Player>("Player");
 	GameObjectManager::GetInstance()->Instance<CubeTest>("Cube");
+	
 	GameObjectManager::GetInstance()->Instance<Item>("Item");
 	GameObjectManager::GetInstance()->Instance<Item>("Item");
 	GameObjectManager::GetInstance()->Instance<Item>("Item");
+	GameObjectManager::GetInstance()->Instance<Item>("Item");
+
 	GameObjectManager::GetInstance()->Instance<HitObjectManager>("HitObjectManager");
 }
 

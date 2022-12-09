@@ -28,7 +28,7 @@ void PlayerOriginTransform::Start()
 
 void PlayerOriginTransform::Update()
 {
-	m_transform->m_Position = m_Position;
+	//m_transform->m_Position = m_Position;
 	// ’n–Ê‚ÌŽž‚Æ–³d—Í‚ÌŽž‚Å‰ñ“]‚Ì‚³‚¹•û‚ð•Ï‚¦‚é
 	if (m_type == Type::Ground)
 	{
@@ -36,17 +36,17 @@ void PlayerOriginTransform::Update()
 		m_QtRotation = m_transform->m_Rotation;
 		m_saveRotation = m_Rotation;
 	}
-	if (m_type == Type::ZeroGravity)
-	{
-		m_transform->m_Rotation = m_QtRotation;
-		m_Rotation = Quaternion::EulerAngles(m_QtRotation);
-	}
-	printf("\n\nX:%f,Y:%f,Z:%f,W:%f\n",
-		m_transform->m_Rotation.x,
-		m_transform->m_Rotation.y,
-		m_transform->m_Rotation.z,
-		m_transform->m_Rotation.w);
-	printf("\n\nX:%fY:%fZ:%f", m_Rotation.x, m_Rotation.y, m_Rotation.z);
+	//if (m_type == Type::ZeroGravity)
+	//{
+	//	m_transform->m_Rotation = m_QtRotation;
+	//	m_Rotation = Quaternion::EulerAngles(m_QtRotation);
+	//}
+	//printf("\n\nX:%f,Y:%f,Z:%f,W:%f\n",
+	//	m_transform->m_Rotation.x,
+	//	m_transform->m_Rotation.y,
+	//	m_transform->m_Rotation.z,
+	//	m_transform->m_Rotation.w);
+	//printf("\n\nX:%fY:%fZ:%f", m_Rotation.x, m_Rotation.y, m_Rotation.z);
 }
 
 void PlayerOriginTransform::End()

@@ -63,6 +63,7 @@ namespace myMath
 
 	public:
 		Matrix4x4() = default;
+		Matrix4x4(const Matrix4x4&) = default;
 		~Matrix4x4() = default;
 		Matrix4x4& operator=(const Matrix4x4&) = default;
 		Matrix4x4 operator*(Matrix4x4 mtx) { return Matrix4x4::MatrixMultiply(*this, mtx); }

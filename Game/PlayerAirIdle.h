@@ -13,13 +13,17 @@ public:
 	virtual void Update() override;
 
 private:
-	// 無重力パラメータ
+	// 地面移動→空中待機パラメータ
 	MY_MATH::Vector3 m_startPosition;
 	MY_MATH::Vector3 m_endPosition;
-
-	uInt32 m_counter = 0;
-
 	bool m_isRiseUp = false;
 
+
+	// 空中移動→空中待機パラメータ
+	MY_MATH::Quaternion m_startQt;
+	MY_MATH::Quaternion m_endQt;
+	bool m_isIdling = false;
+
+	uInt32 m_counter = 0;
 };
 

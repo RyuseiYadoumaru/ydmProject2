@@ -27,6 +27,7 @@ private:
 	MY_MATH::Quaternion m_endAxis;
 
 	MY_MATH::Vector3 m_moveVector;
+	MY_MATH::Vector3 m_saveEuler;
 
 	bool m_isRotation = false;
 

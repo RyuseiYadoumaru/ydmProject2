@@ -576,6 +576,9 @@
     <ClCompile Include="Game\ItemManager.cpp">
       <Filter>Game\HitObjectManager\Script</Filter>
     </ClCompile>
+    <ClCompile Include="Contents\Vector4.cpp">
+      <Filter>Contents\Math\Private</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="System\Console.h">

@@ -1,6 +1,24 @@
 #include "Vector3.h"
 #include "Vector4.h"
 
+const myMath::Vector3 myMath::Vector3::Up		( 0.0f, 1.0f, 0.0f);
+const myMath::Vector3 myMath::Vector3::Down		( 0.0f,-1.0f, 0.0f);
+const myMath::Vector3 myMath::Vector3::Forward	( 0.0f, 0.0f, 1.0f);
+const myMath::Vector3 myMath::Vector3::Back		( 0.0f, 0.0f,-1.0f);
+const myMath::Vector3 myMath::Vector3::Right	( 1.0f, 0.0f, 0.0f);
+const myMath::Vector3 myMath::Vector3::Left		(-1.0f, 0.0f, 0.0f);
+const myMath::Vector3 myMath::Vector3::Zero		( 0.0f, 0.0f, 0.0f);
+const myMath::Vector3 myMath::Vector3::One		( 1.0f, 1.0f, 1.0f);
+
+Float32 myMath::Vector3::Dot(const Vector3& vec1, const Vector3& vec2)
+{
+	Vector3 v1 = vec1;
+	Vector3 v2 = vec2;
+	DirectX::XMVECTOR dot = DirectX::XMVector3Dot(v1.GetXMVector(), v2.GetXMVector());
+	Vector3 dotVec;
+	dotVec.Set(dot);
+	return dotVec.x;
+}
 
 myMath::Vector3 myMath::Vector3::Cross(const Vector3& vec1, const Vector3& vec2)
 {

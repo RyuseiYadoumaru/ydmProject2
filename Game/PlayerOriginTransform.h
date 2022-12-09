@@ -15,6 +15,7 @@ public:
 
 public:
 	void SetType(Type type) noexcept;
+	const Vector3& GetSaveRotation() const noexcept { return m_saveRotation; }
 
 public:
 	Vector3 m_Position;

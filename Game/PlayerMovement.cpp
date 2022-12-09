@@ -65,7 +65,8 @@ void PlayerMovement::Update()
 	}
 
 	// ˆÚ“®
-	m_originTransform->m_Position += m_moveForce;
+	//m_originTransform->m_Position += m_moveForce;
+	GetOwner()->m_transform->m_Position += m_moveForce;
 }
 
 void PlayerMovement::End()

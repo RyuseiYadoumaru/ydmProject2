@@ -19,16 +19,26 @@ namespace myMath
 	class Vector3 : public DirectX::XMFLOAT3
 	{
 	public:
+		static Float32 Dot(const Vector3& vec1, const Vector3& vec2);
 		static Vector3 Cross(const Vector3& vec1, const Vector3& vec2);
 		static Vector3 Larp(const Vector3& startVec3, const Vector3& endVec3, Float32 t);
 		static Vector3 Normalize(const Vector3& vec3);
+
+	public:
+		static const Vector3 Up;
+		static const Vector3 Down;
+		static const Vector3 Forward;
+		static const Vector3 Back;
+		static const Vector3 Right;
+		static const Vector3 Left;
+		static const Vector3 Zero;
+		static const Vector3 One;
 
 	public:
 		void Set(float _x, float _y, float _z) noexcept { x = _x; y = _y; z = _z; }
 		void Set(DirectX::XMVECTOR& vector) noexcept { DirectX::XMStoreFloat3(this, vector); }
 
 		DirectX::XMVECTOR GetXMVector() noexcept { return DirectX::XMVectorSet(x, y, z, 0.0f); }
-
 
 	public:
 		Vector3() : DirectX::XMFLOAT3(0.0f, 0.0f, 0.0f) {}

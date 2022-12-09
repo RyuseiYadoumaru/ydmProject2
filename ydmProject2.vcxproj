@@ -201,6 +201,7 @@
     <ClCompile Include="Contents\Timer.cpp" />
     <ClCompile Include="Contents\Transform.cpp" />
     <ClCompile Include="Contents\Vector3.cpp" />
+    <ClCompile Include="Contents\Vector4.cpp" />
     <ClCompile Include="Contents\VertexShader.cpp" />
     <ClCompile Include="dx11mathutil.cpp" />
     <ClCompile Include="Editor\TestEditor.cpp" />

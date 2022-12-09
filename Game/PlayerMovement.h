@@ -38,6 +38,9 @@ public:
 	const Float32& GetAirHeight() const noexcept { return m_airHeight; }
 	const uInt32& GetAirFrameCount() const noexcept { return m_airFrameCount; }
 	const uInt32& GetAirRotationCount() const noexcept { return m_airRotationCount; }
+	const uInt32& GetAirIdleResetFrame() const noexcept { return m_airIdleResetFrame; }
+	const uInt32& GetAirMaxSpeedFrame() const noexcept { return m_airMaxSpeedFrame; }
+	const Float32& GetAirMaxSpeed() const noexcept { return m_airMaxSpeed; }
 
 	// íÖín
 	const Float32& GetGravity() const noexcept { return m_gravity; }
@@ -64,11 +67,14 @@ private:
 	Float32 m_airHeight = 300.0f;
 	uInt32 m_airFrameCount = 20;
 	uInt32 m_airRotationCount = 20;
+	uInt32 m_airIdleResetFrame = 60;
+	Float32 m_airMaxSpeed = 30.0f;
+	uInt32 m_airMaxSpeedFrame = 5;
 
 	// íÖín
 	Float32 m_gravity = 9.8f;
-	Float32 m_fallMaxSpeed = 15.0f;
-	uInt32 m_maxFallSpeedFrame = 20;
+	Float32 m_fallMaxSpeed = 17.0f;
+	uInt32 m_maxFallSpeedFrame = 15;
 	uInt32 m_landStopFrame = 10;
 
 	// ÉJÉÅÉâ
