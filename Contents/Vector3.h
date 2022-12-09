@@ -9,6 +9,7 @@
 #pragma once
 #include <DirectXMath.h>
 #include "std.h"
+#include "macro.h"
 
 namespace myMath
 {
@@ -20,9 +21,12 @@ namespace myMath
 	public:
 		static Vector3 Cross(const Vector3& vec1, const Vector3& vec2);
 		static Vector3 Larp(const Vector3& startVec3, const Vector3& endVec3, Float32 t);
+		static Vector3 Normalize(const Vector3& vec3);
 
 	public:
 		void Set(float _x, float _y, float _z) noexcept { x = _x; y = _y; z = _z; }
+		void Set(DirectX::XMVECTOR& vector) noexcept { DirectX::XMStoreFloat3(this, vector); }
+
 		DirectX::XMVECTOR GetXMVector() noexcept { return DirectX::XMVectorSet(x, y, z, 0.0f); }
 
 
