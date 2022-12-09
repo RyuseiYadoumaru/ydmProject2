@@ -66,7 +66,7 @@ private:
 	// ‹ó’†ˆÚ“®
 	Float32 m_airHeight = 300.0f;
 	uInt32 m_airFrameCount = 20;
-	uInt32 m_airRotationCount = 20;
+	uInt32 m_airRotationCount = 70;
 	uInt32 m_airIdleResetFrame = 60;
 	Float32 m_airMaxSpeed = 30.0f;
 	uInt32 m_airMaxSpeedFrame = 5;

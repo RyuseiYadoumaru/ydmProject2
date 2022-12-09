@@ -7,14 +7,14 @@ void ItemManager::Start()
 {
 	// アイテム座標テーブル作成
 	m_itemPositionTable.resize(10);
-	m_itemPositionTable[0].Set(100.0f, 100.0f, 50.0f);
-	m_itemPositionTable[1].Set(200.0f, 100.0f, 50.0f);
-	m_itemPositionTable[2].Set(300.0f, 100.0f, 50.0f);
-	m_itemPositionTable[3].Set(50.0f, 100.0f, 100.0f);
-	m_itemPositionTable[4].Set(60.0f, 150.0f, 100.0f);
-	m_itemPositionTable[5].Set(70.0f, 200.0f, 100.0f);
-	m_itemPositionTable[6].Set(100.0f, 200.0f, 200.0f);
-	m_itemPositionTable[7].Set(100.0f, 250.0f, 250.0f);
+	m_itemPositionTable[0].Set(2500.0f, 300.0f, 300.0f);
+	m_itemPositionTable[1].Set(3000.0f, 300.0f, 500.0f);
+	m_itemPositionTable[2].Set(4000.0f, 300.0f, 800.0f);
+	m_itemPositionTable[3].Set(1500.0f, 400.0f, 500.0f);
+	m_itemPositionTable[4].Set(1600.0f, 450.0f, 900.0f);
+	m_itemPositionTable[5].Set(1700.0f, 300.0f, 700.0f);
+	m_itemPositionTable[6].Set(2600.0f, 300.0f, 2000.0f);
+	m_itemPositionTable[7].Set(3200.0f, 250.0f, 2500.0f);
 	m_itemPositionTable[8].Set(100.0f, 300.0f, 300.0f);
 	m_itemPositionTable[9].Set(100.0f, 350.0f, 350.0f);
 

@@ -21,6 +21,9 @@ void ActionScene::ObjectEntry()
 	GameObjectManager::GetInstance()->Instance<Item>("Item");
 	GameObjectManager::GetInstance()->Instance<Item>("Item");
 	GameObjectManager::GetInstance()->Instance<Item>("Item");
+	GameObjectManager::GetInstance()->Instance<Item>("Item");
+	GameObjectManager::GetInstance()->Instance<Item>("Item");
+	GameObjectManager::GetInstance()->Instance<Item>("Item");
 
 	GameObjectManager::GetInstance()->Instance<HitObjectManager>("HitObjectManager");
 }

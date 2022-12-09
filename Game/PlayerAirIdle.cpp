@@ -70,7 +70,6 @@ void PlayerAirIdle::Update()
 	}
 	else
 	{
-		tools::Debug::DrawAxis(transform->m_Position, transform->GetAxisX(), 200.0f, Color::Yellow);
 		// アイドル状態じゃないときは回転でアイドルの姿勢に戻します
 		if (m_isIdling == false)
 		{

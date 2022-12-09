@@ -71,7 +71,7 @@ void PlayerMoveAir::Update()
 	
 	if (m_isRotation == true)
 	{
-		Float32 slerp = Easing::Liner(static_cast<Float32>(m_counter), static_cast<Float32>(m_owner->GetAirRotationCount()), 0.001f, 1.0f);
+		Float32 slerp = Easing::SineInOut(static_cast<Float32>(m_counter), static_cast<Float32>(m_owner->GetAirRotationCount()), 0.01f, 1.0f);
 		if (m_rotCounter >= m_owner->GetAirRotationCount())
 		{
 			slerp = 1.0f;
