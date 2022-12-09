@@ -11,6 +11,7 @@
 #include "Window.h"
 #include "WindowCallback.h"
 #include "Core/Application.h"
+#include "ThirdParty/Imgui/imgui.h"
 //#include "Tools/Debug.h"
 
 using namespace systems;
@@ -57,8 +58,15 @@ W_String StringToW_String(String string)
 //!	@param	メッセージパラメータ
 //!	@retval	終了結果ID
 //==============================================================================
+// ImGuiを操作する関数
+extern LRESULT ImGui_ImplWin32_WndProcHandler(HWND h_handle, UINT h_message, WPARAM h_wParam, LPARAM h_lParam);
 LRESULT APIENTRY WindowProc(HWND h_handle, UINT h_message, WPARAM h_wParam, LPARAM h_lParam)
 {
+	if (ImGui_ImplWin32_WndProcHandler(h_handle, h_message, h_wParam, h_lParam))
+	{
+		return true;
+	}
+
 	/****	コールバック取得	****/
 	WindowCallBack* callback = Window::GetInstance()->GetCallBack();
 	if (callback == nullptr)

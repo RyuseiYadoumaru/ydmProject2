@@ -13,8 +13,9 @@ namespace EDITOR_SYSTEMS
 {
 	class TestEditor : public systems::Editor
 	{
-	public:
 		EDITOR_CLASS;
+
+	private:
 		virtual void Update() override;
 
 	private:

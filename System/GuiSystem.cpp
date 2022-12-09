@@ -61,16 +61,15 @@ bool systems::GuiSystem::ShutDown()
 bool systems::GuiSystem::Run()
 {
     auto editorManager = EditorManager::GetInstance();
-
+    ImGui_ImplDX11_NewFrame();
+    ImGui_ImplWin32_NewFrame();
+    ImGui::NewFrame();
     for (auto& editor : editorManager->m_editorList)
     {
-        ImGui_ImplWin32_NewFrame();
-        ImGui_ImplDX11_NewFrame();
-        ImGui::NewFrame();
         editor.second->Render();
-        ImGui::Render();
-        ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
     }
+    ImGui::Render();
+    ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
     return true;
 }
 

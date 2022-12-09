@@ -11,7 +11,13 @@
 #include "macro.h"
 #include <DirectXMath.h>
 
-#define EDITOR_CLASS using systems::Editor::Editor;
+namespace systems
+{
+	class GuiSystem;
+}
+#define EDITOR_CLASS \
+using systems::Editor::Editor;\
+friend systems::GuiSystem; \
 
 namespace SYSTEMS
 {

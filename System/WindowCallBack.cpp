@@ -59,6 +59,3 @@ LRESULT WindowCallBack::OnDestroy(HWND h_handle, UINT h_message, WPARAM h_wParam
 	PostQuitMessage(0);
 	return 0;
 }
-//******************************************************************************
-//	End of file.
-//******************************************************************************

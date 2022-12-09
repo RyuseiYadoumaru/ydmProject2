@@ -17,6 +17,7 @@
 #include "Model.h"
 #include "Mesh.h"
 #include "../System/DX11Settransform.h"
+#include "DeveloperMenu.h"
 
 bool GAME_SYSTEMS::SphereCollider::HitCheck(SharedPtr<SphereCollider> collider)
 {
@@ -57,7 +58,7 @@ void GAME_SYSTEMS::SphereCollider::Update()
 	m_position += m_offset;
 
 #ifdef _DEBUG
-	if (m_isDebug == true)
+	if (m_isDebug == true && developer::DeveloperMenu::GetType() == developer::DeveloperMenu::Type::Develop)
 	{
 		MY_MATH::Matrix4x4 mtx;
 		mtx = MY_MATH::Matrix4x4::CreateMatrixIdentity();

@@ -12,7 +12,7 @@
 USING_GAME_SYSTEMS;
 using namespace developer;
 
-DeveloperMenu::Type DeveloperMenu::m_type = DeveloperMenu::Type::Develop;
+DeveloperMenu::Type DeveloperMenu::m_type = DeveloperMenu::Type::Master;
 SharedPtr<GAME_SYSTEMS::Line> DeveloperMenu::m_debugLine = nullptr;
 
 
@@ -37,7 +37,7 @@ void developer::DeveloperMenu::ShutDown()
 void developer::DeveloperMenu::ChangeType(DeveloperMenu::Type type) noexcept
 {
 #if _DEBUG
-    m_type = m_type;
+    m_type = type;
 #else
     m_type = DeveloperMenu::Type::Master;
 #endif
