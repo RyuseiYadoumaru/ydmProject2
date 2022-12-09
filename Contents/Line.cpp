@@ -22,7 +22,7 @@ void GAME_SYSTEMS::Line::Load(Vector<Vertex> vertex)
 	
 	ID3D11Device* device = &SYSTEMS::DirectXGraphics::GetInstance()->GetDevice();
 
-	bool sts = CreateVertexBufferWrite(device, sizeof(Line::Vertex), vertex.size(), (void*)vertex.data(), m_vertexBuffer.GetAddressOf());
+	bool sts = CreateVertexBufferWrite(device, sizeof(Line::Vertex), static_cast<uInt32>(vertex.size()), (void*)vertex.data(), m_vertexBuffer.GetAddressOf());
 	if (!sts) 
 	{
 		SYSTEMS::MessageWindow::GetInstance()->Error(TEXT("CreateVertexBufferWrite(Line) error"));

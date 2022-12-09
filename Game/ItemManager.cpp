@@ -37,7 +37,7 @@ void ItemManager::Update()
 {
 	if (m_itemList.empty() == false)
 	{
-		m_objectCounter = m_itemList.size();
+		m_objectCounter = static_cast<uInt32>(m_itemList.size());
 	}
 }
 

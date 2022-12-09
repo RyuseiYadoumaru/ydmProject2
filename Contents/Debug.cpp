@@ -264,6 +264,10 @@ void tools::Debug::DrawAxis(const MY_MATH::Matrix4x4& mtx, Float32 length)
 {
 }
 
+void tools::Debug::DrawAxis(const MY_MATH::Vector3& pos, const MY_MATH::Vector4& dir, Float32 length, MY_MATH::Color color)
+{
+}
+
 void tools::Debug::DrawRay(const MY_MATH::Vector3& pos, const MY_MATH::Vector3 dir, Float32 length, MY_MATH::Color color)
 {
 }

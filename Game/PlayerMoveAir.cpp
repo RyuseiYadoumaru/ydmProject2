@@ -46,7 +46,7 @@ void PlayerMoveAir::Update()
 	if (m_isRotation == true)
 	{
 		TOOLS::Debug::DrawAxis(transform->m_Position, m_endAxis.GetVector4(), 500.0f, Color::Yellow);
-		Float32 slerp = Easing::Liner(m_counter, m_owner->GetAirRotationCount(), 0.001f, 1.0f);
+		Float32 slerp = Easing::Liner(static_cast<Float32>(m_counter), static_cast<Float32>(m_owner->GetAirRotationCount()), 0.001f, 1.0f);
 		if (m_rotCounter >= m_owner->GetAirRotationCount())
 		{
 			slerp = 1.0f;
