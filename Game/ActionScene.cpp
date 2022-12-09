@@ -4,6 +4,8 @@
 #include "PlayerTrackingCamera.h"
 #include "MainCamera.h"
 #include "Player.h"
+#include "Item.h"
+#include "HitObjectManager.h"
 
 #include "CubeTest.h"
 
@@ -14,6 +16,10 @@ void ActionScene::ObjectEntry()
 	GameObjectManager::GetInstance()->Instance<DebugCamera>("DebugCamera");
 	GameObjectManager::GetInstance()->Instance<Player>("Player");
 	GameObjectManager::GetInstance()->Instance<CubeTest>("Cube");
+	GameObjectManager::GetInstance()->Instance<Item>("Item");
+	GameObjectManager::GetInstance()->Instance<Item>("Item");
+	GameObjectManager::GetInstance()->Instance<Item>("Item");
+	GameObjectManager::GetInstance()->Instance<HitObjectManager>("HitObjectManager");
 }
 
 void ActionScene::BeginPlay()
@@ -21,8 +27,8 @@ void ActionScene::BeginPlay()
 	SetDisplayColor(0.0f, 0.0f, 0.0f);
 	m_player = GameObjectManager::GetInstance()->Find("Player");
 	m_test = GameObjectManager::GetInstance()->Find("Cube");
-	m_test->m_transform->m_Position.x += 300.0f;
-	m_test->m_transform->m_Position.z += 300.0f;
+	//m_test->m_transform->m_Position.x += 300.0f;
+	//m_test->m_transform->m_Position.z += 300.0f;
 	m_frameCounter = 0;
 }
 

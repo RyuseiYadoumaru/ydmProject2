@@ -253,6 +253,15 @@
     <Filter Include="Game\Item">
       <UniqueIdentifier>{66ab15b6-6dcc-4d78-bde6-f1866a4539ca}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\Resource\Audio">
+      <UniqueIdentifier>{73278181-db41-4e92-8a71-b52b7a6c96ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\HitObjectManager">
+      <UniqueIdentifier>{8ccb3b44-67f3-402f-9650-3787e6e90a72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\HitObjectManager\Script">
+      <UniqueIdentifier>{3675892e-801d-41c6-aa58-a312836dff00}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="System\Console.cpp">
@@ -560,6 +569,12 @@
     </ClCompile>
     <ClCompile Include="Contents\SphareCollider.cpp">
       <Filter>Contents\Component\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\HitObjectManager.cpp">
+      <Filter>Game\HitObjectManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\ItemManager.cpp">
+      <Filter>Game\HitObjectManager\Script</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -977,6 +992,12 @@
     <ClInclude Include="Contents\SphareCollider.h">
       <Filter>Contents\Component\Physics</Filter>
     </ClInclude>
+    <ClInclude Include="Game\HitObjectManager.h">
+      <Filter>Game\HitObjectManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\ItemManager.h">
+      <Filter>Game\HitObjectManager\Script</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Shader\pscol.hlsl">
@@ -1019,6 +1040,9 @@
       <Filter>System\Renderer\Shader\HLSL\DebugShader</Filter>
     </FxCompile>
     <FxCompile Include="Shader\DebugPixelShader.hlsl">
+      <Filter>System\Renderer\Shader\HLSL\DebugShader</Filter>
+    </FxCompile>
+    <FxCompile Include="Shader\DebugColliderVertexShader.hlsl">
       <Filter>System\Renderer\Shader\HLSL\DebugShader</Filter>
     </FxCompile>
   </ItemGroup>

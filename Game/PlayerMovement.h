@@ -13,6 +13,9 @@ USING_MY_MATH;
 
 class PlayerActionCamera;
 class PlayerOriginTransform;
+class Item;
+class HitObjectManager;
+class ItemManager;
 
 class PlayerMovement : public Script
 {
@@ -74,11 +77,19 @@ private:
 	// アニメーション
 	SharedPtr<Animator> m_animator = nullptr;
 
+	// アイテム
+	GameObjectPtr m_item = nullptr;
+	GameObjectPtr m_hitObjectManager = nullptr;
+	SharedPtr<ItemManager> m_itemManger = nullptr;
+
 	// 姿勢
 	Vector4 m_forwardAxis;
 
 	// オリジナル座標系
 	SharedPtr<PlayerOriginTransform> m_originTransform = nullptr;
+
+	SharedPtr<SphereCollider> m_sphereCollider = nullptr;
+
 
 private:
 	virtual void Start() override;

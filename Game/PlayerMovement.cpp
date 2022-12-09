@@ -8,6 +8,9 @@
 #include "PlayerLandGround.h"
 #include "PlayerAirIdle.h"
 
+#include "Item.h"
+#include "ItemManager.h"
+
 void PlayerMovement::Start()
 {
 	// カメラ取得
@@ -31,6 +34,15 @@ void PlayerMovement::Start()
 
 	// オリジナル座標系取得
 	m_originTransform = GetOwner()->GetComponent<PlayerOriginTransform>();
+	
+	// アイテム取得 
+	m_hitObjectManager = GameObjectManager::GetInstance()->Find("HitObjectManager");
+	m_itemManger = m_hitObjectManager->GetComponent<ItemManager>();
+	TOOLS::Debug::Assert(m_itemManger == nullptr);
+
+	// 当たり判定取得
+	m_sphereCollider = GetOwner()->GetComponent<SphereCollider>();
+	TOOLS::Debug::Assert(m_sphereCollider == nullptr);
 }
 
 void PlayerMovement::Update()
@@ -41,9 +53,19 @@ void PlayerMovement::Update()
 	// ステートマシン更新
 	m_stateMachine.Update();
 
+	// ヒットアイテムを削除
+	auto itemList = m_itemManger->GetItemList();
+	for (auto item : itemList)
+	{
+		auto col = item->GetComponent<SphereCollider>();
+		if (m_sphereCollider->HitCheck(col) == true)
+		{
+			GameObjectManager::GetInstance()->Destroy(item);
+		}
+	}
+
 	// 移動
 	m_originTransform->m_Position += m_moveForce;
-	//GetOwner()->m_transform->m_Position += m_moveForce;
 }
 
 void PlayerMovement::End()

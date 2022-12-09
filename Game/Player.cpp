@@ -35,6 +35,12 @@ void Player::Setting()
 	animClip = ResourceManager::GetInstance()->GetAnimationClip("BasicMotions_Landing02.fbx");
 	anim->AddAnimation("LandGround", animClip);
 
+	// ƒRƒ‰ƒCƒ_
+	auto collider = AddComponent<SphereCollider>();
+	collider->SetRadius(50.0f);
+	collider->SetIsDebug(true);
+	collider->SetOffset(0.0f, 100.0f, 0.0f);
+
 	AddComponent<PlayerMovement>();
 	auto playerOriginTrans = AddComponent<PlayerOriginTransform>();
 
