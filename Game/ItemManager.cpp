@@ -10,13 +10,13 @@ void ItemManager::Start()
 	m_itemPositionTable[0].Set(100.0f, 100.0f, 50.0f);
 	m_itemPositionTable[1].Set(200.0f, 100.0f, 50.0f);
 	m_itemPositionTable[2].Set(300.0f, 100.0f, 50.0f);
-	m_itemPositionTable[3].Set(50.0f, 10.0f, 10.0f);
-	m_itemPositionTable[4].Set(60.0f, 15.0f, 10.0f);
-	m_itemPositionTable[5].Set(70.0f, 20.0f, 10.0f);
-	m_itemPositionTable[6].Set(100.0f, 20.0f, 20.0f);
-	m_itemPositionTable[7].Set(100.0f, 25.0f, 25.0f);
-	m_itemPositionTable[8].Set(100.0f, 30.0f, 30.0f);
-	m_itemPositionTable[9].Set(100.0f, 35.0f, 35.0f);
+	m_itemPositionTable[3].Set(50.0f, 100.0f, 100.0f);
+	m_itemPositionTable[4].Set(60.0f, 150.0f, 100.0f);
+	m_itemPositionTable[5].Set(70.0f, 200.0f, 100.0f);
+	m_itemPositionTable[6].Set(100.0f, 200.0f, 200.0f);
+	m_itemPositionTable[7].Set(100.0f, 250.0f, 250.0f);
+	m_itemPositionTable[8].Set(100.0f, 300.0f, 300.0f);
+	m_itemPositionTable[9].Set(100.0f, 350.0f, 350.0f);
 
 	// Žæ“¾ƒAƒCƒeƒ€‚ðŠÇ—‚·‚é‚½‚ß
 	auto objectList = GameObjectManager::GetInstance()->GetGameObjectList();
