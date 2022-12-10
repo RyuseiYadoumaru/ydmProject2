@@ -18,6 +18,7 @@ private:
 private:
 
 	uInt32 m_counter = 0;
+	uInt32 m_hitStopCounter = 0;
 	uInt32 m_rotCounter = 0;
 
 	// カメラコンポーネント

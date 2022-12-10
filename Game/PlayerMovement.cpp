@@ -55,13 +55,20 @@ void PlayerMovement::Update()
 
 	// ヒットアイテムを削除
 	auto itemList = m_itemManger->GetItemList();
-	for (auto item : itemList)
+	uInt32 index = 0;
+	for (auto& item : itemList)
 	{
-		auto col = item->GetComponent<SphereCollider>();
-		if (m_sphereCollider->HitCheck(col) == true)
+		if (item != nullptr)
 		{
-			GameObjectManager::GetInstance()->Destroy(item);
+			auto col = item->GetComponent<SphereCollider>();
+			if (m_sphereCollider->HitCheck(col) == true)
+			{
+				GameObjectManager::GetInstance()->Destroy(item);
+				m_itemManger->DeleteItem(index);
+				m_isHitStop = true;
+			}
 		}
+		index++;
 	}
 
 	// 移動

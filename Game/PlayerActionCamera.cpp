@@ -59,16 +59,34 @@ void PlayerActionCamera::Start()
 
 	m_lookAtOffset.Set(0.0f, 100.0f, 0.0f);
 
-
 	// フォーカスオブジェクトの向いてる方向にカメラアングルをセットする
 	m_horizontalAngle = m_focusTransform->GetRotation().y;
 	FocusObject();
+
+	// 振動幅
+	m_hitStopVibRange.Set(50.0f, 0.0f, 0.0f);
+	m_saveRightVector = m_camera->GetAxisX();
+
 }
 
 void PlayerActionCamera::Update()
 {
 	FocusObject();
 	Vector2 moveForce = { 0.0f, 0.0f };
+
+	if (m_playerMovement->IsHitStop() == true)
+	{
+		m_hitStopVibRange = m_hitStopVibRange * -1.0f;
+		m_camera->m_eye.x += m_hitStopVibRange.x * m_saveRightVector.x;
+		m_camera->m_eye.y += m_hitStopVibRange.y * m_saveRightVector.y;
+		m_camera->m_eye.z += m_hitStopVibRange.z * m_saveRightVector.z;
+		return;
+	}
+	else
+	{
+		m_saveRightVector = m_camera->GetAxisX();
+	}
+
 
 	if (m_isReset == true)
 	{

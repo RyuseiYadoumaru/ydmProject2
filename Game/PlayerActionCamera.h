@@ -49,6 +49,11 @@ private:
 	Float32 m_resetTime = 0.25f;
 	Float32 m_totalDeltaTime = 0.0f;
 
+	// ヒットストップ振動
+	MY_MATH::Vector3 m_hitStopVibRange;
+	MY_MATH::Vector3 m_saveRightVector;
+
+
 private:
 	void FocusObject();
 

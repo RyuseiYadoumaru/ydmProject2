@@ -48,6 +48,11 @@ public:
 	const uInt32& GetMaxFallSpeedFrame() const noexcept { return m_maxFallSpeedFrame; }
 	const uInt32& GetLandStopFrame() const noexcept { return m_landStopFrame; }
 
+	// アイテム取得
+	const Int32& GetItemHitStopFrame() const noexcept { return m_itemHitStopFrame; }
+	bool IsHitStop() const noexcept { return m_isHitStop; }
+	void SetIsHitStop(bool flag) noexcept { m_isHitStop = flag; }
+
 	// 姿勢
 	const Vector4& GetForwardAxis() const noexcept { return m_forwardAxis; }
 	void SetForwardAxis(const Vector4& forwardAxis) noexcept { m_forwardAxis = forwardAxis; }
@@ -77,6 +82,7 @@ private:
 	uInt32 m_maxFallSpeedFrame = 15;
 	uInt32 m_landStopFrame = 10;
 
+
 	// カメラ
 	SharedPtr<PlayerActionCamera> m_activeCamera = nullptr;
 
@@ -87,6 +93,9 @@ private:
 	GameObjectPtr m_item = nullptr;
 	GameObjectPtr m_hitObjectManager = nullptr;
 	SharedPtr<ItemManager> m_itemManger = nullptr;
+	Int32 m_hitStopCounter = 0;
+	Int32 m_itemHitStopFrame = 4;
+	bool m_isHitStop = false;
 
 	// 姿勢
 	Vector4 m_forwardAxis;

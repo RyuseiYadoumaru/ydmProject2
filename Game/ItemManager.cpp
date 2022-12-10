@@ -3,6 +3,12 @@
 
 USING_GAME_SYSTEMS;
 
+void ItemManager::DeleteItem(uInt32 index)
+{
+	m_itemList[index] = nullptr;
+
+}
+
 void ItemManager::Start()
 {
 	// アイテム座標テーブル作成

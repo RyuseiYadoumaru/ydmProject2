@@ -56,6 +56,7 @@ void PlayerMoveAir::EnterState()
 
 	m_counter = 0;
 	m_rotCounter = 0;
+	m_hitStopCounter = 0;
 }
 
 void PlayerMoveAir::ExitState()
@@ -67,7 +68,21 @@ void PlayerMoveAir::Update()
 {
 	//auto transform = m_owner->GetOriginTransform();
 	auto transform = m_owner->GetOwner()->m_transform;
-	AirMoveMent();
+
+	if (m_owner->IsHitStop() == false)
+	{
+		AirMoveMent();
+	}
+	else
+	{
+		m_hitStopCounter++;
+		if (m_hitStopCounter >= m_owner->GetItemHitStopFrame())
+		{
+			printf("ストップ解除\n\n");
+			m_owner->SetIsHitStop(false);
+			m_hitStopCounter = 0;
+		}
+	}
 	
 	if (m_isRotation == true)
 	{

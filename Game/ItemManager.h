@@ -8,6 +8,7 @@ class ItemManager : public GAME_SYSTEMS::Script
 public:
 	// アイテムリスト
 	Vector<gameSystems::GameObjectPtr> GetItemList() noexcept { return m_itemList; }
+	void DeleteItem(uInt32 index);
 
 	// オブジェクト数
 	uInt32 GetObjectCounter() const noexcept { return m_objectCounter; }
