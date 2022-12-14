@@ -28,18 +28,18 @@ myMath::Quaternion myMath::Quaternion::CreateByMartix(myMath::Matrix4x4& matrix)
 
 myMath::Quaternion myMath::Quaternion::CreateByRotation(Float32 x, Float32 y, Float32 z)
 {
-	Matrix4x4 rotMtx = Matrix4x4::CreateRotationMatrix(x, y, z);
-	Quaternion out = Quaternion::CreateByMartix(rotMtx);
-	return out;
+	//Matrix4x4 rotMtx = Matrix4x4::CreateRotationMatrix(x, y, z);
+	//Quaternion out = Quaternion::CreateByMartix(rotMtx);
+	//return out;
 
-	//Float32 roll = MY_MATH::Math::DegreesToRadians(z);
-	//Float32 yaw = MY_MATH::Math::DegreesToRadians(y);
-	//Float32 pitch = MY_MATH::Math::DegreesToRadians(x);
-	//ALIGN16 DirectX::XMVECTOR qt;
-	//qt = DirectX::XMQuaternionRotationRollPitchYaw(pitch, yaw, roll);
-	//myMath::Quaternion outQt;
-	//outQt.Set(qt);
-	//return outQt;
+	Float32 roll = MY_MATH::Math::DegreesToRadians(z);
+	Float32 yaw = MY_MATH::Math::DegreesToRadians(y);
+	Float32 pitch = MY_MATH::Math::DegreesToRadians(x);
+	ALIGN16 DirectX::XMVECTOR qt;
+	qt = DirectX::XMQuaternionRotationRollPitchYaw(pitch, yaw, roll);
+	myMath::Quaternion outQt;
+	outQt.Set(qt);
+	return outQt;
 }
 
 myMath::Quaternion myMath::Quaternion::CreateByRotationAxis(const Vector4& axis, Float32 angle)

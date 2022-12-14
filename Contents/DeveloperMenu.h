@@ -50,6 +50,9 @@ namespace developer
 		static SharedPtr<GAME_SYSTEMS::Line> GetLine() noexcept { return m_debugLine; }
 
 		static const Int32& GetDebugCameraPriority() noexcept { return m_debugCameraInfo.Priority; }
+		static const MY_MATH::Vector3& GetDebugPosition() noexcept { return m_debugCameraInfo.Position; }
+		static const MY_MATH::Vector3& GetDevbugRotation() noexcept { return m_debugCameraInfo.Rotation; }
+		static void AddForceDebugCamera(const MY_MATH::Vector3& moveForce) noexcept { m_debugCameraInfo.Position += moveForce; }
 
 	private:
 		static DeveloperMenu::Type m_type;

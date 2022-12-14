@@ -40,7 +40,7 @@ void ActionScene::BeginPlay()
 
 void ActionScene::Tick()
 {
-	printf("\n\n%d", m_frameCounter);
+	printf("\n\n%d\n", m_frameCounter);
 	m_frameCounter++;
 	//DebugTick();
 }

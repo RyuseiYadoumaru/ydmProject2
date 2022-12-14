@@ -76,28 +76,6 @@ void PlayerActionCamera::Update()
 	Vector2 moveForce = { 0.0f, 0.0f };
 	auto transform = GetOwner()->m_transform;
 
-	Float32 angle = 0.0f;
-	if (Keyboard::Press(Keycode::LeftArrow))
-	{
-		angle += 5.0f;
-	}
-	if (Keyboard::Press(Keycode::RightArrow))
-	{
-		angle -= 5.0f;
-	}
-	GetOwner()->m_transform->m_Rotation = GetOwner()->m_transform->m_Rotation * Quaternion::CreateByRotationAxis(Vector3::Up, angle);
-
-	if (Keyboard::Press(Keycode::F1))
-	{
-		GetOwner()->m_transform->m_Position.x += 10.0f;
-	}
-	if (Keyboard::Press(Keycode::F2))
-	{
-		GetOwner()->m_transform->m_Position.x -= 10.0f;
-	}
-
-
-
 	TOOLS::Debug::DrawAxis(transform->m_Position, m_camera->GetForward(), 100.0f, Color::Yellow);
 
 	if (m_playerMovement->IsHitStop() == true)

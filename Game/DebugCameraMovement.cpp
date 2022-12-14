@@ -15,53 +15,69 @@ void DebugCameraMovement::Start()
 }
 
 void DebugCameraMovement::Update()
-{
-	Vector3 moveForce;
-	Float32 angle = 0.0f;
-	if (Keyboard::Press(Keycode::F4))
-	{
-		angle += 5.0f;
-	}
-	if (Keyboard::Press(Keycode::F3))
-	{
-		angle -= 5.0f;
-	}
-	GetOwner()->m_transform->m_Rotation = GetOwner()->m_transform->m_Rotation * Quaternion::CreateByRotationAxis(Vector3::Up, angle);
-
-
+{	
+	// 有効度をエディタから取得
 	m_camera->SetPriority(DeveloperMenu::GetDebugCameraPriority());
+	
+	// デバッグ用カメラを移動します
+	Vector3 moveForce;
 	auto forward = m_camera->GetForward();
+	auto up = m_camera->GetUp();
+	auto right = m_camera->GetRight();
 
-	if (Keyboard::Press(Keycode::W))
+	if (Keyboard::Press(Keycode::UpArrow))
 	{
 		moveForce.x = forward.x * m_speed;
 		moveForce.y = forward.y * m_speed;
 		moveForce.z = forward.z * m_speed;
 	}
 
-	if (Keyboard::Press(Keycode::S))
+	if (Keyboard::Press(Keycode::DownArrow))
 	{
 		moveForce.x = (forward.x * -1.0f) * m_speed;
 		moveForce.y = (forward.y * -1.0f) * m_speed;
 		moveForce.z = (forward.z * -1.0f) * m_speed;
 	}
 
-	if (Keyboard::Press(Keycode::UpArrow))
+	if (Keyboard::Press(Keycode::RightArrow))
 	{
-		moveForce.x = m_camera->GetAxisY().x * m_speed;
-		moveForce.y = m_camera->GetAxisY().y * m_speed;
-		moveForce.z = m_camera->GetAxisY().z * m_speed;
+		moveForce.x = right.x * m_speed;
+		moveForce.y = right.y * m_speed;
+		moveForce.z = right.z * m_speed;
 	}
-	if (Keyboard::Press(Keycode::DownArrow))
+	if (Keyboard::Press(Keycode::LeftArrow))
 	{
-		moveForce.x = m_camera->GetAxisY().x * m_speed * -1.0f;
-		moveForce.y = m_camera->GetAxisY().y * m_speed * -1.0f;
-		moveForce.z = m_camera->GetAxisY().z * m_speed * -1.0f;
+		moveForce.x = (right.x * -1.0f) * m_speed;
+		moveForce.y = (right.y * -1.0f) * m_speed;
+		moveForce.z = (right.z * -1.0f) * m_speed;
 	}
+	DEVELOPER::DeveloperMenu::AddForceDebugCamera(moveForce);
+	m_transform->m_Position = DEVELOPER::DeveloperMenu::GetDebugPosition();
 
-	m_transform->m_Position += moveForce;
-	//m_camera->m_lookAt += moveForce;
-	//m_camera->m_eye += moveForce;
+	// デバッグ用カメラを回転します
+	// 射影しているときのみ操作を可能にする
+	if (m_camera->IsProjection() == true)
+	{
+		Float32 angleHorizontal = 0.0f;
+		Float32 angleVertical = 0.0f;
+		if (Mouse::Click(MouseCode::Right))
+		{
+			angleHorizontal = Mouse::CursorVelocity().x * 0.25f;
+			angleVertical = Mouse::CursorVelocity().y * 0.2f;
+
+			if (std::fabsf(angleHorizontal) >= std::fabsf(angleVertical))
+			{
+				m_transform->m_Rotation = m_transform->m_Rotation * Quaternion::CreateByRotationAxis(Vector3::Up, angleHorizontal);
+
+			}
+			else
+			{
+				m_transform->m_Rotation = m_transform->m_Rotation * Quaternion::CreateByRotationAxis(right, angleVertical);
+			}
+
+		}
+
+	}
 }
 
 void DebugCameraMovement::End()

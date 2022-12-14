@@ -24,8 +24,10 @@ namespace GAME_SYSTEMS
 
 	private:
 		static Int32 m_activeCameraPriority;
+		static Camera* m_activeCamera;
 
 	public:
+
 		// カメラの優先度
 		void SetPriority(Int32 priority) noexcept { m_priority = priority; }
 		const Int32& GetPriority() const noexcept { return m_priority; }
@@ -41,12 +43,15 @@ namespace GAME_SYSTEMS
 		}
 		MY_MATH::Vector3 GetForward() const noexcept
 		{
-			return MY_MATH::Vector3(m_viewTransformMatrix._13 * -1.0f, m_viewTransformMatrix._23 * -1.0f, m_viewTransformMatrix._33 * -1.0f);
+			return MY_MATH::Vector3(m_viewTransformMatrix._13, m_viewTransformMatrix._23, m_viewTransformMatrix._33);
 		}
 		MY_MATH::Vector3 GetUp() const noexcept
 		{
 			return MY_MATH::Vector3(m_viewTransformMatrix._12, m_viewTransformMatrix._22, m_viewTransformMatrix._32);
 		}
+
+		// 射影フラグ
+		bool IsProjection() const noexcept { return m_isProjection; }
 
 	private:
 		myMath::Vector3 m_eye;
@@ -70,6 +75,7 @@ namespace GAME_SYSTEMS
 
 	private:
 		SharedPtr<Transform> m_transform;
+		bool m_isProjection = false;
 
 	public:
 		Camera() : Graphics("Camera", Graphics::Type::Camera){}

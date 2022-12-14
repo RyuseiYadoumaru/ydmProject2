@@ -44,8 +44,8 @@ myMath::Vector2 GAME_SYSTEMS::Mouse::CursorPosition()
         return myMath::Vector2(0.0f, 0.0f);
     }
 
-    float cursorX = static_cast<Float32>(cursorPoint.x);
-    float cursorY = static_cast<Float32>(cursorPoint.y);
+    Float32 cursorX = static_cast<Float32>(cursorPoint.x);
+    Float32 cursorY = static_cast<Float32>(cursorPoint.y);
     myMath::Vector2 cursorPosition(cursorX, cursorY);
     return cursorPosition;
 }
@@ -55,8 +55,7 @@ myMath::Vector2 GAME_SYSTEMS::Mouse::CursorVelocity()
     auto mouseSystem = GameSystemManager::GetInstance()->GetSubSystem<MouseSystem>("MouseSystem");
     auto mouseState = mouseSystem->GetMouseState();
    
-    float velocityX = static_cast<Float32>(mouseState.lX);
-    float velocityY = static_cast<Float32>(mouseState.lY);
-    myMath::Vector2 velocityPosition(velocityX, velocityY);
-    return velocityPosition;
+    Float32 velocityX = static_cast<Float32>(mouseState.lX);
+    Float32 velocityY = static_cast<Float32>(mouseState.lY);
+    return myMath::Vector2 (velocityX, velocityY);
 }

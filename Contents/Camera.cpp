@@ -19,6 +19,7 @@ USING_GAME_SYSTEMS;
 USING_MY_MATH;
 
 Int32 Camera::m_activeCameraPriority = 0;
+GAME_SYSTEMS::Camera* Camera::m_activeCamera = nullptr;
 
 MY_MATH::Vector3 GAME_SYSTEMS::Camera::GetAxisX() noexcept
 {
@@ -49,6 +50,7 @@ MY_MATH::Vector3 GAME_SYSTEMS::Camera::GetAxisZ() noexcept
 
 void GAME_SYSTEMS::Camera::CommonUpdate()
 {
+	m_activeCamera = nullptr;
 	m_activeCameraPriority = NULL;
 }
 
@@ -73,6 +75,7 @@ void GAME_SYSTEMS::Camera::Update()
 {
 	// トランスフォームからカメラ行列を生成
 	m_viewTransformMatrix = Transform::CreateViewMatrix(*m_transform);
+	m_isProjection = false;
 
 	// Transformからカメラ情報を取得
 	m_eye = m_transform->m_Position;
@@ -85,6 +88,12 @@ void GAME_SYSTEMS::Camera::Update()
 	if (m_priority >= m_activeCameraPriority || m_activeCameraPriority == NULL)
 	{
 		// カメラの優先度が高い時にカメラ行列を切り替えます
+		if (m_activeCamera != nullptr)
+		{
+			m_activeCamera->m_isProjection = false;
+		}
+		m_isProjection = true;
+		m_activeCamera = this;
 		m_activeCameraPriority = m_priority;
 		DX11SetTransform::GetInstance()->SetTransform(DX11SetTransform::TYPE::VIEW, m_viewTransformMatrix);
 		DX11SetTransform::GetInstance()->SetTransform(DX11SetTransform::TYPE::PROJECTION, m_projectionTransformMatrix);

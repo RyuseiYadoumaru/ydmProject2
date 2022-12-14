@@ -218,63 +218,28 @@ void tools::Debug::DrawRay(const MY_MATH::Vector3& startPos, const MY_MATH::Vect
 
 
 #else
-//==============================================================================
-//!	@fn		Log
-//!	@brief	ログ
-//!	@note	コンソールに文字列を出力する
-//!	@param	log：文字列
-//==============================================================================
 void tools::Debug::Log(String log)
 {
 }
 
-//==============================================================================
-//!	@fn		LogError
-//!	@brief	ログエラー
-//!	@note	コンソールにエラー文を出力する
-//!	@param	log：文字列
-//==============================================================================
 void tools::Debug::LogError(String log)
 {
 
 }
 
-//==============================================================================
-//!	@fn		LogWarning
-//!	@brief	ログ警告
-//!	@note	コンソールに警告文を出力する
-//!	@param	log：文字列
-//==============================================================================
 void tools::Debug::LogWarning(String log)
 {
 
 }
 
-//==============================================================================
-//!	@fn		Stop
-//!	@brief	処理をストップする
-//==============================================================================
 void tools::Debug::Stop()
 {
 }
 
-
-//==============================================================================
-//!	@fn		Assert
-//!	@brief	条件の時処理をストップする
-//! //!	@param	flag : 条件式
-//==============================================================================
 void tools::Debug::Assert(bool flag) noexcept
 {
 }
 
-
-/**============================================================================
-//! @func   Assert
-//! @brief  条件の時処理をストップする
-//! @param flag
-//! @param log
-============================================================================*/
 void tools::Debug::Assert(bool flag, String log) noexcept
 {
 }
@@ -287,9 +252,8 @@ void tools::Debug::DrawAxis(const MY_MATH::Vector3& pos, const MY_MATH::Vector4&
 {
 }
 
-void tools::Debug::DrawRay(const MY_MATH::Vector3& pos, const MY_MATH::Vector3 dir, Float32 length, MY_MATH::Color color)
+void tools::Debug::DrawRay(const MY_MATH::Vector3& startPos, const MY_MATH::Vector3 endPos, MY_MATH::Color color)
 {
 }
-
 
 #endif // _DEBUG

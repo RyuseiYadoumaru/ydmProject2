@@ -15,9 +15,9 @@ USING_MY_MATH;
 myMath::Matrix4x4 GAME_SYSTEMS::Transform::CreateViewMatrix(const Transform& transform)
 {
 	myMath::Matrix4x4 worldMatrix = transform.m_worldMatrix;
-	DirectX::XMMatrixInverse(nullptr, worldMatrix.GetXMMatrix());
+	DirectX::XMMATRIX viewMtx = DirectX::XMMatrixInverse(nullptr, worldMatrix.GetXMMatrix());
 	myMath::Matrix4x4 viewMatrix;
-	viewMatrix.Set(worldMatrix);
+	viewMatrix.Set(viewMtx);
 	return viewMatrix;
 }
 
