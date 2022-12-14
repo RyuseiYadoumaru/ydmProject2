@@ -25,6 +25,7 @@ namespace myMath
 		static Quaternion CreateByMartix(Matrix4x4& matrix);
 		static Quaternion CreateByRotation(Float32 x, Float32 y, Float32 z);
 		static Quaternion CreateByRotationAxis(const Vector4& axis, Float32 angle);
+		static Quaternion CreateByRotationAxis(const Vector3& axis, Float32 angle);
 
 		static Vector3 EulerAngles(const Quaternion& qt);
 

@@ -57,6 +57,20 @@ myMath::Quaternion myMath::Quaternion::CreateByRotationAxis(const Vector4& axis,
 	return out;
 }
 
+myMath::Quaternion myMath::Quaternion::CreateByRotationAxis(const Vector3& axis, Float32 angle)
+{
+	DirectX::XMVECTOR outQt;
+	DirectX::XMVECTOR axisVec;
+
+	axisVec = DirectX::XMLoadFloat3(&axis);
+	Float32 radian = MY_MATH::Math::DegreesToRadians(angle);
+	outQt = DirectX::XMQuaternionRotationAxis(axisVec, radian);
+
+	myMath::Quaternion out;
+	out.Set(outQt);
+	return out;
+}
+
 myMath::Vector3 myMath::Quaternion::EulerAngles(const myMath::Quaternion& qt)
 {
 	const Float32 check = 2.0f * (-qt.y * qt.z + qt.w * qt.x);

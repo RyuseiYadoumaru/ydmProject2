@@ -21,6 +21,7 @@ namespace GAME_SYSTEMS
 	class Transform final : public Physics
 	{
 	public:
+		static myMath::Matrix4x4 CreateViewMatrix(const Transform& transform);
 		static myMath::Vector3 RotationMatrixToEuler(const myMath::Matrix4x4& rotMtx);
 
 	public:

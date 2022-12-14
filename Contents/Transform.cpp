@@ -12,6 +12,15 @@
 USING_GAME_SYSTEMS;
 USING_MY_MATH;
 
+myMath::Matrix4x4 GAME_SYSTEMS::Transform::CreateViewMatrix(const Transform& transform)
+{
+	myMath::Matrix4x4 worldMatrix = transform.m_worldMatrix;
+	DirectX::XMMatrixInverse(nullptr, worldMatrix.GetXMMatrix());
+	myMath::Matrix4x4 viewMatrix;
+	viewMatrix.Set(worldMatrix);
+	return viewMatrix;
+}
+
 Vector3 GAME_SYSTEMS::Transform::RotationMatrixToEuler(const Matrix4x4& rotMtx)
 {
 	Vector3 radian;
