@@ -75,7 +75,8 @@ namespace tools
 
 		static void DrawAxis(const MY_MATH::Matrix4x4& mtx, Float32 length);
 		static void DrawAxis(const MY_MATH::Vector3& pos, const MY_MATH::Vector4& dir, Float32 length = 100.0f, MY_MATH::Color color = MY_MATH::Color::Yellow);
-		static void DrawRay(const MY_MATH::Vector3& pos, const MY_MATH::Vector3 dir, Float32 length = 100.0f, MY_MATH::Color color = MY_MATH::Color::Red);
+		static void DrawAxis(const MY_MATH::Vector3& pos, const MY_MATH::Vector3& dir, Float32 length = 100.0f, MY_MATH::Color color = MY_MATH::Color::Yellow);
+		static void DrawRay(const MY_MATH::Vector3& startPos, const MY_MATH::Vector3 endPos, MY_MATH::Color color = MY_MATH::Color::Red);
 	
 	};
 

@@ -14,6 +14,7 @@ using namespace developer;
 
 DeveloperMenu::Type DeveloperMenu::m_type = DeveloperMenu::Type::Master;
 SharedPtr<GAME_SYSTEMS::Line> DeveloperMenu::m_debugLine = nullptr;
+developer::DeveloperMenu::DebugCameraInfo  developer::DeveloperMenu::m_debugCameraInfo;
 
 
 void developer::DeveloperMenu::SetUp()

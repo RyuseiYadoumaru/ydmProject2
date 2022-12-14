@@ -20,6 +20,7 @@
 
 
 #include "../Editor/TestEditor.h"
+#include "../Editor/DebugEditor.h"
 USING_EDITOR_SYSTEMS;
 
 /**
@@ -76,4 +77,5 @@ bool systems::GuiSystem::Run()
 void systems::GuiSystem::EditorSetUp()
 {
     EditorManager::GetInstance()->Create<TestEditor>(TEXT("TestEdit"), 0.0f, 0.0f);
+    EditorManager::GetInstance()->Create<DebugEditor>(TEXT("DebugEditor"), 1000.0f, 0.0f);
 }

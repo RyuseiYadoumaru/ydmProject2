@@ -9,10 +9,16 @@
 #pragma once
 #include "std.h"
 #include "macro.h"
+#include "Vector3.h"
 
 namespace GAME_SYSTEMS
 {
 	class Line;
+}
+
+namespace EDITOR_SYSTEMS
+{
+	class DebugEditor;
 }
 
 namespace developer
@@ -26,6 +32,14 @@ namespace developer
 			Develop
 		};
 
+		struct DebugCameraInfo
+		{
+			Int32 Priority = -1;
+			MY_MATH::Vector3 Position;
+			MY_MATH::Vector3 Rotation;
+		};
+
+
 	public:
 		static void SetUp();
 		static void ShutDown();
@@ -35,12 +49,16 @@ namespace developer
 
 		static SharedPtr<GAME_SYSTEMS::Line> GetLine() noexcept { return m_debugLine; }
 
+		static const Int32& GetDebugCameraPriority() noexcept { return m_debugCameraInfo.Priority; }
 
 	private:
 		static DeveloperMenu::Type m_type;
 		static SharedPtr<GAME_SYSTEMS::Line> m_debugLine;
+		static DebugCameraInfo m_debugCameraInfo;
 
 	private:
+		friend EDITOR_SYSTEMS::DebugEditor;
+
 		DeveloperMenu() = delete;
 		~DeveloperMenu() = delete;
 	};
