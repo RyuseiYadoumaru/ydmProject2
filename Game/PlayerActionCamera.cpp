@@ -25,17 +25,17 @@ void PlayerActionCamera::FocusObject()
 	Float32 addPositionX = sin(horizontalRadian) * m_horizontalRadius;
 	Float32 addPositionY = sin(verticalRadian) * m_verticalRadius;
 	Float32 addPositionZ = cos(horizontalRadian) * m_horizontalRadius;
-	m_camera->m_eye.Set(
-		m_focusTransform->GetPosition().x + addPositionX,
-		m_focusTransform->GetPosition().y + addPositionY + m_heightOffset,
-		m_focusTransform->GetPosition().z + addPositionZ);
+	//m_camera->m_eye.Set(
+	//	m_focusTransform->GetPosition().x + addPositionX,
+	//	m_focusTransform->GetPosition().y + addPositionY + m_heightOffset,
+	//	m_focusTransform->GetPosition().z + addPositionZ);
 
 	// 注視点をフォーカスオブジェクトに向ける
-	m_camera->m_lookAt.Set(
-		m_focusTransform->GetPosition().x,
-		m_focusTransform->GetPosition().y,
-		m_focusTransform->GetPosition().z);
-	m_camera->m_lookAt += m_lookAtOffset;
+	//m_camera->m_lookAt.Set(
+	//	m_focusTransform->GetPosition().x,
+	//	m_focusTransform->GetPosition().y,
+	//	m_focusTransform->GetPosition().z);
+	//m_camera->m_lookAt += m_lookAtOffset;
 
 	// カメラの上ベクトルをフォーカスオブジェクトに同期
 	//m_camera->m_up.Set(
@@ -64,8 +64,9 @@ void PlayerActionCamera::Start()
 	FocusObject();
 
 	// 振動幅
-	m_hitStopVibRange.Set(50.0f, 0.0f, 0.0f);
 	m_saveRightVector = m_camera->GetAxisX();
+
+	GetOwner()->m_transform->m_Position.Set(00.0f, 0.0f, 0.0f);
 
 }
 
@@ -73,20 +74,44 @@ void PlayerActionCamera::Update()
 {
 	FocusObject();
 	Vector2 moveForce = { 0.0f, 0.0f };
+	auto transform = GetOwner()->m_transform;
+
+	Float32 angle = 0.0f;
+	if (Keyboard::Press(Keycode::LeftArrow))
+	{
+		angle += 5.0f;
+	}
+	if (Keyboard::Press(Keycode::RightArrow))
+	{
+		angle -= 5.0f;
+	}
+	GetOwner()->m_transform->m_Rotation = GetOwner()->m_transform->m_Rotation * Quaternion::CreateByRotationAxis(Vector3::Up, angle);
+
+	if (Keyboard::Press(Keycode::F1))
+	{
+		GetOwner()->m_transform->m_Position.x += 10.0f;
+	}
+	if (Keyboard::Press(Keycode::F2))
+	{
+		GetOwner()->m_transform->m_Position.x -= 10.0f;
+	}
+
+
+
+	TOOLS::Debug::DrawAxis(transform->m_Position, m_camera->GetForward(), 100.0f, Color::Yellow);
 
 	if (m_playerMovement->IsHitStop() == true)
 	{
-		m_hitStopVibRange = m_hitStopVibRange * -1.0f;
-		m_camera->m_eye.x += m_hitStopVibRange.x * m_saveRightVector.x;
-		m_camera->m_eye.y += m_hitStopVibRange.y * m_saveRightVector.y;
-		m_camera->m_eye.z += m_hitStopVibRange.z * m_saveRightVector.z;
+		m_hitStopVibrationRange *= -1.0f;
+		//m_camera->m_eye.x += m_hitStopVibrationRange * m_saveRightVector.x;
+		//m_camera->m_eye.y += m_hitStopVibrationRange * m_saveRightVector.y;
+		//m_camera->m_eye.z += m_hitStopVibrationRange * m_saveRightVector.z;
 		return;
 	}
 	else
 	{
 		m_saveRightVector = m_camera->GetAxisX();
 	}
-
 
 	if (m_isReset == true)
 	{

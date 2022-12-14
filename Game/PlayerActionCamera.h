@@ -13,9 +13,6 @@ public:
 	// ステートマシン
 	GAME_SYSTEMS::StateMachine& GetStateMachine() noexcept { return m_stateMachine; }
 
-	// カメラアクション
-	const MY_MATH::Vector3& GetLookAt() const noexcept { return m_camera->m_lookAt; }
-
 private:
 	constexpr static  Float32 m_limitVerticalAngle = 90.0f;
 
@@ -50,7 +47,7 @@ private:
 	Float32 m_totalDeltaTime = 0.0f;
 
 	// ヒットストップ振動
-	MY_MATH::Vector3 m_hitStopVibRange;
+	Float32 m_hitStopVibrationRange = 50.0f;
 	MY_MATH::Vector3 m_saveRightVector;
 
 

@@ -73,7 +73,6 @@ bool systems::GameSystem::GameSystemStart()
             }
         }
     }
-
     return true;
 }
 

@@ -204,8 +204,17 @@
     <ClCompile Include="Contents\Vector4.cpp" />
     <ClCompile Include="Contents\VertexShader.cpp" />
     <ClCompile Include="dx11mathutil.cpp" />
+    <ClCompile Include="Editor\DebugEditor.cpp" />
     <ClCompile Include="Editor\TestEditor.cpp" />
     <ClCompile Include="Game\ActionScene.cpp" />
+    <ClCompile Include="Game\CameraActionState.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Game\CameraGround.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Game\CubeTest.cpp" />
     <ClCompile Include="Game\DebugCamera.cpp" />
     <ClCompile Include="Game\DebugCameraMovement.cpp" />
@@ -348,9 +357,14 @@
     <ClInclude Include="Contents\Vector4.h" />
     <ClInclude Include="Contents\VertexShader.h" />
     <ClInclude Include="dx11mathutil.h" />
+    <ClInclude Include="Editor\DebugEditor.h" />
     <ClInclude Include="Editor\EditorHeader.h" />
     <ClInclude Include="Editor\TestEditor.h" />
     <ClInclude Include="Game\ActionScene.h" />
+    <ClInclude Include="Game\CameraGround.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="Game\CubeTest.h" />
     <ClInclude Include="Game\DebugCamera.h" />
     <ClInclude Include="Game\DebugCameraMovement.h" />

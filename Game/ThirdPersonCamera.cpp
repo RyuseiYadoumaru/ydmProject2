@@ -16,18 +16,18 @@ void ThirdPersonCamera::FocusObject()
 	Float32 addPositionX = sin(horizontalRadian) * m_horizontalRadius;
 	Float32 addPositionY = sin(verticalRadian) * m_verticalRadius;
 	Float32 addPositionZ = cos(horizontalRadian) * m_horizontalRadius;
-	m_camera->m_eye.Set(
-		m_focusTransform->GetPosition().x + addPositionX,
-		m_focusTransform->GetPosition().y + addPositionY + m_heightOffset,
-		m_focusTransform->GetPosition().z + addPositionZ
-	);
+	//m_camera->m_eye.Set(
+	//	m_focusTransform->GetPosition().x + addPositionX,
+	//	m_focusTransform->GetPosition().y + addPositionY + m_heightOffset,
+	//	m_focusTransform->GetPosition().z + addPositionZ
+	//);
 
 	// 注視点をフォーカスオブジェクトに向ける
-	m_camera->m_lookAt.Set(
-		m_focusTransform->GetPosition().x,
-		m_focusTransform->GetPosition().y,
-		m_focusTransform->GetPosition().z);
-	m_camera->m_lookAt += m_lookAtOffset;
+	//m_camera->m_lookAt.Set(
+	//	m_focusTransform->GetPosition().x,
+	//	m_focusTransform->GetPosition().y,
+	//	m_focusTransform->GetPosition().z);
+	//m_camera->m_lookAt += m_lookAtOffset;
 
 	// カメラの上ベクトルをフォーカスオブジェクトに同期
 	//m_camera->m_up.Set(

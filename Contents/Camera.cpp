@@ -6,8 +6,9 @@
 //* @author YadoumaruRyusei
 //* @date   November 2022
 //*****************************************************************************
-
 #include "Camera.h"
+#include "Transform.h"
+#include "GameObject.h"
 #include "../System/Window.h"
 #include "../System/DX11Settransform.h"
 #include "DeveloperMenu.h"
@@ -46,11 +47,15 @@ MY_MATH::Vector3 GAME_SYSTEMS::Camera::GetAxisZ() noexcept
 	return outVec;
 }
 
+void GAME_SYSTEMS::Camera::CommonUpdate()
+{
+	m_activeCameraPriority = NULL;
+}
+
 void GAME_SYSTEMS::Camera::Start()
 {
-	m_eye.Set(-100.0f,0.0f,-100.0f);
-	m_lookAt.Set(50.0f,0.0f,50.0f);
-	m_up.Set(0.0f,1.0f,0.0f);
+	// トランスフォーム取得
+	m_transform = GetOwner()->m_transform;
 
 	// クリップ設定
 	m_nearClip = 1.0f;
@@ -66,13 +71,18 @@ void GAME_SYSTEMS::Camera::Start()
 
 void GAME_SYSTEMS::Camera::Update()
 {
-	// ビュー変換行列を生成する
-	m_viewTransformMatrix = myMath::Matrix4x4::CreateLookAtMatrix(m_eye, m_lookAt, m_up);
+	// トランスフォームからカメラ行列を生成
+	m_viewTransformMatrix = Transform::CreateViewMatrix(*m_transform);
+
+	// Transformからカメラ情報を取得
+	m_eye = m_transform->m_Position;
+	m_up = GetUp();
+	m_lookAt = m_eye + (m_eye * GetForward());
 
 	// プロジェクション行列を生成する
 	m_projectionTransformMatrix = myMath::Matrix4x4::CreateProjectionMatrix(m_fov, m_aspect, m_nearClip, m_farClip);
 
-	if (m_priority >= m_activeCameraPriority)
+	if (m_priority >= m_activeCameraPriority || m_activeCameraPriority == NULL)
 	{
 		// カメラの優先度が高い時にカメラ行列を切り替えます
 		m_activeCameraPriority = m_priority;
@@ -82,9 +92,9 @@ void GAME_SYSTEMS::Camera::Update()
 
 	if (DEVELOPER::DeveloperMenu::GetType() == DEVELOPER::DeveloperMenu::Type::Develop)
 	{
-		TOOLS::Debug::DrawRay(m_eye, GetAxisX(), 300.0f, MY_MATH::Color::Red);
-		TOOLS::Debug::DrawRay(m_eye, GetAxisY(), 300.0f, MY_MATH::Color::Green);
-		TOOLS::Debug::DrawRay(m_eye, GetAxisZ(), 300.0f, MY_MATH::Color::Blue);
+		TOOLS::Debug::DrawAxis(m_eye, GetRight(), 100.0f, MY_MATH::Color::Red);
+		TOOLS::Debug::DrawAxis(m_eye, GetUp(), 100.0f, MY_MATH::Color::Green);
+		TOOLS::Debug::DrawAxis(m_eye, GetForward(), 100.0f, MY_MATH::Color::Blue);
 	}
 }
 

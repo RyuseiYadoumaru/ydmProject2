@@ -10,6 +10,7 @@
 #include "std.h"
 #include "macro.h"
 #include "Graphics.h"
+#include "Camera.h"
 
 namespace GAME_SYSTEMS
 {
@@ -49,6 +50,9 @@ namespace GAME_SYSTEMS
 
 		bool Update()
 		{
+			// カメラセットアップ
+			Camera::CommonUpdate();
+
 			for (auto& graphicsStage : m_graphicsList)
 			{
 				for (auto& graphics : graphicsStage.second)

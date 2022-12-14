@@ -72,13 +72,20 @@ void PlayerMoveAir::Update()
 	if (m_owner->IsHitStop() == false)
 	{
 		AirMoveMent();
+		
+		// もう一度入力したときに止まる
+		if (GamePad::RightTrigger() >= GamePad::m_XinputTriggerMax &&
+			GamePad::OldRightTrigger() != GamePad::m_XinputTriggerMax)
+		{
+			m_owner->GetStateMachine().ChangeState("IdleAir");
+			return;
+		}
 	}
 	else
 	{
 		m_hitStopCounter++;
 		if (m_hitStopCounter >= m_owner->GetItemHitStopFrame())
 		{
-			printf("ストップ解除\n\n");
 			m_owner->SetIsHitStop(false);
 			m_hitStopCounter = 0;
 		}
@@ -97,14 +104,6 @@ void PlayerMoveAir::Update()
 		//transform->m_QtRotation = slerpQt;
 		transform->m_Rotation = slerpQt;
 		m_rotCounter++;
-	}
-
-	// もう一度入力したときに止まる
-	if (GamePad::RightTrigger() >= GamePad::m_XinputTriggerMax &&
-		GamePad::OldRightTrigger() != GamePad::m_XinputTriggerMax)
-	{
-		m_owner->GetStateMachine().ChangeState("IdleAir");
-		return;
 	}
 	m_counter++;
 }
